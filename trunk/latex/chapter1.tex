@@ -1,0 +1,29 @@
+%----------------------------------------------------------------------------
+\chapter{Adatbányászati háttér}\label{sect:Adatb}
+%----------------------------------------------------------------------------
+\section{Az alkalmazott adatbányászatról}
+%----------------------------------------------------------------------------
+Az adatbányászatot sokféleképp lehet definiálni. A legelterjedtebb megfogalmazás szerint olyan újszerû, érvényes és korábban ismeretlen tudás kinyerése nagyméretû adathalmazból, mely nem triviális, hasznos és valamilyen módon magyarázható is \cite{BodonPhD}. Mint formula, nem a legszerencsésebb kifejezés, hiszen míg a szénbányászaton a szén kitermelését értjük, az adatbányászat nem új adatot, hanem a nyers adatból tudást hoz létre.
+
+Az alkalmazott adatbányászat kétségtelenül multidiszciplináris terület, hiszen az alapjait adó tágabb értelemben vett matematikai ágak (statisztika, valószínûség-számítás, lineáris algebra, algoritmus-elmélet, mesterséges intelligencia, stb\dots) mellett nem hagyható figyelmen kívül az adathalmaz által reprezentált entitásokhoz kapcsolódó meglévõ tudásunk sem, hiszen biológusok, csillagászok, bankárok nap mint nap bár, de különbözõképp használják és magyarázzák eredményeit. A dolgozatom egy etnomuzikológus által felvetett kérdésekre keres adatbányászaton alapuló, de a elsõsorban népzenekutató szakember által értelmezhetõ válaszokat, tehát a cél, hogy a népzenekutatás számára állítsunk elõ új tudást.
+
+%----------------------------------------------------------------------------
+\section{A tudásfeltárás folyamata}
+%----------------------------------------------------------------------------
+
+Az adatbányászati folyamat eredményességének elengedhetetlen feltétele, hogy kövessük a területtel foglalkozó korábbi kutatások által meghatározott lépéseket. A témával foglalkozó szakirodalom \cite{BodonPhD} a követketkezõ fázisokat sorolja fel:
+
+\begin{enumerate}
+	\item Az alkalmazási terület feltárása és megértése, a fontosabb elõzetes ismeretek begyûjtése, a felhasználási célok meghatározása
+	\item Céladatbázis létrehozása: kiválasztani az adatbázist, amelybõl a tudást ki akarjuk nyerni
+	\item Adatok elõfeldolgozása: téves bejegyzések eltávolítása, zajszûrés (adattisztítás)
+	\item Adattér csökkentés: az adatbázisból a cél szempontjából fontos attribútumok kiemelése
+	\item Az adatbányászati algoritmus típusának kiválasztása: eldönteni, hogy milyen módszert igényel a megoldandó feladat
+	\item A megfelelõ algoritmus kiválasztása (idõ- és tárigény, elõnyök, hátrányok alapján)
+	\item Az algoritmus futtatása
+	\item A kinyert tudás értelmezése, esetleges visszalépés finomítás céljából
+	\item A megszerzett tudás megerõsítése: összevetés az elvárásokkal, elõzetes ismeretekkel
+\end{enumerate}
+
+A munka során mindvégig szem elõtt tartottam, hogy amennyire csak lehetséges, az itt felsorolt pontok mindegyikét kövessem. A következõ fejezetek struktúrálása ezen ütemterv nyomán készült.
+
