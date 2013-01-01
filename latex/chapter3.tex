@@ -1,0 +1,227 @@
+%----------------------------------------------------------------------------
+\chapter{A ritmus}
+%----------------------------------------------------------------------------
+
+A zene két legalapvetõbb alkotórésze a dallam és a ritmus. A kotta hangjegyei õket jelölik. Csak együttesen határoznak meg egy dal, azt azonban nem mondhatjuk, hogy egymástól elválaszthatatlanok, hiszen gyakran ugyanazt a dallamot teljesen más ritmussal hallhatjuk, illetve a különbözõ eredetû és tulajdonságú dallamok elõfordulnak azonos ritmussal \cite{Vargyas1}. A népdalok rendszerezésében a dallam és a ritmus szerinti megközelítés mindig párhuzamosan érvényesült, Kodály eredetileg a dallam sajátosságait tartotta szem elõtt, míg Bartók nagy figyelmet fordított a ritmus szerinti osztályozásra.
+
+%----------------------------------------------------------------------------
+\section{A ritmusról}
+%----------------------------------------------------------------------------
+
+A ritmus görög eredetû szó, jelentése: lüktetés, dobogás, (szív)verés, ütem. Hasonló vagy azonos elemek idõbeli szabályos váltakozását, ismétlõdését értjük alatta. A zene csak az idõben fogható fel, tehát nem értelmezhetõ a ritmus fogalma nélkül.
+
+Mind adatbányászati, mind etnomuzikológiai szempontból alapvetõ kérdés, hogy hogyan hasonlítsunk össze két ritmust. A ritmusok reprezentációját úgy kell megválasztanunk, hogy azok összehasonlíthatóak legyenek olyan módon, amit a zenekutató értelmesnek talál. Alapvetõ követelmény, hogy ez az összehasonlítás emberi észlelésünkkel összhangban legyen, azaz hasonlónak érzékelt ritmusokat hasonlónak, különbözõnek érzékelt ritmusokat pedig különbözõnek találjon.
+
+Két ritmus ($r_i$ és $r_j$) különbözõségét valamiképp mérhetõvé kell tennünk. Meg kell adnunk egy formulát ($d(r_i,r_j)$), amely a kapott két ritmusábrázolás alapján képes meghatározni egy különbözõséget tükrözõ numerikus értéket. Kézenfekvõ megközelítésnek tûnik, ha ezt a különbözõségi értéket a $0$ és $1$ közötti skálán helyezzük el, ahol minél kisebb az érték, annál jobban hasonlít egymásra a két ritmus. A $0$ jelenti a teljes ritmikai azonosságot, míg az $1$ a lehetõ legnagyobb különbözõséget, a két szélsõérték között pedig egyenesen arányosan oszlik el a különbözõség. 
+
+Minden ritmus összehasonlításra kerül az összes többi ritmussal, a kiszámított értékek pedig egy úgynevezett különbözõségi mátrix ($M_{diff}$) megfelelõ helyére kerülnek. Ezt úgy képezzük, hogy vesszük egy sorba az összes ritmust, illetve vesszük õket egy oszlopba is, majd a kapott táblázat megfelelõ helyére beírjuk a különbözõségi értéket. A mátrix nyilvánvalóan szimmetrikus lesz (hiszen lényegtelen, hogy $r_i$ ritmust vetjük össze $r_j$-vel, vagy $r_j$ ritmust $r_i$-val, azaz $d(r_i,r_j)=d(r_j,r_i), \forall i,j$-re), fõátlójában csupa nullákkal (hiszen $r_i$ ritmus megegyezik $r_i$ ritmussal, azaz $d(r_i,r_i)=0, \forall i$-re). A könnyebb tárolás és feldolgozás érdekében tehát elég, ha csak a fõátló alatti elemeket tekintjük.
+
+\begin{align}
+M_{diff} = \bordermatrix{~ & r_1 & r_2 & r_3 & r_4 & \cdots & r_{n-1} & r_n \cr
+                  r_1 & 0 & - & - & - & \cdots & - & -\cr
+									r_2 & d(r_2,r_1) & 0 & - & - & \cdots & - & -\cr
+									r_3 & d(r_3,r_1) & d(r_3,r_2) & 0 & - & \cdots & - & -\cr
+									r_4 & d(r_4,r_1) & d(r_4,r_2) & d(r_4,r_3) & 0 & \cdots & - & -\cr
+									\vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \cr
+									r_{n-1} & d(r_{n-1},r_1) & d(r_{n-1},r_2) & d(r_{n-1},r_3) & d(r_{n-1},r_4) & \cdots & 0 & -\cr
+                  r_n & d(r_n,r_1) & d(r_n,r_2) & d(r_n,r_3) & d(r_n,r_4) & \cdots & d(r_n,r_{n-1}) & 0\cr}
+\end{align}
+\\
+
+A fenti mátrix-definícióban látható, hogy mely értékekre nincs szükségünk, melyek adottak és melyeket kell kiszámolnunk. Adott $n$ számú ritmust feltételezve könnyû meghatározni, hogy ehhez összesen $\frac{n^2-n}{2}$ összehasonlítás szükséges.
+
+%----------------------------------------------------------------------------
+\section{A ritmus geometriai reprezentációja}
+%----------------------------------------------------------------------------
+
+A ritmus vizuális megjelenítése nem csak könyebb elemzést tesz lehetõvé, de olyan tulajdonságokra hívhatja fel a figyelmet, melyek fontosak a hasonlóság méréséhez. A 13. századi arab zenetudós, Safi al-Din óta ismert a ritmus azon szemléltetése, mely egy kört körcikkekre bont, az ütésekhez tartozó körcikkeket kiszínezi, a szünetekhez tartozókat pedig üresen hagyja. A kezdõpontot egy nyíl jelzi. Ez a zseniálisan egyszerû módszer a ritmus ciklikusságát is megragadja, hiszen egy ritmus több versszakból, strófából álló dalok esetén visszatér. 
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=100mm, keepaspectratio]{figures/chart01.png}
+\caption{A ritmus 13. századból származó ciklikus ábrázolása} 
+\label{fig:fig01}
+\end{figure}
+
+A \ref{fig:fig01} ábrán látható egy egyszerû ti-ti-tá ti-ti-tá ritmus ábrázolása. A teljes kör $16$ egyenlõ körcikkre van osztva, a hangsúlyos ütemek elejéhez tartozó körcikkek kitöltöttek, az utánuk következõ, az ütem hosszúságától függõ számú körcikkek pedig kitöltetlenek. Rövidebb ütemek (pl. tizenhatodok) szemléletes ábrázolásához nagyobb felbontású köröket kell alkalmaznunk. Az ábra tengelyes vagy középpontos szimmetriája fontos információt hordoz a megjelenített ritmusról is.
+
+
+\begin{figure}[!ht]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/ritmus.png}
+\caption{Négy különbözõ ritmusábrázolás} 
+\label{fig:fig02}
+\end{figure}
+
+%----------------------------------------------------------------------------
+\subsection{Time Unit Box System}
+%----------------------------------------------------------------------------
+
+A ritmusok gépi ábrázolására a University of California (UCLA) kutatói által kifejlesztett Time Unit Box System (TUBS) módszer tûnik a legalmasabbnak (a \ref{fig:fig02} ábrán a 2. módszer). Ez néhány egymás mellé helyezett dobozból áll, melyek mindegyike egy elõre meghatározott idõszeletet reprezentál. A dobozok vagy üresek, vagy jelöltek lehetnek, az üres doboz a hozzá tartozó idõszeletben zenei esemény hiányát, míg a jelölt doboz a annak meglétét tükrözi. Ez a megközelítés könnyedén interpretálható a számítástudomány által egyszerûen feldolgozható bináris vektor nyelvén is (a \ref{fig:fig02} ábrán a 3. módszer).
+
+\begin{figure}
+\centering
+	\begin{tikzpicture}
+	\begin{axis}[ymin=0,ymax=4.2,enlargelimits=false,xtick=data]
+	\addplot
+	[ybar interval,fill=black!30]
+	coordinates
+	{(0, 2) (1,    2) (2,    4) (3,    2) (4,    2) (5,    4) (6,    4)
+	 (7, 2) (8, 2) (9, 4) (10, 4) (11, 4)};
+	\end{axis}
+	\end{tikzpicture}
+\caption{Szomszédos intervallumok spektruma}
+\label{fig:fig03}
+\end{figure}
+
+%----------------------------------------------------------------------------
+\subsection{Szomszédos intervallumok ábrázolása}
+%----------------------------------------------------------------------------
+
+A \ref{fig:fig02} ábrán látható 4. ritmusábrázolási módszerben található számok azt jelzik, hogy milyen hosszúak az egymást követõ hangsúlyos elemek. A ti-ti-tá ritmus így tizenhatodos felbontással a $(2, 2, 4)$ intervallum-vektorral jellemezhetõ. Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki módszereket. Ezek egyike, a szomszédos intervallumok spektrumának módszere úgy ábrázolja a ritmust egy koordinátarendszerben, hogy az $x$ tengely mentén egyesével haladva egy-egy oszlop magassága felel meg az adott pozícióban álló hangsúly hosszának (\ref{fig:fig03} ábra). Az azonos ütemet tartalmazó ritmusok így szemléletesen ábrázolhatóak egymás mellett vagy alatt, de ez a módszer megnehezíti az intervallumok relatív hosszúságának érzékelését.
+
+\begin{figure}
+\centering
+	\begin{tikzpicture}
+	\begin{axis}[ymin=0,ymax=4.2,enlargelimits=false]
+	\addplot
+	[ybar interval,fill=black!30]
+	coordinates
+	{(0, 2) (2,    2) (4,    4) (8,    2) (10,    2) (12,    4) (16,    4)
+	 (20, 2) (22, 2) (24, 4) (28, 4) (32, 4)};
+	\addplot
+	[const plot,thick]
+	coordinates
+	{(0, 0) (0, 2) (2,    2) (4,    4) (8,    2) (10,    2) (12,    4) (16,    4)
+	 (20, 2) (22, 2) (24, 4) (28, 4) (32, 4) (32, 0)};
+	\end{axis}
+	\end{tikzpicture}
+\caption{Temporal Elements Displayed As Squares (TEDAS)}
+\label{fig:fig04}
+\end{figure}
+
+Kézenfekvõ ötlet a hátrányok kiköszöbölésére a különbözõ módszerek ötvözete. A TUBS módszert és a szomszédos intervallumok spektrumának módszerét úgy tudjuk vegyíteni, hogy minden TUBS-ban szereplõ dobozba azt a számot írjuk, amilyen hosszú a hozzá tartozó vagy az õt megelõzõ hangsúlyos elem. Ha az így kapott vektort ábrázoljuk a koordinátarendszerben, akkor egy olyan ábrát kapunk, melyen az idõbeli elemek megfelelõ méretû négyszögekkel vannak reprezentálva. Ebbõl származik a módszer elnevezése is: Temporal Elements Displayed As Squares, vagy röviden TEDAS \cite{Toussaint2}. A korábbiakban tárgyalt ritmushoz tartozó TEDAS ábrázolás látható a \ref{fig:fig04} ábrán. Az alapjául szolgáló vektort, melyet kronotonikus láncnak nevezünk, nem csak oszlopként, hanem függvényként is ábrázolhatjuk a koordinátarendszerben (\ref{fig:fig05} ábra).
+
+
+\begin{figure}
+\centering
+        \begin{subfigure}[b]{0.5\textwidth}
+                \centering
+               \includegraphics[width=80mm, keepaspectratio]{figures/ritmusok.png}
+                \caption{Ritmusok}
+        \end{subfigure}%
+        \begin{subfigure}[b]{0.5\textwidth}
+                \centering
+								\begin{tikzpicture}
+									\begin{groupplot}[
+											group style={
+													group name=my plots,
+													group size=1 by 2,
+													xlabels at=edge bottom,
+													vertical sep=0pt
+											},
+											xmin=0, xmax=32,
+											ymin=0, ymax=4.5
+									]
+									\nextgroupplot
+									\addplot[const plot,red, thick] coordinates
+									{(0,    2) (4,    4) (8,    2) (12,    4) (20,    2) (24,    4) (28,    4) (32,    4)};
+									\nextgroupplot
+									 \addplot [const plot, blue, thick] coordinates
+									{(0,    4) (8,    2) (12,    4) (24,    2) (28,    4) (32,    4)};
+									\end{groupplot}
+								\end{tikzpicture}
+                \caption{Kronotonikus láncok}
+        \end{subfigure}
+\caption{Kronotonikus láncok értelmezése}
+\label{fig:fig05}
+\end{figure}
+
+
+%----------------------------------------------------------------------------
+\section{Ritmikus különbözõségi metrikák}
+%----------------------------------------------------------------------------
+
+Az itt következõ módszerek Godfried Toussaint cikkébõl származnak \cite{Toussaint1}.
+
+%----------------------------------------------------------------------------
+\subsection{Hamming távolság}
+%----------------------------------------------------------------------------
+A számítástudományban bináris vektorok összehasonlításának legtermészetesebb módja a vektorok elemenkénti összehasonlítása, ismertebb nevén Hamming-távolság számolása. Ebben a megközelítésben a TUBS módon reprezentált ritmusok közvetlenül használhatók, hiszen azok lényegében bináris vektorok. A módszer elméleti hátterében az $n$ hosszú vektorok egy $n$-dimenziós hiperkocka pontjai. Adott $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ közötti távolság számolható az alábbi képlet segítségével:
+\begin{align}
+d_H(X,Y)=\sum_{i=1}^n |x_i-y_i| \nonumber
+\end{align}
+ahol $|x|$ az $x$ érték abszolútértékét jelöli.
+
+A módszer nagyon egyszerû, idõigénye is alacsony, hiszen elég egyetlen ciklusban végigiterálni a vektorokon és akkumulálni a különbözõ bitek számát, azaz lépésszáma a vektor hosszának konstansszorosa ($O(n)$). Ugyanakkor nem biztos, hogy  erre a speciális igényre a legjobban megfelel, mert az eltérõséget ugyan jól méri, de azt nem, hogy milyen messze vannak egymástól az eltérések. A gyakorlati tapasztalatok azt mutatják, hogy egy hangsúly távolabbra helyezése különbözõbbnek hat, mintha közelebbre tettük volna át. Szintén hátránya a módszernek, hogy egy ütemmel eltolva ugyanaz a ritmus teljesen másnak értékelõdik, holott az emberi fül számára az nagyon hasonló az eredetihez.
+
+%----------------------------------------------------------------------------
+\subsection{Intervallum-vektorok Euklideszi-távolsága}
+%----------------------------------------------------------------------------
+
+Zenefelismerõ és zenekategorizáló algoritmusok által gyakrabban használt ritmusábrázolás a hangsúlyok közötti intervallumok hosszait reprezentáló vektorokon alapul (a \ref{fig:fig02} ábrán a 4. módszer hasonló, de ott a hangsúlyos ütemet is beleszámoljuk a hosszba, ezért ott a vektor minden eleme $1$-gyel nagyobb). Egy ritmus az $X=(x_1,x_2,...,x_n)$ vektor által reprezentált, ahol $x_1$ jelöli az elsõ hangsúly utáni intervallum hosszát. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ által jelölt ritmusok közötti Euklideszi távolságot az alábbi formula adja meg:
+\begin{align}
+d_E(X,Y)=\sqrt{\sum_{i=1}^n (x_i-y_i)^2} \nonumber
+\end{align}
+
+Az intervallum-vektorok $O(n)$ idõben számolhatók a TUBS ábrázolásból, majd $d_E(X,Y)$ meghatározása is elvégezhetõ $O(k)$ idõ alatt, ahol $k$ az intervallumok száma, így összességében az algoritmus $O(n)$ idejû.
+
+Ez a megközelítés a Hamming-távolságnál hasznosabb a ritmus különbözõségének meghatározásához, hiszen az eltolási problémát kiküszöböli.
+
+%----------------------------------------------------------------------------
+\subsection{Az intervallum-különbözõségi vektorok távolsága}
+%----------------------------------------------------------------------------
+
+Ez a módszer Coyle-tól és Shmulevich-tõl származik. Az elõzõhöz hasonlóan ez a megközelítés is az intervallum-vektorokból indul ki, ám mielõtt a két ritmus intervallumhosszait egymáshoz hasonlítaná, az azonos ritmusban szomszédos elemekhez méri õket. Így egy ritmus az egymást követõ intervallumok arányival van jellemezve. Formálisan a $T=(t_1,t_2,...,t_n)$ intervallum-vektor által jelölt ritmushoz egy olyan $X=(x_1,x_2,...,x_n)$ vektort definiál, melynek elemei $x_i=t_{i+1}/t_i$ módon vannak meghatározva. A ciklikusságot is figyelembe véve $x_n=t_1/t_n$, így $T$-hez hasonlóan $X$ dimenziója is $n$ lesz. Az így kapott $X$ vektort intervallum-különbözõségi vektornak nevezzük. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ intervallum-különbözõségi vektorok által jelölt ritmusok közötti távolságot így definiáljuk:
+\begin{align}
+d_{ID}(X,Y)=\big(\sum_{i=1}^n \frac{max(x_i,y_i)}{min(x_i,y_i)}\big)-n \nonumber
+\end{align}
+
+A szummázandó hányados értéke mindig legalább $1$, ezért kell levonnunk belõle a végén $n$-t, hiszen annak nincs információtartalma. Az algoritmus a korábbiakhoz hasonlóan $O(n)$ idõben fut.
+
+%----------------------------------------------------------------------------
+\subsection{Cserélési távolság}
+%----------------------------------------------------------------------------
+
+A negyedik, korábbiaktól teljesen eltérõ megközelítés nem a különbözõségeket keresi, hanem azt számolja ki, hogy mennyi munka szükséges az egyik vektort a másikba transzformálni. A genetikában széles körben használt módszer molekulák egymásba alakításához szükséges alaplépések számát határozza meg, ahol az alaplépések valamilyen evolúciós mutációt szimulálnak.
+Nekünk egyszerûbb dolgunk van, az alaplépés ugyanis a pofonegyszerû csere mûvelete. Annyit azonban meg kell kötnünk, hogy csak szomszédos elemeket cserélhetünk ki egymással. Például a $[1 0 1 0 1 1 0 1 0 1 0 1]$ ritmus $4$ lépésben alakítható át a $[1 0 1 1 0 1 1 0 1 0 1 0]$ ritmussá, mégpedig a harmadik, az ötödik és a hetedik hangsúlyos elem és az azt megelõzõ hangsúlytalan elem cseréjével. 
+
+A cserélési távolság kiszámításához azonban nincs szükségünk a tényleges cserék végrehajtására, hiszen az bizonyos esetekben nagyon költséges lenne. Ilyen például az alábbi két ritmus: $[1 1 1 1 1 1 0 0 0 0 0 0]$ és $[0 0 0 0 0 0 1 1 1 1 1 1]$, ahol a ritmus hosszának négyzetével arányos csere szükséges. Ehelyett egy sokkal elegánsabb megoldást mutatunk. Elõbb eltároljuk azokat a pozíciókat, ahol hangsúlyos elem van. Az elõzõ bekezdés példáira ez $U=(u_1,u_2,...,u_n) = (1,3,5,6,8,10,12)$ és $V=(v_1,v_2,...,v_n) = (1,3,4,6,7,9,11)$. Az $u_i$ és $v_i$ értékek különbsége határozza meg, hogy mennyi csere szükséges mindenképpen ahhoz, hogy a két értékhez tartozó hangsúlyos elem a megfelelõ helyen legyen. Általánosságban tehát a cserélési távolság a következõképp számítható a fenti $U$ és $V$ vektorok alapján:
+\begin{align}
+d_{SWAP}(X,Y)=\sum_{i=1}^n |u_i-v_i|\nonumber
+\end{align}
+
+Az $U$ és $V$ vektorok számolása TUBS vektorokból $O(n)$ idejû, így $d(U,V)$ meghatározásához sem kell több idõ.
+
+%----------------------------------------------------------------------------
+\subsection{Kronotonikus távolság}
+%----------------------------------------------------------------------------
+
+A Hofmann-Engl által javasolt módszer a közös koordinátarendszerben ábrázolt kronotonikus láncokból indul ki. Két ritmus távolságát úgy határozza meg, hogy az általuk meghatározott kronotonikus láncok alatti területeket hasonlítja össze. Formálisan tehát elõbb vesszük az $f_1(x)$ és $f_2(x)$ függvényekkel leírt kronotonikus láncok különbségének abszolútértékét (amire azért van szükség, hogy ne nullázhassa ki két azonos méretû eltérés egymást), majd ennek integrálját (azaz a függvény alatti terület nagyságát) tekintjük a távolságnak.
+\begin{align}
+d_K(X,Y) = K = \int |f_1(x)-f_2(x)|dx \nonumber
+\end{align}
+A \ref{fig:fig06} ábra szemlélteti a korábbiakból már ismert ritmusokhoz tartozó kronotonikus láncok közötti kronotonikus távolságot.
+
+
+\begin{figure}[!hb]
+\centering
+	\begin{tikzpicture}
+	\begin{axis}[ymin=0,ymax=4.2,enlargelimits=false]
+	\addplot
+	[const plot,blue, thick,dotted]
+	coordinates
+	{(0,    4) (8,    2) (12,    4) (24,    2) (28,    4) (32,    4)};
+	\addplot
+	[const plot, red, thick,style=dashed]
+	coordinates
+	{(0,    2) (4,    4) (8,    2) (12,    4) (20,    2) (24,    4) (28,    4) (32,    4)};
+	\draw [blue,fill=blue!20] (axis cs:0,2) rectangle (axis cs:4,4);
+	\draw [blue,fill=blue!20] (axis cs:20,2) rectangle (axis cs:24,4);
+	\draw [red,fill=red!20] (axis cs:24,2) rectangle (axis cs:28,4);
+	\end{axis}
+	\end{tikzpicture}
+\caption{Két ritmus közötti kronotonikus távolság}
+\label{fig:fig06}
+\end{figure}
+
