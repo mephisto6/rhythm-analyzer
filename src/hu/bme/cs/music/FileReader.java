@@ -28,7 +28,7 @@ import com.google.common.io.Files;
  */
 public class FileReader {
 
-	public static int LIMIT = 1000;
+	public static int LIMIT = 3;
 
 	public static final int CLASS_NUM = 8;
 
@@ -45,7 +45,7 @@ public class FileReader {
 	public static void main(String[] args) {
 		long startTime = System.currentTimeMillis();
 		CompareManager.manage(readFile());
-		Classifier.classify();
+	//	Classifier.classify();
 		long estimatedTime = System.currentTimeMillis() - startTime;
 		System.out.println("Analysed " + LIMIT + " songs in " + estimatedTime
 				+ " ms");
@@ -67,7 +67,7 @@ public class FileReader {
 				log.error(e.getMessage());
 			}
 			tune.setTuneLines(tuneLines);
-			//tune.printDescription();
+			tune.printDescription();
 			tunes.add(tune);
 			if (LIMIT < (++i)) {
 				break;
