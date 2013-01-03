@@ -11,6 +11,8 @@ import java.util.List;
  * 
  */
 public class TuneLine {
+	
+	public static final double chronotonicResolution = 100.0;
 
 	private List<Bar> bars;
 
@@ -18,32 +20,39 @@ public class TuneLine {
 		for (Bar bar : bars) {
 			bar.printTacts();
 		}
-		// printIntervalDifferenceElements();
-		// printOnsetVector();
-		// printChronoticChain();
+		printInterOnsetIntervals();
+		printIntervalDifferenceElements();
+		printOnsetVector();
+		printChronoticChain();
 		System.out.println();
 	}
 
-	public void printIntervalDifferenceElements() {
-		System.out.print("<--- ");
-		for (Double d : getAllIntervalDifferenceElement()) {
-			System.out.printf("%.2f", d);
-			System.out.print(" ");
+	private void printInterOnsetIntervals() {
+		System.out.print("\nInter onset intervals: ");
+		for (Bar bar : bars) {
+			System.out.print(bar.getInterOnsetIntervals() + " ");
 		}
+	}
+
+	public void printIntervalDifferenceElements() {
+		System.out.print("\nInterval Differences: [");
+		for (Double d : getAllIntervalDifferenceElement()) {
+			System.out.printf("%.2f ", d);
+		}
+		System.out.print("]");
 	}
 
 	public void printOnsetVector() {
-		System.out.print("<--- ");
-		for (Integer d : getOnsetVector()) {
-			System.out.print(d + " ");
-		}
+		System.out.print("\nOnsets: " + getOnsetVector());
 	}
 
 	public void printChronoticChain() {
-		System.out.print("<--- ");
-		for (Integer d : getChronotonicChain()) {
-			System.out.print(d + " ");
+		System.out.print("\nChronotonic chain: " + getChronotonicChain());
+		System.out.print("\nChronotonic coordinates: [");
+		for (Double d : getChronotonicCoordinates()) {
+			System.out.printf("%.2f ", d);
 		}
+		System.out.print("] Size: " + getChronotonicCoordinates().size());
 	}
 
 	/**
@@ -103,13 +112,23 @@ public class TuneLine {
 	}
 
 	public List<Integer> getChronotonicChain() {
-		List<Integer> chronoticChain = new ArrayList<Integer>();
+		List<Integer> chronotonicChain = new ArrayList<Integer>();
 		for (Integer unit : getAllInterOnsetIntervalBarElement()) {
 			for (int i = 0; i < unit; i++) {
-				chronoticChain.add(unit);
+				chronotonicChain.add(unit);
 			}
 		}
-		return chronoticChain;
+		return chronotonicChain;
+	}
+	
+	public List<Double> getChronotonicCoordinates() {
+		int chainSize = getChronotonicChain().size();
+		List<Double> chronotonicCoordinates = new ArrayList<Double>();
+			for (int i = 1; i <= chainSize; i++) {
+				chronotonicCoordinates.add(i*chronotonicResolution/chainSize);
+			}
+
+		return chronotonicCoordinates;
 	}
 
 }

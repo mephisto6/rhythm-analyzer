@@ -29,17 +29,7 @@ public class Bar {
 		for (int i : binaryValue) {
 			System.out.print(i + " ");
 		}
-		// printInterOnsetIntervals();
 		System.out.print("| ");
-
-	}
-
-	public void printInterOnsetIntervals() {
-		System.out.print(" [ ");
-		for (int i : interOnsetIntervals) {
-			System.out.print(i + " ");
-		}
-		System.out.print("] ");
 	}
 
 	/**
