@@ -3,6 +3,7 @@
  */
 package hu.bme.cs.music.model;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
@@ -128,6 +129,9 @@ public class Comparator {
 			prev = d;
 		}
 
-		return s;
+		double max = Collections.max(chain1) > Collections.max(chain2) ? Collections
+				.max(chain1) : Collections.max(chain2);
+
+		return s / (res * max);
 	}
 }
