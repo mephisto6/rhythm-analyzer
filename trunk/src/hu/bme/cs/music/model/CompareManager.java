@@ -117,7 +117,7 @@ public class CompareManager {
 		normalizeMx(INTERVALDIFF_MX);
 		normalizeMx(SWAP_MX);
 		normalizeMx(CHRONOTONIC_MX);
-		normalizeMx(CONTINOUSCHRONOTONIC_MX);
+		//normalizeMx(CONTINOUSCHRONOTONIC_MX);
 	}
 
 	public static void generateFiles() {

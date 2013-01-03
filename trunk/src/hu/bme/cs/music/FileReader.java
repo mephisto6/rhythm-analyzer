@@ -28,7 +28,7 @@ import com.google.common.io.Files;
  */
 public class FileReader {
 
-	public static int LIMIT = 3;
+	public static int LIMIT = 10;
 
 	public static final int CLASS_NUM = 8;
 
