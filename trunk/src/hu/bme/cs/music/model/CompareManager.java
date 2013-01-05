@@ -57,7 +57,7 @@ public class CompareManager {
 	public static double[][] getCHRONOTONIC_MX() {
 		return CHRONOTONIC_MX;
 	}
-	
+
 	/**
 	 * @return the cONTINOUSCHRONOTONIC_MX
 	 */
@@ -75,14 +75,15 @@ public class CompareManager {
 		INTERVALDIFF_MX = new double[size][size];
 		SWAP_MX = new double[size][size];
 		CHRONOTONIC_MX = new double[size][size];
-		CONTINOUSCHRONOTONIC_MX= new double[size][size];
+		CONTINOUSCHRONOTONIC_MX = new double[size][size];
 
 		for (int i = 0; i < size; i++) {
 			for (int j = i + 1; j < size; j++) {
 				HAMMING_MX[j][i] = Comparator.compareHamming(tunes.get(j)
 						.getFirstTuneLine(), tunes.get(i).getFirstTuneLine());
-				EUCLIDEAN_MX[j][i] = Comparator.compareEuclidean(tunes.get(j)
-						.getFirstTuneLine(), tunes.get(i).getFirstTuneLine());
+				EUCLIDEAN_MX[j][i] = Comparator.compareEuclideanShift(tunes
+						.get(j).getFirstTuneLine(), tunes.get(i)
+						.getFirstTuneLine());
 				INTERVALDIFF_MX[j][i] = Comparator.compareIntervalDifference(
 						tunes.get(j).getFirstTuneLine(), tunes.get(i)
 								.getFirstTuneLine());
@@ -91,14 +92,15 @@ public class CompareManager {
 				CHRONOTONIC_MX[j][i] = Comparator.compareChronotonic(
 						tunes.get(j).getFirstTuneLine(), tunes.get(i)
 								.getFirstTuneLine());
-				CONTINOUSCHRONOTONIC_MX[j][i] = Comparator.compareContinousChronotonic(
-						tunes.get(j).getFirstTuneLine(), tunes.get(i)
+				CONTINOUSCHRONOTONIC_MX[j][i] = Comparator
+						.compareContinousChronotonic(tunes.get(j)
+								.getFirstTuneLine(), tunes.get(i)
 								.getFirstTuneLine());
 			}
 		}
-	//	normalizeMxs();
+		// normalizeMxs();
 
-	 printMxs();
+		printMxs();
 
 		// generateFiles();
 	}
@@ -117,7 +119,7 @@ public class CompareManager {
 		normalizeMx(INTERVALDIFF_MX);
 		normalizeMx(SWAP_MX);
 		normalizeMx(CHRONOTONIC_MX);
-		//normalizeMx(CONTINOUSCHRONOTONIC_MX);
+		// normalizeMx(CONTINOUSCHRONOTONIC_MX);
 	}
 
 	public static void generateFiles() {
@@ -126,7 +128,8 @@ public class CompareManager {
 		FileWriter.gerenateNexFile("IntervalDiff", INTERVALDIFF_MX);
 		FileWriter.gerenateNexFile("SwapDistance", SWAP_MX);
 		FileWriter.gerenateNexFile("ChronotonicChain", CHRONOTONIC_MX);
-		FileWriter.gerenateNexFile("ContinousChronotonicChain", CONTINOUSCHRONOTONIC_MX);
+		FileWriter.gerenateNexFile("ContinousChronotonicChain",
+				CONTINOUSCHRONOTONIC_MX);
 	}
 
 	private static void printMX(String title, double[][] mx) {
