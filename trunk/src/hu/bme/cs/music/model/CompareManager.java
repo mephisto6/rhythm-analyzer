@@ -107,7 +107,7 @@ public class CompareManager {
 
 	public static void printMxs() {
 		printMX("Weighted Hamming distances", HAMMING_MX);
-		printMX("Euclidean interval vector distances", EUCLIDEAN_MX);
+		printMX("Shifted Euclidean interval vector distances", EUCLIDEAN_MX);
 		printMX("Interval difference vector distances", INTERVALDIFF_MX);
 		printMX("Swap distances", SWAP_MX);
 		printMX("Chronotonic distances", CHRONOTONIC_MX);
