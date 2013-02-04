@@ -21,12 +21,14 @@ public class Classifier {
 	private static int[] classesByIntervalDiffMin;
 	private static int[] classesBySwapMin;
 	private static int[] classesByChronotonMin;
+	private static int[] classesByContinousChronotonMin;
 
 	private static int[] classesByHammingMax;
 	private static int[] classesByEuclidMax;
 	private static int[] classesByIntervalDiffMax;
 	private static int[] classesBySwapMax;
 	private static int[] classesByChronotonMax;
+	private static int[] classesByContinousChronotonMax;
 
 	// matrix to store temporal data
 	private static double[][] mx;
@@ -43,6 +45,8 @@ public class Classifier {
 				classesBySwapMax);
 		classifySpec(CompareManager.getCHRONOTONIC_MX(), classesByChronotonMin,
 				classesByChronotonMax);
+		classifySpec(CompareManager.getCHRONOTONIC_MX(),
+				classesByContinousChronotonMin, classesByContinousChronotonMax);
 
 		printClasses(classesByHammingMin, "Classes by Hamming min distances: ");
 		printClasses(classesByHammingMax, "Classes by Hamming max distances: ");
@@ -62,6 +66,11 @@ public class Classifier {
 				"Classes by Chronotonic min distances: ");
 		printClasses(classesByChronotonMax,
 				"Classes by Chronotonic max distances: ");
+
+		printClasses(classesByContinousChronotonMin,
+				"Classes by Continous chronotonic min distances: ");
+		printClasses(classesByContinousChronotonMax,
+				"Classes by Continous chronotonic max distances: ");
 	}
 
 	private static void classifySpec(double[][] specmx, int[] classesMin,
@@ -116,12 +125,14 @@ public class Classifier {
 		classesByIntervalDiffMin = new int[FileReader.LIMIT];
 		classesBySwapMin = new int[FileReader.LIMIT];
 		classesByChronotonMin = new int[FileReader.LIMIT];
+		classesByContinousChronotonMin = new int[FileReader.LIMIT];
 
 		classesByHammingMax = new int[FileReader.LIMIT];
 		classesByEuclidMax = new int[FileReader.LIMIT];
 		classesByIntervalDiffMax = new int[FileReader.LIMIT];
 		classesBySwapMax = new int[FileReader.LIMIT];
 		classesByChronotonMax = new int[FileReader.LIMIT];
+		classesByContinousChronotonMax = new int[FileReader.LIMIT];
 
 		for (int i = 0; i < FileReader.LIMIT; i++) {
 			classesByHammingMin[i] = i + 1;
@@ -129,12 +140,14 @@ public class Classifier {
 			classesByIntervalDiffMin[i] = i + 1;
 			classesBySwapMin[i] = i + 1;
 			classesByChronotonMin[i] = i + 1;
+			classesByContinousChronotonMin[i] = i + 1;
 
 			classesByHammingMax[i] = -1;
 			classesByEuclidMax[i] = -1;
 			classesByIntervalDiffMax[i] = -1;
 			classesBySwapMax[i] = -1;
 			classesByChronotonMax[i] = -1;
+			classesByContinousChronotonMax[i] = -1;
 		}
 	}
 
