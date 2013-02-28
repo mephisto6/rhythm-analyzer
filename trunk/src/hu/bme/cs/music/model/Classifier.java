@@ -224,12 +224,12 @@ public class Classifier {
 		int j = 0;
 		Object[] files = FileReader.getFiles().toArray();
 		for (Integer i : multimap.keySet()) {
-			System.out.println("Class " + (++j) + ": ");// + multimap.get(i));
+			//System.out.println("Class " + (++j) + ": ");// + multimap.get(i));
 			for (Object o : multimap.get(i)) {
-				System.out.print("\t" + files[(Integer) o - 1] + " (");
+				//System.out.print("\t" + files[(Integer) o - 1] + " (");
 				File f = (File) files[(Integer) o - 1];
-				System.out.println(FileReader.getFileMap().inverseBidiMap()
-						.get(f) + ") ");
+				System.out.print(FileReader.getFileMap().inverseBidiMap()
+						.get(f) + " ");
 			}
 			System.out.println();
 		}
