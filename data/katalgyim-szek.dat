@@ -1,0 +1,1619 @@
+data/kotta/par1.knf      058
+data/kotta/ahol2.knf     062
+data/kotta/felj3.knf     058
+data/kotta/megr4.knf     056
+data/kotta/enm5a.knf     060
+data/kotta/enm5b.knf     062
+data/kotta/enm5c.knf     076
+data/kotta/elm6.knf      058
+data/kotta/elm7.knf      058
+data/kotta/szall8.knf    062
+data/kotta/szall9.knf    062
+data/kotta/egysz10.knf   060
+data/kotta/egysz11.knf   058
+data/kotta/latom12.knf   110
+data/kotta/latom13.knf   106
+data/kotta/ahol14.knf    062
+data/kotta/elmegy15.knf  058
+data/kotta/totik16.knf   076
+data/kotta/tot16b.knf    062
+data/kotta/tot16c.knf    060
+data/kotta/tot16d.knf    056
+data/kotta/lat17.knf     104
+data/kotta/aszer18.knf   106
+data/kotta/asz18b.knf    060
+data/kotta/azth19.knf    058
+data/kotta/kita20.knf    058
+data/kotta/hale21.knf    088
+data/kotta/hale21b.knf   084
+data/kotta/kes22.knf     088
+data/kotta/kes22b.knf    102
+data/kotta/kes22c.knf    088
+data/kotta/kes22d.knf    076
+data/kotta/bus23.knf     092
+data/kotta/elel24.knf    066
+data/kotta/elb25.knf     082
+data/kotta/ban26.knf     074
+data/kotta/aki27.knf     074
+data/kotta/szab28a.knf   080
+data/kotta/ver28b.knf    074
+data/kotta/bus29.knf     088
+data/kotta/ajis30.knf    074
+data/kotta/akit31.knf    074
+data/kotta/veres32.knf   076
+data/kotta/sejis33.knf   078
+data/kotta/elm34.knf     074
+data/kotta/ugyel35.knf   076
+data/kotta/ugye35b.knf   076
+data/kotta/felj36.knf    074
+data/kotta/ugyb36b.knf   074
+data/kotta/mikor37.knf   074
+data/kotta/enis38.knf    074
+data/kotta/ujan39.knf    074
+data/kotta/enis40.knf    074
+data/kotta/hozd41.knf    074
+data/kotta/fuj42.knf     072
+data/kotta/meny43.knf    084
+data/kotta/banat44.knf   074
+data/kotta/bus45.knf     074
+data/kotta/kics46.knf    074
+data/kotta/enis47.knf    072
+data/kotta/fels48.knf    074
+data/kotta/csill49.knf   076
+data/kotta/enis50.knf    078
+data/kotta/budo51.knf    090
+data/kotta/kelet52.knf   074
+data/kotta/ban53.knf     074
+data/kotta/hozd54.knf    074
+data/kotta/nap55.knf     074
+data/kotta/bus56.knf     076
+data/kotta/hozd56b.knf   082
+data/kotta/madar57.knf   080
+data/kotta/ugyel58.knf   080
+data/kotta/enis59.knf    074
+data/kotta/arva59b.knf   072
+data/kotta/ides60.knf    076
+data/kotta/bus61.knf     074
+data/kotta/fels62.knf    078
+data/kotta/fels63.knf    074
+data/kotta/fels63b.knf   074
+data/kotta/tot64.knf     078
+data/kotta/enel65.knf    074
+data/kotta/ucca66.knf    074
+data/kotta/busul67.knf   074
+data/kotta/tegn68.knf    074
+data/kotta/sira69.knf    074
+data/kotta/edes70.knf    074
+data/kotta/veraz71.knf   076
+data/kotta/sira72.knf    074
+data/kotta/volt73.knf    086
+data/kotta/enis74.knf    074
+data/kotta/sira75.knf    074
+data/kotta/ucca76.knf    074
+data/kotta/oros77.knf    074
+data/kotta/nemh78.knf    074
+data/kotta/verj79.knf    088
+data/kotta/fels80.knf    074
+data/kotta/ujan81.knf    074
+data/kotta/csakel82.knf  076
+data/kotta/jajis83.knf   084
+data/kotta/orosz84.knf   076
+data/kotta/teggy85.knf   074
+data/kotta/kez86.knf     074
+data/kotta/galic87.knf   074
+data/kotta/mejek88.knf   074
+data/kotta/sugy89.knf    078
+data/kotta/fele90.knf    076
+data/kotta/banat92.knf   074
+data/kotta/nebu93.knf    078
+data/kotta/szer94.knf    078
+data/kotta/mikor95.knf   074
+data/kotta/engem96.knf   078
+data/kotta/aztg97.knf    076
+data/kotta/arva98.knf    094
+data/kotta/addig99.knf   082
+data/kotta/ban100.knf    094
+data/kotta/fel101.knf    078
+data/kotta/id102.knf     082
+data/kotta/haj103.knf    074
+data/kotta/enis104.knf   074
+data/kotta/kont105.knf   074
+data/kotta/buja106.knf   122
+data/kotta/ides107.knf   102
+data/kotta/udv108.knf    100
+data/kotta/mol24.bnf     074
+data/kotta/kics39.bnf    058
+data/kotta/feh50.bnf     074
+data/kotta/add163.bnf    074
+data/kotta/dio79.bnf     074
+data/kotta/tul80.bnf     074
+data/kotta/bib106.bnf    058
+data/kotta/neml148.bnf   074
+data/kotta/agy159.bnf    106
+data/kotta/bety156.bnf   074
+data/kotta/gyi161.bnf    098
+data/kotta/min206.bnf    074
+data/kotta/avi228.bnf    074
+data/kotta/elb240.bnf    074
+data/kotta/enis16a.jnf   076
+data/kotta/enis16b.jnf   074
+data/kotta/ahu131.jnf    058
+data/kotta/barnaj.gnf    074
+data/kotta/feherl1.gnf   074
+data/kotta/feherl2.gnf   080
+data/kotta/feherl3.gnf   080
+data/kotta/kesk010.gnf   086
+data/kotta/kesk012.gnf   134
+data/kotta/kesk043.gnf   074
+data/kotta/kesk43b.gnf   080
+data/kotta/bujfel2.gnf   086
+data/kotta/bujfel3.gnf   086
+data/kotta/kesk106.gnf   114
+data/kotta/kesolt.gnf    114
+data/kotta/kestvtd.gnf   110
+data/kotta/kesl93a.gnf   068
+data/kotta/kesl93b.gnf   060
+data/kotta/kesl43a.gnf   082
+data/kotta/kesl43b.gnf   100
+data/kotta/kesltv.gnf    072
+data/kotta/szszan2.gnf   072
+data/kotta/szszant.gnf   064
+data/kotta/fuven.gnf     138
+data/kotta/gyimhgy.gnf   114
+data/kotta/kicsill.gnf   114
+data/kotta/bujfel.gnf    090
+data/kotta/kestv.gnf     110
+data/kotta/latbab.gnf    066
+data/kotta/kesful.gnf    074
+data/kotta/deban.gnf     074
+data/kotta/kesann.gnf    084
+data/kotta/kesann2.gnf   116
+data/kotta/kesgyim.gnf   074
+data/kotta/keskor.gnf    084
+data/kotta/keslag.gnf    074
+data/kotta/csacsr.gnf    118
+data/kotta/kesfon.gnf    078
+data/kotta/kestt.gnf     076
+data/kotta/elmegy.gnf    058
+data/kotta/elin.gnf      074
+data/kotta/kesjgy.gnf    100
+data/kotta/gyimhat.gnf   098
+data/kotta/sira.gnf      114
+data/kotta/kestd1.gnf    104
+data/kotta/kestd2.gnf    058
+data/kotta/kestd3.gnf    062
+data/kotta/bef110.knf    056
+data/kotta/kim111.knf    058
+data/kotta/kim112.knf    058
+data/kotta/me113.knf     058
+data/kotta/el114.knf     058
+data/kotta/sze115.knf    058
+data/kotta/egy117.knf    062
+data/kotta/vig118.knf    066
+data/kotta/ezt119.knf    082
+data/kotta/feh120.knf    082
+data/kotta/egy121.knf    078
+data/kotta/hej122.knf    082
+data/kotta/haj123.knf    080
+data/kotta/kics124.knf   074
+data/kotta/oj125.knf     074
+data/kotta/ha126.knf     078
+data/kotta/asz127.knf    074
+data/kotta/est128.knf    076
+data/kotta/apr129.knf    074
+data/kotta/mis130.knf    086
+data/kotta/azt131.knf    080
+data/kotta/ver132.knf    080
+data/kotta/oj133.knf     074
+data/kotta/fel134.knf    076
+data/kotta/elm135.knf    078
+data/kotta/edd136.knf    088
+data/kotta/kut137.knf    074
+data/kotta/fej138.knf    074
+data/kotta/tul139.knf    074
+data/kotta/nem140.knf    082
+data/kotta/arv141.knf    084
+data/kotta/fel142.knf    108
+data/kotta/fel143.knf    100
+data/kotta/bod147.knf    064
+data/kotta/bor148.knf    074
+data/kotta/szo149.knf    074
+data/kotta/szo150.knf    078
+data/kotta/oda151.knf    078
+data/kotta/har152.knf    082
+data/kotta/veg153.knf    090
+data/kotta/ket154.knf    090
+data/kotta/zod155.knf    090
+data/kotta/kics156.knf   098
+data/kotta/nem157.knf    100
+data/kotta/ede158.knf    098
+data/kotta/kics159.knf   098
+data/kotta/kics160.knf   102
+data/kotta/fel161.knf    100
+data/kotta/bar162.knf    100
+data/kotta/ede163.knf    102
+data/kotta/lov164.knf    098
+data/kotta/abl165.knf    098
+data/kotta/ha166.knf     102
+data/kotta/csap167.knf   098
+data/kotta/fek168.knf    098
+data/kotta/kics169.knf   102
+data/kotta/sar170.knf    098
+data/kotta/ugy171.knf    098
+data/kotta/ede172.knf    102
+data/kotta/fek173.knf    102
+data/kotta/csak174.knf   098
+data/kotta/har175.knf    098
+data/kotta/kics176.knf   098
+data/kotta/sza177.knf    098
+data/kotta/fek178.knf    098
+data/kotta/job179.knf    100
+data/kotta/bu180.knf     104
+data/kotta/nal181.knf    106
+data/kotta/tav182.knf    094
+data/kotta/ne183.knf     110
+data/kotta/ugy184.knf    124
+data/kotta/nal185.knf    124
+data/kotta/ten187h.knf   124
+data/kotta/mesz188.knf   126
+data/kotta/ren189.knf    118
+data/kotta/sze190.knf    122
+data/kotta/azen191.knf   114
+data/kotta/kom192.knf    106
+data/kotta/enis193.knf   066
+data/kotta/kics194.knf   102
+data/kotta/mag195.knf    112
+data/kotta/gyi196.knf    114
+data/kotta/szeg197.knf   062
+data/kotta/nagy198.knf   114
+data/kotta/sze28.bnf     058
+data/kotta/eza182.bnf    090
+data/kotta/amb192.bnf    102
+data/kotta/ren21.jnf     118
+data/kotta/add44.jnf     084
+data/kotta/env127.jnf    058
+data/kotta/ede161a.jnf   100
+data/kotta/ede161b.jnf   102
+data/kotta/bar225.jnf    068
+data/kotta/ede229a.jnf   100
+data/kotta/ede229b.jnf   100
+data/kotta/lop234.jnf    078
+data/kotta/lea238.jnf    082
+data/kotta/san261.jnf    066
+data/kotta/hajn.gnf      096
+data/kotta/nyirfa.gnf    106
+data/kotta/megolt.gnf    066
+data/kotta/ujrep.gnf     104
+data/kotta/tatros.gnf    102
+data/kotta/teggyim.gnf   082
+data/kotta/fehfu.gnf     096
+data/kotta/kicsil.gnf    106
+data/kotta/harnap.gnf    092
+data/kotta/felnap.gnf    114
+data/kotta/oktob.gnf     120
+data/kotta/edes.gnf      128
+data/kotta/ugyak.gnf     128
+data/kotta/ugyak2.gnf    116
+data/kotta/huszar.gnf    116
+data/kotta/felfog.gnf    108
+data/kotta/esik.gnf      104
+data/kotta/jobbor.gnf    094
+data/kotta/feljott.gnf   114
+data/kotta/tusnad.gnf    096
+data/kotta/petecs.gnf    102
+data/kotta/pirosb.gnf    104
+data/kotta/kerszol.gnf   078
+data/kotta/rengesd.gnf   122
+data/kotta/harhusz.gnf   090
+data/kotta/kihaz.gnf     072
+data/kotta/bolcso.gnf    086
+data/kotta/gyakvet.gnf   162
+data/kotta/tegzab.gnf    134
+data/kotta/roka.gnf      066
+data/kotta/uborka.gnf    072
+data/kotta/virken.gnf    058
+data/kotta/szkecs.gnf    058
+data/kotta/miska.gnf     116
+data/kotta/elkecs.gnf    136
+data/kotta/elkell.gnf    144
+data/kotta/tuzk114.gnf   064
+data/kotta/szak148.gnf   104
+data/kotta/szek140.gnf   086
+data/kotta/iszik.gnf     090
+data/kotta/ujk2.gnf      154
+data/kotta/jardki.gnf    080
+data/kotta/jardki2.gnf   084
+data/kotta/jardki3.gnf   074
+data/kotta/ugyak3.gnf    138
+data/kotta/ujklaz1.gnf   142
+data/kotta/ujklaz2.gnf   130
+data/kotta/jajmit1.gnf   124
+data/kotta/jajmit2.gnf   136
+data/kotta/lmal.gnf      154
+data/kotta/lmfoc.gnf     136
+data/kotta/lmkb2.gnf     132
+data/kotta/lmh1.gnf      130
+data/kotta/lmh2.gnf      178
+data/kotta/lmh97d1.gnf   148
+data/kotta/lmh97d2.gnf   130
+data/kotta/lmh3.gnf      168
+data/kotta/lmh4.gnf      112
+data/kotta/lmh5.gnf      162
+data/kotta/lmh6.gnf      154
+data/kotta/lmhd7.gnf     136
+data/kotta/lmh8.gnf      130
+data/kotta/lmh9.gnf      162
+data/kotta/lmjan.gnf     212
+data/kotta/lmfint.gnf    124
+data/kotta/lmlaz1.gnf    160
+data/kotta/lmlaz1-2.gnf  126
+data/kotta/lmlaz12m.gnf  120
+data/kotta/lmlaz1v.gnf   134
+data/kotta/lmlaz2.gnf    104
+data/kotta/llaz2-2.gnf   146
+data/kotta/llaz2-3.gnf   114
+data/kotta/lmlaz3.gnf    120
+data/kotta/lmklik1.gnf   148
+data/kotta/lmklik2.gnf   150
+data/kotta/lmkiokt.gnf   128
+data/kotta/lmkb.gnf      132
+data/kotta/lmspir.gnf    154
+data/kotta/lmhtd1.gnf    160
+data/kotta/lmhtd2.gnf    144
+data/kotta/lmsptd.gnf    154
+data/kotta/lmki.gnf      140
+data/kotta/cstt1.gnf     108
+data/kotta/cstt2.gnf     116
+data/kotta/csardtt.gnf   092
+data/kotta/lmh97a.gnf    112
+data/kotta/lmhf20.gnf    164
+data/kotta/lmhf18.gnf    126
+data/kotta/lmvikt.gnf    140
+data/kotta/lmvikt2.gnf   138
+data/kotta/lmhsk.gnf     146
+data/kotta/lmbp.gnf      138
+data/kotta/csk166.gnf    120
+data/kotta/lmkup1.gnf    120
+data/kotta/lmkup2.gnf    124
+data/kotta/lmkup3.gnf    112
+data/kotta/lmkupv.gnf    158
+data/kotta/rokfel1.gnf   162
+data/kotta/rokfel2.gnf   182
+data/kotta/pulik.gnf     208
+data/kotta/jancsim.gnf   144
+data/kotta/felol1.gnf    202
+data/kotta/felol2.gnf    208
+data/kotta/felol2e.gnf   192
+data/kotta/fellaz.gnf    134
+data/kotta/felfel.gnf    126
+data/kotta/feltd1.gnf    178
+data/kotta/feltd2.gnf    166
+data/kotta/felzer.gnf    220
+data/kotta/seblap.gnf    158
+data/kotta/seblap2.gnf   180
+data/kotta/sebfel.gnf    208
+data/kotta/sebtk.gnf     150
+data/kotta/sebkt.gnf     122
+data/kotta/sebkan.gnf    180
+data/kotta/sebcsan.gnf   132
+data/kotta/sebtk2.gnf    152
+data/kotta/sebnagy.gnf   158
+data/kotta/seb6-4.gnf    160
+data/kotta/seb4424.gnf   126
+data/kotta/sebcsar.gnf   156
+data/kotta/sebjz.gnf     158
+data/kotta/sebszek.gnf   170
+data/kotta/sebtj.gnf     168
+data/kotta/sebrop.gnf    154
+data/kotta/sebkt2.gnf    118
+data/kotta/seblaz.gnf    136
+data/kotta/seblazm.gnf   160
+data/kotta/sebta.gnf     106
+data/kotta/sebtd1.gnf    150
+data/kotta/sebtd2.gnf    108
+data/kotta/csancsik.gnf  106
+data/kotta/csard.gnf     126
+data/kotta/sebreg.gnf    156
+data/kotta/sebki.gnf     136
+data/kotta/sebal.gnf     136
+data/kotta/sebzsid.gnf   126
+data/kotta/sebden.gnf    152
+data/kotta/sebkih.gnf    102
+data/kotta/ketv.gnf      172
+data/kotta/ketbor.gnf    124
+data/kotta/ketlaz.gnf    136
+data/kotta/ketlazv.gnf   130
+data/kotta/ketlazm.gnf   134
+data/kotta/sirlaz.gnf    128
+data/kotta/sirkan.gnf    140
+data/kotta/vettzs.gnf    148
+data/kotta/k147kib.gnf   080
+data/kotta/hejmagy.gnf   168
+data/kotta/kerek1.gnf    074
+data/kotta/kerek2.gnf    130
+data/kotta/kertd.gnf     146
+data/kotta/kertd2.gnf    116
+data/kotta/kerek3.gnf    160
+data/kotta/sebkltv.gnf   188
+data/kotta/aprlaz1.gnf   066
+data/kotta/aprlaz2.gnf   066
+data/kotta/aprlaz3.gnf   070
+data/kotta/asztd.gnf     082
+data/kotta/csartd.gnf    126
+data/kotta/sebcstd.gnf   156
+data/kotta/scstd.gnf     110
+data/kotta/csard2.gnf    124
+data/kotta/sebcskl.gnf   152
+data/kotta/sebd1td.gnf   132
+data/kotta/sjztd1.gnf    142
+data/kotta/sjztd2.gnf    136
+data/kotta/stk2td.gnf    130
+data/kotta/seblr1.gnf    068
+data/kotta/seblr2.gnf    074
+data/kotta/hullsz.gnf    080
+data/kotta/hullsz2.gnf   078
+data/kotta/seblnal.gnf   140
+data/kotta/stdnal.gnf    114
+data/kotta/sketlaz.gnf   144
+data/kotta/csarszk.gnf   128
+data/kotta/envagy.gnf    096
+data/kotta/sebvir1.gnf   156
+data/kotta/sebvir2.gnf   160
+data/kotta/sebcep.gnf    138
+data/kotta/eddigv.gnf    080
+data/kotta/akal.gnf      108
+data/kotta/k194csd.gnf   122
+data/kotta/k151oda.gnf   090
+data/kotta/pird.gnf      116
+data/kotta/azujj.gnf     106
+data/kotta/azensz.gnf    108
+data/kotta/szepasz.gnf   072
+data/kotta/ujkord.gnf    118
+data/kotta/kzsoml.gnf    078
+data/kotta/erdmd.gnf     092
+data/kotta/lmdtv.gnf     164
+data/kotta/lmd-l.gnf     152
+data/kotta/sebd1.gnf     142
+data/kotta/sebd2.gnf     126
+data/kotta/sebd3.gnf     136
+data/kotta/sebd4.gnf     176
+data/kotta/sebd6.gnf     134
+data/kotta/sebd7.gnf     160
+data/kotta/sebd8.gnf     186
+data/kotta/sebd9.gnf     170
+data/kotta/sebd10.gnf    170
+data/kotta/sebd11.gnf    164
+data/kotta/sebd12.gnf    124
+data/kotta/sebd13.gnf    140
+data/kotta/sebd14.gnf    144
+data/kotta/sebd15.gnf    142
+data/kotta/sebdf94.gnf   144
+data/kotta/sebdny.gnf    122
+data/kotta/sebdkl.gnf    142
+data/kotta/sebdpul.gnf   152
+data/kotta/sebdf.gnf     124
+data/kotta/marcsa.gnf    112
+data/kotta/sebd3-4.gnf   116
+data/kotta/soreg.gnf     176
+data/kotta/sdtrif.gnf    176
+data/kotta/stdd3.gnf     142
+data/kotta/stdd4.gnf     118
+data/kotta/picine.gnf    110
+data/kotta/stdd5.gnf     156
+data/kotta/stvmot.gnf    158
+data/kotta/sdokt.gnf     094
+data/kotta/sebbab.gnf    156
+data/kotta/sebdtd.gnf    182
+data/kotta/sebtdd.gnf    152
+data/kotta/sebhal.gnf    156
+data/kotta/csoszd.gnf    136
+data/kotta/sebdhid.gnf   150
+data/kotta/csoszdr.gnf   190
+data/kotta/csd2t.gnf     106
+data/kotta/csoszt.gnf    132
+data/kotta/sebdt1.gnf    150
+data/kotta/sebdt2.gnf    128
+data/kotta/sebdszek.gnf  164
+data/kotta/scsd91.gnf    154
+data/kotta/ketki.gnf     144
+data/kotta/ketbuh.gnf    196
+data/kotta/ketbuh2.gnf   162
+data/kotta/ketkis2.gnf   156
+data/kotta/ketkis3.gnf   170
+data/kotta/ketvd.gnf     186
+data/kotta/ketvd2.gnf    200
+data/kotta/ketkgy.gnf    168
+data/kotta/ketvd3.gnf    174
+data/kotta/ketpgy.gnf    136
+data/kotta/sirpgy.gnf    166
+data/kotta/sirvd.gnf     158
+data/kotta/sirvd2.gnf    148
+data/kotta/sirvk.gnf     156
+data/kotta/sirkgy.gnf    136
+data/kotta/sirtj.gnf     124
+data/kotta/sirki1.gnf    150
+data/kotta/sirki2.gnf    148
+data/kotta/sirkgy2.gnf   118
+data/kotta/sirkis.gnf    146
+data/kotta/kerd.gnf      158
+data/kotta/verbor.gnf    168
+data/kotta/ver1td.gnf    128
+data/kotta/ver2td.gnf    136
+data/kotta/verhal.gnf    130
+data/kotta/vervik.gnf    146
+data/kotta/hejkgy.gnf    104
+data/kotta/hejtv.gnf     136
+data/kotta/hejtd2.gnf    204
+data/kotta/hejtd.gnf     110
+data/kotta/hej4422.gnf   134
+data/kotta/bekru.gnf     148
+data/kotta/korob.gnf     150
+data/kotta/aluny.gnf     094
+data/kotta/tiszti.gnf    092
+data/kotta/leghej.gnf    118
+data/kotta/reghej.gnf    126
+data/kotta/hosszh.gnf    150
+data/kotta/csufos.gnf    072
+data/kotta/sebbab2.gnf   082
+data/kotta/medves.gnf    090
+data/kotta/menyd.gnf     092
+data/kotta/k197pru.gnf   062
+data/kotta/egytop.gnf    134
+data/kotta/hartop.gnf    146
+data/kotta/hetlep.gnf    080
+data/kotta/sorm.gnf      108
+data/kotta/talpol.gnf    130
+data/kotta/elore.gnf     136
+data/kotta/hartr.gnf     080
+data/kotta/talpr.gnf     072
+data/kotta/elorer.gnf    072
+data/kotta/polka.gnf     140
+data/kotta/szak150.gnf   098
+data/kotta/alttv.gnf     140
+data/kotta/elvtv.gnf     072
+data/kotta/Kisbar.gnf    096
+data/kotta/barj225.gnf   072
+data/kotta/kicsimd.gnf   100
+data/kotta/udvar.gnf     134
+data/kotta/sebemtd.gnf   122
+data/kotta/s11td.gnf     174
+data/kotta/shidtd.gnf    116
+data/kotta/sbabtd.gnf    140
+data/kotta/csomot.gnf    150
+data/kotta/biro.gnf      080
+data/kotta/tyuk.gnf      116
+data/kotta/picine2.gnf   116
+data/kotta/hejtril.gnf   126
+data/kotta/hejta.gnf     108
+data/kotta/hejrom.gnf    204
+data/kotta/hejkup.gnf    114
+data/kotta/sebtjta.gnf   118
+data/kotta/mikgy.gnf     098
+data/kotta/k200erd.knf   078
+data/kotta/k201vag.knf   074
+data/kotta/k202amo.knf   066
+data/kotta/k203ede.knf   080
+data/kotta/k205ede.knf   074
+data/kotta/k207udv.knf   086
+data/kotta/k208ami.knf   090
+data/kotta/k209hid.knf   090
+data/kotta/k210elf.knf   098
+data/kotta/k211vek.knf   104
+data/kotta/k212pip.knf   100
+data/kotta/k213kic.knf   092
+data/kotta/k214hej.knf   104
+data/kotta/k216kis.knf   092
+data/kotta/k217fel.knf   106
+data/kotta/k218lan.knf   122
+data/kotta/k219kis.knf   102
+data/kotta/k220ark.knf   102
+data/kotta/k221bot.knf   110
+data/kotta/k222elm.knf   112
+data/kotta/k223hog.knf   098
+data/kotta/k224kek.knf   100
+data/kotta/k225akk.knf   090
+data/kotta/k226bar.knf   102
+data/kotta/k227kos.knf   106
+data/kotta/k228ede.knf   098
+data/kotta/k229hej.knf   102
+data/kotta/k230bar.knf   102
+data/kotta/k231joa.knf   110
+data/kotta/k232fen.knf   114
+data/kotta/k233hae.knf   110
+data/kotta/k234agy.knf   114
+data/kotta/k235sze.knf   114
+data/kotta/k236fel.knf   114
+data/kotta/k237jaj.knf   114
+data/kotta/k238ejk.knf   102
+data/kotta/k240tud.knf   122
+data/kotta/k241dar.knf   118
+data/kotta/k242ara.knf   100
+data/kotta/k243ejh.knf   110
+data/kotta/k244lan.knf   138
+data/kotta/k245akk.knf   082
+data/kotta/k246ker.knf   098
+data/kotta/k247hej.knf   094
+data/kotta/k248mar.knf   106
+data/kotta/k249ejf.knf   102
+data/kotta/k250sud.knf   098
+data/kotta/k251ezt.knf   102
+data/kotta/k252est.knf   114
+data/kotta/k253par.knf   108
+data/kotta/k254eni.knf   100
+data/kotta/k255est.knf   102
+data/kotta/k256szo.knf   104
+data/kotta/k257ejh.knf   122
+data/kotta/k258eld.knf   102
+data/kotta/k259ejm.knf   102
+data/kotta/k260csa.knf   132
+data/kotta/k261hal.knf   098
+data/kotta/k262enn.knf   122
+data/kotta/k263orm.knf   162
+data/kotta/k264kel.knf   154
+data/kotta/lmuj1.gnf     132
+data/kotta/istvaj.gnf    096
+data/kotta/lyukkal.gnf   096
+data/kotta/gyula.gnf     086
+data/kotta/vonat.gnf     084
+data/kotta/lanyok.gnf    104
+data/kotta/ujlaz.gnf     128
+data/kotta/seblh.gnf     128
+data/kotta/sketluj.gnf   138
+data/kotta/kerszuj.gnf   088
+data/kotta/igyal.gnf     100
+data/kotta/esik2.gnf     152
+data/kotta/ejkocs.gnf    154
+data/kotta/ujfur.gnf     118
+data/kotta/tizenh.gnf    106
+data/kotta/sejkisp.gnf   106
+data/kotta/trianon.gnf   114
+data/kotta/vagymeg.gnf   160
+data/kotta/azthogy.gnf   082
+data/kotta/ujcsfon.gnf   126
+data/kotta/elveszt.gnf   140
+data/kotta/csillag.gnf   114
+data/kotta/k200erd.gnf   110
+data/kotta/k202amo.gnf   076
+data/kotta/k209hid.gnf   132
+data/kotta/k210ejf.gnf   112
+data/kotta/k211vek.gnf   106
+data/kotta/k213kic.gnf   104
+data/kotta/k215har.gnf   128
+data/kotta/k217fel.gnf   116
+data/kotta/k218lan.gnf   128
+data/kotta/k219kis.gnf   118
+data/kotta/k219ki2.gnf   134
+data/kotta/k220ark.gnf   110
+data/kotta/k221bot.gnf   122
+data/kotta/k225akk.gnf   128
+data/kotta/k226bar.gnf   134
+data/kotta/k229hej.gnf   112
+data/kotta/k234agy.gnf   152
+data/kotta/k235sze.gnf   144
+data/kotta/k235sz2.gnf   122
+data/kotta/k236fel.gnf   116
+data/kotta/k240tud.gnf   134
+data/kotta/k241dar.gnf   136
+data/kotta/k242ara.gnf   118
+data/kotta/k243ejh.gnf   118
+data/kotta/k247hej.gnf   158
+data/kotta/k248mar.gnf   132
+data/kotta/k254eni.gnf   110
+data/kotta/k262enn.gnf   132
+data/kotta/k263orm.gnf   132
+data/kotta/k264kel.gnf   168
+data/gyimesvn2/b-bp-001a.gnf
+data/gyimesvn2/b-bp-001b.gnf
+data/gyimesvn2/b-bp-001c.gnf
+data/gyimesvn2/b-bp-002a.gnf
+data/gyimesvn2/b-bv-001a.gnf
+data/gyimesvn2/b-bv-001b.gnf
+data/gyimesvn2/b-bv-001c.gnf
+data/gyimesvn2/b-bv-001d.gnf
+data/gyimesvn2/b-bv-001e.gnf
+data/gyimesvn2/b-fj-001a.gnf
+data/gyimesvn2/b-fj-001b.gnf
+data/gyimesvn2/b-fj-001c.gnf
+data/gyimesvn2/b-ga-001a.gnf
+data/gyimesvn2/b-ga-001b.gnf
+data/gyimesvn2/b-ga-001c.gnf
+data/gyimesvn2/b-ga-001d.gnf
+data/gyimesvn2/b-ga-001e.gnf
+data/gyimesvn2/b-ga-001f.gnf
+data/gyimesvn2/b-jg-001a.gnf
+data/gyimesvn2/b-jg-001b.gnf
+data/gyimesvn2/b-jg-001c.gnf
+data/gyimesvn2/b-kl-001a.gnf
+data/gyimesvn2/b-kl-001b.gnf
+data/gyimesvn2/b-kl-001c.gnf
+data/gyimesvn2/b-md-001x.gnf
+data/gyimesvn2/b-nd-001a.gnf
+data/gyimesvn2/b-nd-001b.gnf
+data/gyimesvn2/b-nd-001c.gnf
+data/gyimesvn2/b-og-001a.gnf
+data/gyimesvn2/b-og-001b.gnf
+data/gyimesvn2/b-og-001c.gnf
+data/gyimesvn2/b-og-001d.gnf
+data/gyimesvn2/b-ta-001a.gnf
+data/gyimesvn2/b-ta-001b.gnf
+data/gyimesvn2/b-ta-001c.gnf
+data/gyimesvn2/b-td-001a.gnf
+data/gyimesvn2/b-td-001b.gnf
+data/gyimesvn2/b-td-001c.gnf
+data/gyimesvn2/b-td-001d.gnf
+data/gyimesvn2/b-tv-001x.gnf
+data/gyimesvn2/g2-tv001x.gnf
+data/gyimesvn2/g2-tv002a.gnf
+data/gyimesvn2/g2-tv002b.gnf
+data/gyimesvn2/gc-ga001a.gnf
+data/gyimesvn2/gc-ga001b.gnf
+data/gyimesvn2/gc-ga001c.gnf
+data/gyimesvn2/gc-nd001x.gnf
+data/gyimesvn2/gc-tv001x.gnf
+data/gyimesvn2/gc-tv002x.gnf
+data/gyimesvn2/gh-td001x.gnf
+data/gyimesvn2/gh-tv001x.gnf
+data/gyimesvn2/gk-bp001a.gnf
+data/gyimesvn2/gk-bp001b.gnf
+data/gyimesvn2/gk-nd001x.gnf
+data/gyimesvn2/gk-td001x.gnf
+data/gyimesvn2/gk-td002x.gnf
+data/gyimesvn2/gk-td003x.gnf
+data/gyimesvn2/gk-td004x.gnf
+data/gyimesvn2/gk-tv001x.gnf
+data/gyimesvn2/gk-tv002x.gnf
+data/gyimesvn2/gkhtd002x.gnf
+data/gyimesvn2/gkhtd003x.gnf
+data/gyimesvn2/gkhtv002x.gnf
+data/gyimesvn2/gkhtv003x.gnf
+data/gyimesvn2/gl-bp002x.gnf
+data/gyimesvn2/gl-kl001a.gnf
+data/gyimesvn2/gl-md001x.gnf
+data/gyimesvn2/gl-md002x.gnf
+data/gyimesvn2/gl-ta001x.gnf
+data/gyimesvn2/gl-td001x.gnf
+data/gyimesvn2/gl-td002x.gnf
+data/gyimesvn2/gl-tv001x.gnf
+data/gyimesvn2/gl-tv002x.gnf
+data/gyimesvn2/gl-tv003x.gnf
+data/gyimesvn2/gl-tv004x.gnf
+data/gyimesvn2/gl-tv005x.gnf
+data/gyimesvn2/gl-tv006x.gnf
+data/gyimesvn2/glstv004x.gnf
+data/gyimesvn2/gs-ga001a.gnf
+data/gyimesvn2/gs-ga001b.gnf
+data/gyimesvn2/gs-nd001a.gnf
+data/gyimesvn2/gs-nd001b.gnf
+data/gyimesvn2/gs-td001x.gnf
+data/gyimesvn2/gs-td002x.gnf
+data/gyimesvn2/gs-td003x.gnf
+data/gyimesvn2/gs-td004x.gnf
+data/gyimesvn2/gs-td005x.gnf
+data/gyimesvn2/gs-tv001x.gnf
+data/gyimesvn2/gs-tv002x.gnf
+data/gyimesvn2/gs-tv003a.gnf
+data/gyimesvn2/gs-tv003b.gnf
+data/gyimesvn2/gs-tv004x.gnf
+data/gyimesvn2/gs-tv005x.gnf
+data/gyimesvn2/gs-tv006x.gnf
+data/gyimesvn2/gs-tv007x.gnf
+data/gyimesvn2/gs-tv008x.gnf
+data/gyimesvn2/gs-tv009x.gnf
+data/gyimesvn2/gs-tv010x.gnf
+data/gyimesvn2/gs-tv011x.gnf
+data/gyimesvn2/gs-tv012x.gnf
+data/gyimesvn2/gs-tv013x.gnf
+data/gyimesvn2/gs-tv014x.gnf
+data/gyimesvn2/gs-tv015x.gnf
+data/gyimesvn2/gs-tv016x.gnf
+data/gyimesvn2/gv-tv001x.gnf
+data/gyimesvn2/gv-tv002x.gnf
+data/gyimesvn2/gv-tv003x.gnf
+data/gyimesvn2/k-kl-001x.gnf
+data/gyimesvn2/k-og-001x.gnf
+data/gyimesvn2/k-tj-001a.gnf
+data/gyimesvn2/k-tv-001x.gnf
+data/szeke/ah/csikahit01.tnf
+data/szeke/ah/csikahit02.tnf
+data/szeke/ah/csikahit03.tnf
+data/szeke/ah/csikahit04.tnf
+data/szeke/ah/csikahit05.tnf
+data/szeke/ah/csikahit06.tnf
+data/szeke/ah/csikahit07.tnf
+data/szeke/ah/csikahit08.tnf
+data/szeke/ah/csikahit09.tnf
+data/szeke/ah/csikahit10.tnf
+data/szeke/ah/csikahit11.tnf
+data/szeke/ah/csikahit12.tnf
+data/szeke/ah/csikahit13.tnf
+data/szeke/ah/csikahit14.tnf
+data/szeke/ah/csikahit15.tnf
+data/szeke/ah/csikahit16.tnf
+data/szeke/ah/csikahit17.tnf
+data/szeke/ah/csikahit18.tnf
+data/szeke/ah/csikahit19.tnf
+data/szeke/ah/csikahit20.tnf
+data/szeke/ah/csikahit21.tnf
+data/szeke/ah/csikahit22.tnf
+data/szeke/ah/csikahit23.tnf
+data/szeke/ah/csikahit24.tnf
+data/szeke/ah/csikahit25.tnf
+data/szeke/ah/csikahit26.tnf
+data/szeke/ah/csikahit27.tnf
+data/szeke/ah/csikahit28.tnf
+data/szeke/ah/csikahit29.tnf
+data/szeke/ah/csikahit30.tnf
+data/szeke/ah/csikahit31.tnf
+data/szeke/ah/csikahit32.tnf
+data/szeke/ah/csikahit33.tnf
+data/szeke/ah/csikahit34.tnf
+data/szeke/ah/csikahit35.tnf
+data/szeke/ah/csikahit36.tnf
+data/szeke/ah/csikahit38.tnf
+data/szeke/ah/csikahit39.tnf
+data/szeke/ah/csikahit40.tnf
+data/szeke/ah/csikahit41.tnf
+data/szeke/ah/csikahit42.tnf
+data/szeke/ah/csikahit43.tnf
+data/szeke/ah/csikahit44.tnf
+data/szeke/ah/csikahit45.tnf
+data/szeke/ah/csikahit46.tnf
+data/szeke/ah/csikahit47.tnf
+data/szeke/ah/csikahit48.tnf
+data/szeke/ah/csikahit49.tnf
+data/szeke/ah/csikahit50.tnf
+data/szeke/ah/csikahit51.tnf
+data/szeke/ah/csikahit52.tnf
+data/szeke/ah/csikahit53.tnf
+data/szeke/ah/csikahit54.tnf
+data/szeke/ah/csikahit55.tnf
+data/szeke/ah/csikahit56.tnf
+data/szeke/ah/csikahit57.tnf
+data/szeke/ah/csikahit58.tnf
+data/szeke/ah/csikahit59.tnf
+data/szeke/ah/csikahit60.tnf
+data/szeke/ah/csikahit61.tnf
+data/szeke/ah/csikahit62.tnf
+data/szeke/ah/csikahit63.tnf
+data/szeke/ah/csikahit64.tnf
+data/szeke/ah/csikahit65.tnf
+data/szeke/ah/csikahit66.tnf
+data/szeke/ah/csikahit67.tnf
+data/szeke/ah/csikahit68.tnf
+data/szeke/ah/csikahit69.tnf
+data/szeke/ah/csikahit70.tnf
+data/szeke/ah/csikahit71.tnf
+data/szeke/ah/csikahit72.tnf
+data/szeke/ah/csikahit73.tnf
+data/szeke/ah/csikahit74.tnf
+data/szeke/ah/csikahit75.tnf
+data/szeke/ah/csikahit76.tnf
+data/szeke/ah/csikahit77.tnf
+data/szeke/ah/csikahit78.tnf
+data/szeke/ah/csikahit79.tnf
+data/szeke/ah/csikahit80.tnf
+data/szeke/ah/csikahit81.tnf
+data/szeke/ah/csikahit82.tnf
+data/szeke/ah/csikahit83.tnf
+data/szeke/ah/csikahit84.tnf
+data/szeke/ah/csikahit85.tnf
+data/szeke/ah/csikahit86.tnf
+data/szeke/ah/csikahit87.tnf
+data/szeke/ah/csikahit88.tnf
+data/szeke/ah/csikahit89.tnf
+data/szeke/ah/csikahit90.tnf
+data/szeke/vo/vollyxxx01.tnf
+data/szeke/vo/vollyxxx02.tnf
+data/szeke/vo/vollyxxx03.tnf
+data/szeke/vo/vollyxxx04.tnf
+data/szeke/vo/vollyxxx05.tnf
+data/szeke/vo/vollyxxx06.tnf
+data/szeke/vo/vollyxxx07.tnf
+data/szeke/vo/vollyxxx08.tnf
+data/szeke/vo/vollyxxx09.tnf
+data/szeke/vo/vollyxxx10.tnf
+data/szeke/vo/vollyxxx11.tnf
+data/szeke/vo/vollyxxx12.tnf
+data/szeke/vo/vollyxxx13.tnf
+data/szeke/vo/vollyxxx14.tnf
+data/szeke/vo/vollyxxx15.tnf
+data/szeke/vo/vollyxxx16.tnf
+data/szeke/vo/vollyxxx17.tnf
+data/szeke/vo/vollyxxx18.tnf
+data/szeke/vo/vollyxxx19.tnf
+data/szeke/vo/vollyxxx20.tnf
+data/szeke/vo/vollyxxx21.tnf
+data/szeke/vo/vollyxxx22.tnf
+data/szeke/vo/vollyxxx23.tnf
+data/szeke/vo/vollyxxx24.tnf
+data/szeke/vo/vollyxxx25.tnf
+data/szeke/emn/emn001udv.tnf
+data/szeke/emn/emn002udv.tnf
+data/szeke/emn/emn003udv.tnf
+data/szeke/emn/emn004cik.tnf
+data/szeke/emn/emn004udv.tnf
+data/szeke/emn/emn005udv.tnf
+data/szeke/emn/emn005udv.tnf
+data/szeke/emn/emn008udv.tnf
+data/szeke/emn/emn009cik.tnf
+data/szeke/emn/emn010cik.tnf
+data/szeke/emn/emn011udv.tnf
+data/szeke/emn/emn012cik.tnf
+data/szeke/emn/emn014cia.tnf
+data/szeke/emn/emn014cib.tnf
+data/szeke/emn/emn017udv.tnf
+data/szeke/emn/emn018udv.tnf
+data/szeke/emn/emn019cik.tnf
+data/szeke/emn/emn020cik.tnf
+data/szeke/emn/emn022cik.tnf
+data/szeke/emn/emn023cik.tnf
+data/szeke/emn/emn024cik.tnf
+data/szeke/emn/emn025cik.tnf
+data/szeke/emn/emn027cik.tnf
+data/szeke/emn/emn028cik.tnf
+data/szeke/emn/emn031cik.tnf
+data/szeke/emn/emn033cik.tnf
+data/szeke/emn/emn036cik.tnf
+data/szeke/emn/emn038cik.tnf
+data/szeke/emn/emn041udv.tnf
+data/szeke/emn/emn045cik.tnf
+data/szeke/emn/emn047cia.tnf
+data/szeke/emn/emn047cib.tnf
+data/szeke/emn/emn048cik.tnf
+data/szeke/emn/emn049cik.tnf
+data/szeke/emn/emn054cik.tnf
+data/szeke/emn/emn055cik.tnf
+data/szeke/emn/emn056cik.tnf
+data/szeke/emn/emn057udv.tnf
+data/szeke/emn/emn058udv.tnf
+data/szeke/emn/emn059cik.tnf
+data/szeke/emn/emn061cik.tnf
+data/szeke/emn/emn062cik.tnf
+data/szeke/emn/emn063cik.tnf
+data/szeke/emn/emn064cik.tnf
+data/szeke/emn/emn065cik.tnf
+data/szeke/emn/emn066udv.tnf
+data/szeke/emn/emn069udv.tnf
+data/szeke/emn/emn070uda.tnf
+data/szeke/emn/emn070udb.tnf
+data/szeke/emn/emn071udv.tnf
+data/szeke/emn/emn072udv.tnf
+data/szeke/emn/emn075udv.tnf
+data/szeke/emn/emn076cia.tnf
+data/szeke/emn/emn076cib.tnf
+data/szeke/emn/emn077cia.tnf
+data/szeke/emn/emn077cik.tnf
+data/szeke/emn/emn079cia.tnf
+data/szeke/emn/emn079cib.tnf
+data/szeke/emn/emn081uda.tnf
+data/szeke/emn/emn081udb.tnf
+data/szeke/emn/emn083cik.tnf
+data/szeke/emn/emn084udv.tnf
+data/szeke/emn/emn086udv.tnf
+data/szeke/emn/emn088cik.tnf
+data/szeke/emn/emn089udv.tnf
+data/szeke/emn/emn090cik.tnf
+data/szeke/emn/emn091cik.tnf
+data/szeke/emn/emn094cik.tnf
+data/szeke/emn/emn095cik.tnf
+data/szeke/emn/emn096cik.tnf
+data/szeke/emn/emn097udv.tnf
+data/szeke/emn/emn098cik.tnf
+data/szeke/emn/emn100udv.tnf
+data/szeke/emn/emn101cik.tnf
+data/szeke/emn/emn102cik.tnf
+data/szeke/emn/emn103cik.tnf
+data/szeke/emn/emn106cik.tnf
+data/szeke/emn/emn107cia.tnf
+data/szeke/emn/emn107cib.tnf
+data/szeke/emn/emn109cik.tnf
+data/szeke/emn/emn110cik.tnf
+data/szeke/emn/emn113cik.tnf
+data/szeke/emn/emn114cik.tnf
+data/szeke/emn/emn116cik.tnf
+data/szeke/emn/emn117cik.tnf
+data/szeke/emn/emn119cik.tnf
+data/szeke/emn/emn121cik.tnf
+data/szeke/emn/emn122cik.tnf
+data/szeke/emn/emn123cik.tnf
+data/szeke/emn/emn124cik.tnf
+data/szeke/emn/emn125cik.tnf
+data/szeke/emn/emn126udv.tnf
+data/szeke/emn/emn127cik.tnf
+data/szeke/emn/emn129cik.tnf
+data/szeke/emn/emn130cik.tnf
+data/szeke/emn/emn131cia.tnf
+data/szeke/emn/emn131cib.tnf
+data/szeke/emn/emn131cic.tnf
+data/szeke/emn/emn132cik.tnf
+data/szeke/emn/emn133cik.tnf
+data/szeke/emn/emn135cik.tnf
+data/szeke/emn/emn136cik.tnf
+data/szeke/emn/emn137udv.tnf
+data/szeke/emn/emn138udv.tnf
+data/szeke/emn/emn139udv.tnf
+data/szeke/emn/emn141cik.tnf
+data/szeke/emn/emn142cik.tnf
+data/szeke/emn/emn144cia.tnf
+data/szeke/emn/emn144cib.tnf
+data/szeke/emn/emn146cik.tnf
+data/szeke/emn/emn147cik.tnf
+data/szeke/emn/emn148udv.tnf
+data/szeke/emn/emn149cik.tnf
+data/szeke/emn/emn150cik.tnf
+data/szeke/rmn/rmn006kas.snf
+data/szeke/rmn/rmn017kas.snf
+data/szeke/rmn/rmn019kas.snf
+data/szeke/rmn/rmn020cik.snf
+data/szeke/rmn/rmn022udv.snf
+data/szeke/rmn/rmn029cik.snf
+data/szeke/rmn/rmn033udv.snf
+data/szeke/rmn/rmn041gye.snf
+data/szeke/rmn/rmn046kas.snf
+data/szeke/rmn/rmn047udv.snf
+data/szeke/rmn/rmn050kas.snf
+data/szeke/rmn/rmn063cik.snf
+data/szeke/rmn/rmn074cik.snf
+data/szeke/rmn/rmn075cik.snf
+data/szeke/rmn/rmn076kas.snf
+data/szeke/rmn/rmn078kas.snf
+data/szeke/rmn/rmn081kas.snf
+data/szeke/rmn/rmn087kas.snf
+data/szeke/rmn/rmn088udv.snf
+data/szeke/rmn/rmn105udv.snf
+data/szeke/rmn/rmn111cik.snf
+data/szeke/rmn/rmn120uda.snf
+data/szeke/rmn/rmn120udb.snf
+data/szeke/rmn/rmn122kas.snf
+data/szeke/rmn/rmn124udv.snf
+data/szeke/rmn/rmn134cik.snf
+data/szeke/rmn/rmn139cik.snf
+data/szeke/rmn/rmn140cik.snf
+data/szeke/rmn/rmn141cia.snf
+data/szeke/rmn/rmn141cib.snf
+data/szeke/rmn/rmn145kas.snf
+data/szeke/rmn/rmn147udv.snf
+data/szeke/rmn/rmn150udv.snf
+data/szeke/rmn/rmn152kas.snf
+data/szeke/rmn/rmn153udv.snf
+data/szeke/rmn/rmn154udv.snf
+data/szeke/rmn/rmn163cik.snf
+data/szeke/rmn/rmn165cik.snf
+data/szeke/rmn/rmn168udv.snf
+data/szeke/rmn/rmn188kas.snf
+data/szeke/rmn/rmn189cik.snf
+data/szeke/rmn/rmn199kas.snf
+data/szeke/rmn/rmn202cik.snf
+data/szeke/rmn/rmn216kas.snf
+data/szeke/rmn/rmn217udv.snf
+data/szeke/rmn/rmn219udv.snf
+data/szeke/rmn/rmn223uda.snf
+data/szeke/rmn/rmn223udb.snf
+data/szeke/rmn/rmn227kas.snf
+data/szeke/rmn/rmn235kas.snf
+data/szeke/rmn/rmn244cik.snf
+data/szeke/rmn/rmn249udv.snf
+data/szeke/rmn/rmn250cik.snf
+data/szeke/rmn/rmn255cik.snf
+data/szeke/rmn/rmn272kas.snf
+data/szeke/rmn/rmn275cik.snf
+data/szeke/rmn/rmn276cia.snf
+data/szeke/rmn/rmn276cik.snf
+data/szeke/rmn/rmn287kas.snf
+data/szeke/rmn/rmn288cik.snf
+data/szeke/rmn/rmn297kab.snf
+data/szeke/rmn/rmn297kas.snf
+data/szeke/rmn/rmn300udv.snf
+data/szeke/rmn/rmn309gye.snf
+data/szeke/rmn/rmn342cik.snf
+data/szeke/rmn/rmn346kas.snf
+data/szeke/rmn/rmn348kas.snf
+data/szeke/kas/kasz-001x.gnf
+data/szeke/kas/kasz-002b.gnf
+data/szeke/kas/kasz-002x.gnf
+data/szeke/kas/kasz-003x.gnf
+data/szeke/kas/kasz-004x.gnf
+data/szeke/kas/kasz-005x.gnf
+data/szeke/kas/kasz-006x.gnf
+data/szeke/kas/kasz-007x.gnf
+data/szeke/kas/kasz-008x.gnf
+data/szeke/kas/kasz-009x.gnf
+data/szeke/kas/kasz-010x.gnf
+data/szeke/kas/kasz-011x.gnf
+data/szeke/kas/kasz-012a.gnf
+data/szeke/kas/kasz-012b.gnf
+data/szeke/kas/kasz-013x.gnf
+data/szeke/kas/kasz-014a.gnf
+data/szeke/kas/kasz-014b.gnf
+data/szeke/kas/kasz-015x.gnf
+data/szeke/kas/kasz-016x.gnf
+data/szeke/kas/kasz-017x.gnf
+data/szeke/kas/kasz-018a.gnf
+data/szeke/kas/kasz-018b.gnf
+data/szeke/kas/kasz-019x.gnf
+data/szeke/kas/kasz-020x.gnf
+data/szeke/kas/kasz-021x.gnf
+data/szeke/kas/kasz-022a.gnf
+data/szeke/kas/kasz-022b.gnf
+data/szeke/kas/kasz-023x.gnf
+data/szeke/kas/kasz-024x.gnf
+data/szeke/kas/kasz-025x.gnf
+data/szeke/kas/kasz-026x.gnf
+data/szeke/kas/kasz-027x.gnf
+data/szeke/kas/kasz-028x.gnf
+data/szeke/kas/kasz-029x.gnf
+data/szeke/kas/kasz-030x.gnf
+data/szeke/kas/kasz-031x.gnf
+data/szeke/kas/kasz-032x.gnf
+data/szeke/kas/kasz-033a.gnf
+data/szeke/kas/kasz-033b.gnf
+data/szeke/kas/kasz-034a.gnf
+data/szeke/kas/kasz-034b.gnf
+data/szeke/kas/kasz-035x.gnf
+data/szeke/kas/kasz-036x.gnf
+data/szeke/kas/kasz-037a.gnf
+data/szeke/kas/kasz-037b.gnf
+data/szeke/kas/kasz-038x.gnf
+data/szeke/kas/kasz-039x.gnf
+data/szeke/kas/kasz-040x.gnf
+data/szeke/kas/kasz-041x.gnf
+data/szeke/kas/kasz-042x.gnf
+data/szeke/kas/kasz-043x.gnf
+data/szeke/kas/kasz-044x.gnf
+data/szeke/kas/kasz-045x.gnf
+data/szeke/kas/kasz-046x.gnf
+data/szeke/kas/kasz-047x.gnf
+data/szeke/kas/kasz-048x.gnf
+data/szeke/kas/kasz-049x.gnf
+data/szeke/kas/kasz-050x.gnf
+data/szeke/kas/kasz-051x.gnf
+data/szeke/kas/kasz-052x.gnf
+data/szeke/kas/kasz-053x.gnf
+data/szeke/kas/kasz-054x.gnf
+data/szeke/kas/kasz-055x.gnf
+data/szeke/kas/kasz-056x.gnf
+data/szeke/kas/kasz-057x.gnf
+data/szeke/kas/kasz-058x.gnf
+data/szeke/kas/kasz-059x.gnf
+data/szeke/kas/kasz-060x.gnf
+data/szeke/kas/kasz-061a.gnf
+data/szeke/kas/kasz-061b.gnf
+data/szeke/kas/kasz-062x.gnf
+data/szeke/kas/kasz-063x.gnf
+data/szeke/kas/kasz-064b.gnf
+data/szeke/kas/kasz-064x.gnf
+data/szeke/kas/kasz-065a.gnf
+data/szeke/kas/kasz-065b.gnf
+data/szeke/kas/kasz-066x.gnf
+data/szeke/kas/kasz-067x.gnf
+data/szeke/kas/kasz-068x.gnf
+data/szeke/kas/kasz-069x.gnf
+data/szeke/kas/kasz-070x.gnf
+data/szeke/kas/kasz-071x.gnf
+data/szeke/kas/kasz-072x.gnf
+data/szeke/kas/kasz-073x.gnf
+data/szeke/kas/kasz-074b.gnf
+data/szeke/kas/kasz-074x.gnf
+data/szeke/kas/kasz-075x.gnf
+data/szeke/kas/kasz-076x.gnf
+data/szeke/kas/kasz-077x.gnf
+data/szeke/kas/kasz-079x.gnf
+data/szeke/kas/kasz-080x.gnf
+data/szeke/kas/kasz-081x.gnf
+data/szeke/kas/kasz-082x.gnf
+data/szeke/kas/kasz-083x.gnf
+data/szeke/kas/kasz-084x.gnf
+data/szeke/kas/kasz-085x.gnf
+data/szeke/kas/kasz-086x.gnf
+data/szeke/kas/kasz-087x.gnf
+data/szeke/kas/kasz-088x.gnf
+data/szeke/kas/kasz-089a.gnf
+data/szeke/kas/kasz-090x.gnf
+data/szeke/kas/kasz-091x.gnf
+data/szeke/kas/kasz-092x.gnf
+data/szeke/kas/kasz-093x.gnf
+data/szeke/kas/kasz-094x.gnf
+data/szeke/kas/kasz-095x.gnf
+data/szeke/kas/kasz-096x.gnf
+data/szeke/kas/kasz-097x.gnf
+data/szeke/kas/kasz-098x.gnf
+data/szeke/kas/kasz-099x.gnf
+data/szeke/kas/kasz-100x.gnf
+data/szeke/kas/kasz-101x.gnf
+data/szeke/kas/kasz-102x.gnf
+data/szeke/kas/kasz-103x.gnf
+data/szeke/kas/kasz-104a.gnf
+data/szeke/kas/kasz-105x.gnf
+data/szeke/kas/kasz-106x.gnf
+data/szeke/kas/kasz-107x.gnf
+data/szeke/kas/kasz-108x.gnf
+data/szeke/kas/kasz-109x.gnf
+data/szeke/kas/kasz-110x.gnf
+data/szeke/kas/kasz-111x.gnf
+data/szeke/kas/kasz-112x.gnf
+data/szeke/kas/kasz-113x.gnf
+data/szeke/kas/kasz-114x.gnf
+data/szeke/kas/kasz-115x.gnf
+data/szeke/kas/kasz-116x.gnf
+data/szeke/kas/kasz-117x.gnf
+data/szeke/kas/kasz-118x.gnf
+data/szeke/kas/kasz-122x.gnf
+data/szeke/kas/kasz-123x.gnf
+data/szeke/kas/kasz-125x.gnf
+data/szeke/kas/kasz-126x.gnf
+data/szeke/kas/kasz-127x.gnf
+data/szeke/kas/kasz-128x.gnf
+data/szeke/kas/kasz-129x.gnf
+data/szeke/kas/kasz-130x.gnf
+data/szeke/kas/kasz-131x.gnf
+data/szeke/nya/ny-ehe01x.mnf
+data/szeke/nya/ny-ehe02x.mnf
+data/szeke/nya/ny-ehe03x.mnf
+data/szeke/nya/ny-ehe04x.mnf
+data/szeke/nya/ny-ehe05x.mnf
+data/szeke/nya/ny-ehe06x.mnf
+data/szeke/nya/ny-ehe07x.mnf
+data/szeke/nya/ny-ehe08x.mnf
+data/szeke/nya/ny-ehe09x.mnf
+data/szeke/nya/ny-ehe10x.mnf
+data/szeke/nya/ny-ehe11x.mnf
+data/szeke/nya/ny-hod01x.mnf
+data/szeke/nya/ny-hod02x.mnf
+data/szeke/nya/ny-hod03x.mnf
+data/szeke/nya/ny-hod04x.mnf
+data/szeke/nya/ny-hod05x.mnf
+data/szeke/nya/ny-job01x.mnf
+data/szeke/nya/ny-job02x.mnf
+data/szeke/nya/ny-job03x.mnf
+data/szeke/nya/ny-job04x.mnf
+data/szeke/nya/ny-job05x.mnf
+data/szeke/nya/ny-job06x.mnf
+data/szeke/nya/ny-job07x.mnf
+data/szeke/nya/ny-job08x.mnf
+data/szeke/nya/ny-job09x.mnf
+data/szeke/nya/ny-job10x.mnf
+data/szeke/nya/ny-job11x.mnf
+data/szeke/nya/ny-job12x.mnf
+data/szeke/nya/ny-job13x.mnf
+data/szeke/nya/ny-job14x.mnf
+data/szeke/nya/ny-job15x.mnf
+data/szeke/nya/ny-job16x.mnf
+data/szeke/nya/ny-job17x.mnf
+data/szeke/nya/ny-job18x.mnf
+data/szeke/nya/ny-job19x.mnf
+data/szeke/nya/ny-job20x.mnf
+data/szeke/nya/ny-job21x.mnf
+data/szeke/nya/ny-job22x.mnf
+data/szeke/nya/ny-job23x.mnf
+data/szeke/nya/ny-job24x.mnf
+data/szeke/nya/ny-job25x.mnf
+data/szeke/nya/ny-job26x.mnf
+data/szeke/nya/ny-job27x.mnf
+data/szeke/nya/ny-job28x.mnf
+data/szeke/nya/ny-job29x.mnf
+data/szeke/nya/ny-job30x.mnf
+data/szeke/nya/ny-job31x.mnf
+data/szeke/nya/ny-job32x.mnf
+data/szeke/nya/ny-job33x.mnf
+data/szeke/nya/ny-job34x.mnf
+data/szeke/nya/ny-job35x.mnf
+data/szeke/nya/ny-kib01x.mnf
+data/szeke/nya/ny-kib02x.mnf
+data/szeke/nya/ny-kib03x.mnf
+data/szeke/nya/ny-kib04x.mnf
+data/szeke/nya/ny-kib05x.mnf
+data/szeke/nya/ny-kib06x.mnf
+data/szeke/nya/ny-kib07x.mnf
+data/szeke/nya/ny-kib08x.mnf
+data/szeke/nya/ny-kib09x.mnf
+data/szeke/nya/ny-kib10x.mnf
+data/szeke/nya/ny-kib11x.mnf
+data/szeke/nya/ny-kib12x.mnf
+data/szeke/nya/ny-kib13x.mnf
+data/szeke/nya/ny-kib14x.mnf
+data/szeke/nya/ny-kib15x.mnf
+data/szeke/nya/ny-kib16x.mnf
+data/szeke/nya/ny-kib17x.mnf
+data/szeke/nya/ny-kib18x.mnf
+data/szeke/nya/ny-kib19x.mnf
+data/szeke/nya/ny-kib20x.mnf
+data/szeke/nya/ny-kib21x.mnf
+data/szeke/nya/ny-kos01x.mnf
+data/szeke/nya/ny-kos02x.mnf
+data/szeke/nya/ny-kos03x.mnf
+data/szeke/nya/ny-kos04x.mnf
+data/szeke/nya/ny-kos05x.mnf
+data/szeke/nya/ny-kos06x.mnf
+data/szeke/nya/ny-kos07x.mnf
+data/szeke/nya/ny-kos08x.mnf
+data/szeke/nya/ny-kos09x.mnf
+data/szeke/nya/ny-kos10x.mnf
+data/szeke/nya/ny-kos11x.mnf
+data/szeke/nya/ny-kos12x.mnf
+data/szeke/nya/ny-kos13x.mnf
+data/szeke/nya/ny-kos14x.mnf
+data/szeke/nya/ny-kos15x.mnf
+data/szeke/nya/ny-kos16x.mnf
+data/szeke/nya/ny-kos17x.mnf
+data/szeke/nya/ny-rem01x.mnf
+data/szeke/nya/ny-rem02x.mnf
+data/szeke/nya/ny-rem03x.mnf
+data/szeke/nya/ny-rem04x.mnf
+data/szeke/nya/ny-rem05x.mnf
+data/szeke/nya/ny-rem06x.mnf
+data/szeke/nya/ny-rem07x.mnf
+data/szeke/nya/ny-rem08x.mnf
+data/szeke/nya/ny-rem09x.mnf
+data/szeke/nya/ny-rem10a.mnf
+data/szeke/nya/ny-rem10b.mnf
+data/szeke/nya/ny-rem10x.mnf
+data/szeke/nya/ny-rem11x.mnf
+data/szeke/nya/ny-rem12x.mnf
+data/szeke/nya/ny-vaj01x.mnf
+data/szeke/nya/ny-vaj02x.mnf
+data/szeke/nya/ny-vaj03x.mnf
+data/szeke/nya/ny-vaj04x.mnf
+data/szeke/nya/ny-vaj05x.mnf
+data/szeke/nya/ny-vaj06x.mnf
+data/szeke/nya/ny-vaj07x.mnf
+data/szeke/nya/ny-vaj08x.mnf
+data/szeke/nya/ny-vaj09x.mnf
+data/szeke/nya/ny-vaj10x.mnf
+data/szeke/nya/ny-vaj11x.mnf
+data/szeke/nya/ny-vaj12x.mnf
+data/szeke/nya/ny-vaj13x.mnf
+data/szeke/nya/ny-vaj14x.mnf
+data/szeke/nya/ny-vaj15x.mnf
+data/szeke/nya/ny-vaj16x.mnf
+data/szeke/nya/nyar001ax.tnf
+data/szeke/nya/nyar001bx.tnf
+data/szeke/nya/nyar002xx.tnf
+data/szeke/nya/nyar003xx.tnf
+data/szeke/nya/nyar004xx.tnf
+data/szeke/nya/nyar005ax.tnf
+data/szeke/nya/nyar005bx.tnf
+data/szeke/nya/nyar006ax.tnf
+data/szeke/nya/nyar006bx.tnf
+data/szeke/nya/nyar007ax.tnf
+data/szeke/nya/nyar007bx.tnf
+data/szeke/nya/nyar008ax.tnf
+data/szeke/nya/nyar008bx.tnf
+data/szeke/nya/nyar009xx.tnf
+data/szeke/nya/nyar010xx.tnf
+data/szeke/nya/nyar011xx.tnf
+data/szeke/nya/nyar012xx.tnf
+data/szeke/nya/nyar013xx.tnf
+data/szeke/nya/nyar014xx.tnf
+data/szeke/nya/nyar015xx.tnf
+data/szeke/nya/nyar016xx.tnf
+data/szeke/nya/nyar017xx.tnf
+data/szeke/nya/nyar018xx.tnf
+data/szeke/nya/nyar019xx.tnf
+data/szeke/nya/nyar020xx.tnf
+data/szeke/nya/nyar021xx.tnf
+data/szeke/nya/nyar022xx.tnf
+data/szeke/nya/nyar023xx.tnf
+data/szeke/nya/nyar024xx.tnf
+data/szeke/nya/nyar025ax.tnf
+data/szeke/nya/nyar025bx.tnf
+data/szeke/nya/nyar026xx.tnf
+data/szeke/nya/nyar027ax.mnf
+data/szeke/nya/nyar027bx.mnf
+data/szekfu/felcsik001xx.tnf
+data/szekfu/felcsik002ax.tnf
+data/szekfu/felcsik002bx.tnf
+data/szekfu/felcsik003xx.tnf
+data/szekfu/felcsik004xx.tnf
+data/szekfu/felcsik005ax.tnf
+data/szekfu/felcsik005bx.tnf
+data/szekfu/felcsik006xx.tnf
+data/szekfu/felcsik007xx.tnf
+data/szekfu/felcsik008xx.tnf
+data/szekfu/felcsik009xx.tnf
+data/szekfu/felcsik010ax.tnf
+data/szekfu/felcsik010bx.tnf
+data/szekfu/felcsik011ax.tnf
+data/szekfu/felcsik011bx.tnf
+data/szekfu/felcsik012xx.tnf
+data/szekfu/felcsik013ax.tnf
+data/szekfu/felcsik013bx.tnf
+data/szekfu/felcsik014ax.tnf
+data/szekfu/felcsik014bx.tnf
+data/szekfu/felcsik015xx.tnf
+data/szekfu/felcsik016ax.tnf
+data/szekfu/felcsik016bx.tnf
+data/szekfu/felcsik016cx.tnf
+data/szekfu/felcsik017ax.tnf
+data/szekfu/felcsik017bx.tnf
+data/szekfu/felcsik017cx.tnf
+data/szekfu/felcsik017dx.tnf
+data/szekfu/felcsik018xx.tnf
+data/szekfu/felcsik019ax.tnf
+data/szekfu/felcsik019bx.tnf
+data/szekfu/felcsik019cx.tnf
+data/szekfu/felcsik019dx.tnf
+data/szekfu/felcsik020ax.tnf
+data/szekfu/felcsik020bx.tnf
+data/szekfu/felcsik020cx.tnf
+data/szekfu/felcsik021xx.tnf
+data/szekfu/felcsik022xx.tnf
+data/szekfu/felcsik023ax.tnf
+data/szekfu/felcsik023bx.tnf
+data/szekfu/felcsik024xx.tnf
+data/szekfu/felcsik025ax.tnf
+data/szekfu/felcsik025bx.tnf
+data/szekfu/felcsik026ax.tnf
+data/szekfu/felcsik026bx.tnf
+data/szekfu/felcsik027xx.tnf
+data/szekfu/felcsik028ax.tnf
+data/szekfu/felcsik028bx.tnf
+data/szekfu/felcsik029xx.tnf
+data/szekfu/felcsik030bx.tnf
+data/szekfu/felcsik030xx.tnf
+data/szekfu/felcsik031xx.tnf
+data/szekfu/felcsik032ax.tnf
+data/szekfu/felcsik032bx.tnf
+data/szekfu/felcsik032cx.tnf
+data/szekfu/felcsik033ax.tnf
+data/szekfu/felcsik033bx.tnf
+data/szekfu/felcsik034xx.tnf
+data/szekfu/felcsik035xx.tnf
+data/szekfu/felcsik036xx.tnf
+data/szekfu/felcsik037xx.tnf
+data/szekfu/felcsik038xx.tnf
+data/szekfu/felcsik039xx.tnf
+data/szekfu/felcsik040ax.tnf
+data/szekfu/felcsik040bx.tnf
+data/szekfu/felcsik041xx.tnf
+data/szekfu/felcsik042ax.tnf
+data/szekfu/felcsik043xx.tnf
+data/szekfu/gyergyo001ax.tnf
+data/szekfu/gyergyo001bx.tnf
+data/szekfu/gyergyo002ax.tnf
+data/szekfu/gyergyo002bx.tnf
+data/szekfu/gyergyo003xx.tnf
+data/szekfu/gyergyo004xx.tnf
+data/szekfu/gyergyo005xx.tnf
+data/szekfu/gyergyo006xx.tnf
+data/szekfu/gyergyo008xx.tnf
+data/szekfu/gyergyo009xx.tnf
+data/szekfu/gyergyo010xx.tnf
+data/szekfu/gyergyo011ax.tnf
+data/szekfu/gyergyo012xx.tnf
+data/szekfu/gyergyo013xx.tnf
+data/szekfu/gyergyo014xx.tnf
+data/szekfu/gyergyo015ax.tnf
+data/szekfu/gyergyo015bx.tnf
+data/szekfu/gyergyo015cx.tnf
+data/szekfu/gyergyo016xx.tnf
+data/szekfu/gyergyo017xx.tnf
+data/szekfu/gyergyo018ax.tnf
+data/szekfu/gyergyo018xx.tnf
+data/szekfu/gyergyo019xx.tnf
+data/szekfu/gyergyo020xx.tnf
+data/szekfu/gyergyo021xx.tnf
+data/szekfu/gyergyo022xx.tnf
+data/szekfu/gyergyo023ax.tnf
+data/szekfu/gyergyo023bx.tnf
+data/szekfu/gyergyo024ax.tnf
+data/szekfu/gyergyo024bx.tnf
+data/szekfu/gyergyo024xx.tnf
+data/szekfu/gyergyo025ax.tnf
+data/szekfu/gyergyo025bx.tnf
+data/szekfu/gyergyo026ax.tnf
+data/szekfu/gyergyo026bx.tnf
+data/szekfu/gyergyo026cx.tnf
+data/szekfu/gyergyo026dx.tnf
+data/szekfu/gyergyo026ex.tnf
+data/szekfu/gyergyo027xx.tnf
+data/szekfu/gyergyo028xx.tnf
+data/szekfu/gyergyo029ax.tnf
+data/szekfu/gyergyo029bx.tnf
+data/szekfu/gyergyo02xbx.tnf
+data/szekfu/gyergyo030xx.tnf
+data/szekfu/gyergyo031ax.tnf
+data/szekfu/gyergyo031bx.tnf
+data/szekfu/gyergyo032ax.tnf
+data/szekfu/gyergyo032bx.tnf
+data/szekfu/gyergyo033ax.tnf
+data/szekfu/gyergyo033bx.tnf
+data/szekfu/gyergyo034xx.tnf
+data/szekfu/gyergyo035ax.tnf
+data/szekfu/gyergyo035bx.tnf
+data/szekfu/udvarh-001xx.tnf
+data/szekfu/udvarh-002xx.tnf
+data/szekfu/udvarh-003xx.tnf
+data/szekfu/udvarh-004xx.tnf
+data/szekfu/udvarh-005xx.tnf
+data/szekfu/udvarh-006xx.tnf
+data/szekfu/udvarh-007xx.tnf
+data/szekfu/udvarh-008xx.tnf
+data/szekfu/udvarh-009xx.tnf
+data/szekfu/udvarh-010xx.tnf
+data/szekfu/udvarh-011xx.tnf
+data/szekfu/udvarh-012xx.tnf
+data/szekfu/udvarh-013xx.tnf
+data/szekfu/udvarh-014xx.tnf
+data/szekfu/udvarh-015xx.tnf
+data/szekfu/udvarh-016xx.tnf
+data/szekfu/udvarh-017xx.tnf
+data/szekfu/udvarh-018ax.tnf
+data/szekfu/udvarh-018bx.tnf
+data/szekfu/udvarh-019xx.tnf
+data/szekfu/udvarh-020xx.tnf
+data/szekfu/udvarh-021xx.tnf
+data/szekfu/udvarh-022ax.tnf
+data/szekfu/udvarh-022bx.tnf
+data/szekfu/udvarh-023xx.tnf
+data/szekfu/udvarh-024ax.tnf
+data/szekfu/udvarh-024bx.tnf
+data/szekfu/udvarh-025xx.tnf
+data/szekfu/udvarh-026ax.tnf
+data/szekfu/udvarh-026bx.tnf
+data/szekfu/udvarh-027xx.tnf
+data/szekfu/udvarh-028xx.tnf
+data/szekfu/udvarh-029ax.tnf
+data/szekfu/udvarh-029bx.tnf
+data/szekfu/udvarh-030xx.tnf
+data/szekfu/udvarh-031xx.tnf
+data/szekfu/udvarh-032xx.tnf
+data/szekfu/udvarh-033xx.tnf
+data/szekfu/udvarh-034xx.tnf
+data/szekfu/udvarh-035xx.tnf
+data/szekfu/udvarh-036xx.tnf
+data/szekfu/udvarh-037ax.tnf
+data/szekfu/udvarh-037bx.tnf
+data/szekfu/udvarh-038ax.tnf
+data/szekfu/udvarh-038bx.tnf
+data/szekfu/udvarh-039ax.tnf
+data/szekfu/udvarh-039bx.tnf
+data/szekfu/udvarh-039cx.tnf
+data/szekfu/udvarh-040ax.tnf
+data/szekfu/udvarh-040bx.tnf
+data/szekfu/udvarh-040cx.tnf
+data/szekfu/udvarh-041xx.tnf
+data/szekfu/udvarh-042ax.tnf
+data/szekfu/udvarh-042bx.tnf
+data/szekfu/udvarh-043xx.tnf
+data/szekfu/udvarh-044xx.tnf
+data/szekfu/udvarh-045xx.tnf
+data/szekfu/udvarh-046ax.tnf
+data/szekfu/udvarh-046bx.tnf
+data/szekfu/udvarh-047ax.tnf
+data/szekfu/udvarh-048ax.tnf
+data/szekfu/udvarh-049xx.tnf
+data/szekfu/udvarh-050xx.tnf
+data/szekfu/udvarh-051xx.tnf
+data/szekfu/udvarh-052ax.tnf
+data/szekfu/udvarh-053xx.tnf
+data/szekfu/udvarh-054xx.tnf
+data/szekfu/udvarh-055xx.tnf
+data/szekfu/udvarh-056xx.tnf
+data/szekfu/udvarh-057xx.tnf
+data/szekfu/udvarh-058xx.tnf
+data/szekfu/udvarh-059ax.tnf
+data/szekfu/udvarh-059bx.tnf
+data/szekfu/udvarh-060ax.tnf
+data/szekfu/udvarh-060bx.tnf
+data/szekfu/udvarh-060xx.tnf
+data/szekfu/udvarh-061xx.tnf
+data/szekfu/udvarh-062ax.tnf
+data/szekfu/udvarh-062bx.tnf
+data/szekfu/udvarh-062xx.tnf
+data/szekfu/udvarh-063xx.tnf
+data/szekfu/udvarh-064ax.tnf
+data/szekfu/udvarh-064bx.tnf
+data/szekfu/udvarh-065ax.tnf
+data/szekfu/udvarh-065bx.tnf
+data/szekfu/udvarh-065xx.tnf
+data/szekfu/udvarh-066ax.tnf
+data/szekfu/udvarh-066bx.tnf
+data/szekfu/udvarh-066xx.tnf
+data/szekfu/udvarh-067xx.tnf
+data/szekfu/udvarh-068xx.tnf
+data/szekfu/udvarh-069ax.tnf
+data/szekfu/udvarh-069bx.tnf
+data/szekfu/udvarh-069cx.tnf
+data/szekfu/udvarh-070xx.tnf
+data/szekfu/udvarh-071ax.tnf
+data/szekfu/udvarh-071bx.tnf
