@@ -5,6 +5,8 @@ package hu.bme.cs.music.model;
 
 import hu.bme.cs.music.FileReader;
 
+import java.io.File;
+
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Sets;
@@ -57,7 +59,7 @@ public class Classifier {
 		printClasses(classesByIntervalDiffMin,
 				"Classes by IntervalDiff min distances: ");
 		printClasses(classesByIntervalDiffMax,
-				"Classes by IntervalDiff min distances: ");
+				"Classes by IntervalDiff max distances: ");
 
 		printClasses(classesBySwapMin, "Classes by Swap min distances: ");
 		printClasses(classesBySwapMax, "Classes by Swap max distances: ");
@@ -99,9 +101,11 @@ public class Classifier {
 	private static void classifySpecMin(double[][] specmx, int[] classes) {
 		mx = specmx;
 		while (FileReader.CLASS_NUM < getClassNum(classes)) {
-			iterate(classes);
+			int[] indexes = getClosestNeighbours();
+			if (classes[indexes[0]] != classes[indexes[1]]) {
+				makeEqual(classes, classes[indexes[0]], classes[indexes[1]]);
+			}
 		}
-
 	}
 
 	private static int findClosestClass(int[] classes, int i) {
@@ -154,15 +158,6 @@ public class Classifier {
 	// returns the number of actual classes
 	private static int getClassNum(int[] classes) {
 		return Sets.newHashSet(Ints.asList(classes)).size();
-	}
-
-	private static void iterate(int[] classes) {
-		int[] indexes = getClosestNeighbours();
-		if (classes[indexes[0]] == classes[indexes[1]]) {
-			// already in the same class
-			return;
-		}
-		makeEqual(classes, classes[indexes[0]], classes[indexes[1]]);
 	}
 
 	// makes equal all the occurrences of oldClass with newClass
@@ -227,8 +222,16 @@ public class Classifier {
 			multimap.put(classes[i], i + 1);
 		}
 		int j = 0;
+		Object[] files = FileReader.getFiles().toArray();
 		for (Integer i : multimap.keySet()) {
-			System.out.println("Class " + (++j) + ": " + multimap.get(i));
+			System.out.println("Class " + (++j) + ": ");// + multimap.get(i));
+			for (Object o : multimap.get(i)) {
+				System.out.print("\t" + files[(Integer) o - 1] + " (");
+				File f = (File) files[(Integer) o - 1];
+				System.out.println(FileReader.getFileMap().inverseBidiMap()
+						.get(f) + ") ");
+			}
+			System.out.println();
 		}
 	}
 
