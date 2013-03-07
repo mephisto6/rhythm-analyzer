@@ -149,7 +149,7 @@ public class CompareManager {
 		System.out.println();
 	}
 
-	private static void normalizeMx(double[][] mx) {
+	public static void normalizeMx(double[][] mx) {
 		int size = mx.length;
 		double max = Doubles.max(mx[0]);
 		for (int i = 1; i < size; i++) {
