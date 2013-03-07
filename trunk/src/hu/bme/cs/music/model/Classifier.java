@@ -35,6 +35,19 @@ public class Classifier {
 	// matrix to store temporal data
 	private static double[][] mx;
 
+	public static void classify(double[][] givenMx) {
+		int limit = Math.min(FileReader.LIMIT, givenMx.length);
+		int[] classesMin = new int[limit];
+		int[] classesMax = new int[limit];
+		for (int i = 0; i < limit; i++) {
+			classesMin[i] = i + 1;
+			classesMax[i] = -1;
+		}
+		classifySpec(givenMx, classesMin, classesMax);
+		printClassesOld(classesMin, "Classes by given distance matrix (min): ");
+		printClassesOld(classesMax, "Classes by given distance matrix (max): ");
+	}
+
 	public static void classify() {
 		init();
 		classifySpec(CompareManager.getHAMMING_MX(), classesByHammingMin,
@@ -221,17 +234,32 @@ public class Classifier {
 		for (int i = 0; i < classes.length; i++) {
 			multimap.put(classes[i], i + 1);
 		}
-		int j = 0;
+		// int j = 0;
 		Object[] files = FileReader.getFiles().toArray();
 		for (Integer i : multimap.keySet()) {
-			//System.out.println("Class " + (++j) + ": ");// + multimap.get(i));
+			// System.out.println("Class " + (++j) + ": ");// +
+			// multimap.get(i));
 			for (Object o : multimap.get(i)) {
-				//System.out.print("\t" + files[(Integer) o - 1] + " (");
+				// System.out.print("\t" + files[(Integer) o - 1] + " (");
 				File f = (File) files[(Integer) o - 1];
 				System.out.print(FileReader.getFileMap().inverseBidiMap()
-						.get(f) + " ");
+						.get(f)
+						+ " ");
 			}
 			System.out.println();
+		}
+	}
+	
+	private static void printClassesOld(int[] classes, String s) {
+		// System.out.println(Arrays.asList(ArrayUtils.toObject(classes)));
+		System.out.println(s);
+		Multimap<Integer, Object> multimap = ArrayListMultimap.create();
+		for (int i = 0; i < classes.length; i++) {
+			multimap.put(classes[i], i + 1);
+		}
+		int j = 0;
+		for (Integer i : multimap.keySet()) {
+			System.out.println("Class " + (++j) + ": " + multimap.get(i));
 		}
 	}
 
