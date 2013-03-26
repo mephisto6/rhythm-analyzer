@@ -18,6 +18,9 @@ import com.google.common.primitives.Ints;
  */
 public class Classifier {
 
+	private static double minThreshold = 0.2;
+	private static double maxThreshold = 0.6;
+
 	private static int[] classesByHammingMin;
 	private static int[] classesByEuclidMin;
 	private static int[] classesByIntervalDiffMin;
@@ -52,40 +55,43 @@ public class Classifier {
 		init();
 		classifySpec(CompareManager.getHAMMING_MX(), classesByHammingMin,
 				classesByHammingMax);
-		classifySpec(CompareManager.getEUCLIDEAN_MX(), classesByEuclidMin,
-				classesByEuclidMax);
-		classifySpec(CompareManager.getINTERVALDIFF_MX(),
-				classesByIntervalDiffMin, classesByIntervalDiffMax);
-		classifySpec(CompareManager.getSWAP_MX(), classesBySwapMin,
-				classesBySwapMax);
-		classifySpec(CompareManager.getCHRONOTONIC_MX(), classesByChronotonMin,
-				classesByChronotonMax);
-		classifySpec(CompareManager.getCHRONOTONIC_MX(),
-				classesByContinousChronotonMin, classesByContinousChronotonMax);
+		// classifySpec(CompareManager.getEUCLIDEAN_MX(), classesByEuclidMin,
+		// classesByEuclidMax);
+		// classifySpec(CompareManager.getINTERVALDIFF_MX(),
+		// classesByIntervalDiffMin, classesByIntervalDiffMax);
+		// classifySpec(CompareManager.getSWAP_MX(), classesBySwapMin,
+		// classesBySwapMax);
+		// classifySpec(CompareManager.getCHRONOTONIC_MX(),
+		// classesByChronotonMin,
+		// classesByChronotonMax);
+		// classifySpec(CompareManager.getCHRONOTONIC_MX(),
+		// classesByContinousChronotonMin, classesByContinousChronotonMax);
 
 		printClasses(classesByHammingMin, "Classes by Hamming min distances: ");
 		printClasses(classesByHammingMax, "Classes by Hamming max distances: ");
-
-		printClasses(classesByEuclidMin, "Classes by Euclidean min distances: ");
-		printClasses(classesByEuclidMax, "Classes by Euclidean max distances: ");
-
-		printClasses(classesByIntervalDiffMin,
-				"Classes by IntervalDiff min distances: ");
-		printClasses(classesByIntervalDiffMax,
-				"Classes by IntervalDiff max distances: ");
-
-		printClasses(classesBySwapMin, "Classes by Swap min distances: ");
-		printClasses(classesBySwapMax, "Classes by Swap max distances: ");
-
-		printClasses(classesByChronotonMin,
-				"Classes by Chronotonic min distances: ");
-		printClasses(classesByChronotonMax,
-				"Classes by Chronotonic max distances: ");
-
-		printClasses(classesByContinousChronotonMin,
-				"Classes by Continous chronotonic min distances: ");
-		printClasses(classesByContinousChronotonMax,
-				"Classes by Continous chronotonic max distances: ");
+		//
+		// printClasses(classesByEuclidMin,
+		// "Classes by Euclidean min distances: ");
+		// printClasses(classesByEuclidMax,
+		// "Classes by Euclidean max distances: ");
+		//
+		// printClasses(classesByIntervalDiffMin,
+		// "Classes by IntervalDiff min distances: ");
+		// printClasses(classesByIntervalDiffMax,
+		// "Classes by IntervalDiff max distances: ");
+		//
+		// printClasses(classesBySwapMin, "Classes by Swap min distances: ");
+		// printClasses(classesBySwapMax, "Classes by Swap max distances: ");
+		//
+		// printClasses(classesByChronotonMin,
+		// "Classes by Chronotonic min distances: ");
+		// printClasses(classesByChronotonMax,
+		// "Classes by Chronotonic max distances: ");
+		//
+		// printClasses(classesByContinousChronotonMin,
+		// "Classes by Continous chronotonic min distances: ");
+		// printClasses(classesByContinousChronotonMax,
+		// "Classes by Continous chronotonic max distances: ");
 	}
 
 	private static void classifySpec(double[][] specmx, int[] classesMin,
@@ -94,12 +100,15 @@ public class Classifier {
 			return;
 		}
 		classifySpecMin(specmx, classesMin);
+		System.out.println("--");
 		classifySpecMax(specmx, classesMax);
 	}
 
 	private static void classifySpecMax(double[][] specmx, int[] classes) {
-		mx = specmx;
-		while (getClassNum(classes) - 1 < FileReader.CLASS_NUM) {
+		mx = copyMx(specmx);
+		while (getClassNum(classes) - 1 < FileReader.CLASS_NUM
+				&& getMaximal() > Classifier.maxThreshold) {
+			System.out.println(getMaximal());
 			int[] indexes = getFurthestNeighbours();
 			classes[indexes[0]] = indexes[0];
 			classes[indexes[1]] = indexes[1];
@@ -111,9 +120,18 @@ public class Classifier {
 		}
 	}
 
+	private static double[][] copyMx(double[][] specmx) {
+		double[][] newmx = new double[specmx.length][];
+		for (int i = 0; i < specmx.length; i++)
+			newmx[i] = specmx[i].clone();
+		return newmx;
+	}
+
 	private static void classifySpecMin(double[][] specmx, int[] classes) {
-		mx = specmx;
-		while (FileReader.CLASS_NUM < getClassNum(classes)) {
+		mx = copyMx(specmx);
+		while (FileReader.CLASS_NUM < getClassNum(classes)
+				&& getMinimal() < Classifier.minThreshold) {
+			System.out.println(getMinimal());
 			int[] indexes = getClosestNeighbours();
 			if (classes[indexes[0]] != classes[indexes[1]]) {
 				makeEqual(classes, classes[indexes[0]], classes[indexes[1]]);
@@ -182,6 +200,19 @@ public class Classifier {
 		}
 	}
 
+	// return the minimal element of the temporal matrix
+	private static double getMinimal() {
+		double min = Double.MAX_VALUE;
+		for (int i = 0; i < mx.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if (mx[i][j] < min) {
+					min = mx[i][j];
+				}
+			}
+		}
+		return min;
+	}
+
 	// returns the indexes of the minimal element in the temporal matrix
 	// and sets it to a very big number
 	private static int[] getClosestNeighbours() {
@@ -199,6 +230,18 @@ public class Classifier {
 		mx[result[0]][result[1]] = Double.MAX_VALUE;
 
 		return result;
+	}
+
+	private static double getMaximal() {
+		double max = Double.MIN_VALUE;
+		for (int i = 0; i < mx.length; i++) {
+			for (int j = 0; j < i; j++) {
+				if (mx[i][j] > max) {
+					max = mx[i][j];
+				}
+			}
+		}
+		return max;
 	}
 
 	// returns the indexes of the maximal element in the temporal matrix
@@ -249,7 +292,7 @@ public class Classifier {
 			System.out.println();
 		}
 	}
-	
+
 	private static void printClassesOld(int[] classes, String s) {
 		// System.out.println(Arrays.asList(ArrayUtils.toObject(classes)));
 		System.out.println(s);
