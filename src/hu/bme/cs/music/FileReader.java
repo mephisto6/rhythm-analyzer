@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.commons.collections.BidiMap;
 import org.apache.commons.collections.bidimap.DualHashBidiMap;
@@ -23,6 +22,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
@@ -53,6 +53,7 @@ public class FileReader {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		DOMConfigurator.configure(new File(".").getAbsolutePath() + "/resources/log4j.xml");
 		long startTime = System.currentTimeMillis();
 		CompareManager.manage(readFile());
 		Classifier.classify();
