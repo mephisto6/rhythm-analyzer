@@ -63,7 +63,7 @@ public class FileReader {
 	}
 
 	public static Collection<File> getFiles() {
-		return getClusterFiles(1);
+		return getClusterFiles(2);
 	}
 	
 	public static BidiMap getFileMap() {
