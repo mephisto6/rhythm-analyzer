@@ -28,5 +28,12 @@ public class MatrixUtils {
 			}
 		}
 	}
+	
+	public static double[][] copyMx(double[][] specmx) {
+		double[][] newmx = new double[specmx.length][];
+		for (int i = 0; i < specmx.length; i++)
+			newmx[i] = specmx[i].clone();
+		return newmx;
+	}
 
 }

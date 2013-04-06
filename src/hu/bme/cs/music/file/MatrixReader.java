@@ -3,8 +3,7 @@
  */
 package hu.bme.cs.music.file;
 
-import hu.bme.cs.music.model.Classifier;
-import hu.bme.cs.music.model.CompareManager;
+import hu.bme.cs.music.utils.MatrixUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,9 +18,9 @@ public class MatrixReader {
 
 	public static void main(String[] args) {
 		double[][] mx = readMx("data/vekttav-2.dat");
-		CompareManager.normalizeMx(mx);
+		MatrixUtils.normalizeMx(mx);
 		// FileWriter.gerenateNexFile("Given2", mx);
-		Classifier.classify(mx);
+		//Classifier2.classify(mx);
 	}
 
 	private static Logger log = Logger.getLogger(MatrixReader.class);
