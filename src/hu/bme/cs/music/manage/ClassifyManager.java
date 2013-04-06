@@ -28,6 +28,12 @@ public class ClassifyManager extends Manager {
 		}
 	}
 
+	public ClassifyManager(double[][] givenMx) {
+		classifiers = new ArrayList<Classifier>();
+		classifiers.add(new MinDistanceClassifier(givenMx));
+		classifiers.add(new MaxDistanceClassifier(givenMx));
+	}
+
 	@Override
 	public void printResults() {
 		for (Classifier classifier : classifiers) {

@@ -28,11 +28,28 @@ public class MinDistanceClassifier extends Classifier {
 
 	public MinDistanceClassifier(Comparer comparer) {
 		this.comparer = comparer;
-		classes = new int[MainAnalyser.LIMIT];
-		for (int i = 0; i < MainAnalyser.LIMIT; i++) {
+		classify(comparer.getDistanceMx());
+	}
+
+	public MinDistanceClassifier(double[][] distMx) {
+		classify(distMx);
+	}
+	
+	private static int[] classes;
+
+	@Override
+	public int[] getClasses() {
+		return classes;
+	}
+
+	@Override
+	public void classify(double[][] distMx) {
+		int limit = Math.min(MainAnalyser.LIMIT, distMx.length);
+		classes = new int[limit];
+		for (int i = 0; i < limit; i++) {
 			classes[i] = i + 1;
 		}
-		double[][] mx = MatrixUtils.copyMx(comparer.getDistanceMx());
+		double[][] mx = MatrixUtils.copyMx(distMx);
 		while (MainAnalyser.CLASS_NUM < getClassNum(classes)
 				&& getMinimal(mx) < minThreshold) {
 			int[] indexes = getClosestNeighbours(mx);
@@ -42,16 +59,13 @@ public class MinDistanceClassifier extends Classifier {
 		}
 	}
 
-	private static int[] classes;
-
-	@Override
-	public int[] getClasses() {
-		return classes;
-	}
-
 	@Override
 	public String getName() {
-		return "Classes by min " + comparer.getName();
+		if (comparer != null) {
+			return "Classes by min " + comparer.getName();
+		} else {
+			return "Classes by min distance";
+		}
 	}
 
 	// returns the indexes of the minimal element in the temporal matrix

@@ -58,7 +58,7 @@ public class FileReader {
 		return getTunes(getClusterFiles(i));
 	}
 
-	public static Collection<File> getClusterFiles(int n) {
+	private static Collection<File> getClusterFiles(int n) {
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new java.io.FileReader(
