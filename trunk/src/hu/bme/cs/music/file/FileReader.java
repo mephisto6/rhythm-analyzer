@@ -1,11 +1,10 @@
 /**
  * 
  */
-package hu.bme.cs.music;
+package hu.bme.cs.music.file;
 
+import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.model.Bar;
-import hu.bme.cs.music.model.Classifier;
-import hu.bme.cs.music.model.CompareManager;
 import hu.bme.cs.music.model.Tune;
 import hu.bme.cs.music.model.TuneLine;
 
@@ -22,7 +21,6 @@ import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.SuffixFileFilter;
 import org.apache.commons.io.filefilter.TrueFileFilter;
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 
 import com.google.common.base.Charsets;
 import com.google.common.io.Files;
@@ -31,49 +29,59 @@ import com.google.common.io.Files;
  * @author Jozsef
  * 
  */
-@SuppressWarnings("unused")
 public class FileReader {
-
-	public static int LIMIT = 100;
-
-	public static final int CLASS_NUM = 8;
 
 	private static Logger log = Logger.getLogger(FileReader.class);
 
-	private static String directory = "data/szeke/vo";
-
-	private static Collection<File> files;
-
-	private static BidiMap fileMap;
+	private static final boolean printTunes = false;
 
 	private static String[] extensions = new String[] { "mnf", "tnf", "gnf",
 			"snf" };
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		DOMConfigurator.configure(new File(".").getAbsolutePath() + "/resources/log4j.xml");
-		long startTime = System.currentTimeMillis();
-		CompareManager.manage(readFile());
-		Classifier.classify();
-		long estimatedTime = System.currentTimeMillis() - startTime;
-		System.out.println("Analysed " + LIMIT + " songs in " + estimatedTime
-				+ " ms");
-	}
+	private static BidiMap fileMap;
 
-	public static Collection<File> getFiles() {
-		return getClusterFiles(2);
-	}
-	
+	private static List<File> files;
+
 	public static BidiMap getFileMap() {
 		return fileMap;
 	}
 
-	private static List<Tune> readFile() {
+	public static List<File> getFiles() {
+		return files;
+	}
+
+	public static List<Tune> getTunes(String dir) {
+		return getTunes(getFilesFromDir(dir));
+	}
+
+	public static List<Tune> getClusterTunes(int i) {
+		return getTunes(getClusterFiles(i));
+	}
+
+	public static Collection<File> getClusterFiles(int n) {
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new java.io.FileReader(
+					"data/felho-gyim-szek-e6.dat"));
+			String line;
+			int i = 1;
+			while ((line = br.readLine()) != null) {
+				if (i == n) {
+					return getFilesForCluster(line.split("\t")[0]);
+				}
+				i++;
+			}
+			br.close();
+		} catch (IOException e) {
+			log.error(e.getMessage());
+		}
+		return null;
+	}
+
+	private static List<Tune> getTunes(Collection<File> files) {
 		List<Tune> tunes = new ArrayList<Tune>();
 		int i = 1;
-		for (File file : getFiles()) {
+		for (File file : files) {
 			Tune tune = new Tune();
 			tune.setFile(file);
 			List<TuneLine> tuneLines = new ArrayList<TuneLine>();
@@ -85,13 +93,15 @@ public class FileReader {
 				log.error(e.getMessage());
 			}
 			tune.setTuneLines(tuneLines);
-			tune.printDescription();
+			if (printTunes) {
+				tune.printDescription();
+			}
 			tunes.add(tune);
-			if (LIMIT < (++i)) {
+			if (MainAnalyser.LIMIT < (++i)) {
 				break;
 			}
 		}
-		LIMIT = i - 1;
+		MainAnalyser.LIMIT = i - 1;
 		return tunes;
 
 	}
@@ -135,28 +145,8 @@ public class FileReader {
 		return segment.startsWith("T");
 	}
 
-	private static Collection<File> getClusterFiles(int n) {
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new java.io.FileReader(
-					"data/felho-gyim-szek-e6.dat"));
-			String line;
-			int i = 1;
-			while ((line = br.readLine()) != null) {
-				if (i == n) {
-					return getFilesForCluster(line.split("\t")[0]);
-				}
-				i++;
-			}
-			br.close();
-		} catch (IOException e) {
-			log.error(e.getMessage());
-		}
-		return null;
-	}
-
 	private static Collection<File> getFilesForCluster(String fileIdsLine) {
-		Collection<File> files = new ArrayList<File>();
+		files = new ArrayList<File>();
 		fileMap = new DualHashBidiMap();
 		String[] ids = fileIdsLine.split(" ");
 		List<Integer> lineNums = new ArrayList<Integer>();

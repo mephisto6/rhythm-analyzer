@@ -26,7 +26,7 @@ public class ContinousChronotonicDistanceComparer extends Comparer {
 	
 	@Override
 	public String getName() {
-		return "Continos chronotonic distances";
+		return "Continous chronotonic distances";
 	}
 
 	@Override
