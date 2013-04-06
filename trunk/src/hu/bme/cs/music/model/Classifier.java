@@ -3,7 +3,6 @@
  */
 package hu.bme.cs.music.model;
 
-import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.file.FileReader;
 
 import java.io.File;
@@ -23,15 +22,21 @@ public abstract class Classifier {
 
 	private static Logger log = Logger.getLogger(Classifier.class);
 
+	public abstract int[] getClasses();
+
+	public abstract void classify(double[][] distMx);
+
+	public abstract String getName();
+
 	public int getClassNum(int[] classes) {
 		return Sets.newHashSet(Ints.asList(classes)).size();
 	}
 
-	public abstract int[] getClasses();
-
-	public abstract String getName();
-
 	public void printClasses() {
+		if (FileReader.getFiles() == null) {
+			printClassesOld();
+			return;
+		}
 		System.out.println(getName());
 		Multimap<Integer, Object> multimap = ArrayListMultimap.create();
 		for (int i = 0; i < getClasses().length; i++) {
@@ -61,23 +66,9 @@ public abstract class Classifier {
 			System.out.println("Class " + (++j) + ": " + multimap.get(i));
 		}
 	}
-	
-    public void classify(double[][] givenMx) {
-        int limit = Math.min(MainAnalyser.LIMIT, givenMx.length);
-        int[] classesMin = new int[limit];
-        int[] classesMax = new int[limit];
-        for (int i = 0; i < limit; i++) {
-                classesMin[i] = i + 1;
-                classesMax[i] = -1;
-        }
-        //TODO
-//        classifySpec(givenMx, classesMin, classesMax);
-//        printClasses(classesMin, "Classes by given distance matrix (min): ");
-//        printClasses(classesMax, "Classes by given distance matrix (max): ");
-}
 
 	// makes equal all the occurrences of oldClass with newClass
-	protected  void makeEqual(int[] classes, int oldClass, int newClass) {
+	protected void makeEqual(int[] classes, int oldClass, int newClass) {
 		for (int i = 0; i < classes.length; i++) {
 			if (classes[i] == oldClass) {
 				log.debug("Class of " + (i + 1) + " (" + classes[i]

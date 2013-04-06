@@ -28,11 +28,21 @@ public class MaxDistanceClassifier extends Classifier {
 
 	public MaxDistanceClassifier(Comparer comparer) {
 		this.comparer = comparer;
-		classes = new int[MainAnalyser.LIMIT];
-		for (int i = 0; i < MainAnalyser.LIMIT; i++) {
+		classify(comparer.getDistanceMx());
+	}
+
+	public MaxDistanceClassifier(double[][] distMx) {
+		classify(distMx);
+	}
+
+	@Override
+	public void classify(double[][] distMx) {
+		int limit = Math.min(MainAnalyser.LIMIT, distMx.length);
+		classes = new int[limit];
+		for (int i = 0; i < limit; i++) {
 			classes[i] = -1;
 		}
-		double[][] mx = MatrixUtils.copyMx(comparer.getDistanceMx());
+		double[][] mx = MatrixUtils.copyMx(distMx);
 		while (getClassNum(classes) - 1 < MainAnalyser.CLASS_NUM
 				&& getMaximal(mx) > maxThreshold) {
 			int[] indexes = getFurthestNeighbours(mx);
@@ -62,7 +72,11 @@ public class MaxDistanceClassifier extends Classifier {
 
 	@Override
 	public String getName() {
-		return "Classes by max " + comparer.getName();
+		if (comparer != null) {
+			return "Classes by max " + comparer.getName();
+		} else {
+			return "Classes by max distance";
+		}
 	}
 
 	private double getMaximal(double[][] mx) {

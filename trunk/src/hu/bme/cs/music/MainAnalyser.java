@@ -36,7 +36,8 @@ public class MainAnalyser {
 				+ "/resources/log4j.xml");
 		long startTime = System.currentTimeMillis();
 		CompareManager compareManager = new CompareManager(
-				FileReader.getClusterTunes(2));
+				FileReader.getTunes(directory));
+				//FileReader.getClusterTunes(2));
 		compareManager.printResults();
 		Manager classifyManager = new ClassifyManager(
 				compareManager.getComparers());
