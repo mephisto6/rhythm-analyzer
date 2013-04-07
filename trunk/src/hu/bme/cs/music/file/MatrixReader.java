@@ -5,14 +5,13 @@ package hu.bme.cs.music.file;
 
 import hu.bme.cs.music.manage.ClassifyManager;
 import hu.bme.cs.music.model.Manager;
+import hu.bme.cs.music.utils.FileUtils;
 import hu.bme.cs.music.utils.MatrixUtils;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
 
 /**
  * @author Jozsef
@@ -23,13 +22,14 @@ public class MatrixReader {
 	public static final int clusterNum = 2;
 
 	public static void main(String[] args) {
-		DOMConfigurator.configure(new File(".").getAbsolutePath()
-				+ "/resources/log4j.xml");
+		FileUtils.initLogging();
+		double[][] mx = readMx("data/adott_vekt_tav/vekttav-" + clusterNum
+				+ ".dat");
+		if (clusterNum <= 2) {
+			FileReader.getClusterTunes(clusterNum);
+		}
 
-		double[][] mx = readMx("data/vekttav-" + clusterNum + ".dat");
-		FileReader.getClusterTunes(clusterNum);
 		MatrixUtils.normalizeMx(mx);
-		// FileWriter.gerenateNexFile("Given2", mx);
 		Manager classifyManager = new ClassifyManager(mx);
 		classifyManager.printResults();
 	}

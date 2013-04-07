@@ -42,4 +42,13 @@ public class ClassifyManager extends Manager {
 		}
 	}
 
+	@Override
+	public int getNumberOfSongs() {
+		int res = 0;
+		if (classifiers != null && !classifiers.isEmpty()) {
+			return classifiers.get(0).getClasses().length;
+		}
+		return res;
+	}
+
 }
