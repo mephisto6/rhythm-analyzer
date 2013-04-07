@@ -10,5 +10,7 @@ package hu.bme.cs.music.model;
 public abstract class Manager {
 
 	public abstract void printResults();
+	
+	public abstract int getNumberOfSongs();
 
 }

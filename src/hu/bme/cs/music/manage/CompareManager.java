@@ -51,4 +51,13 @@ public class CompareManager extends Manager {
 			c.generateFile();
 		}
 	}
+
+	@Override
+	public int getNumberOfSongs() {
+		int res = 0;
+		if (comparers != null && !comparers.isEmpty()) {
+			return comparers.get(0).getDistanceMx().length;
+		}
+		return res;
+	}
 }

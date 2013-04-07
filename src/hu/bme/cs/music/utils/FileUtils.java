@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.xml.DOMConfigurator;
 
 import com.google.common.io.Files;
 
@@ -18,6 +19,11 @@ import com.google.common.io.Files;
 public class FileUtils {
 
 	private static Logger log = Logger.getLogger(FileUtils.class);
+
+	public static void initLogging() {
+		DOMConfigurator.configure(new File(".").getAbsolutePath()
+				+ "/resources/log4j.xml");
+	}
 
 	public static void gerenateNexFile(String name, double[][] mx) {
 		int size = mx.length;

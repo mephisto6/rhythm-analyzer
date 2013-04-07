@@ -101,7 +101,6 @@ public class FileReader {
 				break;
 			}
 		}
-		MainAnalyser.LIMIT = i - 1;
 		return tunes;
 
 	}
