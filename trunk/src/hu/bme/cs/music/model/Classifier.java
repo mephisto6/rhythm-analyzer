@@ -20,13 +20,32 @@ import com.google.common.primitives.Ints;
  */
 public abstract class Classifier {
 
+	private Comparer comparer;
+
 	private static Logger log = Logger.getLogger(Classifier.class);
 
 	public abstract int[] getClasses();
 
 	public abstract void classify(double[][] distMx);
 
-	public abstract String getName();
+	public String getName() {
+		String description = "Classes by " + getDescription();
+		if (getComparer() != null) {
+			return description + " " + getComparer().getName();
+		} else {
+			return description;
+		}
+	}
+
+	public Comparer getComparer() {
+		return comparer;
+	}
+
+	public void setComparer(Comparer comparer) {
+		this.comparer = comparer;
+	}
+
+	public abstract String getDescription();
 
 	public int getClassNum(int[] classes) {
 		return Sets.newHashSet(Ints.asList(classes)).size();

@@ -18,8 +18,6 @@ public class MaxDistanceClassifier extends Classifier {
 
 	private static Logger log = Logger.getLogger(MaxDistanceClassifier.class);
 
-	private Comparer comparer;
-
 	// put elements to separate clusters if distance between them is above this
 	// value
 	private static double maxThreshold =
@@ -27,7 +25,7 @@ public class MaxDistanceClassifier extends Classifier {
 	0;
 
 	public MaxDistanceClassifier(Comparer comparer) {
-		this.comparer = comparer;
+		setComparer(comparer);
 		classify(comparer.getDistanceMx());
 	}
 
@@ -63,20 +61,11 @@ public class MaxDistanceClassifier extends Classifier {
 		}
 	}
 
-	private static int[] classes;
+	private int[] classes;
 
 	@Override
 	public int[] getClasses() {
 		return classes;
-	}
-
-	@Override
-	public String getName() {
-		if (comparer != null) {
-			return "Classes by max " + comparer.getName();
-		} else {
-			return "Classes by max distance";
-		}
 	}
 
 	private double getMaximal(double[][] mx) {
@@ -134,5 +123,11 @@ public class MaxDistanceClassifier extends Classifier {
 			return mx[integer][i];
 		}
 	}
+	
+	@Override
+	public String getDescription() {
+		return "max";
+	}
+
 
 }

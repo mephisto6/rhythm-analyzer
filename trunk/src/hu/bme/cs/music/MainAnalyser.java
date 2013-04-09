@@ -33,7 +33,7 @@ public class MainAnalyser {
 		long startTime = System.currentTimeMillis();
 		CompareManager compareManager = new CompareManager(
 		// FileReader.getTunes(directory));
-				FileReader.getClusterTunes(2));
+				FileReader.getClusterTunes(1));
 		compareManager.printResults();
 		Manager classifyManager = new ClassifyManager(
 				compareManager.getComparers());

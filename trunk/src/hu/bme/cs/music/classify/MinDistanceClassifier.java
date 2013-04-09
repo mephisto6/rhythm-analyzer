@@ -3,6 +3,8 @@
  */
 package hu.bme.cs.music.classify;
 
+import java.util.Arrays;
+
 import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.model.Classifier;
 import hu.bme.cs.music.model.Comparer;
@@ -18,8 +20,6 @@ public class MinDistanceClassifier extends Classifier {
 
 	private static Logger log = Logger.getLogger(MinDistanceClassifier.class);
 
-	private Comparer comparer;
-
 	// put elements to the same cluster if distance between them is below this
 	// value
 	private static double minThreshold =
@@ -27,18 +27,20 @@ public class MinDistanceClassifier extends Classifier {
 	1000;
 
 	public MinDistanceClassifier(Comparer comparer) {
-		this.comparer = comparer;
+		setComparer(comparer);
 		classify(comparer.getDistanceMx());
 	}
 
 	public MinDistanceClassifier(double[][] distMx) {
 		classify(distMx);
 	}
-	
-	private static int[] classes;
+
+	private int[] classes;
 
 	@Override
 	public int[] getClasses() {
+		int[] b = new int[classes.length];
+		System.arraycopy(classes, 0, b, 0, classes.length);
 		return classes;
 	}
 
@@ -57,15 +59,7 @@ public class MinDistanceClassifier extends Classifier {
 				makeEqual(classes, classes[indexes[0]], classes[indexes[1]]);
 			}
 		}
-	}
-
-	@Override
-	public String getName() {
-		if (comparer != null) {
-			return "Classes by min " + comparer.getName();
-		} else {
-			return "Classes by min distance";
-		}
+		log.debug("Calculated classes: " + Arrays.toString(getClasses()));
 	}
 
 	// returns the indexes of the minimal element in the temporal matrix
@@ -101,6 +95,11 @@ public class MinDistanceClassifier extends Classifier {
 			}
 		}
 		return min;
+	}
+
+	@Override
+	public String getDescription() {
+		return "min";
 	}
 
 }
