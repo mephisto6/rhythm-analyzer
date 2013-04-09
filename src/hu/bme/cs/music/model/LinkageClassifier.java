@@ -9,11 +9,15 @@ import hu.bme.cs.music.utils.MatrixUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 /**
  * @author Jozsef
  * 
  */
 public abstract class LinkageClassifier extends Classifier {
+
+	private static Logger log = Logger.getLogger(LinkageClassifier.class);
 
 	List<Cluster> clusters;
 
@@ -41,7 +45,6 @@ public abstract class LinkageClassifier extends Classifier {
 		setClusters(new ArrayList<Cluster>());
 		setComparer(comparer);
 		setDistMx(MatrixUtils.copyMx(comparer.getDistanceMx()));
-		classify(getDistMx());
 	}
 
 	/*
@@ -76,7 +79,7 @@ public abstract class LinkageClassifier extends Classifier {
 		while (getClusters().size() > MainAnalyser.CLASS_NUM) {
 			findClosestClusters();
 		}
-
+		log.debug("--");
 	}
 
 	protected void findClosestClusters() {
@@ -94,6 +97,8 @@ public abstract class LinkageClassifier extends Classifier {
 				}
 			}
 		}
+		log.debug(c1.getId() + " (" + c1.getNums() + ") joined with "
+				+ c2.getId() + " (" + c2.getNums() + "), min: " + min);
 		c1.joinCluster(c2);
 		getClusters().remove(c2);
 	}
