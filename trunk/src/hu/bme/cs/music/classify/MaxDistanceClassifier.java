@@ -69,7 +69,7 @@ public class MaxDistanceClassifier extends Classifier {
 	}
 
 	private double getMaximal(double[][] mx) {
-		double max = Double.MIN_VALUE;
+		double max = -Double.MAX_VALUE;
 		for (int i = 0; i < mx.length; i++) {
 			for (int j = 0; j < i; j++) {
 				if (mx[i][j] > max) {
@@ -99,7 +99,7 @@ public class MaxDistanceClassifier extends Classifier {
 	// and sets it to a very low value
 	private int[] getFurthestNeighbours(double[][] mx) {
 		int[] result = new int[2];
-		double max = Double.MIN_VALUE;
+		double max = -Double.MAX_VALUE;
 		for (int i = 0; i < mx.length; i++) {
 			for (int j = 0; j < i; j++) {
 				if (mx[i][j] > max) {
@@ -112,7 +112,7 @@ public class MaxDistanceClassifier extends Classifier {
 		log.debug(mx[result[0]][result[1]] + " is the highest value between "
 				+ (result[0] + 1) + " and " + (result[1] + 1) + ".");
 
-		mx[result[0]][result[1]] = Double.MIN_VALUE;
+		mx[result[0]][result[1]] = -Double.MAX_VALUE;
 		return result;
 	}
 
@@ -123,11 +123,10 @@ public class MaxDistanceClassifier extends Classifier {
 			return mx[integer][i];
 		}
 	}
-	
+
 	@Override
 	public String getDescription() {
 		return "max";
 	}
-
 
 }

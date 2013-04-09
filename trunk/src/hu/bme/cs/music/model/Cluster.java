@@ -6,15 +6,11 @@ package hu.bme.cs.music.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-
 /**
  * @author Jozsef
  * 
  */
 public class Cluster {
-
-	private static Logger log = Logger.getLogger(Cluster.class);
 
 	private List<Integer> nums;
 
@@ -35,8 +31,6 @@ public class Cluster {
 	}
 
 	public void joinCluster(Cluster c) {
-		log.debug(id + " (" + getNums() + ") joined with " + c.getId() + " ("
-				+ c.getNums() + ")");
 		nums.addAll(c.getNums());
 	}
 

@@ -26,8 +26,8 @@ public class ClassifyManager extends Manager {
 	public ClassifyManager(List<Comparer> comparers) {
 		classifiers = new ArrayList<Classifier>();
 		for (Comparer comparer : comparers) {
-			classifiers.add(new MinDistanceClassifier(comparer));
-			classifiers.add(new MaxDistanceClassifier(comparer));
+			//classifiers.add(new MinDistanceClassifier(comparer));
+			//classifiers.add(new MaxDistanceClassifier(comparer));
 			classifiers.add(new SingleLinkageClassifier(comparer));
 			classifiers.add(new AverageLinkageClassifier(comparer));
 			classifiers.add(new CompleteLinkageClassifier(comparer));

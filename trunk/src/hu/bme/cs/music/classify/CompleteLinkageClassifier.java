@@ -27,7 +27,7 @@ public class CompleteLinkageClassifier extends LinkageClassifier {
 	 */
 	@Override
 	public double getDistance(Cluster c1, Cluster c2) {
-		double max = Double.MIN_VALUE;
+		double max = -Double.MAX_VALUE;
 		for (int i : c1.getNums()) {
 			for (int j : c2.getNums()) {
 				if (i < j) {
