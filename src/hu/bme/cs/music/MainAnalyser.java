@@ -19,11 +19,11 @@ public class MainAnalyser {
 
 	public static final int LIMIT = 100;
 
-	public static final int CLASS_NUM = 8;
+	public static final int CLASS_NUM = 4;
 
 	private static Logger log = Logger.getLogger(MainAnalyser.class);
 
-	private static String directory = "data/szeke/vo";
+	private static String directory = "data/szeke/nya";
 
 	/**
 	 * @param args
@@ -33,7 +33,7 @@ public class MainAnalyser {
 		long startTime = System.currentTimeMillis();
 		CompareManager compareManager = new CompareManager(
 		// FileReader.getTunes(directory));
-				FileReader.getClusterTunes(1));
+				FileReader.getClusterTunes(20));
 		compareManager.printResults();
 		Manager classifyManager = new ClassifyManager(
 				compareManager.getComparers());

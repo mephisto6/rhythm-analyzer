@@ -74,7 +74,7 @@ public abstract class LinkageClassifier extends Classifier {
 	@Override
 	public void classify(double[][] distMx) {
 		for (int i = 0; i < distMx.length; i++) {
-			getClusters().add(new Cluster(i));
+			getClusters().add(new Cluster(i, distMx));
 		}
 		while (getClusters().size() > MainAnalyser.CLASS_NUM) {
 			findClosestClusters();
@@ -90,7 +90,7 @@ public abstract class LinkageClassifier extends Classifier {
 			for (int j = i + 1; j < getClusters().size(); j++) {
 				double d = getDistance(getClusters().get(i),
 						getClusters().get(j));
-				if (min > d) {
+				if (d < min) {
 					min = d;
 					c1 = getClusters().get(i);
 					c2 = getClusters().get(j);
