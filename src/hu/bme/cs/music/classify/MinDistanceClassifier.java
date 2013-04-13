@@ -39,8 +39,6 @@ public class MinDistanceClassifier extends Classifier {
 
 	@Override
 	public int[] getClasses() {
-		int[] b = new int[classes.length];
-		System.arraycopy(classes, 0, b, 0, classes.length);
 		return classes;
 	}
 

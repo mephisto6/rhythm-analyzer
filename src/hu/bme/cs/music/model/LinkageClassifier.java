@@ -54,7 +54,7 @@ public abstract class LinkageClassifier extends Classifier {
 	 */
 	@Override
 	public int[] getClasses() {
-		int len = getComparer().getDistanceMx().length;
+		int len = getDistMx().length;
 		int[] classes = new int[len];
 		for (int i = 0; i < len; i++) {
 			for (Cluster c : getClusters()) {
@@ -97,8 +97,8 @@ public abstract class LinkageClassifier extends Classifier {
 				}
 			}
 		}
-		log.debug(c1.getId() + " (" + c1.getNums() + ") joined with "
-				+ c2.getId() + " (" + c2.getNums() + "), min: " + min);
+		log.debug(c1.getId1() + " (" + c1.getNums() + ") joined with "
+				+ c2.getId1() + " (" + c2.getNums() + "), min: " + min);
 		c1.joinCluster(c2);
 		getClusters().remove(c2);
 	}
