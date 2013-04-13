@@ -3,12 +3,12 @@
  */
 package hu.bme.cs.music.classify;
 
-import java.util.Arrays;
-
 import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.model.Classifier;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.utils.MatrixUtils;
+
+import java.util.Arrays;
 
 import org.apache.log4j.Logger;
 
@@ -27,12 +27,13 @@ public class MinDistanceClassifier extends Classifier {
 	1000;
 
 	public MinDistanceClassifier(Comparer comparer) {
-		setComparer(comparer);
-		classify(comparer.getDistanceMx());
+		setComparerAndDistMx(comparer);
+		classify();
 	}
 
 	public MinDistanceClassifier(double[][] distMx) {
-		classify(distMx);
+		setDistMx(distMx);
+		classify();
 	}
 
 	private int[] classes;
@@ -43,18 +44,18 @@ public class MinDistanceClassifier extends Classifier {
 	}
 
 	@Override
-	public void classify(double[][] distMx) {
-		int limit = Math.min(MainAnalyser.LIMIT, distMx.length);
+	public void classify() {
+		int limit = Math.min(MainAnalyser.LIMIT, getDistMx().length);
 		classes = new int[limit];
 		for (int i = 0; i < limit; i++) {
 			classes[i] = i + 1;
 		}
-		double[][] mx = MatrixUtils.copyMx(distMx);
+		double[][] mx = MatrixUtils.copyMx(getDistMx());
 		while (MainAnalyser.CLASS_NUM < getClassNum(classes)
 				&& getMinimal(mx) < minThreshold) {
 			int[] indexes = getClosestNeighbours(mx);
 			if (classes[indexes[0]] != classes[indexes[1]]) {
-				makeEqual(classes, classes[indexes[0]], classes[indexes[1]]);
+				makeEqual(classes[indexes[0]], classes[indexes[1]]);
 			}
 		}
 		log.debug("Calculated classes: " + Arrays.toString(getClasses()));
@@ -93,6 +94,17 @@ public class MinDistanceClassifier extends Classifier {
 			}
 		}
 		return min;
+	}
+
+	// makes equal all the occurrences of oldClass with newClass
+	private void makeEqual(int oldClass, int newClass) {
+		for (int i = 0; i < classes.length; i++) {
+			if (classes[i] == oldClass) {
+				log.debug("Class of " + (i + 1) + " (" + getClasses()[i]
+						+ ") is set to " + newClass);
+				classes[i] = newClass;
+			}
+		}
 	}
 
 	@Override

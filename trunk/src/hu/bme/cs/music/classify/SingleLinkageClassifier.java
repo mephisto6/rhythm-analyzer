@@ -15,7 +15,7 @@ public class SingleLinkageClassifier extends LinkageClassifier {
 
 	public SingleLinkageClassifier(Comparer comparer) {
 		init(comparer);
-		classify(getDistMx());
+		classify();
 	}
 
 	@Override

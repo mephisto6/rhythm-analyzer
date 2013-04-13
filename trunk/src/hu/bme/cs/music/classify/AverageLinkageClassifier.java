@@ -15,7 +15,7 @@ public class AverageLinkageClassifier extends LinkageClassifier {
 
 	public AverageLinkageClassifier(Comparer comparer) {
 		init(comparer);
-		classify(getDistMx());
+		classify();
 	}
 
 	/*

@@ -15,7 +15,7 @@ public class CompleteLinkageClassifier extends LinkageClassifier {
 
 	public CompleteLinkageClassifier(Comparer comparer) {
 		init(comparer);
-		classify(getDistMx());
+		classify();
 	}
 
 	/*
