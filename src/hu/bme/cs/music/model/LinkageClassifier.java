@@ -4,7 +4,6 @@
 package hu.bme.cs.music.model;
 
 import hu.bme.cs.music.MainAnalyser;
-import hu.bme.cs.music.utils.MatrixUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +20,6 @@ public abstract class LinkageClassifier extends Classifier {
 
 	List<Cluster> clusters;
 
-	private double[][] distMx;
-
 	public List<Cluster> getClusters() {
 		return clusters;
 	}
@@ -31,20 +28,11 @@ public abstract class LinkageClassifier extends Classifier {
 		this.clusters = clusters;
 	}
 
-	public double[][] getDistMx() {
-		return distMx;
-	}
-
-	public void setDistMx(double[][] distMx) {
-		this.distMx = distMx;
-	}
-
 	public abstract double getDistance(Cluster c1, Cluster c2);
 
 	public void init(Comparer comparer) {
 		setClusters(new ArrayList<Cluster>());
-		setComparer(comparer);
-		setDistMx(MatrixUtils.copyMx(comparer.getDistanceMx()));
+		setComparerAndDistMx(comparer);
 	}
 
 	/*
@@ -72,9 +60,9 @@ public abstract class LinkageClassifier extends Classifier {
 	 * @see hu.bme.cs.music.model.Classifier#classify(double[][])
 	 */
 	@Override
-	public void classify(double[][] distMx) {
-		for (int i = 0; i < distMx.length; i++) {
-			getClusters().add(new Cluster(i, distMx));
+	public void classify() {
+		for (int i = 0; i < getDistMx().length; i++) {
+			getClusters().add(new Cluster(i, getDistMx()));
 		}
 		while (getClusters().size() > MainAnalyser.CLASS_NUM) {
 			findClosestClusters();

@@ -3,12 +3,7 @@
  */
 package hu.bme.cs.music.manage;
 
-import hu.bme.cs.music.compare.ChronotonicDistanceComparer;
-import hu.bme.cs.music.compare.ContinousChronotonicDistanceComparer;
-import hu.bme.cs.music.compare.EuclideanDistanceComparer;
 import hu.bme.cs.music.compare.HammingDistanceComparer;
-import hu.bme.cs.music.compare.IntervalDiffDistanceComparer;
-import hu.bme.cs.music.compare.SwapDistanceComparer;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.Manager;
 import hu.bme.cs.music.model.Tune;

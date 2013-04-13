@@ -4,10 +4,9 @@
 package hu.bme.cs.music.model;
 
 import hu.bme.cs.music.file.FileReader;
+import hu.bme.cs.music.utils.MatrixUtils;
 
 import java.io.File;
-
-import org.apache.log4j.Logger;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -22,11 +21,30 @@ public abstract class Classifier {
 
 	private Comparer comparer;
 
-	private static Logger log = Logger.getLogger(Classifier.class);
+	private double[][] distMx;
+
+	public Comparer getComparer() {
+		return comparer;
+	}
+
+	public void setComparerAndDistMx(Comparer comparer) {
+		this.comparer = comparer;
+		this.distMx = MatrixUtils.copyMx(comparer.getDistanceMx());
+	}
+
+	public double[][] getDistMx() {
+		return distMx;
+	}
+
+	public void setDistMx(double[][] distMx) {
+		this.distMx = distMx;
+	}
+
+	// private static Logger log = Logger.getLogger(Classifier.class);
 
 	public abstract int[] getClasses();
 
-	public abstract void classify(double[][] distMx);
+	public abstract void classify();
 
 	public String getName() {
 		String description = "Classes by " + getDescription();
@@ -35,14 +53,6 @@ public abstract class Classifier {
 		} else {
 			return description;
 		}
-	}
-
-	public Comparer getComparer() {
-		return comparer;
-	}
-
-	public void setComparer(Comparer comparer) {
-		this.comparer = comparer;
 	}
 
 	public abstract String getDescription();
@@ -83,17 +93,6 @@ public abstract class Classifier {
 		int j = 0;
 		for (Integer i : multimap.keySet()) {
 			System.out.println("Class " + (++j) + ": " + multimap.get(i));
-		}
-	}
-
-	// makes equal all the occurrences of oldClass with newClass
-	protected void makeEqual(int[] classes, int oldClass, int newClass) {
-		for (int i = 0; i < classes.length; i++) {
-			if (classes[i] == oldClass) {
-				log.debug("Class of " + (i + 1) + " (" + classes[i]
-						+ ") is set to " + newClass);
-				classes[i] = newClass;
-			}
 		}
 	}
 
