@@ -43,7 +43,7 @@ public class MaxDistanceClassifier extends Classifier {
 		double[][] mx = MatrixUtils.copyMx(distMx);
 		while (getClassNum(classes) - 1 < MainAnalyser.CLASS_NUM
 				&& getMaximal(mx) > maxThreshold) {
-			int[] indexes = getFurthestNeighbours(mx);
+			int[] indexes = getFarthestNeighbours(mx);
 			log.debug("Class of " + (indexes[0] + 1) + " is set to "
 					+ (indexes[0] + 1));
 			log.debug("Class of " + (indexes[1] + 1) + " is set to "
@@ -97,7 +97,7 @@ public class MaxDistanceClassifier extends Classifier {
 
 	// returns the indexes of the maximal element in the temporal matrix
 	// and sets it to a very low value
-	private int[] getFurthestNeighbours(double[][] mx) {
+	private int[] getFarthestNeighbours(double[][] mx) {
 		int[] result = new int[2];
 		double max = -Double.MAX_VALUE;
 		for (int i = 0; i < mx.length; i++) {

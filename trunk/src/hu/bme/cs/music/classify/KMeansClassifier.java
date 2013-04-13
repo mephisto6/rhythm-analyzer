@@ -8,6 +8,7 @@ import hu.bme.cs.music.model.Classifier;
 import hu.bme.cs.music.model.Cluster;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.utils.MatrixUtils;
+import hu.bme.cs.music.utils.MetricsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class KMeansClassifier extends Classifier {
 	public void classify(double[][] distMx) {
 		for (int i = 0; i < MainAnalyser.CLASS_NUM; i++) {
 			int k = (int) (Math.random() * distMx.length);
-			clusters.add(new Cluster(k));
+			clusters.add(new Cluster(k, distMx));
 		}
 
 		int changes = 0;
@@ -73,10 +74,16 @@ public class KMeansClassifier extends Classifier {
 			arrangeClasses();
 			changes = 0;
 			for (Cluster c : clusters) {
-				changes += c.calculateNewCentre(distMx);
+				changes += c.calculateNewCentre();
 			}
 			log.debug("changes: " + changes);
 		} while (changes != 0);
+		log.debug("avg of avg distances: "
+				+ MetricsUtils.getAvgDiameter(clusters));
+		log.debug("avg of max distances: "
+				+ MetricsUtils.getAvgMaxDistance(clusters));
+		log.debug("sum of squared error: "
+				+ MetricsUtils.getSquaredError(clusters));
 	}
 
 	private void arrangeClasses() {
@@ -89,14 +96,13 @@ public class KMeansClassifier extends Classifier {
 		for (Cluster c : clusters) {
 			c.clearCluster();
 		}
-
 	}
 
 	private Cluster getClosestCluster(int i) {
 		Cluster res = null;
 		double min = Double.MAX_VALUE;
 		for (Cluster c : clusters) {
-			double dist = c.getDistFromCentre(i, distMx);
+			double dist = c.getDistFromCentre(i);
 			if (dist < min) {
 				min = dist;
 				res = c;

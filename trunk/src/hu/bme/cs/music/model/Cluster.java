@@ -3,6 +3,8 @@
  */
 package hu.bme.cs.music.model;
 
+import hu.bme.cs.music.utils.MatrixUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,13 +22,16 @@ public class Cluster {
 
 	private int id;
 
-	public Cluster(int i) {
+	double[][] distMx;
+
+	public Cluster(int i, double[][] distMx) {
+		this.distMx = MatrixUtils.copyMx(distMx);
 		id = i;
 		nums = new ArrayList<Integer>();
 		nums.add(i);
 	}
 
-	public double getDistFromCentre(int i, double[][] distMx) {
+	public double getDistFromCentre(int i) {
 		if (i < id) {
 			return distMx[id][i];
 		} else {
@@ -34,7 +39,7 @@ public class Cluster {
 		}
 	}
 
-	public int calculateNewCentre(double[][] distMx) {
+	public int calculateNewCentre() {
 		if (nums.size() == 1) {
 			return 0;
 		}
@@ -64,13 +69,34 @@ public class Cluster {
 		return 0;
 	}
 
+	public double getMaxDistanceWithinCluster() {
+		if (nums.size() == 1) {
+			return 0;
+		}
+		double max = -Double.MAX_VALUE;
+		for (int i : nums) {
+			for (int j : nums) {
+				if (i < j) {
+					if (distMx[j][i] > max) {
+						max = distMx[j][i];
+					}
+				} else {
+					if (distMx[i][j] > max) {
+						max = distMx[i][j];
+					}
+				}
+			}
+		}
+		return max;
+	}
+
 	/**
 	 * return avg dist from centre
 	 * 
 	 * @param distMx
 	 * @return
 	 */
-	public double getDiameter(double[][] distMx) {
+	public double getDiameter() {
 		if (nums.size() == 1) {
 			return 0;
 		}
