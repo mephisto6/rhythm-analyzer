@@ -46,17 +46,17 @@ public class Cluster {
 		int newId = id;
 		double min = Double.MAX_VALUE;
 		for (int i : nums) {
-			double avg = 0;
+			double avgDistFromI = 0;
 			for (int j : nums) {
 				if (i < j) {
-					avg += distMx[j][i];
+					avgDistFromI += distMx[j][i];
 				} else {
-					avg += distMx[i][j];
+					avgDistFromI += distMx[i][j];
 				}
 			}
-			avg = avg / (nums.size() - 1);
-			if (avg < min) {
-				min = avg;
+			avgDistFromI = avgDistFromI / (nums.size() - 1);
+			if (avgDistFromI < min) {
+				min = avgDistFromI;
 				newId = i;
 			}
 		}
@@ -69,7 +69,35 @@ public class Cluster {
 		return 0;
 	}
 
-	public double getMaxDistanceWithinCluster() {
+	public double getSumOfDistances() {
+		if (nums.size() == 1) {
+			return 0;
+		}
+		double sum = 0;
+		for (int i : nums) {
+			for (int j : nums) {
+				if (i < j) {
+					sum += distMx[j][i];
+				} else {
+					sum += distMx[i][j];
+				}
+			}
+		}
+		// we counted each value twice
+		return sum / 2;
+	}
+
+	public double getAvgDistance() {
+		if (nums.size() == 1) {
+			return 0;
+		}
+		// n*(n-1)
+		// ------- not trivial element
+		// 2
+		return getSumOfDistances() / (nums.size() * (nums.size() - 1) / 2);
+	}
+
+	public double getMaxDistance() {
 		if (nums.size() == 1) {
 			return 0;
 		}
@@ -96,20 +124,20 @@ public class Cluster {
 	 * @param distMx
 	 * @return
 	 */
-	public double getDiameter() {
-		if (nums.size() == 1) {
-			return 0;
-		}
-		double avg = 0;
-		for (int i : nums) {
-			if (i < id) {
-				avg += distMx[id][i];
-			} else {
-				avg += distMx[i][id];
-			}
-		}
-		return avg / (nums.size() - 1);
-	}
+	// public double getAvgDistFromCentre() {
+	// if (nums.size() == 1) {
+	// return 0;
+	// }
+	// double avg = 0;
+	// for (int i : nums) {
+	// if (i < id) {
+	// avg += distMx[id][i];
+	// } else {
+	// avg += distMx[i][id];
+	// }
+	// }
+	// return avg / (nums.size() - 1);
+	// }
 
 	public boolean containsNum(int i) {
 		return nums.contains(i);

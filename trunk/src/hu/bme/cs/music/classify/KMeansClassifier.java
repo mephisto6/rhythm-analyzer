@@ -74,9 +74,13 @@ public class KMeansClassifier extends Classifier {
 			}
 		} while (changes != 0);
 		log.debug("avg of avg distances: "
-				+ MetricsUtils.getAvgDiameter(clusters));
+				+ MetricsUtils.getAvgAvgDistance(clusters));
 		log.debug("avg of max distances: "
 				+ MetricsUtils.getAvgMaxDistance(clusters));
+		log.debug("max of max distances: "
+				+ MetricsUtils.getMaxMaxDistance(clusters));
+		log.debug("sum of all distances: "
+				+ MetricsUtils.getSumOfDistances(clusters));
 		log.debug("sum of squared error: "
 				+ MetricsUtils.getSquaredError(clusters));
 	}
