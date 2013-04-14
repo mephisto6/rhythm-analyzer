@@ -4,7 +4,6 @@
 package hu.bme.cs.music.model;
 
 import hu.bme.cs.music.MainAnalyser;
-import hu.bme.cs.music.utils.MetricsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,16 +67,6 @@ public abstract class LinkageClassifier extends Classifier {
 		while (getClusters().size() > MainAnalyser.CLASS_NUM) {
 			findClosestClusters();
 		}
-		log.debug("avg of avg distances: "
-				+ MetricsUtils.getAvgAvgDistance(clusters));
-		log.debug("avg of max distances: "
-				+ MetricsUtils.getAvgMaxDistance(clusters));
-		log.debug("max of max distances: "
-				+ MetricsUtils.getMaxMaxDistance(clusters));
-		log.debug("sum of all distances: "
-				+ MetricsUtils.getSumOfDistances(clusters));
-		log.debug("sum of squared error: "
-				+ MetricsUtils.getSquaredError(clusters));
 	}
 
 	protected void findClosestClusters() {

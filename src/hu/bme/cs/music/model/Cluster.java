@@ -124,20 +124,35 @@ public class Cluster {
 	 * @param distMx
 	 * @return
 	 */
-	// public double getAvgDistFromCentre() {
-	// if (nums.size() == 1) {
-	// return 0;
-	// }
-	// double avg = 0;
-	// for (int i : nums) {
-	// if (i < id) {
-	// avg += distMx[id][i];
-	// } else {
-	// avg += distMx[i][id];
-	// }
-	// }
-	// return avg / (nums.size() - 1);
-	// }
+	public double getAvgDistFromCentre() {
+		if (nums.size() == 1) {
+			return 0;
+		}
+		return getSumOfDistFromCentre() / (nums.size() - 1);
+	}
+
+	public double getSumOfDistFromCentre() {
+		if (nums.size() == 1) {
+			return 0;
+		}
+		double sum = 0;
+		for (int i : nums) {
+			if (i < id) {
+				sum += distMx[id][i];
+			} else {
+				sum += distMx[i][id];
+			}
+		}
+		return sum;
+	}
+
+	public double getSquaredError() {
+		double s = 0;
+		for (int i : nums) {
+			s += Math.pow(getDistFromCentre(i), 2);
+		}
+		return s;
+	}
 
 	public boolean containsNum(int i) {
 		return nums.contains(i);

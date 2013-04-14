@@ -60,6 +60,7 @@ public class MetricsUtils {
 
 	/**
 	 * sum of all distances within each cluster
+	 * 
 	 * @param clusters
 	 * @return
 	 */
@@ -71,6 +72,34 @@ public class MetricsUtils {
 		}
 		return d;
 	}
+	
+	/**
+	 * sum of sum of distances from centre within each cluster
+	 * @param clusters
+	 * @return
+	 */
+	public static double getSumOfDistsFromCentre(List<Cluster> clusters) {
+		double d = 0;
+		for (Cluster c : clusters) {
+			d += c.getSumOfDistFromCentre();
+
+		}
+		return d;
+	}
+	
+	/**
+	 * sum of avg of distances from centre within each cluster
+	 * @param clusters
+	 * @return
+	 */
+	public static double getSumOfAvgDistFromCentre(List<Cluster> clusters) {
+		double d = 0;
+		for (Cluster c : clusters) {
+			d += c.getAvgDistFromCentre();
+
+		}
+		return d;
+	}
 
 	/***
 	 * sum of squared errors of the elements and the centers
@@ -78,12 +107,10 @@ public class MetricsUtils {
 	 * @param clusters
 	 * @return
 	 */
-	public static double getSquaredError(List<Cluster> clusters) {
+	public static double getSumOfSquaredError(List<Cluster> clusters) {
 		double s = 0;
 		for (Cluster c : clusters) {
-			for (int i : c.getNums()) {
-				s += Math.pow(c.getDistFromCentre(i), 2);
-			}
+			s += c.getSquaredError();
 		}
 		return s;
 	}
