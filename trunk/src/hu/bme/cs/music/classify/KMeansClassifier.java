@@ -82,7 +82,9 @@ public class KMeansClassifier extends Classifier {
 		log.debug("sum of all distances: "
 				+ MetricsUtils.getSumOfDistances(clusters));
 		log.debug("sum of squared error: "
-				+ MetricsUtils.getSquaredError(clusters));
+				+ MetricsUtils.getSumOfSquaredError(clusters));
+		log.debug("sum of sum of dists from centers: "
+				+ MetricsUtils.getSumOfDistsFromCentre(clusters));
 	}
 
 	private void arrangeClasses() {
