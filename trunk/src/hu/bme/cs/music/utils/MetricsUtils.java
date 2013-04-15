@@ -72,9 +72,10 @@ public class MetricsUtils {
 		}
 		return d;
 	}
-	
+
 	/**
 	 * sum of sum of distances from centre within each cluster
+	 * 
 	 * @param clusters
 	 * @return
 	 */
@@ -86,9 +87,10 @@ public class MetricsUtils {
 		}
 		return d;
 	}
-	
+
 	/**
 	 * sum of avg of distances from centre within each cluster
+	 * 
 	 * @param clusters
 	 * @return
 	 */
@@ -111,6 +113,20 @@ public class MetricsUtils {
 		double s = 0;
 		for (Cluster c : clusters) {
 			s += c.getSquaredError();
+		}
+		return s;
+	}
+
+	/***
+	 * sum of sum of min distances
+	 * 
+	 * @param clusters
+	 * @return
+	 */
+	public static double getSumOfSumOfMinDistances(List<Cluster> clusters) {
+		double s = 0;
+		for (Cluster c : clusters) {
+			s += c.getSumOfMinDistances();
 		}
 		return s;
 	}
