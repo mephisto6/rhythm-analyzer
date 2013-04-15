@@ -87,6 +87,30 @@ public class Cluster {
 		return sum / 2;
 	}
 
+	public double getSumOfMinDistances() {
+		if (nums.size() == 1) {
+			return 0;
+		}
+		double sum = 0;
+		for (int i : nums) {
+			double min = Double.MAX_VALUE;
+			for (int j : nums) {
+				if (i < j) {
+					if (distMx[j][i] < min) {
+						min = distMx[j][i];
+					}
+				} else if (i > j) {
+					if (distMx[i][j] < min) {
+						min = distMx[i][j];
+					}
+				}
+			}
+			sum += min;
+		}
+		// we counted each value twice
+		return sum / 2;
+	}
+
 	public double getAvgDistance() {
 		if (nums.size() == 1) {
 			return 0;

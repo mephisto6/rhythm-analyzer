@@ -59,6 +59,40 @@ public class KMeansClassifier extends Classifier {
 	 */
 	@Override
 	public void classify() {
+		List<Cluster> bestClusters = null;
+		int c = 0;
+		int i = 0;
+		double min = Double.MAX_VALUE;
+		while (c != 10) {
+			List<Cluster> clusters = classifyLoop();
+			double s = MetricsUtils.getSumOfSumOfMinDistances(clusters);
+			if (s < min) {
+				min = s;
+				i = c;
+				bestClusters = clusters;
+			}
+//			log.debug(c + " avg of avg distances: "
+//					+ MetricsUtils.getAvgAvgDistance(clusters));
+//			log.debug(c + " avg of max distances: "
+//					+ MetricsUtils.getAvgMaxDistance(clusters));
+//			log.debug(c + " max of max distances: "
+//					+ MetricsUtils.getMaxMaxDistance(clusters));
+//			log.debug(c + " sum of all distances: "
+//					+ MetricsUtils.getSumOfDistances(clusters));
+//			log.debug(c + " sum of squared error: "
+//					+ MetricsUtils.getSumOfSquaredError(clusters));
+//			log.debug(c + " sum of sum of dists from centers: "
+//					+ MetricsUtils.getSumOfDistsFromCentre(clusters));
+			log.debug(c + " sum of sum of min distances: "
+					+ MetricsUtils.getSumOfSumOfMinDistances(clusters));
+			c++;
+		}
+		log.debug("best clusters no: " + i + " (val: " + min + ")");
+		this.clusters = bestClusters;
+	}
+
+	private List<Cluster> classifyLoop() {
+		List<Cluster> clusters = new ArrayList<Cluster>();
 		for (int i = 0; i < MainAnalyser.CLASS_NUM; i++) {
 			int k = (int) (Math.random() * getDistMx().length);
 			clusters.add(new Cluster(k, getDistMx()));
@@ -66,40 +100,30 @@ public class KMeansClassifier extends Classifier {
 
 		int changes = 0;
 		do {
-			clearClusters();
-			arrangeClasses();
+			clearClusters(clusters);
+			arrangeClasses(clusters);
 			changes = 0;
 			for (Cluster c : clusters) {
 				changes += c.calculateNewCentre();
 			}
 		} while (changes != 0);
-		log.debug("avg of avg distances: "
-				+ MetricsUtils.getAvgAvgDistance(clusters));
-		log.debug("avg of max distances: "
-				+ MetricsUtils.getAvgMaxDistance(clusters));
-		log.debug("max of max distances: "
-				+ MetricsUtils.getMaxMaxDistance(clusters));
-		log.debug("sum of all distances: "
-				+ MetricsUtils.getSumOfDistances(clusters));
-		log.debug("sum of squared error: "
-				+ MetricsUtils.getSumOfSquaredError(clusters));
-		log.debug("sum of sum of dists from centers: "
-				+ MetricsUtils.getSumOfDistsFromCentre(clusters));
+
+		return clusters;
 	}
 
-	private void arrangeClasses() {
+	private void arrangeClasses(List<Cluster> clusters) {
 		for (int i = 0; i < getDistMx().length; i++) {
-			getClosestCluster(i).addNum(i);
+			getClosestCluster(clusters, i).addNum(i);
 		}
 	}
 
-	private void clearClusters() {
+	private void clearClusters(List<Cluster> clusters) {
 		for (Cluster c : clusters) {
 			c.clearCluster();
 		}
 	}
 
-	private Cluster getClosestCluster(int i) {
+	private Cluster getClosestCluster(List<Cluster> clusters, int i) {
 		Cluster res = null;
 		double min = Double.MAX_VALUE;
 		for (Cluster c : clusters) {
