@@ -187,6 +187,15 @@ public class Cluster {
 			nums.add(i);
 		}
 	}
+	
+	public void removeNum(Integer i) {
+		if(id==i) {
+			log.warn("removing id!");
+		}
+		if (containsNum(i)) {
+			nums.remove(i);
+		}
+	}
 
 	public void joinCluster(Cluster c) {
 		nums.addAll(c.getNums());

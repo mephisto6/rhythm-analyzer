@@ -35,6 +35,7 @@ public class MainAnalyser {
 		// FileReader.getTunes(directory));
 				FileReader.getClusterTunes(20));
 		compareManager.printResults();
+		compareManager.generateFiles();
 		Manager classifyManager = new ClassifyManager(
 				compareManager.getComparers());
 		classifyManager.printResults();
