@@ -3,6 +3,8 @@
  */
 package hu.bme.cs.music.utils;
 
+import hu.bme.cs.music.file.FileReader;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Locale;
@@ -31,14 +33,14 @@ public class FileUtils {
 		sb.append("#NEXUS\n\nBEGIN taxa;\n\tDIMENSIONS ntax=" + size
 				+ ";\nTAXLABELS\n");
 		for (int i = 1; i <= size; i++) {
-			sb.append("\t" + i + "\n");
+			sb.append("\t" + FileReader.getSortedMap().get(i) + "\n");
 		}
 		sb.append(";\nEND;\n\nBEGIN distances;\n\tDIMENSIONS ntax=" + size
 				+ ";\n");
 		sb.append("\tFORMAT\n\t\ttriangle=LOWER\n\t\tdiagonal\n\t\tlabels\n\t\tmissing=?\n\t;\n");
 		sb.append("MATRIX\n");
 		for (int i = 0; i < mx.length; i++) {
-			sb.append(i + 1 + "\t");
+			sb.append("\t" + FileReader.getSortedMap().get(i+1) + "\t");
 			for (int j = 0; j <= i; j++) {
 				sb.append(String.format(Locale.US, "%.3f%s", mx[i][j], "\t"));
 			}

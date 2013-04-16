@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.apache.commons.collections.BidiMap;
 import org.apache.commons.collections.bidimap.DualHashBidiMap;
@@ -33,14 +35,20 @@ public class FileReader {
 
 	private static Logger log = Logger.getLogger(FileReader.class);
 
-	private static final boolean printTunes = false;
+	private static final boolean printTunes = true;
 
 	private static String[] extensions = new String[] { "mnf", "tnf", "gnf",
 			"snf" };
 
 	private static BidiMap fileMap;
+	
+	private static SortedMap<Integer,Integer> sortedMap;
 
 	private static List<File> files;
+	
+	public static SortedMap<Integer,Integer> getSortedMap() {
+		return sortedMap;
+	}
 
 	public static BidiMap getFileMap() {
 		return fileMap;
@@ -147,6 +155,7 @@ public class FileReader {
 	private static Collection<File> getFilesForCluster(String fileIdsLine) {
 		files = new ArrayList<File>();
 		fileMap = new DualHashBidiMap();
+		sortedMap = new TreeMap<Integer,Integer>();
 		String[] ids = fileIdsLine.split(" ");
 		List<Integer> lineNums = new ArrayList<Integer>();
 		for (String id : ids) {
@@ -160,12 +169,14 @@ public class FileReader {
 					"data/katalgyim-szek.dat"));
 			String line;
 			int i = 1;
+			int n = 1;
 			while ((line = br.readLine()) != null) {
 				if (lineNums.contains(i)) {
 					File f = new File(line.split(" ")[0].trim());
 					if (f.exists()) {
 						files.add(f);
 						fileMap.put(i, f);
+						sortedMap.put(n++, i);
 					} else {
 						System.out.println(f.getName() + " does not exist.");
 					}
