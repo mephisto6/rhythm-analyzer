@@ -68,8 +68,8 @@ public abstract class LinkageClassifier extends Classifier {
 		while (getClusters().size() > MainAnalyser.CLASS_NUM) {
 			findClosestClusters();
 		}
-		log.debug("sum of sum of min distances: "
-				+ MetricsUtils.getSumOfSumOfMinDistances(clusters));
+		log.debug("sum of squared error: "
+				+ MetricsUtils.getSumOfSquaredError(clusters));
 	}
 
 	protected void findClosestClusters() {
