@@ -4,9 +4,10 @@
 package hu.bme.cs.music.manage;
 
 import hu.bme.cs.music.classify.CompleteLinkageClassifier;
-import hu.bme.cs.music.classify.KMeansClassifier;
+import hu.bme.cs.music.classify.FarthestFirstKMeansClassifier;
 import hu.bme.cs.music.classify.MaxDistanceClassifier;
 import hu.bme.cs.music.classify.MinDistanceClassifier;
+import hu.bme.cs.music.classify.RandomKMeansClassifier;
 import hu.bme.cs.music.model.Classifier;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.Manager;
@@ -30,7 +31,8 @@ public class ClassifyManager extends Manager {
 			// classifiers.add(new SingleLinkageClassifier(comparer));
 			// classifiers.add(new AverageLinkageClassifier(comparer));
 			classifiers.add(new CompleteLinkageClassifier(comparer));
-			classifiers.add(new KMeansClassifier(comparer));
+			classifiers.add(new RandomKMeansClassifier(comparer));
+			classifiers.add(new FarthestFirstKMeansClassifier(comparer));
 		}
 	}
 
