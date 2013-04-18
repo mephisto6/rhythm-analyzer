@@ -5,6 +5,7 @@ package hu.bme.cs.music.manage;
 
 import hu.bme.cs.music.classify.CompleteLinkageClassifier;
 import hu.bme.cs.music.classify.FarthestFirstKMeansClassifier;
+import hu.bme.cs.music.classify.FirstRandomKMeansClassifier;
 import hu.bme.cs.music.classify.MaxDistanceClassifier;
 import hu.bme.cs.music.classify.MinDistanceClassifier;
 import hu.bme.cs.music.classify.RandomKMeansClassifier;
@@ -33,6 +34,7 @@ public class ClassifyManager extends Manager {
 			classifiers.add(new CompleteLinkageClassifier(comparer));
 			classifiers.add(new RandomKMeansClassifier(comparer));
 			classifiers.add(new FarthestFirstKMeansClassifier(comparer));
+			classifiers.add(new FirstRandomKMeansClassifier(comparer));
 		}
 	}
 

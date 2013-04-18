@@ -4,10 +4,8 @@
 package hu.bme.cs.music.classify;
 
 import hu.bme.cs.music.MainAnalyser;
-import hu.bme.cs.music.model.Cluster;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.KMeansClassifier;
-import hu.bme.cs.music.utils.MetricsUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -39,11 +37,6 @@ public class RandomKMeansClassifier extends KMeansClassifier {
 	@Override
 	public String getDescription() {
 		return "random k-means";
-	}
-
-	@Override
-	public double getMetricToMinimize(List<Cluster> clusters) {
-		return MetricsUtils.getSumOfSquaredError(clusters);
 	}
 
 	@Override
