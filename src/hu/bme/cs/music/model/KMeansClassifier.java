@@ -3,6 +3,8 @@
  */
 package hu.bme.cs.music.model;
 
+import hu.bme.cs.music.utils.MetricsUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +32,9 @@ public abstract class KMeansClassifier extends Classifier {
 		this.clusters = clusters;
 	}
 
-	public abstract double getMetricToMinimize(List<Cluster> clusters);
+	public double getMetricToMinimize(List<Cluster> clusters) {
+		return MetricsUtils.getSumOfSquaredError(clusters);
+	}
 
 	public abstract int[] getFirstCenters();
 

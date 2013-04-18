@@ -4,10 +4,8 @@
 package hu.bme.cs.music.classify;
 
 import hu.bme.cs.music.MainAnalyser;
-import hu.bme.cs.music.model.Cluster;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.KMeansClassifier;
-import hu.bme.cs.music.utils.MetricsUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,18 +37,6 @@ public class FarthestFirstKMeansClassifier extends KMeansClassifier {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see
-	 * hu.bme.cs.music.model.KMeansClassifier#getMetricToMinimize(java.util.
-	 * List)
-	 */
-	@Override
-	public double getMetricToMinimize(List<Cluster> clusters) {
-		return MetricsUtils.getSumOfSquaredError(clusters);
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
 	 * @see hu.bme.cs.music.model.KMeansClassifier#getFirstCenters()
 	 */
 	@Override
@@ -63,7 +49,7 @@ public class FarthestFirstKMeansClassifier extends KMeansClassifier {
 		return Ints.toArray(indexes);
 	}
 
-	private Integer getNextFarthestElement(List<Integer> indexes) {
+	protected Integer getNextFarthestElement(List<Integer> indexes) {
 		int res = 0;
 		double max = -Double.MAX_VALUE;
 		for (int i = 0; i < getDistMx().length; i++) {
