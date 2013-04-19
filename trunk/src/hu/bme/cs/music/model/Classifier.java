@@ -3,6 +3,7 @@
  */
 package hu.bme.cs.music.model;
 
+import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.file.FileReader;
 import hu.bme.cs.music.utils.MatrixUtils;
 
@@ -25,6 +26,10 @@ public abstract class Classifier {
 
 	public Comparer getComparer() {
 		return comparer;
+	}
+
+	public int getClassNum() {
+		return MainAnalyser.getClassNum();
 	}
 
 	public void setComparerAndDistMx(Comparer comparer) {

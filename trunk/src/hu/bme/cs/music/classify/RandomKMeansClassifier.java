@@ -3,7 +3,6 @@
  */
 package hu.bme.cs.music.classify;
 
-import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.KMeansClassifier;
 
@@ -47,8 +46,8 @@ public class RandomKMeansClassifier extends KMeansClassifier {
 			list.add(i);
 		}
 		Collections.shuffle(list, new Random());
-		log.debug("first centers: " + list.subList(0, MainAnalyser.CLASS_NUM));
-		return Ints.toArray(list.subList(0, MainAnalyser.CLASS_NUM));
+		log.debug("first centers: " + list.subList(0, getClassNum()));
+		return Ints.toArray(list.subList(0, getClassNum()));
 	}
 
 }

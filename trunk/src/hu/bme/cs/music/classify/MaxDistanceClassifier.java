@@ -3,7 +3,6 @@
  */
 package hu.bme.cs.music.classify;
 
-import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.model.Classifier;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.utils.MatrixUtils;
@@ -36,13 +35,13 @@ public class MaxDistanceClassifier extends Classifier {
 
 	@Override
 	public void classify() {
-		int limit = Math.min(MainAnalyser.LIMIT, getDistMx().length);
+		int limit = getDistMx().length;
 		classes = new int[limit];
 		for (int i = 0; i < limit; i++) {
 			classes[i] = -1;
 		}
 		double[][] mx = MatrixUtils.copyMx(getDistMx());
-		while (getClassNum(classes) - 1 < MainAnalyser.CLASS_NUM
+		while (getClassNum(classes) - 1 < getClassNum()
 				&& getMaximal(mx) > maxThreshold) {
 			int[] indexes = getFarthestNeighbours(mx);
 			log.debug("Class of " + (indexes[0] + 1) + " is set to "

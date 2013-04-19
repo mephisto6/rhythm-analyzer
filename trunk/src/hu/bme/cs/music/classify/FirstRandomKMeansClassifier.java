@@ -1,6 +1,5 @@
 package hu.bme.cs.music.classify;
 
-import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.model.Comparer;
 
 import java.util.ArrayList;
@@ -22,8 +21,8 @@ public class FirstRandomKMeansClassifier extends FarthestFirstKMeansClassifier {
 	@Override
 	public int[] getFirstCenters() {
 		List<Integer> indexes = new ArrayList<Integer>();
-		indexes.add((int) (Math.random() * (MainAnalyser.CLASS_NUM + 1)));
-		while (indexes.size() != MainAnalyser.CLASS_NUM) {
+		indexes.add((int) (Math.random() * (getClassNum() + 1)));
+		while (indexes.size() != getClassNum()) {
 			indexes.add(getNextFarthestElement(indexes));
 		}
 		log.debug("farthest indexes: " + indexes);

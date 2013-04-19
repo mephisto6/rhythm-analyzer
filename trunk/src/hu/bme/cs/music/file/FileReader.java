@@ -105,7 +105,7 @@ public class FileReader {
 				tune.printDescription();
 			}
 			tunes.add(tune);
-			if (MainAnalyser.LIMIT < (++i)) {
+			if (MainAnalyser.getLimit() < (++i)) {
 				break;
 			}
 		}
