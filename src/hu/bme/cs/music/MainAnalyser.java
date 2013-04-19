@@ -17,9 +17,7 @@ import org.apache.log4j.Logger;
  */
 public class MainAnalyser {
 
-	public static final int LIMIT = 100;
-
-	public static final int CLASS_NUM = 8;
+	private static int classNum;
 
 	private static Logger log = Logger.getLogger(MainAnalyser.class);
 
@@ -32,15 +30,30 @@ public class MainAnalyser {
 		FileUtils.initLogging();
 		long startTime = System.currentTimeMillis();
 		CompareManager compareManager = new CompareManager(
-		// FileReader.getTunes(directory));
-				FileReader.getClusterTunes(2));
+				FileReader.getTunes(directory));
+		// FileReader.getClusterTunes(2));
 		compareManager.printResults();
-		compareManager.generateFiles();
+		// compareManager.generateFiles();
+		setClassNum((int) Math.sqrt(compareManager.getNumberOfSongs()));
 		Manager classifyManager = new ClassifyManager(
 				compareManager.getComparers());
 		classifyManager.printResults();
 		long elapsedTime = System.currentTimeMillis() - startTime;
-		log.info("Analysed " + compareManager.getNumberOfSongs() + " songs in " + elapsedTime + " ms");
+		log.info("Analysed " + compareManager.getNumberOfSongs() + " songs in "
+				+ elapsedTime + " ms");
+	}
+
+	public static int getLimit() {
+		return 1000000;
+	}
+
+	public static int getClassNum() {
+		return classNum;
+	}
+
+	public static void setClassNum(int classNum) {
+		log.debug("Default class num is set to: " + classNum);
+		MainAnalyser.classNum = classNum;
 	}
 
 }

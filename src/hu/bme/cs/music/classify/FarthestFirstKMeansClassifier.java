@@ -3,7 +3,6 @@
  */
 package hu.bme.cs.music.classify;
 
-import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.KMeansClassifier;
 
@@ -42,7 +41,7 @@ public class FarthestFirstKMeansClassifier extends KMeansClassifier {
 	@Override
 	public int[] getFirstCenters() {
 		List<Integer> indexes = getFarthestNeighbours();
-		while (indexes.size() != MainAnalyser.CLASS_NUM) {
+		while (indexes.size() != getClassNum()) {
 			indexes.add(getNextFarthestElement(indexes));
 		}
 		log.debug("farthest indexes: " + indexes);
