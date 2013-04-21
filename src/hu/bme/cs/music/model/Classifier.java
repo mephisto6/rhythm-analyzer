@@ -54,7 +54,7 @@ public abstract class Classifier {
 	public String getName() {
 		String description = "Classes by " + getDescription();
 		if (getComparer() != null) {
-			return description + " " + getComparer().getName();
+			return description + " using " + getComparer().getName();
 		} else {
 			return description;
 		}
