@@ -30,8 +30,8 @@ public class MainAnalyser {
 		FileUtils.initLogging();
 		long startTime = System.currentTimeMillis();
 		CompareManager compareManager = new CompareManager(
-				FileReader.getTunes(directory));
-		// FileReader.getClusterTunes(2));
+		//		FileReader.getTunes(directory));
+		 FileReader.getClusterTunes(2));
 		compareManager.printResults();
 		// compareManager.generateFiles();
 		setClassNum((int) Math.sqrt(compareManager.getNumberOfSongs()));
