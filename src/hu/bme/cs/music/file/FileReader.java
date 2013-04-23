@@ -35,7 +35,7 @@ public class FileReader {
 
 	private static Logger log = Logger.getLogger(FileReader.class);
 
-	private static final boolean printTunes = true;
+	private static final boolean printTunes = false;
 
 	private static String[] extensions = new String[] { "mnf", "tnf", "gnf",
 			"snf" };

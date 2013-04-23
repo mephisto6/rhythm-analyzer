@@ -6,11 +6,10 @@ package hu.bme.cs.music.classify;
 import hu.bme.cs.music.model.Classifier;
 import hu.bme.cs.music.model.Cluster;
 import hu.bme.cs.music.model.Comparer;
+import hu.bme.cs.music.utils.MetricsUtils;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 
@@ -24,9 +23,11 @@ public class DBSCANClassifier extends Classifier {
 
 	private List<Cluster> clusters = new ArrayList<Cluster>();
 
-	private static double eps = 0.2;
+	//cluster1: 0.17
+	//cluster2: 0.21
+	private static double eps = 0.21;
 
-	private static int minpts = 5;
+	private static int minpts = 2;
 
 	int[] classes;
 
@@ -56,65 +57,70 @@ public class DBSCANClassifier extends Classifier {
 		return classes;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hu.bme.cs.music.model.Classifier#classify()
-	 */
+	//https://github.com/KanwarBhajneek/DBSCAN/blob/master/src/dbscan/dbscan.java
+	
 	@Override
 	public void classify() {
 		List<Integer> visited = new ArrayList<Integer>();
 		double[][] mx = getDistMx();
-		for (int k = 0; k < mx.length; k++) {
-			visited.add(k);
-			Set<Integer> neigbours = getNeighbours(k);
-			if (neigbours.size() <= minpts) {
-				log.debug(k + " has only " + neigbours.size()
-						+ " neighbours -> NOISE");
-			} else {
-				Cluster newCluster = new Cluster(k, mx);
-				expandCluster(k, neigbours, visited, newCluster);
-			}
-		}
-	}
-
-	private void expandCluster(int p, Set<Integer> neigbours,
-			List<Integer> visited, Cluster newCluster) {
-		newCluster.addNum(p);
-		for (int k = 0; k < neigbours.size(); k++) {
-			if (!visited.contains(k)) {
-				visited.add(k);
-				Set<Integer> kNeigbours = getNeighbours(k);
-				if (kNeigbours.size() >= minpts) {
-					neigbours.addAll(kNeigbours);
+		for (int i = 0; i < mx.length; i++) {
+			if (!visited.contains(i)) {
+				visited.add(i);
+				List<Integer> neighbours = getNeighbours(i);
+				if (neighbours.size() >= minpts) {
+					for (int j = 0; j < neighbours.size(); j++) {
+						int akt = neighbours.get(j);
+						if (!visited.contains(akt)) {
+							visited.add(akt);
+							List<Integer> neighbours2 = getNeighbours(akt);
+							if (neighbours2.size() >= minpts) {
+								for (int b : neighbours2) {
+									if (!neighbours.contains(b)) {
+										neighbours.add(b);
+									}
+								}
+							}
+						}
+					}
+					log.debug("Cluster " + i + " -> " + neighbours);
+					clusters.add(new Cluster(i, neighbours, mx));
 				}
 			}
-			if (notYetMember(k)) {
-				newCluster.addNum(k);
+		}
+		List<Integer> noise = new ArrayList<Integer>();
+		for (int i = 0; i < mx.length; i++) {
+			if (notMember(i)) {
+				noise.add(i);
+				clusters.add(new Cluster(i, mx));
 			}
 		}
+		log.debug("Considered to be noise: " + noise);
+		log.debug("sum of sum of min distances: "
+				+ MetricsUtils.getSumOfSumOfMinDistances(clusters));
 	}
 
-	private boolean notYetMember(int k) {
-		for (Cluster c : clusters) {
-			if (c.containsNum(k)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	private Set<Integer> getNeighbours(int p) {
-		Set<Integer> elements = new HashSet<Integer>();
+	private List<Integer> getNeighbours(int p) {
+		List<Integer> neighbours = new ArrayList<Integer>();
+		// neighbours should contain the element itself
+		neighbours.add(p);
 		double[][] mx = getDistMx();
 		for (int k = 0; k < mx.length; k++) {
 			if (k < p && eps >= mx[p][k]) {
-				elements.add(k);
+				neighbours.add(k);
 			} else if (k > p && eps >= mx[k][p]) {
-				elements.add(k);
+				neighbours.add(k);
 			}
 		}
-		return elements;
+		return neighbours;
+	}
+
+	private boolean notMember(int k) {
+		for (Cluster c : clusters) {
+			if (c.containsNum(k)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/*

@@ -31,6 +31,12 @@ public class Cluster {
 		nums.add(i);
 	}
 
+	public Cluster(int id, List<Integer> elements, double[][] distMx) {
+		this.distMx = MatrixUtils.copyMx(distMx);
+		this.id = id;
+		nums = new ArrayList<Integer>(elements);
+	}
+
 	public double getDistFromCentre(int i) {
 		if (i < id) {
 			return distMx[id][i];
@@ -187,9 +193,9 @@ public class Cluster {
 			nums.add(i);
 		}
 	}
-	
+
 	public void removeNum(Integer i) {
-		if(id==i) {
+		if (id == i) {
 			log.warn("removing id!");
 		}
 		if (containsNum(i)) {
