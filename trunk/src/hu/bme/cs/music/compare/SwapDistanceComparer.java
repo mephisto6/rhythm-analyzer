@@ -14,21 +14,14 @@ import java.util.List;
  * 
  */
 public class SwapDistanceComparer extends Comparer {
-	
-	private double[][] distMx;
 
 	public SwapDistanceComparer(List<Tune> tunes) {
-		distMx = init(tunes);
+		setTunes(tunes);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Swap distances";
-	}
-
-	@Override
-	public double[][] getDistanceMx() {
-		return distMx;
 	}
 
 	@Override

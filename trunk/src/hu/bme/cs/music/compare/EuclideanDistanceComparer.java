@@ -9,21 +9,14 @@ import java.util.Collections;
 import java.util.List;
 
 public class EuclideanDistanceComparer extends Comparer {
-	
-	private double[][] distMx;
 
 	public EuclideanDistanceComparer(List<Tune> tunes) {
-		distMx = init(tunes);
+		setTunes(tunes);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Shifted Euclidean interval distances";
-	}
-
-	@Override
-	public double[][] getDistanceMx() {
-		return distMx;
 	}
 
 	@Override

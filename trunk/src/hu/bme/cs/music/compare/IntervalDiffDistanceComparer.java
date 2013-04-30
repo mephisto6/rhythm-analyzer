@@ -14,21 +14,14 @@ import java.util.List;
  * 
  */
 public class IntervalDiffDistanceComparer extends Comparer {
-	
-	private double[][] distMx;
 
 	public IntervalDiffDistanceComparer(List<Tune> tunes) {
-		distMx = init(tunes);
+		setTunes(tunes);
 	}
 	
 	@Override
 	public String getName() {
 		return "Interval difference distances";
-	}
-
-	@Override
-	public double[][] getDistanceMx() {
-		return distMx;
 	}
 
 	@Override

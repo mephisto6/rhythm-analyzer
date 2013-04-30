@@ -15,13 +15,26 @@ import java.util.Locale;
  */
 public abstract class Comparer {
 
+	private List<Tune> tunes;
+
+	private double[][] distMx;
+
+	public double[][] getDistanceMx() {
+		if (distMx == null) {
+			distMx = init();
+		}
+		return distMx;
+	}
+
+	protected void setTunes(List<Tune> tunes) {
+		this.tunes = tunes;
+	}
+
 	public abstract String getName();
 
 	public abstract double compare(TuneLine t1, TuneLine t2);
 
-	public abstract double[][] getDistanceMx();
-
-	protected double[][] init(List<Tune> tunes) {
+	protected double[][] init() {
 		int size = tunes.size();
 		double[][] distMx = new double[size][size];
 		for (int i = 0; i < size; i++) {

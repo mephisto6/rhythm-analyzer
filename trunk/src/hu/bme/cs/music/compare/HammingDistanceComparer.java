@@ -14,21 +14,14 @@ import java.util.List;
  * 
  */
 public class HammingDistanceComparer extends Comparer {
-	
-	private double[][] distMx;
 
 	public HammingDistanceComparer(List<Tune> tunes) {
-		distMx = init(tunes);
+		setTunes(tunes);
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Weighted Hamming distances";
-	}
-
-	@Override
-	public double[][] getDistanceMx() {
-		return distMx;
 	}
 
 	@Override
