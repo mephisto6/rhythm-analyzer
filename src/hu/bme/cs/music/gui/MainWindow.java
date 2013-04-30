@@ -3,9 +3,14 @@
  */
 package hu.bme.cs.music.gui;
 
+import hu.bme.cs.music.MainAnalyser;
+import hu.bme.cs.music.utils.FileUtils;
+
+import org.apache.log4j.Logger;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
@@ -26,10 +31,20 @@ import org.eclipse.swt.widgets.Text;
  */
 public class MainWindow {
 
+	private static Logger log = Logger.getLogger(MainWindow.class);
+
+	private static Button weightedHammingButton;
+	private static Button euclideanButton;
+	private static Button intervalDiffButton;
+	private static Button swapButton;
+	private static Button chronotinicButton;
+	private static Button continousChronotonicButton;
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		FileUtils.initLogging();
 		Display display = new Display();
 		final Shell shell = new Shell(display);
 		shell.setText("Rhythm classifier");
@@ -70,94 +85,107 @@ public class MainWindow {
 		mode2Button.setSelection(false);
 
 		final Text idText = new Text(shell, SWT.BORDER);
-		setDefaultGridData(idText,2);
+		setDefaultGridData(idText, 2);
 		idText.setText("250 278 279 287 1033 1462 249");
 		idText.setEnabled(false);
-		
+
 		// ---------- Third row
 
 		Group comparersGroup = new Group(shell, SWT.SHADOW_IN);
 		comparersGroup.setText("Comparer method");
 		comparersGroup.setLayout(new RowLayout(SWT.VERTICAL));
-		
-		Button weightedHammingButton = new Button(comparersGroup, SWT.RADIO);
+
+		weightedHammingButton = new Button(comparersGroup, SWT.RADIO);
 		weightedHammingButton.setText("Weighted Hamming");
 		weightedHammingButton.setSelection(true);
-		
-		Button euclideanButton = new Button(comparersGroup, SWT.RADIO);
+
+		euclideanButton = new Button(comparersGroup, SWT.RADIO);
 		euclideanButton.setText("Euclidean");
-		
-		Button intervalDiffButton = new Button(comparersGroup, SWT.RADIO);
+
+		intervalDiffButton = new Button(comparersGroup, SWT.RADIO);
 		intervalDiffButton.setText("Interval Difference");
-		
-		Button swapButton = new Button(comparersGroup, SWT.RADIO);
+
+		swapButton = new Button(comparersGroup, SWT.RADIO);
 		swapButton.setText("Swap");
-		
-		Button chronotinicButton = new Button(comparersGroup, SWT.RADIO);
+
+		chronotinicButton = new Button(comparersGroup, SWT.RADIO);
 		chronotinicButton.setText("Chronotonic");
-		
-		Button continousChronotonicButton = new Button(comparersGroup, SWT.RADIO);
+
+		continousChronotonicButton = new Button(comparersGroup, SWT.RADIO);
 		continousChronotonicButton.setText("Continous Chronotonic");
-		
+
 		Group classifiersGroup = new Group(shell, SWT.SHADOW_IN);
 		classifiersGroup.setText("Classifier method");
 		classifiersGroup.setLayout(new RowLayout(SWT.VERTICAL));
-		
+
 		Button singleLinkageButton = new Button(classifiersGroup, SWT.RADIO);
 		singleLinkageButton.setText("Sinlge Linkage");
-		
+
 		Button avgLinkageButton = new Button(classifiersGroup, SWT.RADIO);
 		avgLinkageButton.setText("Average Linkage");
-		
+
 		Button completeLinkageButton = new Button(classifiersGroup, SWT.RADIO);
 		completeLinkageButton.setText("Complete Linkage");
 		completeLinkageButton.setSelection(true);
-		
+
 		Button randomKMeansButton = new Button(classifiersGroup, SWT.RADIO);
 		randomKMeansButton.setText("Random K-Means");
-		
+
 		Button firstRandomKMeansButton = new Button(classifiersGroup, SWT.RADIO);
 		firstRandomKMeansButton.setText("First Random K-Means");
-		
-		Button farthestFirstKMeansButton = new Button(classifiersGroup, SWT.RADIO);
+
+		Button farthestFirstKMeansButton = new Button(classifiersGroup,
+				SWT.RADIO);
 		farthestFirstKMeansButton.setText("Farthest First K-Means");
-		
+
 		Button DBSCANButton = new Button(classifiersGroup, SWT.RADIO);
 		DBSCANButton.setText("DBSCAN");
-		
+
 		Group paramsGroup = new Group(shell, SWT.SHADOW_IN);
 		paramsGroup.setText("Parameters");
 		gridLayout = new GridLayout();
 		gridLayout.numColumns = 2;
 		paramsGroup.setLayout(gridLayout);
-		
+
 		new Label(paramsGroup, SWT.None).setText("K: ");
 
 		final Text kText = new Text(paramsGroup, SWT.BORDER);
 		setDefaultGridData(kText);
-		
+
 		new Label(paramsGroup, SWT.None).setText("minPts: ");
-		
+
 		final Text minPtsText = new Text(paramsGroup, SWT.BORDER);
 		setDefaultGridData(minPtsText);
 		minPtsText.setEnabled(false);
-		
+
 		new Label(paramsGroup, SWT.None).setText("eps: ");
-		
+
 		final Text epsText = new Text(paramsGroup, SWT.BORDER);
 		setDefaultGridData(epsText);
 		epsText.setEnabled(false);
-		
+
+		final LogicControl lc = new LogicControl();
+
 		final Button startButton = new Button(paramsGroup, SWT.PUSH);
 		startButton.setText("Classify!");
-		setDefaultGridData(startButton,2);
-		
+		setDefaultGridData(startButton, 2);
+		startButton.addSelectionListener(new SelectionListener() {
+			public void widgetSelected(SelectionEvent event) {
+				lc.setComparerId(getComparerId());
+				lc.setClassifierId(3);
+				lc.run();
+			}
+
+			public void widgetDefaultSelected(SelectionEvent event) {
+			}
+		});
+
 		// ---------- Results row
-		
+
 		Label resultLabel = new Label(shell, SWT.None);
 		resultLabel.setText("Results:");
-		setDefaultGridData(resultLabel,3);
-		
+		setDefaultGridData(resultLabel, 3);
+
 		Text resultText = new Text(shell, SWT.READ_ONLY | SWT.BORDER);
 		GridData gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
@@ -166,23 +194,31 @@ public class MainWindow {
 		gridData.grabExcessVerticalSpace = true;
 		gridData.horizontalSpan = 3;
 		resultText.setLayoutData(gridData);
-		
-		//Listeners
-		
+
+		// Listeners
+
 		mode1Button.addListener(SWT.Selection, createEnableListener(nameText));
-		mode1Button.addListener(SWT.Selection, createEnableListener(browserButton));
+		mode1Button.addListener(SWT.Selection,
+				createEnableListener(browserButton));
 		mode2Button.addListener(SWT.Selection, createEnableListener(idText));
-		
-		singleLinkageButton.addListener(SWT.Selection, createEnableListener(kText));
-		avgLinkageButton.addListener(SWT.Selection, createEnableListener(kText));
-		completeLinkageButton.addListener(SWT.Selection, createEnableListener(kText));
-		randomKMeansButton.addListener(SWT.Selection, createEnableListener(kText));
-		firstRandomKMeansButton.addListener(SWT.Selection, createEnableListener(kText));
-		farthestFirstKMeansButton.addListener(SWT.Selection, createEnableListener(kText));
-		
-		DBSCANButton.addListener(SWT.Selection, createEnableListener(minPtsText));
+
+		singleLinkageButton.addListener(SWT.Selection,
+				createEnableListener(kText));
+		avgLinkageButton
+				.addListener(SWT.Selection, createEnableListener(kText));
+		completeLinkageButton.addListener(SWT.Selection,
+				createEnableListener(kText));
+		randomKMeansButton.addListener(SWT.Selection,
+				createEnableListener(kText));
+		firstRandomKMeansButton.addListener(SWT.Selection,
+				createEnableListener(kText));
+		farthestFirstKMeansButton.addListener(SWT.Selection,
+				createEnableListener(kText));
+
+		DBSCANButton.addListener(SWT.Selection,
+				createEnableListener(minPtsText));
 		DBSCANButton.addListener(SWT.Selection, createEnableListener(epsText));
-		
+
 		shell.open();
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch())
@@ -191,7 +227,26 @@ public class MainWindow {
 		display.dispose();
 
 	}
-	
+
+	private static int getComparerId() {
+		if (weightedHammingButton.getSelection()) {
+			return 0;
+		}
+		if (euclideanButton.getSelection()) {
+			return 1;
+		}
+		if (intervalDiffButton.getSelection()) {
+			return 2;
+		}
+		if (swapButton.getSelection()) {
+			return 3;
+		}
+		if (chronotinicButton.getSelection()) {
+			return 4;
+		}
+		return 5;
+	}
+
 	private static Listener createEnableListener(final Control c) {
 		Listener listener = new Listener() {
 			public void handleEvent(Event event) {
@@ -201,14 +256,14 @@ public class MainWindow {
 		};
 		return listener;
 	}
-	
+
 	private static void setDefaultGridData(Control c) {
 		GridData gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;
 		gridData.grabExcessHorizontalSpace = true;
 		c.setLayoutData(gridData);
 	}
-	
+
 	private static void setDefaultGridData(Control c, int horizontalSpan) {
 		GridData gridData = new GridData();
 		gridData.horizontalAlignment = SWT.FILL;

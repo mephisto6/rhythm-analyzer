@@ -3,10 +3,15 @@
  */
 package hu.bme.cs.music.manage;
 
+import hu.bme.cs.music.classify.AverageLinkageClassifier;
 import hu.bme.cs.music.classify.CompleteLinkageClassifier;
 import hu.bme.cs.music.classify.DBSCANClassifier;
+import hu.bme.cs.music.classify.FarthestFirstKMeansClassifier;
+import hu.bme.cs.music.classify.FirstRandomKMeansClassifier;
 import hu.bme.cs.music.classify.MaxDistanceClassifier;
 import hu.bme.cs.music.classify.MinDistanceClassifier;
+import hu.bme.cs.music.classify.RandomKMeansClassifier;
+import hu.bme.cs.music.classify.SingleLinkageClassifier;
 import hu.bme.cs.music.model.Classifier;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.Manager;
@@ -25,15 +30,35 @@ public class ClassifyManager extends Manager {
 	public ClassifyManager(List<Comparer> comparers) {
 		classifiers = new ArrayList<Classifier>();
 		for (Comparer comparer : comparers) {
-			// classifiers.add(new MinDistanceClassifier(comparer));
-			// classifiers.add(new MaxDistanceClassifier(comparer));
-			// classifiers.add(new SingleLinkageClassifier(comparer));
-			// classifiers.add(new AverageLinkageClassifier(comparer));
 			classifiers.add(new CompleteLinkageClassifier(comparer));
-			//classifiers.add(new RandomKMeansClassifier(comparer));
-			//classifiers.add(new FarthestFirstKMeansClassifier(comparer));
-			//classifiers.add(new FirstRandomKMeansClassifier(comparer));
 			classifiers.add(new DBSCANClassifier(comparer));
+		}
+	}
+
+	public ClassifyManager(Comparer comparer, int id) {
+		classifiers = new ArrayList<Classifier>();
+		switch (id) {
+		case 1:
+			classifiers.add(new SingleLinkageClassifier(comparer));
+			break;
+		case 2:
+			classifiers.add(new AverageLinkageClassifier(comparer));
+			break;
+		case 3:
+			classifiers.add(new CompleteLinkageClassifier(comparer));
+			break;
+		case 4:
+			classifiers.add(new RandomKMeansClassifier(comparer));
+			break;
+		case 5:
+			classifiers.add(new FarthestFirstKMeansClassifier(comparer));
+			break;
+		case 6:
+			classifiers.add(new FirstRandomKMeansClassifier(comparer));
+			break;
+		case 7:
+			classifiers.add(new DBSCANClassifier(comparer));
+			break;
 		}
 	}
 

@@ -15,20 +15,13 @@ import java.util.List;
  */
 public class ChronotonicDistanceComparer extends Comparer {
 
-	private double[][] distMx;
-
 	public ChronotonicDistanceComparer(List<Tune> tunes) {
-		distMx = init(tunes);
+		setTunes(tunes);
 	}
 	
 	@Override
 	public String getName() {
 		return "Chronotonic distances";
-	}
-
-	@Override
-	public double[][] getDistanceMx() {
-		return distMx;
 	}
 
 	@Override

@@ -17,23 +17,15 @@ import java.util.TreeSet;
  * 
  */
 public class ContinousChronotonicDistanceComparer extends Comparer {
-	
-	private double[][] distMx;
 
 	public ContinousChronotonicDistanceComparer(List<Tune> tunes) {
-		distMx = init(tunes);
+		setTunes(tunes);
 	}
 	
 	@Override
 	public String getName() {
 		return "Continous chronotonic distances";
 	}
-
-	@Override
-	public double[][] getDistanceMx() {
-		return distMx;
-	}
-
 
 	@Override
 	public double compare(TuneLine t1, TuneLine t2) {

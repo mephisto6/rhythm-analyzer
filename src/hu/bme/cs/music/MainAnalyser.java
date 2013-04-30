@@ -4,6 +4,7 @@
 package hu.bme.cs.music;
 
 import hu.bme.cs.music.file.FileReader;
+import hu.bme.cs.music.gui.LogicControl;
 import hu.bme.cs.music.manage.ClassifyManager;
 import hu.bme.cs.music.manage.CompareManager;
 import hu.bme.cs.music.model.Manager;
