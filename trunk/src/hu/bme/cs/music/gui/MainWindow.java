@@ -34,6 +34,8 @@ public class MainWindow {
 	private static Button mode1Button;
 	private static Button mode2Button;
 
+	private static Button browserButton;
+
 	private static Combo melodicClusterDropDown;
 
 	private static Button weightedHammingButton;
@@ -88,7 +90,7 @@ public class MainWindow {
 		setDefaultGridData(dirText);
 		dirText.setText("data/szeke/nya");
 
-		final Button browserButton = new Button(shell, SWT.PUSH);
+		browserButton = new Button(shell, SWT.PUSH);
 		browserButton.setText("Browse");
 		browserButton.addSelectionListener(new SelectionAdapter() {
 			public void widgetSelected(SelectionEvent event) {
@@ -109,7 +111,7 @@ public class MainWindow {
 		mode2Button.setSelection(false);
 
 		melodicClusterDropDown = new Combo(shell, SWT.DROP_DOWN | SWT.BORDER);
-		for (int i = 1; i < 28; i++) {
+		for (int i = 1; i <= 28; i++) {
 			melodicClusterDropDown.add(i + "");
 		}
 		melodicClusterDropDown.setText("11");
@@ -117,7 +119,8 @@ public class MainWindow {
 
 		fileIdsText = new Text(shell, SWT.BORDER);
 		setDefaultGridData(fileIdsText, 2);
-		fileIdsText.setText("100 101 102 104 105 107 111 138 139 171 1136 1295 106");
+		fileIdsText
+				.setText("100 101 102 104 105 107 111 138 139 171 1136 1295 106");
 		fileIdsText.setEnabled(false);
 
 		// ---------- Third row
@@ -184,7 +187,7 @@ public class MainWindow {
 		new Label(paramsGroup, SWT.None).setText("K: ");
 
 		kText = new Text(paramsGroup, SWT.BORDER);
-		kText.setText("10");
+		kText.setText("6");
 		setDefaultGridData(kText);
 
 		new Label(paramsGroup, SWT.None).setText("minPts: ");
@@ -238,13 +241,24 @@ public class MainWindow {
 		gd.horizontalSpan = 4;
 		resultText.setLayoutData(gd);
 
-		// Listeners
-		
+		addListeners();
+
+		shell.open();
+		while (!shell.isDisposed()) {
+			if (!display.readAndDispatch())
+				display.sleep();
+		}
+		display.dispose();
+
+	}
+
+	private static void addListeners() {
 		melodicClusterDropDown.addSelectionListener(new SelectionAdapter() {
-            public void widgetSelected(SelectionEvent e) {
-            	fileIdsText.setText(FileReader.getFileIdsLine(melodicClusterDropDown.getText()));
-            }
-        });
+			public void widgetSelected(SelectionEvent e) {
+				fileIdsText.setText(FileReader
+						.getFileIdsLine(melodicClusterDropDown.getText()));
+			}
+		});
 
 		mode1Button.addListener(SWT.Selection, createEnableListener(dirText));
 		mode1Button.addListener(SWT.Selection,
@@ -277,14 +291,6 @@ public class MainWindow {
 		DBSCANButton.addListener(SWT.Selection,
 				createEnableListener(minPtsText));
 		DBSCANButton.addListener(SWT.Selection, createEnableListener(epsText));
-
-		shell.open();
-		while (!shell.isDisposed()) {
-			if (!display.readAndDispatch())
-				display.sleep();
-		}
-		display.dispose();
-
 	}
 
 	public static void setResultText(String result) {
