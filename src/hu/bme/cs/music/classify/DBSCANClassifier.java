@@ -25,9 +25,9 @@ public class DBSCANClassifier extends Classifier {
 
 	//cluster1: 0.17
 	//cluster2: 0.21
-	private static double eps = 0.21;
+	public static double eps = 0.21;
 
-	private static int minpts = 2;
+	public static int minpts = 2;
 
 	int[] classes;
 

@@ -3,13 +3,12 @@
  */
 package hu.bme.cs.music.gui;
 
-import hu.bme.cs.music.MainAnalyser;
+import hu.bme.cs.music.classify.DBSCANClassifier;
 import hu.bme.cs.music.file.FileReader;
 import hu.bme.cs.music.manage.ClassifyManager;
 import hu.bme.cs.music.manage.CompareManager;
+import hu.bme.cs.music.model.KMeansClassifier;
 import hu.bme.cs.music.model.Manager;
-
-import org.apache.log4j.Logger;
 
 /**
  * @author Jozsef
@@ -17,50 +16,46 @@ import org.apache.log4j.Logger;
  */
 public class LogicControl {
 
-	private static Logger log = Logger.getLogger(LogicControl.class);
+	public static int k;
 
-	private int k;
+	private CompareManager compareManager;
+
+	private Manager classifyManager;
 
 	private int comparerId;
 
 	private int classifierId;
 
-	private double minPts;
-
-	private double eps;
-
-	public void setComparerId(int comparerId) {
-		this.comparerId = comparerId;
-	}
-
-	public void setClassifierId(int classifierId) {
-		this.classifierId = classifierId;
-	}
-
-	public void setK(int k) {
-		this.k = k;
-	}
-
-	public void setMinPts(double minPts) {
-		this.minPts = minPts;
-	}
-
-	public void setEps(double eps) {
-		this.eps = eps;
-	}
-
 	public void run() {
-		long startTime = System.currentTimeMillis();
-		CompareManager compareManager = new CompareManager(
-				FileReader.getClusterTunes(2));
-		MainAnalyser.setClassNum((int) Math.sqrt(compareManager.getNumberOfSongs()));
-		Manager classifyManager = new ClassifyManager(
+
+		getParams();
+
+		switch (MainWindow.getMode()) {
+		case 1:
+			compareManager = new CompareManager(FileReader.getTunes(MainWindow
+					.getDirectory()));
+			break;
+		case 2:
+			compareManager = new CompareManager(FileReader.getTunes(FileReader
+					.getFilesForCluster(MainWindow.getFileIdsLine())));
+			break;
+		}
+
+		KMeansClassifier.loopNum = MainWindow.getKMeansLoop();
+		DBSCANClassifier.eps = MainWindow.getEps();
+		DBSCANClassifier.minpts = MainWindow.getMinPts();
+
+		classifyManager = new ClassifyManager(
 				compareManager.getComparerForId(comparerId), classifierId);
 
 		classifyManager.printResults();
-		long elapsedTime = System.currentTimeMillis() - startTime;
-		log.info("Analysed " + compareManager.getNumberOfSongs() + " songs in "
-				+ elapsedTime + " ms");
+		MainWindow.setResultText(classifyManager.getResults());
+
 	}
 
+	private void getParams() {
+		comparerId = MainWindow.getComparerId();
+		classifierId = MainWindow.getClassifierId();
+		k = MainWindow.getK();
+	}
 }
