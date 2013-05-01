@@ -63,4 +63,10 @@ public class CompareManager extends Manager {
 		}
 		return res;
 	}
+
+	@Override
+	public String getResults() {
+		printResults();
+		return "result printed to console";
+	}
 }

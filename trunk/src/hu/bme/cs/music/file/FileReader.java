@@ -86,7 +86,7 @@ public class FileReader {
 		return null;
 	}
 
-	private static List<Tune> getTunes(Collection<File> files) {
+	public static List<Tune> getTunes(Collection<File> files) {
 		List<Tune> tunes = new ArrayList<Tune>();
 		int i = 1;
 		for (File file : files) {
@@ -152,7 +152,7 @@ public class FileReader {
 		return segment.startsWith("T");
 	}
 
-	private static Collection<File> getFilesForCluster(String fileIdsLine) {
+	public static Collection<File> getFilesForCluster(String fileIdsLine) {
 		files = new ArrayList<File>();
 		fileMap = new DualHashBidiMap();
 		sortedMap = new TreeMap<Integer,Integer>();

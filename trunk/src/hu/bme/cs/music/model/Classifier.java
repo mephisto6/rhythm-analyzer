@@ -5,6 +5,7 @@ package hu.bme.cs.music.model;
 
 import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.file.FileReader;
+import hu.bme.cs.music.gui.LogicControl;
 import hu.bme.cs.music.utils.MatrixUtils;
 
 import java.io.File;
@@ -29,7 +30,8 @@ public abstract class Classifier {
 	}
 
 	public int getClassNum() {
-		return MainAnalyser.getClassNum();
+		//MainAnalyser.getClassNum();
+		return LogicControl.k;
 	}
 
 	public void setComparerAndDistMx(Comparer comparer) {
@@ -66,12 +68,11 @@ public abstract class Classifier {
 		return Sets.newHashSet(Ints.asList(classes)).size();
 	}
 
-	public void printClasses() {
+	public String printClasses() {
 		if (FileReader.getFiles() == null) {
-			printClassesOld();
-			return;
+			return printClassesOld();
 		}
-		System.out.println(getName());
+		StringBuffer sb = new StringBuffer(getName() + System.getProperty("line.separator"));
 		Multimap<Integer, Object> multimap = ArrayListMultimap.create();
 		for (int i = 0; i < getClasses().length; i++) {
 			multimap.put(getClasses()[i], i + 1);
@@ -80,25 +81,27 @@ public abstract class Classifier {
 		for (Integer i : multimap.keySet()) {
 			for (Object o : multimap.get(i)) {
 				File f = (File) files[(Integer) o - 1];
-				System.out.print(FileReader.getFileMap().inverseBidiMap()
+				sb.append(FileReader.getFileMap().inverseBidiMap()
 						.get(f)
 						+ " ");
 			}
-			System.out.println();
+			sb.append(System.getProperty("line.separator"));
 		}
+		return sb.toString();
 	}
 
-	public void printClassesOld() {
+	public String printClassesOld() {
 		// System.out.println(Arrays.asList(ArrayUtils.toObject(classes)));
-		System.out.println(getName());
+		StringBuffer sb = new StringBuffer(getName() + System.getProperty("line.separator"));
 		Multimap<Integer, Object> multimap = ArrayListMultimap.create();
 		for (int i = 0; i < getClasses().length; i++) {
 			multimap.put(getClasses()[i], i + 1);
 		}
 		int j = 0;
 		for (Integer i : multimap.keySet()) {
-			System.out.println("Class " + (++j) + ": " + multimap.get(i));
+			sb.append("Class " + (++j) + ": " + multimap.get(i) + System.getProperty("line.separator"));
 		}
+		return sb.toString();
 	}
 
 }

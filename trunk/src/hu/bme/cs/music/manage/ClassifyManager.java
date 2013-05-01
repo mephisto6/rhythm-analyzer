@@ -38,25 +38,25 @@ public class ClassifyManager extends Manager {
 	public ClassifyManager(Comparer comparer, int id) {
 		classifiers = new ArrayList<Classifier>();
 		switch (id) {
-		case 1:
+		case 0:
 			classifiers.add(new SingleLinkageClassifier(comparer));
 			break;
-		case 2:
+		case 1:
 			classifiers.add(new AverageLinkageClassifier(comparer));
 			break;
-		case 3:
+		case 2:
 			classifiers.add(new CompleteLinkageClassifier(comparer));
 			break;
-		case 4:
+		case 3:
 			classifiers.add(new RandomKMeansClassifier(comparer));
+			break;
+		case 4:
+			classifiers.add(new FirstRandomKMeansClassifier(comparer));
 			break;
 		case 5:
 			classifiers.add(new FarthestFirstKMeansClassifier(comparer));
 			break;
 		case 6:
-			classifiers.add(new FirstRandomKMeansClassifier(comparer));
-			break;
-		case 7:
 			classifiers.add(new DBSCANClassifier(comparer));
 			break;
 		}
@@ -71,7 +71,7 @@ public class ClassifyManager extends Manager {
 	@Override
 	public void printResults() {
 		for (Classifier classifier : classifiers) {
-			classifier.printClasses();
+			System.out.print(classifier.printClasses());
 			System.out.println("-----");
 		}
 	}
@@ -83,6 +83,15 @@ public class ClassifyManager extends Manager {
 			return classifiers.get(0).getClasses().length;
 		}
 		return res;
+	}
+
+	@Override
+	public String getResults() {
+		StringBuffer sb = new StringBuffer();
+		for (Classifier classifier : classifiers) {
+			sb.append(classifier.printClasses());
+		}
+		return sb.toString();
 	}
 
 }
