@@ -48,9 +48,7 @@ public class LogicControl {
 		classifyManager = new ClassifyManager(
 				compareManager.getComparerForId(comparerId), classifierId);
 
-		classifyManager.printResults();
 		MainWindow.setResultText(classifyManager.getResults());
-
 	}
 
 	private void getParams() {
