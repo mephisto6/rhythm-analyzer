@@ -3,7 +3,6 @@
  */
 package hu.bme.cs.music.model;
 
-import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.file.FileReader;
 import hu.bme.cs.music.gui.LogicControl;
 import hu.bme.cs.music.utils.MatrixUtils;

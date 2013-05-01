@@ -3,6 +3,7 @@
  */
 package hu.bme.cs.music.gui;
 
+import hu.bme.cs.music.file.FileReader;
 import hu.bme.cs.music.utils.FileUtils;
 
 import org.eclipse.swt.SWT;
@@ -13,6 +14,7 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
@@ -31,6 +33,8 @@ public class MainWindow {
 
 	private static Button mode1Button;
 	private static Button mode2Button;
+
+	private static Combo melodicClusterDropDown;
 
 	private static Button weightedHammingButton;
 	private static Button euclideanButton;
@@ -68,7 +72,7 @@ public class MainWindow {
 		shell.setSize(750, 500);
 
 		GridLayout gridLayout = new GridLayout();
-		gridLayout.numColumns = 3;
+		gridLayout.numColumns = 4;
 		shell.setLayout(gridLayout);
 
 		// ---------- First row
@@ -76,6 +80,9 @@ public class MainWindow {
 		mode1Button = new Button(shell, SWT.RADIO | SWT.LEFT);
 		mode1Button.setText("Working directory: ");
 		mode1Button.setSelection(true);
+		GridData gd = new GridData();
+		gd.horizontalSpan = 2;
+		mode1Button.setLayoutData(gd);
 
 		dirText = new Text(shell, SWT.BORDER);
 		setDefaultGridData(dirText);
@@ -98,12 +105,19 @@ public class MainWindow {
 		// ---------- Second row
 
 		mode2Button = new Button(shell, SWT.RADIO | SWT.LEFT);
-		mode2Button.setText("Song IDs: ");
+		mode2Button.setText("Melodic cluster: ");
 		mode2Button.setSelection(false);
+
+		melodicClusterDropDown = new Combo(shell, SWT.DROP_DOWN | SWT.BORDER);
+		for (int i = 1; i < 28; i++) {
+			melodicClusterDropDown.add(i + "");
+		}
+		melodicClusterDropDown.setText("11");
+		melodicClusterDropDown.setEnabled(false);
 
 		fileIdsText = new Text(shell, SWT.BORDER);
 		setDefaultGridData(fileIdsText, 2);
-		fileIdsText.setText("250 278 279 287 1033 1462 249");
+		fileIdsText.setText("100 101 102 104 105 107 111 138 139 171 1136 1295 106");
 		fileIdsText.setEnabled(false);
 
 		// ---------- Third row
@@ -111,7 +125,9 @@ public class MainWindow {
 		Group comparersGroup = new Group(shell, SWT.SHADOW_IN);
 		comparersGroup.setText("Comparer method");
 
-		
+		gd = new GridData();
+		gd.horizontalSpan = 2;
+		comparersGroup.setLayoutData(gd);
 		comparersGroup.setLayout(new RowLayout(SWT.VERTICAL));
 
 		weightedHammingButton = new Button(comparersGroup, SWT.RADIO);
@@ -214,21 +230,29 @@ public class MainWindow {
 
 		resultText = new Text(shell, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL
 				| SWT.READ_ONLY | SWT.BORDER);
-		GridData gridData = new GridData();
-		gridData.horizontalAlignment = SWT.FILL;
-		gridData.verticalAlignment = SWT.FILL;
-		gridData.grabExcessHorizontalSpace = true;
-		gridData.grabExcessVerticalSpace = true;
-		gridData.horizontalSpan = 3;
-		resultText.setLayoutData(gridData);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+		gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;
+		gd.horizontalSpan = 4;
+		resultText.setLayoutData(gd);
 
 		// Listeners
+		
+		melodicClusterDropDown.addSelectionListener(new SelectionAdapter() {
+            public void widgetSelected(SelectionEvent e) {
+            	fileIdsText.setText(FileReader.getFileIdsLine(melodicClusterDropDown.getText()));
+            }
+        });
 
 		mode1Button.addListener(SWT.Selection, createEnableListener(dirText));
 		mode1Button.addListener(SWT.Selection,
 				createEnableListener(browserButton));
 		mode2Button.addListener(SWT.Selection,
 				createEnableListener(fileIdsText));
+		mode2Button.addListener(SWT.Selection,
+				createEnableListener(melodicClusterDropDown));
 
 		singleLinkageButton.addListener(SWT.Selection,
 				createEnableListener(kText));

@@ -41,12 +41,12 @@ public class FileReader {
 			"snf" };
 
 	private static BidiMap fileMap;
-	
-	private static SortedMap<Integer,Integer> sortedMap;
+
+	private static SortedMap<Integer, Integer> sortedMap;
 
 	private static List<File> files;
-	
-	public static SortedMap<Integer,Integer> getSortedMap() {
+
+	public static SortedMap<Integer, Integer> getSortedMap() {
 		return sortedMap;
 	}
 
@@ -64,6 +64,27 @@ public class FileReader {
 
 	public static List<Tune> getClusterTunes(int i) {
 		return getTunes(getClusterFiles(i));
+	}
+
+	public static String getFileIdsLine(String nn) {
+		int n = Integer.valueOf(nn);
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new java.io.FileReader(
+					"data/felho-gyim-szek-e6.dat"));
+			String line;
+			int i = 1;
+			while ((line = br.readLine()) != null) {
+				if (i == n) {
+					return line.split("\t")[0];
+				}
+				i++;
+			}
+			br.close();
+		} catch (IOException e) {
+			log.error(e.getMessage());
+		}
+		return null;
 	}
 
 	private static Collection<File> getClusterFiles(int n) {
@@ -155,7 +176,7 @@ public class FileReader {
 	public static Collection<File> getFilesForCluster(String fileIdsLine) {
 		files = new ArrayList<File>();
 		fileMap = new DualHashBidiMap();
-		sortedMap = new TreeMap<Integer,Integer>();
+		sortedMap = new TreeMap<Integer, Integer>();
 		String[] ids = fileIdsLine.split(" ");
 		List<Integer> lineNums = new ArrayList<Integer>();
 		for (String id : ids) {
