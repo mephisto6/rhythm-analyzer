@@ -8,6 +8,7 @@ import hu.bme.cs.music.compare.ContinousChronotonicDistanceComparer;
 import hu.bme.cs.music.compare.EuclideanDistanceComparer;
 import hu.bme.cs.music.compare.HammingDistanceComparer;
 import hu.bme.cs.music.compare.IntervalDiffDistanceComparer;
+import hu.bme.cs.music.compare.ManhattanDistanceComparer;
 import hu.bme.cs.music.compare.SwapDistanceComparer;
 import hu.bme.cs.music.model.Comparer;
 import hu.bme.cs.music.model.Manager;
@@ -27,15 +28,38 @@ public class CompareManager extends Manager {
 	public CompareManager(List<Tune> tunes) {
 		comparers = new ArrayList<Comparer>();
 		comparers.add(new HammingDistanceComparer(tunes));
-		comparers.add(new EuclideanDistanceComparer(tunes));
-		comparers.add(new IntervalDiffDistanceComparer(tunes));
-		comparers.add(new SwapDistanceComparer(tunes));
-		comparers.add(new ChronotonicDistanceComparer(tunes));
 		comparers.add(new ContinousChronotonicDistanceComparer(tunes));
 	}
-	
-	public Comparer getComparerForId(int id) {
-		return comparers.get(id);
+
+	public CompareManager(List<Tune> tunes, int id) {
+		comparers = new ArrayList<Comparer>();
+		switch (id) {
+		case 0:
+			comparers.add(new HammingDistanceComparer(tunes));
+			break;
+		case 1:
+			comparers.add(new ManhattanDistanceComparer(tunes));
+			break;
+		case 2:
+			comparers.add(new EuclideanDistanceComparer(tunes));
+			break;
+		case 3:
+			comparers.add(new IntervalDiffDistanceComparer(tunes));
+			break;
+		case 4:
+			comparers.add(new SwapDistanceComparer(tunes));
+			break;
+		case 5:
+			comparers.add(new ChronotonicDistanceComparer(tunes));
+			break;
+		case 6:
+			comparers.add(new ContinousChronotonicDistanceComparer(tunes));
+			break;
+		}
+	}
+
+	public Comparer getComparer() {
+		return comparers.get(0);
 	}
 
 	public List<Comparer> getComparers() {

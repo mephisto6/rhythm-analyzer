@@ -39,6 +39,7 @@ public class MainWindow {
 	private static Combo melodicClusterDropDown;
 
 	private static Button weightedHammingButton;
+	private static Button manhattanButton;
 	private static Button euclideanButton;
 	private static Button intervalDiffButton;
 	private static Button swapButton;
@@ -136,6 +137,9 @@ public class MainWindow {
 		weightedHammingButton = new Button(comparersGroup, SWT.RADIO);
 		weightedHammingButton.setText("Weighted Hamming");
 		weightedHammingButton.setSelection(true);
+		
+		manhattanButton= new Button(comparersGroup, SWT.RADIO);
+		manhattanButton.setText("Manhattan");
 
 		euclideanButton = new Button(comparersGroup, SWT.RADIO);
 		euclideanButton.setText("Euclidean");
@@ -348,19 +352,22 @@ public class MainWindow {
 		if (weightedHammingButton.getSelection()) {
 			return 0;
 		}
-		if (euclideanButton.getSelection()) {
+		if (manhattanButton.getSelection()) {
 			return 1;
 		}
-		if (intervalDiffButton.getSelection()) {
+		if (euclideanButton.getSelection()) {
 			return 2;
 		}
-		if (swapButton.getSelection()) {
+		if (intervalDiffButton.getSelection()) {
 			return 3;
 		}
-		if (chronotinicButton.getSelection()) {
+		if (swapButton.getSelection()) {
 			return 4;
 		}
-		return 5;
+		if (chronotinicButton.getSelection()) {
+			return 5;
+		}
+		return 6;
 	}
 
 	public static int getClassifierId() {

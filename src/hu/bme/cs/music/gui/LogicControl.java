@@ -33,11 +33,12 @@ public class LogicControl {
 		switch (MainWindow.getMode()) {
 		case 1:
 			compareManager = new CompareManager(FileReader.getTunes(MainWindow
-					.getDirectory()));
+					.getDirectory()), comparerId);
 			break;
 		case 2:
 			compareManager = new CompareManager(FileReader.getTunes(FileReader
-					.getFilesForCluster(MainWindow.getFileIdsLine())));
+					.getFilesForCluster(MainWindow.getFileIdsLine())),
+					comparerId);
 			break;
 		}
 
@@ -45,8 +46,8 @@ public class LogicControl {
 		DBSCANClassifier.eps = MainWindow.getEps();
 		DBSCANClassifier.minpts = MainWindow.getMinPts();
 
-		classifyManager = new ClassifyManager(
-				compareManager.getComparerForId(comparerId), classifierId);
+		classifyManager = new ClassifyManager(compareManager.getComparer(),
+				classifierId);
 
 		MainWindow.setResultText(classifyManager.getResults());
 	}
