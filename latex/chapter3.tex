@@ -142,7 +142,7 @@ Kézenfekvõ ötlet a hátrányok kiköszöbölésére a különbözõ módszerek ötvözete. A T
 \section{Ritmikus különbözõségi metrikák}
 %----------------------------------------------------------------------------
 
-Az itt következõ módszerek Godfried Toussaint cikkébõl származnak \cite{Toussaint1}.
+A mindennapi életben hosszúságként értelmezett távolság fogalmát a matematika általánosítja és különbözõ módokon definiált mértékeket, metrikákat vezet be. A ritmus-reprezentációkat akkor tudjuk összehasonlíthatóvá tenni, ha a köztük lévõ távolságot egy nemnegatív skalármennyiséggel jelöljük. Az irodalom bõségesen foglalkozik a témával, az általam választott módszerek nagyrésze Godfried Toussaint cikkébõl származik \cite{Toussaint1}.
 
 %----------------------------------------------------------------------------
 \subsection{Hamming távolság}
@@ -156,23 +156,33 @@ ahol $|x|$ az $x$ érték abszolútértékét jelöli.
 A módszer nagyon egyszerû, idõigénye is alacsony, hiszen elég egyetlen ciklusban végigiterálni a vektorokon és akkumulálni a különbözõ bitek számát, azaz lépésszáma a vektor hosszának konstansszorosa ($O(n)$). Ugyanakkor nem biztos, hogy  erre a speciális igényre a legjobban megfelel, mert az eltérõséget ugyan jól méri, de azt nem, hogy milyen messze vannak egymástól az eltérések. A gyakorlati tapasztalatok azt mutatják, hogy egy hangsúly távolabbra helyezése különbözõbbnek hat, mintha közelebbre tettük volna át. Szintén hátránya a módszernek, hogy egy ütemmel eltolva ugyanaz a ritmus teljesen másnak értékelõdik, holott az emberi fül számára az nagyon hasonló az eredetihez.
 
 %----------------------------------------------------------------------------
+\subsection{Intervallum-vektorok Manhattan-távolsága}
+%----------------------------------------------------------------------------
+
+Zenefelismerõ és zenekategorizáló algoritmusok által gyakrabban használt ritmusábrázolás a hangsúlyok közötti intervallumok hosszait reprezentáló vektorokon alapul (a \ref{fig:fig02} ábrán a 4. módszer hasonló, de ott a hangsúlyos ütemet is beleszámoljuk a hosszba, ezért ott a vektor minden eleme $1$-gyel nagyobb). Egy ritmus az $X=(x_1,x_2,...,x_n)$ vektor által reprezentált, ahol $x_1$ jelöli az elsõ hangsúly utáni intervallum hosszát. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ által jelölt ritmusok közötti Manhattan-távolságot az alábbi formula adja meg:
+\begin{align}
+d_M(X,Y)=\sum_{i=1}^n |x_i-y_i| \nonumber
+\end{align}
+Az elõzõ módszertõl mindössze annyiban tér el, hogy egy más módon képzett vektort vesz kiindulási alapul, melynek elemei nem csak a $\left\{0,1\right\}$ halmazból kerülhetnek ki. Az intervallum-vektorok $O(n)$ idõben számolhatók a TUBS ábrázolásból, ebbõl következõen a lépésszámban nincs eltérés ($O(n)$). Ez a megközelítés úgy értelmezhetõ a mindennapi távolsághoz képest, hogy egy olyan út hosszát méri, mely egymásra merõleges szakaszokon haladva vezet az egyik pontból a másikba, mintha csak egy úthálózaton haladhatnánk.
+
+%----------------------------------------------------------------------------
 \subsection{Intervallum-vektorok Euklideszi-távolsága}
 %----------------------------------------------------------------------------
 
-Zenefelismerõ és zenekategorizáló algoritmusok által gyakrabban használt ritmusábrázolás a hangsúlyok közötti intervallumok hosszait reprezentáló vektorokon alapul (a \ref{fig:fig02} ábrán a 4. módszer hasonló, de ott a hangsúlyos ütemet is beleszámoljuk a hosszba, ezért ott a vektor minden eleme $1$-gyel nagyobb). Egy ritmus az $X=(x_1,x_2,...,x_n)$ vektor által reprezentált, ahol $x_1$ jelöli az elsõ hangsúly utáni intervallum hosszát. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ által jelölt ritmusok közötti Euklideszi távolságot az alábbi formula adja meg:
+Az elõzõ módszert továbbgondolva könnyen eljuthatunk a mindennapi értelemben vett távolsághoz legkézenfekvõbben illeszkedõ módszerhez, az Euklideszi-távolsághoz. Egy, két, illetve három dimenzióban pontosan azt is adja eredményül, mint amit egy vonalzóval mérve kapnánk. Egy ritmus ugyanaz az $X=(x_1,x_2,...,x_n)$ vektor által reprezentált, ahol $x_1$ jelöli az elsõ hangsúly utáni intervallum hosszát. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ által jelölt ritmusok közötti Euklideszi távolságot így adhatjuk meg:
 \begin{align}
 d_E(X,Y)=\sqrt{\sum_{i=1}^n (x_i-y_i)^2} \nonumber
 \end{align}
 
-Az intervallum-vektorok $O(n)$ idõben számolhatók a TUBS ábrázolásból, majd $d_E(X,Y)$ meghatározása is elvégezhetõ $O(k)$ idõ alatt, ahol $k$ az intervallumok száma, így összességében az algoritmus $O(n)$ idejû.
+A korábbiakhoz hasonlóan ez az algoritmus is $O(n)$ lépést igényel.
 
-Ez a megközelítés a Hamming-távolságnál hasznosabb a ritmus különbözõségének meghatározásához, hiszen az eltolási problémát kiküszöböli.
+Az utóbbi két megközelítés a Hamming-távolságnál hasznosabb a ritmus különbözõségének meghatározásához, hiszen az eltolási problémát kiküszöbölik.
 
 %----------------------------------------------------------------------------
 \subsection{Az intervallum-különbözõségi vektorok távolsága}
 %----------------------------------------------------------------------------
 
-Ez a módszer Coyle-tól és Shmulevich-tõl származik. Az elõzõhöz hasonlóan ez a megközelítés is az intervallum-vektorokból indul ki, ám mielõtt a két ritmus intervallumhosszait egymáshoz hasonlítaná, az azonos ritmusban szomszédos elemekhez méri õket. Így egy ritmus az egymást követõ intervallumok arányival van jellemezve. Formálisan a $T=(t_1,t_2,...,t_n)$ intervallum-vektor által jelölt ritmushoz egy olyan $X=(x_1,x_2,...,x_n)$ vektort definiál, melynek elemei $x_i=t_{i+1}/t_i$ módon vannak meghatározva. A ciklikusságot is figyelembe véve $x_n=t_1/t_n$, így $T$-hez hasonlóan $X$ dimenziója is $n$ lesz. Az így kapott $X$ vektort intervallum-különbözõségi vektornak nevezzük. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ intervallum-különbözõségi vektorok által jelölt ritmusok közötti távolságot így definiáljuk:
+Ez a módszer Coyle-tól és Shmulevich-tõl származik. Az elõzõekhez hasonlóan ez a megközelítés is az intervallum-vektorokból indul ki, ám mielõtt a két ritmus intervallumhosszait egymáshoz hasonlítaná, az azonos ritmusban szomszédos elemekhez méri õket. Így egy ritmus az egymást követõ intervallumok arányival van jellemezve. Formálisan a $T=(t_1,t_2,...,t_n)$ intervallum-vektor által jelölt ritmushoz egy olyan $X=(x_1,x_2,...,x_n)$ vektort definiál, melynek elemei $x_i=t_{i+1}/t_i$ módon vannak meghatározva. A ciklikusságot is figyelembe véve $x_n=t_1/t_n$, így $T$-hez hasonlóan $X$ dimenziója is $n$ lesz. Az így kapott $X$ vektort intervallum-különbözõségi vektornak nevezzük. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ intervallum-különbözõségi vektorok által jelölt ritmusok közötti távolságot így definiáljuk:
 \begin{align}
 d_{ID}(X,Y)=\big(\sum_{i=1}^n \frac{max(x_i,y_i)}{min(x_i,y_i)}\big)-n \nonumber
 \end{align}
@@ -225,3 +235,20 @@ A \ref{fig:fig06} ábra szemlélteti a korábbiakból már ismert ritmusokhoz tartozó
 \label{fig:fig06}
 \end{figure}
 
+%----------------------------------------------------------------------------
+\subsection{Különbözõ hosszúságú ritmusok}
+%----------------------------------------------------------------------------
+
+A gyakorlatban a legritkább esetben fordul elõ, hogy minden vizsgált ritmus hossza azonos. Az eddig tárgyalt módszerek azonban egytõl egyig feltételezték ezt. Valamiképpen tehát módosítanunk kell a kiindulási algoritmusokon, hogy figyelembe vegyék a ritmushosszok különbözõségét. 
+
+Ugyanakkor ez a probléma felveti azt a kérdést is, hogy a definiált távolságtól megköveteljük-e a szimmetriát, azaz $d(x,y)$ és $d(y,x)$ legyen-e egyenlõ $\forall x,y$-ra.
+
+Elõbb vizsgáljuk meg azt az esetet, amikor teljesül a szimmetria. Ez esetben kézenfekvõ megközelítés, ha a hosszabb ritmusvektort fixen hagyva tologatjuk a rövidebb vektort a hosszabb elejétõl a végéig, minden lehetséges módon számítunk egy távolságot, majd a kapott értékek minimumát vesszük. Formálisan ha $|f_1(x)|=n_1$, $|f_2(x)|=n_2$ és $n_1>n_2$,  akkor 
+\begin{align}
+d_{Shifted}(X,Y) = \min_{i \in 0..n_1-n_2} d_{Spec}(X_{i,n_2+i},Y) \nonumber
+\end{align}
+ahol $X_{i,n_2+i}$ jelöli $X$ vektor $i.$ és $n_2+i$. közötti elemei által alkotott vektort, beleértve a határokat is. Az ily módon meghatározott vektorok hossza már azonos, így átadhatók az elsõ négy fent definiált eljárásnak ($d_{Spec} \in \left\{d_H,d_M,d_E,d_{ID}\right\}$). A megközelítés hátránya, hogy nagy különbségek esetén jelentõsen megnövelheti a futásidõt ($\forall i \in \left\{0,n_1-n_2\right\}$-re le kell futtatni az eredeti algoritmust). Ez a módszer szinkronban van azzal a gyakorlati megfigyeléssel, hogy ha egy ritmus valahol tartalmaz egy másikat, akkor szoros kapcsolat van közöttük.
+
+A cserelési távolság...
+
+A görbe alatti területekkel számoló kronotonikus távolság alapú algoritmusnál ennél egy szofisztikáltabb megközelítést alkalmazhatunk. A módszer lényege, hogy a ritmusvektorokhoz rendelt kronotonikus vektorokat egy adott hosszúságú $x$-tengelyre vetítjük, függetlenül azok tényleges hosszától. A különbségek meghatározása és az integrálszámítás az így kapott függvényen történik.
