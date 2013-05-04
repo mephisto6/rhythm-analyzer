@@ -18,15 +18,14 @@ public class LogicControl {
 
 	public static int k;
 
-	private CompareManager compareManager;
-
-	private Manager classifyManager;
-
 	private int comparerId;
 
 	private int classifierId;
 
 	public void run() {
+
+		CompareManager compareManager = null;
+		Manager classifyManager;
 
 		getParams();
 
