@@ -27,8 +27,7 @@ public class CompareManager extends Manager {
 
 	public CompareManager(List<Tune> tunes) {
 		comparers = new ArrayList<Comparer>();
-		comparers.add(new HammingDistanceComparer(tunes));
-		comparers.add(new ContinousChronotonicDistanceComparer(tunes));
+		comparers.add(new ManhattanDistanceComparer(tunes));
 	}
 
 	public CompareManager(List<Tune> tunes, int id) {

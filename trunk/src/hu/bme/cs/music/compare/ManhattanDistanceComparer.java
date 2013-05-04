@@ -49,11 +49,11 @@ public class ManhattanDistanceComparer extends Comparer {
 		int s2 = e2.size();
 
 		if (s1 < s2) {
-			for (int i = 1; i <= s2 - s1; i++) {
+			for (int i = 0; i <= s2 - s1; i++) {
 				diffs.add(compareManhattan(e2.subList(i, s1 + i), e1));
 			}
 		} else if (s1 > s2) {
-			for (int i = 1; i <= s1 - s2; i++) {
+			for (int i = 0; i <= s1 - s2; i++) {
 				diffs.add(compareManhattan(e1.subList(i, s2 + i), e2));
 			}
 		} else {
@@ -70,9 +70,8 @@ public class ManhattanDistanceComparer extends Comparer {
 		double s = 0.0;
 
 		for (int i = 0; (i < size1 && i < size2); i++) {
-			s += e1.get(i) - e2.get(i);
+			s += Math.abs(e1.get(i) - e2.get(i));
 		}
-
 		return s;
 	}
 
