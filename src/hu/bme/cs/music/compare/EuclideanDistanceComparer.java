@@ -30,11 +30,11 @@ public class EuclideanDistanceComparer extends Comparer {
 		int s2 = e2.size();
 
 		if (s1 < s2) {
-			for (int i = 1; i <= s2 - s1; i++) {
+			for (int i = 0; i <= s2 - s1; i++) {
 				diffs.add(compareEuclidean(e2.subList(i, s1 + i), e1));
 			}
 		} else if (s1 > s2) {
-			for (int i = 1; i <= s1 - s2; i++) {
+			for (int i = 0; i <= s1 - s2; i++) {
 				diffs.add(compareEuclidean(e1.subList(i, s2 + i), e2));
 			}
 		} else {
