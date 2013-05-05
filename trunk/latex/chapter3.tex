@@ -8,27 +8,40 @@ A zene két legalapvetõbb alkotórésze a dallam és a ritmus. A kotta hangjegyei õk
 \section{A ritmusról}
 %----------------------------------------------------------------------------
 
-A ritmus görög eredetû szó, jelentése: lüktetés, dobogás, (szív)verés, ütem. Hasonló vagy azonos elemek idõbeli szabályos váltakozását, ismétlõdését értjük alatta. A zene csak az idõben fogható fel, tehát nem értelmezhetõ a ritmus fogalma nélkül.
+A ritmus görög eredetû szó, jelentése: lüktetés, dobogás, (szív-)verés, ütem. Hasonló vagy azonos elemek idõbeli szabályos váltakozását, ismétlõdését értjük alatta. A zene csak az idõben fogható fel, tehát nem értelmezhetõ a ritmus fogalma nélkül.
 
 Mind adatbányászati, mind etnomuzikológiai szempontból alapvetõ kérdés, hogy hogyan hasonlítsunk össze két ritmust. A ritmusok reprezentációját úgy kell megválasztanunk, hogy azok összehasonlíthatóak legyenek olyan módon, amit a zenekutató értelmesnek talál. Alapvetõ követelmény, hogy ez az összehasonlítás emberi észlelésünkkel összhangban legyen, azaz hasonlónak érzékelt ritmusokat hasonlónak, különbözõnek érzékelt ritmusokat pedig különbözõnek találjon.
 
 Két ritmus ($r_i$ és $r_j$) különbözõségét valamiképp mérhetõvé kell tennünk. Meg kell adnunk egy formulát ($d(r_i,r_j)$), amely a kapott két ritmusábrázolás alapján képes meghatározni egy különbözõséget tükrözõ numerikus értéket. Kézenfekvõ megközelítésnek tûnik, ha ezt a különbözõségi értéket a $0$ és $1$ közötti skálán helyezzük el, ahol minél kisebb az érték, annál jobban hasonlít egymásra a két ritmus. A $0$ jelenti a teljes ritmikai azonosságot, míg az $1$ a lehetõ legnagyobb különbözõséget, a két szélsõérték között pedig egyenesen arányosan oszlik el a különbözõség. 
 
-Minden ritmus összehasonlításra kerül az összes többi ritmussal, a kiszámított értékek pedig egy úgynevezett különbözõségi mátrix ($M_{diff}$) megfelelõ helyére kerülnek. Ezt úgy képezzük, hogy vesszük egy sorba az összes ritmust, illetve vesszük õket egy oszlopba is, majd a kapott táblázat megfelelõ helyére beírjuk a különbözõségi értéket. A mátrix nyilvánvalóan szimmetrikus lesz (hiszen lényegtelen, hogy $r_i$ ritmust vetjük össze $r_j$-vel, vagy $r_j$ ritmust $r_i$-val, azaz $d(r_i,r_j)=d(r_j,r_i), \forall i,j$-re), fõátlójában csupa nullákkal (hiszen $r_i$ ritmus megegyezik $r_i$ ritmussal, azaz $d(r_i,r_i)=0, \forall i$-re). A könnyebb tárolás és feldolgozás érdekében tehát elég, ha csak a fõátló alatti elemeket tekintjük.
+Minden ritmus összehasonlításra kerül az összes többi ritmussal, a kiszámított értékek pedig egy úgynevezett különbözõségi mátrix ($M_{diff}$) megfelelõ helyére kerülnek. Ezt úgy képezzük, hogy vesszük egy sorba az összes ritmust, illetve vesszük õket egy oszlopba is, majd a kapott táblázat megfelelõ helyére beírjuk a különbözõségi értéket. A mátrix fõátlójában nyilvánvalóan csupa nullák állnak, hiszen $r_i$ ritmus megegyezik $r_i$ ritmussal, azaz $d(r_i,r_i)=0, \forall i$-re (\ref{eq:form01} képlet). Ebben az esetben $n*(n-1)$ összehasonlítást kell elvégeznünk és ennyi eredményt is kell tárolnunk.
 
 \begin{align}
-M_{diff} = \bordermatrix{~ & r_1 & r_2 & r_3 & r_4 & \cdots & r_{n-1} & r_n \cr
-                  r_1 & 0 & - & - & - & \cdots & - & -\cr
-									r_2 & d(r_2,r_1) & 0 & - & - & \cdots & - & -\cr
-									r_3 & d(r_3,r_1) & d(r_3,r_2) & 0 & - & \cdots & - & -\cr
-									r_4 & d(r_4,r_1) & d(r_4,r_2) & d(r_4,r_3) & 0 & \cdots & - & -\cr
-									\vdots & \vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \cr
-									r_{n-1} & d(r_{n-1},r_1) & d(r_{n-1},r_2) & d(r_{n-1},r_3) & d(r_{n-1},r_4) & \cdots & 0 & -\cr
-                  r_n & d(r_n,r_1) & d(r_n,r_2) & d(r_n,r_3) & d(r_n,r_4) & \cdots & d(r_n,r_{n-1}) & 0\cr}
+\label{eq:form01}
+M_{diff} = \bordermatrix{~ & r_1 & r_2 & r_3 & \cdots & r_{n-1} & r_n \cr
+                  r_1 & 0 & d(r_1,r_2) & d(r_1,r_3) & \cdots & d(r_1,r_{n-1}) & d(r_1,r_n) \cr
+									r_2 & d(r_2,r_1) & 0 & d(r_2,r_3) & \cdots & d(r_2,r_{n-1}) & d(r_2,r_n) \cr
+									r_3 & d(r_3,r_1) & d(r_3,r_2) & 0 & \cdots & d(r_3,r_{n-1}) & d(r_3,r_n) \cr
+									\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \cr
+									r_{n-1} & d(r_{n-1},r_1) & d(r_{n-1},r_2) & d(r_{n-1},r_3) & \cdots & 0 & d(r_{n-1},r_n) \cr
+                  r_n & d(r_n,r_1) & d(r_n,r_2) & d(r_n,r_3) & \cdots & d(r_n,r_{n-1}) & 0\cr}
 \end{align}
-\\
 
-A fenti mátrix-definícióban látható, hogy mely értékekre nincs szükségünk, melyek adottak és melyeket kell kiszámolnunk. Adott $n$ számú ritmust feltételezve könnyû meghatározni, hogy ehhez összesen $\frac{n^2-n}{2}$ összehasonlítás szükséges.
+Amennyiben úgy döntünk, hogy a távolságdefiníciók szimmetrikusak, akkor a mátrix is szimmetrikus lesz (hiszen ekkor lényegtelen, hogy $r_i$ ritmust vetjük össze $r_j$-vel, vagy $r_j$ ritmust $r_i$-val, azaz $d(r_i,r_j)=d(r_j,r_i), \forall i,j$-re). Ekkor a könnyebb tárolás és feldolgozás érdekében elég, ha csak a fõátló alatti elemeket tekintjük.
+
+\begin{align}
+\label{eq:form02}
+M_{diff} = \bordermatrix{~ & r_1 & r_2 & r_3 & \cdots & r_{n-1} & r_n \cr
+                  r_1 & 0 & - & - & \cdots & - & -\cr
+									r_2 & d(r_2,r_1) & 0 & - & \cdots & - & -\cr
+									r_3 & d(r_3,r_1) & d(r_3,r_2) & 0 & \cdots & - & -\cr
+									\vdots & \vdots & \vdots & \vdots & \ddots & \vdots & \vdots \cr
+									r_{n-1} & d(r_{n-1},r_1) & d(r_{n-1},r_2) & d(r_{n-1},r_3) & \cdots & 0 & -\cr
+                  r_n & d(r_n,r_1) & d(r_n,r_2) & d(r_n,r_3) & \cdots & d(r_n,r_{n-1}) & 0\cr}
+\end{align}
+
+
+A \ref{eq:form02} képletben szereplõ mátrix-definícióban látható, hogy szimmetria esetén mely értékekre nincs szükségünk, melyek adottak és melyeket kell kiszámolnunk. Adott $n$ számú ritmust feltételezve könnyû meghatározni, hogy ehhez összesen $\frac{n^2-n}{2}$ összehasonlítás szükséges.
 
 %----------------------------------------------------------------------------
 \section{A ritmus geometriai reprezentációja}
@@ -226,9 +239,9 @@ A \ref{fig:fig06} ábra szemlélteti a korábbiakból már ismert ritmusokhoz tartozó
 	[const plot, red, thick,style=dashed]
 	coordinates
 	{(0,    2) (4,    4) (8,    2) (12,    4) (20,    2) (24,    4) (28,    4) (32,    4)};
-	\draw [blue,fill=blue!20] (axis cs:0,2) rectangle (axis cs:4,4);
-	\draw [blue,fill=blue!20] (axis cs:20,2) rectangle (axis cs:24,4);
-	\draw [red,fill=red!20] (axis cs:24,2) rectangle (axis cs:28,4);
+	\fill [blue,fill=blue!20] (axis cs:0,2) rectangle (axis cs:4,4);
+	\fill [blue,fill=blue!20] (axis cs:20,2) rectangle (axis cs:24,4);
+	\fill [red,fill=red!20] (axis cs:24,2) rectangle (axis cs:28,4);
 	\end{axis}
 	\end{tikzpicture}
 \caption{Két ritmus közötti kronotonikus távolság}
@@ -247,8 +260,30 @@ Elõbb vizsgáljuk meg azt az esetet, amikor teljesül a szimmetria. Ez esetben kéz
 \begin{align}
 d_{Shifted}(X,Y) = \min_{i \in 0..n_1-n_2} d_{Spec}(X_{i,n_2+i},Y) \nonumber
 \end{align}
-ahol $X_{i,n_2+i}$ jelöli $X$ vektor $i.$ és $n_2+i$. közötti elemei által alkotott vektort, beleértve a határokat is. Az ily módon meghatározott vektorok hossza már azonos, így átadhatók az elsõ négy fent definiált eljárásnak ($d_{Spec} \in \left\{d_H,d_M,d_E,d_{ID}\right\}$). A megközelítés hátránya, hogy nagy különbségek esetén jelentõsen megnövelheti a futásidõt ($\forall i \in \left\{0,n_1-n_2\right\}$-re le kell futtatni az eredeti algoritmust). Ez a módszer szinkronban van azzal a gyakorlati megfigyeléssel, hogy ha egy ritmus valahol tartalmaz egy másikat, akkor szoros kapcsolat van közöttük.
+ahol $X_{i,n_2+i}$ jelöli $X$ vektor $i.$ és $n_2+i$. közötti elemei által alkotott vektort, beleértve a határokat is. Az ily módon meghatározott vektorok hossza már azonos, így átadhatók az elsõ négy fent definiált eljárásnak ($d_{Spec} \in \left\{d_H,d_M,d_E,d_{ID}\right\}$). A megközelítés hátránya, hogy nagy különbségek esetén jelentõsen megnövelheti a futásidõt ($\forall i \in \left\{0,n_1-n_2\right\}$-re le kell futtatni az eredeti algoritmust). Ez a módszer szinkronban van azzal a gyakorlati megfigyeléssel, hogy ha egy ritmus valahol magában foglal egy másikat, akkor szoros kapcsolat van közöttük.
 
 A cserelési távolság...
 
 A görbe alatti területekkel számoló kronotonikus távolság alapú algoritmusnál ennél egy szofisztikáltabb megközelítést alkalmazhatunk. A módszer lényege, hogy a ritmusvektorokhoz rendelt kronotonikus vektorokat egy adott hosszúságú $x$-tengelyre vetítjük, függetlenül azok tényleges hosszától. A különbségek meghatározása és az integrálszámítás az így kapott függvényen történik.
+
+\begin{figure}[!hb]
+\centering
+	\begin{tikzpicture}
+	\begin{axis}[ymin=0,ymax=4.2,enlargelimits=false]
+	\addplot
+	[const plot,blue, thick,dotted]
+	coordinates
+	{(0,    4) (25,    2) (37.5,    4) (75,    2) (87.5,    4) (100,    4)};
+	\addplot
+	[const plot, red, thick,style=dashed]
+	coordinates
+	{(0,    3) (25,    2) (41.6,    3) (66.66,    4) (100,    4)};
+  \fill [blue,fill=blue!20] (axis cs:0,3) rectangle (axis cs:25,4);
+	\fill [blue,fill=blue!20] (axis cs:37.5,2) rectangle (axis cs:41.6,4);
+	\fill [blue,fill=blue!20] (axis cs:41.6,3) rectangle (axis cs:66.6,4);
+	\fill [red,fill=red!20] (axis cs:75,2) rectangle (axis cs:87.5,4);
+	\end{axis}
+	\end{tikzpicture}
+\caption{Különbözõ hosszúságú ritmusok közötti kronotonikus távolság}
+\label{fig:fig07}
+\end{figure}
