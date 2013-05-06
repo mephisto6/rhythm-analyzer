@@ -11,7 +11,7 @@ Az alkalmazott adatbányászat kétségtelenül multidiszciplináris terület, hiszen a
 \section{A tudásfeltárás folyamata}
 %----------------------------------------------------------------------------
 
-Az adatbányászati folyamat eredményességének elengedhetetlen feltétele, hogy kövessük a területtel foglalkozó korábbi kutatások által meghatározott lépéseket. A témával foglalkozó szakirodalom \cite{BodonPhD} a követketkezõ fázisokat sorolja fel:
+Az adatbányászati folyamat eredményességének elengedhetetlen feltétele, hogy kövessük a területtel foglalkozó korábbi kutatások által meghatározott lépéseket. A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} a követketkezõ fázisokat sorolja fel:
 
 \begin{enumerate}
 	\item Az alkalmazási terület feltárása és megértése, a fontosabb elõzetes ismeretek begyûjtése, a felhasználási célok meghatározása
@@ -27,3 +27,45 @@ Az adatbányászati folyamat eredményességének elengedhetetlen feltétele, hogy köv
 
 A munka során mindvégig szem elõtt tartottam, hogy amennyire csak lehetséges, az itt felsorolt pontok mindegyikét kövessem. A következõ fejezetek struktúrálása ezen ütemterv nyomán készült.
 
+%----------------------------------------------------------------------------
+\section{Klaszterezés}
+%----------------------------------------------------------------------------
+
+A klaszterezés egy olyan dimenziócsökkentõ eljárás, melynek során az elemeket homogén csoportokba, úgy nevezett klaszterekbe soroljuk \cite{Clustering}. Az egyes klasztereken belüli elemek valamilyen szempontból hasonlítanak egymáshoz és különböznek a többi klaszter elemeitõl. A csoportosítás alapját különbözõ távolságmértékek képezik. Formálisan, a klaszterezési struktúra az elemeket tartalmazó S univerzum olyan részhalmazainak halmaza ($C=C_1,..,C_k$), hogy $S=\bigcup_{i=1}^k C_i$ és $C_i \cap C_j = \emptyset $,$ \forall i \neq j$-re.
+
+A klaszter-analízis két fõ ága a hierarchikus és a nem hierarchikus klaszterezés. Hierarchikus esetben az új klasztereket a korábbi klaszterek alapján határozzuk meg, ezzel szemben a nem hierarchikus módszerek egyszerre határozza meg az összes klasztert.
+
+%----------------------------------------------------------------------------
+\subsection{Hierarchikus klaszterezési módszerek}
+%----------------------------------------------------------------------------
+
+Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl felfelé építkezve a klaszterezés korábbi állapota alapján határozzák meg annak következõ felosztását. A következõképpen lehet õket további alosztályokra bontani:
+
+\begin{itemize}
+	\item Agglomeratív (összegyûjtõ) hierarchikus klaszterezés: Kezdetben minden objektum egy önálló klasztert alkot, majd ezek összefésülésével jutunk el a kívánt célhoz.
+	\item Divizionáló (megosztó) hierarchikus klaszterezés: Kezdetben minden objektum egy nagy közös klaszterba tartozik, majd ennek rekurzív felosztásával kapjuk meg a végsõ állapotot.
+\end{itemize}
+
+Az összefésülés illetve a felosztás valamilyen távolságmérték alapján történik. Minden lépésben egy elõre megadott jósági kritériumot optimalizálunk. A távolságértékek alapján történõ következõ lépés meghatározása alapján további felosztásokat tehetünk a hierarchikus klaszterezõ eljárásokra:
+
+\begin{itemize}
+	\item Single-linkage klaszterezés
+	
+	Ebben az esetben két klaszter távolságát a bennük lévõ elemek páronkénti távolságainak minimumaként definiáljuk. Ennek a módszernek komoly hátránya, az úgy nevezett lánceffektus: néhány hídként viselkedõ egymáshoz közeli pont összekapcsolhat egyébként jól elkülönülõ klasztereket.
+	
+	\item Average-linkage klaszterezés
+	
+	Ez a módszer két klaszter távolságát elemeik páronkénti távolságainak átlagaként definiálja. Hátránya, hogy ,,hosszúkás'' klasztereket szétbonthat, illetve szomszédos ,,hosszúkás'' klasztereket összevonhat.
+	
+		\item Complete-linkage klaszterezés
+	
+	Ez a megközelítés is a klasztereken belüli elemek páronkénti távolságából indul ki, de minimum helyett azok maximumát használja. Kompaktsága miatt gyakran ez adja a legjobb eredményeket.
+\end{itemize}
+
+A hierarchikus módszerek közös hátránya a rossz skálázhatóság és a nemlineáris lépésszám ($O(n^2)$, ahol $n$ az elemek száma), melynek következménye nagyméretû adathalmaz esetén a túl sok fájlmûvelet. Súlyos hátrány még a visszalépési képesség hiánya.
+
+%----------------------------------------------------------------------------
+\subsection{Partícionáló módszerek}
+%----------------------------------------------------------------------------
+
+Ezek a módszerek abban közösek, hogy egy kezdeti partícionálás után az elemeket ide-oda mozgathatják a klaszterek között, minden lépés során ügyelve arra, hogy egy megadott metrikát minimalizálják vagy maximalizálják.
