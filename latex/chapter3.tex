@@ -2,7 +2,7 @@
 \chapter{A ritmus}
 %----------------------------------------------------------------------------
 
-A zene két legalapvetõbb alkotórésze a dallam és a ritmus. A kotta hangjegyei õket jelölik. Csak együttesen határoznak meg egy dal, azt azonban nem mondhatjuk, hogy egymástól elválaszthatatlanok, hiszen gyakran ugyanazt a dallamot teljesen más ritmussal hallhatjuk, illetve a különbözõ eredetû és tulajdonságú dallamok elõfordulnak azonos ritmussal \cite{Vargyas1}. A népdalok rendszerezésében a dallam és a ritmus szerinti megközelítés mindig párhuzamosan érvényesült, Kodály eredetileg a dallam sajátosságait tartotta szem elõtt, míg Bartók nagy figyelmet fordított a ritmus szerinti osztályozásra.
+A zene két legalapvetõbb alkotórésze a dallam és a ritmus. A kotta hangjegyei õket jelölik. Csak együttesen határoznak meg egy dalt, azt azonban nem mondhatjuk, hogy egymástól elválaszthatatlanok, hiszen gyakran ugyanazt a dallamot teljesen más ritmussal hallhatjuk, illetve a különbözõ eredetû és tulajdonságú dallamok elõfordulnak azonos ritmussal \cite{Vargyas1}. A népdalok rendszerezésében a dallam és a ritmus szerinti megközelítés mindig párhuzamosan érvényesült, Kodály eredetileg a dallam sajátosságait tartotta szem elõtt, míg Bartók nagy figyelmet fordított a ritmus szerinti osztályozásra.
 
 %----------------------------------------------------------------------------
 \section{A ritmusról}
@@ -155,7 +155,7 @@ Kézenfekvõ ötlet a hátrányok kiköszöbölésére a különbözõ módszerek ötvözete. A T
 \section{Ritmikus különbözõségi metrikák}
 %----------------------------------------------------------------------------
 
-A mindennapi életben hosszúságként értelmezett távolság fogalmát a matematika általánosítja és különbözõ módokon definiált mértékeket, metrikákat vezet be. A ritmus-reprezentációkat akkor tudjuk összehasonlíthatóvá tenni, ha a köztük lévõ távolságot egy nemnegatív skalármennyiséggel jelöljük. Az irodalom bõségesen foglalkozik a témával, az általam választott módszerek nagyrésze Godfried Toussaint cikkébõl származik \cite{Toussaint1}.
+A mindennapi életben hosszúságként értelmezett távolság fogalmát a matematika általánosítja és különbözõ módokon definiált mértékeket, metrikákat vezet be. A ritmus-reprezentációkat akkor tudjuk összehasonlíthatóvá tenni, ha a köztük lévõ távolságot egy nemnegatív skalármennyiséggel jelöljük. Az irodalom bõségesen foglalkozik a témával, az általam választott módszerek nagyobbik része Godfried Toussaint \cite{Toussaint1}, illetve Lior Rokach \cite{Rokach} cikkeibõl származik, de gyakran további pontosításra és kiegészítésre szolgáltak az általuk vázolt általánosabb eljárások.
 
 %----------------------------------------------------------------------------
 \subsection{Hamming távolság}
@@ -167,6 +167,26 @@ d_H(X,Y)=\sum_{i=1}^n |x_i-y_i| \nonumber
 ahol $|x|$ az $x$ érték abszolútértékét jelöli.
 
 A módszer nagyon egyszerû, idõigénye is alacsony, hiszen elég egyetlen ciklusban végigiterálni a vektorokon és akkumulálni a különbözõ bitek számát, azaz lépésszáma a vektor hosszának konstansszorosa ($O(n)$). Ugyanakkor nem biztos, hogy  erre a speciális igényre a legjobban megfelel, mert az eltérõséget ugyan jól méri, de azt nem, hogy milyen messze vannak egymástól az eltérések. A gyakorlati tapasztalatok azt mutatják, hogy egy hangsúly távolabbra helyezése különbözõbbnek hat, mintha közelebbre tettük volna át. Szintén hátránya a módszernek, hogy egy ütemmel eltolva ugyanaz a ritmus teljesen másnak értékelõdik, holott az emberi fül számára az nagyon hasonló az eredetihez.
+
+%----------------------------------------------------------------------------
+\subsection{Bináris vektorok távolsága}
+%----------------------------------------------------------------------------
+
+Az irodalom \cite{Rokach} által javasolt általános módszer bináris vektorok összehasonlítására két esetet különböztet meg. Abban az esetben, ha a bináris vektorban a $0$ illetve az $1$ érték azonos valószínûséggel fordul elõ, szimmetrikus attribútumról beszélünk és a következõképp határozhatjuk meg a távolságot $X$ és $Y$ között:
+
+\begin{align}
+d_{Bin1}(X,Y)=\frac{r+s}{q+r+s+t} \nonumber
+\end{align}
+
+ahol $q$ az azonos helyen lévõ $1$-esek, $t$ az azonos helyen lévõ $0$-ák, $s$ és $r$ pedig a különbözõ bitek száma $X$-ben, illetve $Y$-ban (ha azonos hosszúak, akkor $s=r$). 
+
+Ezzel szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a $0$-ák egyezését jelölõ $t$-t:
+
+\begin{align}
+d_{Bin2}(X,Y)=\frac{r+s}{q+r+s} \nonumber
+\end{align}
+
+A ritmusokat reprezentáló TUBS vektorokra jellemzõbb, hogy több bennük a szünet, mint a hangsúlyos elem (az $1$-es), ezért a másodikként definiált megközelítést használjuk inkább.
 
 %----------------------------------------------------------------------------
 \subsection{Intervallum-vektorok Manhattan-távolsága}
