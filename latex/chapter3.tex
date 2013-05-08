@@ -172,8 +172,7 @@ A módszer nagyon egyszerû, idõigénye is alacsony, hiszen elég egyetlen ciklusban
 \subsection{Bináris vektorok távolsága}
 %----------------------------------------------------------------------------
 
-Az irodalom \cite{Rokach} által javasolt általános módszer bináris vektorok összehasonlítására két esetet különböztet meg. Abban az esetben, ha a bináris vektorban a $0$ illetve az $1$ érték azonos valószínûséggel fordul elõ, szimmetrikus attribútumról beszélünk és a következõképp határozhatjuk meg a távolságot $X$ és $Y$ között:
-
+Az irodalom \cite{Rokach} által javasolt általános módszer bináris vektorok összehasonlítására két esetet különböztet meg. Abban az esetben, ha a bináris vektorban a $0$ illetve az $1$ érték azonos valószínûséggel fordul elõ, szimmetrikus attribútumról beszélünk és a következõképp határozhatjuk meg az $X$ és $Y$ bináris vektorok közötti távolságot:
 \begin{align}
 d_{Bin1}(X,Y)=\frac{r+s}{q+r+s+t} \nonumber
 \end{align}
@@ -181,7 +180,6 @@ d_{Bin1}(X,Y)=\frac{r+s}{q+r+s+t} \nonumber
 ahol $q$ az azonos helyen lévõ $1$-esek, $t$ az azonos helyen lévõ $0$-ák, $s$ és $r$ pedig a különbözõ bitek száma $X$-ben, illetve $Y$-ban (ha azonos hosszúak, akkor $s=r$). 
 
 Ezzel szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a $0$-ák egyezését jelölõ $t$-t:
-
 \begin{align}
 d_{Bin2}(X,Y)=\frac{r+s}{q+r+s} \nonumber
 \end{align}
