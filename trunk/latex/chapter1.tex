@@ -36,13 +36,73 @@ A klaszterezés egy olyan dimenziócsökkentõ eljárás, melynek során az elemeket ho
 A klaszter-analízis két fõ ága a hierarchikus és a nem hierarchikus klaszterezés. Hierarchikus esetben az új klasztereket a korábbi klaszterek alapján határozzuk meg, ezzel szemben a nem hierarchikus módszerek egyszerre határozza meg az összes klasztert.
 
 %----------------------------------------------------------------------------
+\subsection{A klaszterek és a klaszterezés jellemzõi}
+%----------------------------------------------------------------------------
+
+Egy klaszterezési algoritmus futása közben, illetve az eredmények összehasonlítása során alapvetõ kérdés, hogy hogyan értékelünk egy adott klaszterezést. Hogy ezt megtehessük, definiálnunk kell néhány klaszterjellemzõt. 
+
+A C klaszter elemeinek számát $|C|$ jelöli. A klaszter nagyságának jellemzésére szolgál az átmérõ fogalma ($D(C)$). Ezt kétféleképp is definiálhatjuk:
+\begin{itemize}
+\item Elemek közötti maximális távolság alapján: 
+	\begin{align}
+	D_{max}(C) = \max_{p,q \in C} d(p,q) \nonumber
+	\end{align}
+\item Elemek közötti átlagos távolság alapján: 
+	\begin{align}
+	D_{avg}(C) = \frac{\sum_{p,q \in C}d(p,q)}{|C^2|} \nonumber
+	\end{align}
+\end{itemize}
+
+A vektortérben megadott elemeknél használható fogalom a klaszter középpontja ($\vec m_C$) és sugara ($R_C$).
+	\begin{align}
+	\vec m_C = \frac{\sum_{p \in C} \vec p}{|C|} \nonumber
+	\end{align}
+	
+	\begin{align}
+		R_C = \frac{\sum_{p \in C} |\vec p- \vec m_C|}{|C|} \nonumber
+  \end{align}
+	
+A klaszterek közötti távolságot is meghatározhatjuk többféleképpen:
+\begin{itemize}
+\item Minimális távolság:
+	\begin{align}
+	d_{min}(C_i,C_j) = \min_{p \in C_i,q \in C_j} d(p,q) \nonumber
+	\end{align}
+\item Maximális távolság:
+	\begin{align}
+	d_{max}(C_i,C_j) = \max_{p \in C_i,q \in C_j} d(p,q) \nonumber
+	\end{align}
+\item Átlagos távolság:
+	\begin{align}
+	d_{avg}(C_i,C_j) = \frac{\sum_{ p \in C_i, q \in C_j} d(p,q)}{|C_i|*|C_j|} \nonumber
+	\end{align}
+\item Középpontok közötti távolság:
+	\begin{align}
+	d_{mean}(C_i,C_j) = |\vec m_i - \vec m_j| \nonumber
+	\end{align}
+\item Egyesített klaszter átmérõje:
+	\begin{align}
+	d_D(C_i,C_j) = D(C_i \cup C_j) \nonumber
+	\end{align}
+\end{itemize}
+
+A legelterjedtebb minimalizálandó függvények klaszterezõ algoritmusok esetén:
+\begin{itemize}
+\item Legkisebb hibaösszeg:
+	\begin{align}
+	E = \sum_{i=1}^{k}\sum_{p \in C_i}| \vec p- \vec m_{C_i} | \nonumber
+	\end{align}
+\end{itemize}
+
+
+%----------------------------------------------------------------------------
 \subsection{Hierarchikus klaszterezési módszerek}
 %----------------------------------------------------------------------------
 
-Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl felfelé építkezve a klaszterezés korábbi állapota alapján határozzák meg annak következõ felosztását. A következõképpen lehet õket további alosztályokra bontani:
+Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl felfelé építkezve a klaszterezés korábbi állapota alapján határozzák meg annak következõ felosztását. Az építkezés stratégiája alapján a következõképpen lehet õket alosztályokra bontani:
 
 \begin{itemize}
-	\item Agglomeratív (összegyûjtõ) hierarchikus klaszterezés: Kezdetben minden objektum egy önálló klasztert alkot, majd ezek összefésülésével jutunk el a kívánt célhoz.
+	\item Agglomeráló (összegyûjtõ) hierarchikus klaszterezés: Kezdetben minden objektum egy önálló klasztert alkot, majd ezek összefésülésével jutunk el a kívánt célhoz.
 	\item Divizionáló (megosztó) hierarchikus klaszterezés: Kezdetben minden objektum egy nagy közös klaszterba tartozik, majd ennek rekurzív felosztásával kapjuk meg a végsõ állapotot.
 \end{itemize}
 
@@ -51,21 +111,59 @@ Az összefésülés illetve a felosztás valamilyen távolságmérték alapján történik. 
 \begin{itemize}
 	\item Single-linkage klaszterezés
 	
-	Ebben az esetben két klaszter távolságát a bennük lévõ elemek páronkénti távolságainak minimumaként definiáljuk. Ennek a módszernek komoly hátránya, az úgy nevezett lánceffektus: néhány hídként viselkedõ egymáshoz közeli pont összekapcsolhat egyébként jól elkülönülõ klasztereket.
+	Ebben az esetben két klaszter távolságát a bennük lévõ elemek páronkénti távolságainak minimumaként definiáljuk: $C_i$ és $C_j$ klaszterek távolsága:
+	\begin{align}
+	d(C_i,C_j) = \min_{ x \in C_i, y \in C_j} d(x,y) \nonumber
+	\end{align}
+	Ennek a módszernek komoly hátránya, az úgy nevezett lánceffektus: néhány hídként viselkedõ egymáshoz közeli pont összekapcsolhat egyébként jól elkülönülõ klasztereket. További megfontolandókat vetnek fel az elkülönülõ pontok (úgynevezett outlierek) jelenléte az adatbázisban. 
+	
+	Gráfelméleti szempontból nézve (egy teljes gráfban a pontok a klaszterezendõ elemek, az élsúlyok pedig a pontokhoz tartozó elemek közötti távolságok) ez a módszer egy minimális feszítõfát fog találni, ha a klaszterek számát $1$-re állítjuk. Ha $k$ darab csoportot szeretnénk kapni, akkor ezt a minimális feszítõfa $k-1$ darab legnagyobb súlyú élének elhagyásával kaphatjuk meg. Az így keletkezett komponensekben található elemek kerülnek egy klaszterbe.
 	
 	\item Average-linkage klaszterezés
 	
-	Ez a módszer két klaszter távolságát elemeik páronkénti távolságainak átlagaként definiálja. Hátránya, hogy ,,hosszúkás'' klasztereket szétbonthat, illetve szomszédos ,,hosszúkás'' klasztereket összevonhat.
+	Ez a módszer két klaszter távolságát elemeik páronkénti távolságainak átlagaként definiálja.
+  \begin{align}
+	d(C_i,C_j) = \frac{\sum_{ x \in C_i, y \in C_j} d(x,y)}{|C_i|*|C_j|} \nonumber
+	\end{align}
+	Hátránya, hogy ,,hosszúkás'' klasztereket szétbonthat, illetve szomszédos ,,hosszúkás'' klasztereket összevonhat.
 	
 		\item Complete-linkage klaszterezés
 	
-	Ez a megközelítés is a klasztereken belüli elemek páronkénti távolságából indul ki, de minimum helyett azok maximumát használja. Kompaktsága miatt gyakran ez adja a legjobb eredményeket.
+	Ez a megközelítés is a klasztereken belüli elemek páronkénti távolságából indul ki, de minimum helyett azok maximumát használja a klasztertávolságok meghatározására. 
+  \begin{align}
+	d(C_i,C_j) = \max_{ x \in C_i, y \in C_j} d(x,y) \nonumber
+	\end{align}
+	A kapott klaszterek kompaktsága miatt gyakran ez adja a legjobb eredményeket, hiszen kiküszöböli a sinle linkage klaszterezésnél elõforduló lánceffektust. Jellemzõ rá, hogy a klaszterek átmérõi megközelítõleg hasonló méretûek.
 \end{itemize}
 
-A hierarchikus módszerek közös hátránya a rossz skálázhatóság és a nemlineáris lépésszám ($O(n^2)$, ahol $n$ az elemek száma), melynek következménye nagyméretû adathalmaz esetén a túl sok fájlmûvelet. Súlyos hátrány még a visszalépési képesség hiánya.
+Minden további felosztás egy nagyobb távolságot eredményez a klaszterek között, mint az elõzõ felosztás maximális távolsága. A leállási feltétel így lehet egy maximális új távolság is a $k$ számú klaszter elérése mellett.
+ 
+A hierarchikus módszerek közös hátránya a rossz skálázhatóság és a nemlineáris lépésszám (legjobb esetben is ($O(n^2)$, de akár $O(2^n)$ is lehet, ahol $n$ az elemek száma), melynek következménye lehet nagyméretû adathalmaz esetén a túl sok fájlmûvelet. Súlyos hátrány még a visszalépési képesség hiánya.
 
 %----------------------------------------------------------------------------
 \subsection{Partícionáló módszerek}
 %----------------------------------------------------------------------------
 
-Ezek a módszerek abban közösek, hogy egy kezdeti partícionálás után az elemeket ide-oda mozgathatják a klaszterek között, minden lépés során ügyelve arra, hogy egy megadott metrikát minimalizálják vagy maximalizálják.
+Ezek a módszerek abban közösek, hogy egy kezdeti $k$ diszjunkt partícionálás után az elemeket ide-oda mozgathatják a klaszterek között, minden lépés során ügyelve arra, hogy egy elõre megadott metrikát minimalizálják vagy maximalizálják. Amennyiben több lehetõség is kínálkozik a célfüggvény javítására, a legjobbat választják ezek  közül. Akkor állnak le, ha már nem lehet több olyan lépést tenni, ami javítaná az aktuális klaszterezés jóságát.
+
+A $k$-means az egyik legrégebbi és legegyszerûbb klaszterezõ algoritmus, mely vektortérben elhelyezkedõ elemek esetén használható. Menete a következõ: kezdetben választunk $k$ darab véletlen elemet, melyek reprezentálják a $k$ darab klasztert. Ezután minden elemet hozzárendeljük ahhoz a klaszterhez, amelynek reprezentáns pontjától való tavolsága minimális. A besorolás után új reprezentatív pontot választunk, a klaszter középpontját. Innentõl kezdve pedig addig folytatjuk a besorolást és az új középpont választást, amíg történik változás.
+
+Mivel véletlen elemekbõl indultunk ki, az algoritmust még néhányszor le kell futtatnunk és azt az eredményt kell választanunk, amelyik a célfüggvényt legjobban optimalizálja. A lépésszám így lineáris: $O(nkt)$, ahol $n$ az elemek száma, $k$ a keresett klaszterek száma, $t$ pedig az iterációk száma.
+
+Finomítása az algoritmusnak a $k$-medoid nevû módszer, melyben a klasztert nem a középpontja reprentálja, hanem az adatbázisban ténylegesen elõforduló, leginkább középen elhelyezkedõ (a klaszter többi pontjától minimális átlagos távolságú) elem, a medoid. Ennek elõnye, hogy egyrészt kevésbé érzékeny a kívülálló pontokra, másrészt csak távolságértékeket használja, tehát nincs semmilyen megkötés az elemekre (nem kell vektortérben lenniük).
+
+A gyengepontja ezeknek az algoritmusoknak a kezdeti klaszterezés megválasztása. Az érzékenység abból fakad, hogy egy szerencsétlen kezdeti klaszterezés globális minimum helyett lokális minimumhoz vezethet. Ennek az esélyének csökkentésére a következõket tehetjük:
+
+\begin{itemize}
+\item Véletlenszerû választás helyett kiválaszthatjuk a két legtávolabbi elemet, majd a következõ elemeket sorra úgy, hogy a már megválasztott középpontoktó való távolságuk legyen maximális.
+\item Csak az elsõ középpontot választjuk véletlenszerûen, utána az elõbbihez a hasonlóan a többit úgy választjuk, hogy a már kiválasztottaktól való távolságuk legyen a lehetõ legnagyobb.
+\end{itemize}
+
+%----------------------------------------------------------------------------
+\subsection{Sûrûség-alapú módszerek}
+%----------------------------------------------------------------------------
+
+Az eddig felsorolt klaszterezõ algoritmusok két dologban voltak közösek: nulladik lépésként szükség volt a klaszterek számának ($k$) megadására, illetve csak elliptikus alakú klasztereket tudtak azonosítani. Ezen hiányosságok kiküszöbölésére dolgozták ki a sûrûség-alapú klaszterezõ módszereket, melyek alapfeltevése az, hogy egy klaszteren belül jóval nagyobb az elemek sûrûsége, mint a klaszterek között.
+
+Az alapötlet az, hogy egy klasztert addig növesztünk, amíg hozzá tudunk venni olyan pontot, ami egy elõre magadott $\varepsilon$ távolságnál közelebb van valamelyik eleméhez. Pontosabban úgy fogalmazhatunk, hogy egy klaszteren belüli pontokra mindig igaz, hogy adott $\varepsilon$ sugarú körön belül mindig található bizonyos ($minPts$) számú elem.
+
