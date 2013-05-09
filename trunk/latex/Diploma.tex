@@ -20,7 +20,7 @@
 \usepackage{setspace}  % Ettol a tablazatok, abrak, labjegyzetek maradnak 1-es sorkozzel!
 \usepackage[hang]{caption}
 \usepackage{subcaption}
-\usepackage{hyperref}
+\usepackage[unicode]{hyperref}
 \usepackage{pgfplots}
 \usepackage{tikz}
 \usepackage[miktex]{gnuplottex}
@@ -63,7 +63,7 @@
 %--------------------------------------------------------------------------------------
 \hypersetup{
     bookmarks=true,            % show bookmarks bar?
-    unicode=false,             % non-Latin characters in Acrobat’s bookmarks
+    unicode=true,             % non-Latin characters in Acrobat’s bookmarks
     pdftitle={\vikcim},        % title
     pdfauthor={\vikszerzo},    % author
     pdfsubject={\vikdoktipus}, % subject of the document
@@ -125,6 +125,7 @@
 	chapter1,%
 	chapter2,%
 	chapter3,%
+	chapter4,%
 	acknowledgement,%
 	appendices,%
 }
@@ -162,6 +163,7 @@ aboveskip=10pt}
 \include{chapter1}
 \include{chapter2}
 \include{chapter3}
+\include{chapter4}
 \include{acknowledgement}
 
 %\listoffigures\addcontentsline{toc}{chapter}{Ábrák jegyzéke}
