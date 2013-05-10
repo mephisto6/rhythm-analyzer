@@ -38,7 +38,7 @@ public class FileReader {
 	private static final boolean printTunes = false;
 
 	private static String[] extensions = new String[] { "mnf", "tnf", "gnf",
-			"snf" };
+			"snf", "vnf" };
 
 	private static BidiMap fileMap;
 
