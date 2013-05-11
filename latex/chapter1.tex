@@ -126,12 +126,11 @@ Amennyiben már van egy klaszterezésünk, és azt össze szeretnénk hasonlítani egy 
 
 A következõ fejezetek algoritmusainak ismertetéséhez feltétlenül szükséges a fenti metrikák pontos definiálása, hiszen az eljárások szinte minden lépésük során használják valamelyiküket.
 
-
 %----------------------------------------------------------------------------
 \subsection{Hierarchikus klaszterezési módszerek}
 %----------------------------------------------------------------------------
 
-Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl felfelé építkezve a klaszterezés korábbi állapota alapján határozzák meg annak következõ felosztását. Az építkezés stratégiája alapján a következõképpen lehet õket alosztályokra bontani:
+Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl felfelé építkezve a klaszterezés korábbi állapota alapján határozzák meg annak következõ felosztását \cite{Jain}. Az építkezés stratégiája alapján a következõképpen lehet õket alosztályokra bontani:
 
 \begin{itemize}
 	\item Agglomeráló (összegyûjtõ) hierarchikus klaszterezés: Kezdetben minden objektum egy önálló klasztert alkot, majd ezek összefésülésével jutunk el a kívánt célhoz.
@@ -203,6 +202,29 @@ Ezek után a klaszterek a következõ két szabály alapján kaphatjuk meg:
  \item Ha $p,q \in C$, akkor $p$ és $q$ sûrûség alapon összekötött.
 \end{enumerate}
 
-Ha egy elem nem tartozik egy klaszterbe sem, akkor zajnak nevezzük.
+Az algoritmus elsõ lépésében választunk egy tetszõeleges $p$ elemet és meghatározzuk a belõle sûrûség alapon elérhetõ elemeket. Amennyiben $|N_{eps}(p)|\geq mintPts$ teljesül, kaptunk egy klasztert. A feltétel nem teljesülése nem feltétlenül jelenti azt, hogy $p$ nem tartozik egy klaszterbe sem, lehetséges, hogy egy klaszter szélén helyezkedik el. Ilyenkor csak válasszunk egy új elemet. Ha már nem lehet új elemet választani, az algoritmus véget ért. Ha egy elem ezután sem tartozik egy klaszterbe sem, akkor zajnak tekinthetjük.
 
 A módszer fõ gyengesége, hogy rendkívül érzékeny a két paraméterre ($\varepsilon, minPts$). Sõt, ha különbözõ klaszterek sûrûsége eltérõ, akkor nem biztos, hogy lehet olyan $\varepsilon$-t és $minPts$-t megadni, ami értékelhetõ eredményhez vezet.
+
+%----------------------------------------------------------------------------
+\subsection{További módszerek}
+%----------------------------------------------------------------------------
+
+Megvalósításra nem kerültek, de megemlítendõ még néhány olyan módszer, amely nem tartozik bele a fenti kategóriák egyikébe sem. 
+\begin{itemize}
+ \item Spektrál módszerek
+
+Ezek azok a módszerek, amelyek a klaszterezés során az adathalmaz távolságait tartalmazó mátrix sajátértékeit, illetve sajátvektorait használják.
+\item Grid-alapú módszerek
+
+Ezek az eljárások az elemeket rácspontokba képezik le, majd a továbbiakban csak a kapott rácspontokkal dolgoznak. Fõ elõnyük a gyorsaságuk. 
+\item Modell-alapú módszerek
+
+Az adatot valamilyen matematikai modell segítségével próbálják leírni, egyben melyek karakterizálják a beletartozó elemek tulajdonságait is. Két fõ ága a döntési fa alapú megközelítés és a neurális hálókat használó eljárás.
+\item Fuzzy klaszterezés
+
+A korábbiakkal ellentétben, ahol minden elem pontosan egy osztályba tartozott, ezek az eljárások az elemek és a klaszterek között beletartozási értéket számolnak, mely annál nagyobb, minél inkább biztos, hogy az elem az adott klaszter tagja.
+\item Genetikus algoritmusok
+
+Az evolúciót utánzó genetikus algorimusok lassan mindenütt megjelennek, ezért itt is meg kell említeni õket. 
+\end{itemize}
