@@ -2,16 +2,17 @@
 \chapter{A megvalósítás}
 %----------------------------------------------------------------------------
 
-Az elõzõ fejezetkben definiáltam egy problémát számos megoldási lehetõséggel. A feladatom az volt, hogy hozzak létre egy szoftvert, amely erre a problémára választ ad. Ehhez implementálni kellett a kották beolvasását, a ritmus kinyerését, a távolságok meghatározását, a klaszterezés futtatását és az eredmények megjelenítését. 
+Az elõzõ fejezetekben definiáltam egy problémát számos megoldási lehetõséggel. A feladatom az volt, hogy hozzak létre egy szoftvert, amely erre a problémára választ ad. Ehhez implementálni kellett a kották beolvasását, a ritmus kinyerését, a távolságok meghatározását, a klaszterezés futtatását és az eredmények megjelenítését. 
 
 A szoftver elékészítéséhez a Java nyelvet választottam annak platformfüggetlensége, széleskörû elterjedtsége, támogatottsága és rendelkezésre álló funkcionalitásának sokszínûsége miatt.
+
+A kód, a dokumentáció, illetve a grafikus elemek szövegei is mind angolul készültek.
 
 %----------------------------------------------------------------------------
 \section{Forrásfájlok feldolgozása}
 %----------------------------------------------------------------------------
 
 A vizsgálandó dalok nem hangfájlként állnak rendelkezésre, hanem speciálisan kódolt kották formájában. Ezek sorai megfelelnek egy hagyományos kotta sorainak, a sorok elemei pedig tartalmazzák az egymás után következõ hangok magasságát és idõtartamát.
-
 
 \begin{lstlisting}[frame=single,captionpos=b,caption={Egy kódolt kotta},label={list:kotta}]
 T1/2 K2b [8G2 8G2 8G2 8G2] |K2b [8H2 8H2 8A2 8G2] |K2b 8A2 4F2. |
@@ -21,7 +22,7 @@ T1/2 K2b [8G2 8G2 8G2 8G2] |K2b [8H2 8H2 8A2 8G2] |K2b 8A2 4F2. |
 
 \end{lstlisting}
 
-A \ref{list:kotta}-es fájlban egy ilyen speciálisan kódolt kottát láthatunk. Az elsõ eleme a fájlnak az ütemek hosszát határozza meg. Az ütemek között (az igazi kottához hasonlóan) függõleges vonat ($|$) található, a kottában is szereplõ gerendákat $[$ és $]$ jelöli, de ezek számunkra nem hordoznak hasznos információt. 
+A \ref{list:kotta}-es fájlban egy ilyen speciálisan kódolt kottát láthatunk. Az elsõ eleme a fájlnak az ütemek hosszát határozza meg. Az ütemek között (az igazi kottához hasonlóan) függõleges vonal ($|$) található, a kottában is szereplõ gerendákat nyitó és záró szögeletes zárójel ($[$ és $]$) jelöli, de ezek számunkra nem hordoznak lényeges információt. 
 
 Az ütem elsõ eleme a hangmagasságra vonatkozik, ezért a ritmus vizsgálatakor figyelmen kívül hagyhatjuk. Utána jönnek a hangok, melynek elsõ része határozza meg a hang hosszát, második a magasságát. A \ref{list:kotta}-es fájl elsõ hangot reprezentáló eleme a $8G2$, mely egy $1/8$ hosszúságú $G$ hangot jelöl a második oktáv magasságában.
 
@@ -30,20 +31,54 @@ A félhangot módosító, tetszõleges számú $b$, vagy \# közvetlenül a hang elõtt is
 Pontozott hangok itt is elõfordulhatnak, a pont helye a hangot jelölõ kód utolsó pozíciója, szerepe pedig a hang hosszának másfélszerezése (ilyen pl. az elsõ sor utolsó eleme: $4F2.$, melynek hossza így $1/4+1/8=3/8$).
 
 %----------------------------------------------------------------------------
+\section{A forrásfájlok katalógusa}
+%----------------------------------------------------------------------------
+
+Az adatbázis felépítéséhez szükséges fájlok egy hierarchikus könyvtárstruktúrában találhatóak. A témával foglalkozó korábbi eljárások \cite{Juhasz} egy katalógusfájl segítségével azonosítják a dalokat, mely egy egyszerû kulcs-érték párosnak fogható fel. A kulcs a fájlban elfoglalt sor sorszáma ($1$-tõl indulva), az érték pedig a sor tartalma, mely egy relatív útvonalat tartalmaz a fájlhoz (\ref{list:katal}-es fájl).
+
+\begin{lstlisting}[frame=single,captionpos=b,caption={A katalógusfájl részlete},label={list:katal}]
+data/kotta/par1.knf
+data/kotta/ahol2.knf
+data/kotta/felj3.knf
+data/kotta/megr4.knf
+data/kotta/enm5a.knf
+data/kotta/enm5b.knf
+data/kotta/enm5c.knf
+\end{lstlisting}
+
+Az itt látható $data/kotta/par1.knf$ bejegyzés sorszáma például $1$, és így tovább a többi értelemszerûen.
+
+%----------------------------------------------------------------------------
 \section{Ritmusábrázolás}
 %----------------------------------------------------------------------------
 
-A fájlokból elsõ lépésben a korábban ismertetett TUBS ábrázolású vektorokat nyerjük ki. Ehhez meghatározunk egy $n$ egész számot, mely lehetõleg $2$ hatvány, majd azt mondjuk, hogy egy egységnyi ütemet ennyi üres dobozra osztjuk. Ezután beletesszük az elemeknek megfelelõ $1$-eseket a pozíciójukba. $16$-os felbontást feltételezve a \ref{list:kotta}-es kotta elsõ sora így ábrázolható: $1 0 1 0 1 0 1 0 | 1 0 1 0 1 0 1 0 | 1 0 1 0 0 0 0 0$, hiszen a nyolcadhangok ekkor kettõ helyet foglalnak el a listában, az utolsó pontozott negyed pedig hatot.
+A fájlokból elsõ lépésben a korábban ismertetett TUBS ábrázolású vektorokat nyerjük ki. Ehhez meghatározunk egy $n$ egész számot, mely lehetõleg $2$ hatvány, majd azt mondjuk, hogy egy egységnyi ütemet ennyi üres dobozra osztjuk. Ezután beletesszük az elemeknek megfelelõ $1$-eseket a pozíciójukba. $16$-os felbontást feltételezve a \ref{list:kotta}-es kotta elsõ sora így ábrázolható:
+\[ \left( \begin{array}{cccccccccccccccccccccccccc}
+1& 0& 1& 0& 1& 0& 1& 0& |& 1& 0& 1& 0& 1& 0& 1& 0& |& 1& 0& 1& 0& 0& 0& 0& 0
+\end{array} \right)
+\]
+hiszen a nyolcadhangok ekkor kettõ helyet foglalnak el a listában, az utolsó pontozott negyed pedig hatot.
 
-Az ugyanehhez a sorhoz tartozó intervallumok hosszait reprezentáló vektor a következõ: $[2, 2, 2, 2] [2, 2, 2, 2] [2, 6]$.
+Az ugyanehhez a sorhoz tartozó intervallumok hosszait reprezentáló vektor a pedig a következõképp írható fel:
+\[ \left( \begin{array}{cccccccccccc}
+2& 2& 2& 2& |& 2& 2& 2& 2& |& 2& 6
+\end{array} \right)
+\]
+amely az elõzõ vektorból könnyen számolható az $1$-esek közötti $0$-k számának megszámolásával ($+1$).
 
-A szomszédos elemekhez tartozó arányok: $[1,00 1,00 1,00 1,00 1,00 1,00 1,00 1,00 3,00 0,33]$
+A szomszédos elemekhez tartozó arányok az intervallumok hosszait reprezentáló vektorból számíthatók az szomszédos elemek hányadosának sorbavételével:
+\[ \left( \begin{array}{cccccccccccc}
+1.00& 1.00& 1.00& 1.00& |& 1.00& 1.00& 1.00& 1.00& |& 3.00& 0.33
+\end{array} \right)
+\]
 
-A hangsúlyos elemek pozícióit tartalmazó vektor: $[1, 3, 5, 7, 9, 11, 13, 15, 17, 19]$
+A hangsúlyos elemek pozícióit tartalmazó vektor:
+\[ \left( \begin{array}{cccccccccccc}
+1& 3& 5& 7& |& 9& 11& 13& 15& |& 17& 19
+\end{array} \right)
+\]
 
-A kronotonikus lánc pedig: $[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 6, 6, 6, 6, 6]$, melyet a \ref{fig:fig16} ábrán láthatunk grafikusan ábrázolva.
-
-\begin{figure}[!hb]
+\begin{figure}[!h]
 \centering
 	\begin{tikzpicture}
 	\begin{axis}[ymin=0,ymax=6.2,enlargelimits=false]
@@ -59,18 +94,91 @@ A kronotonikus lánc pedig: $[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 
 \label{fig:fig16}
 \end{figure}
 
+A kronotonikus lánc pedig:
+\[ \left( \begin{array}{cccccccccccccccccccccccccc}
+2& 2& 2& 2& 2& 2& 2& 2& |& 2& 2& 2& 2& 2& 2& 2& 2& |& 2& 2& 6& 6& 6& 6& 6& 6
+\end{array} \right)
+\]
+melyet a \ref{fig:fig16} ábrán láthatunk grafikusan ábrázolva.
+
 %----------------------------------------------------------------------------
 \section{A komparátorok}
 %----------------------------------------------------------------------------
 
-A ritmusok reprezentációinak elkészítése után a következõ lépés az összehasonlításért felelõs osztályok megírása volt. Az objektum-orientáltság szellemében ezek egy közös, \texttt{Comparer} nevû absztrakt osztály gyermekei, mely az összehasonlításért felelõs metóduson kívül minden más segédeljárást tartalmaz (ilyen pl. a számított távolságmátrix formázott kiírása, fájlba mentése, stb.).
+A ritmusok reprezentációinak elkészítése után a következõ lépés az összehasonlításért felelõs osztályok megírása volt. Az objektum-orientáltság szellemében ezek egy közös, \texttt{Comparer} nevû absztrakt osztály gyermekei, mely az összehasonlító metóduson kívül minden más segédeljárást tartalmaz (ilyen pl. a számított távolságmátrix formázott kiírása, fájlba mentése, stb.). 
+
+A következõ osztályok implementációi felelnek meg egy-egy korábban definiált ritmikus összehasonlító módszernek:
+\begin{itemize}
+	\item \texttt{HammingDistanceComparer}
+	\item \texttt{ManhattanDistanceComparer}
+	\item \texttt{EuclideanDistanceComparer}
+	\item \texttt{IntervalDiffDistanceComparer}
+	\item \texttt{SwapDistanceComparer}
+	\item \texttt{ChronotonicDistanceComparer}
+	\item \texttt{ContinousChronotonicDistanceComparer}
+\end{itemize}
 
 %----------------------------------------------------------------------------
-\section{Klaszterezések}
+\section{A klaszterezések}
 %----------------------------------------------------------------------------
 
-Rendelkezésre állnak a hierarchikus klaszterezés alapvetõ implementációi (single, complete és average linkage), melyek egyköztes õsbõl \texttt{LinkageClassifier} származva szintén csak abban az egy metódusban térnek el, hogy hogyan határozzák meg a következõ összevonandó klasztereket.
+A klaszterezõ algrotimusok mindegyikének szintén egy-egy osztály felel meg. Ezek az osztályok a \texttt{Classifier} közös absztrakt õsosztályból származnak, névszerint:
+\begin{itemize}
+	\item \texttt{SingleLinkageClassifier}
+	\item \texttt{CompleteLinkageClassifier}
+	\item \texttt{AverageLinkageClassifier}
+	\item \texttt{RandomKMeansClassifier}
+	\item \texttt{FirstRandomKMeansClassifier}
+	\item \texttt{FarthestFirstKMeansClassifier}
+	\item \texttt{DBSCANClassifier}
+\end{itemize}
+
+A rendelkezésre álló hierarchikus klaszterezés alapvetõ implementációi (single, complete és average linkage) egy köztes õsbõl (\texttt{LinkageClassifier}) származnak, és csak abban az egy metódusban térnek el, hogy hogyan határozzák meg a következõ összevonandó klasztereket. 
+
+Ugyanez mondható el a különbözõ partícionáló módszerekrõl is, ahol a kezdeti klaszterezés megválasztásától eltekintve minden funkcionalitást a közös õs, a \texttt{KMeansClassifier} osztály tartalmaz.
 
 %----------------------------------------------------------------------------
 \section{Futtató felület}
 %----------------------------------------------------------------------------
+
+Az alkalmazás számos futtatási módjának és azok paramétereinek könnyû kezelhetõsége miatt grafikus felületet kapott, melyet az Eclipse SWT (Standard Widget Toolkit) grafikus könyvtárát használva valósítottam meg. 
+
+Az SWT az operációs rendszer grafikus megjelenítést végzõ szubrutinjai fölötti natív objektumok Java csomagolóinak halmazának tekinthetõ \cite{SWT}. Minden platformon elérhetõ és mindegyik különbözõképp néz ki, illeszkedve az adott környezetre jellemzõ kinézetre. A \ref{fig:win01}-es ábrán látható a fejlesztéshez használt Windows 7-es operációs rendszeren kapott felület.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/window.png}
+\caption{A futtató grafikus felület} 
+\label{fig:win01}
+\end{figure}
+
+Az ablak tetején található eszközök segítségével választható ki a forrásadatbázis helye, melyet egy könyvtárválasztó párbeszédablak (\ref{fig:win02} ábra) tesz könnyûvé. Az adatbázis a megadott könyvtárban és annak összes alkönyvtárában található kódolt kották alapján épül fel, így a könyvtárstruktúrában hierarchikusan elrendezett fájlok külön csoportonként is vizsgálhatóak.
+
+Lehetõség van arra, hogy a fájlokat a katalógusfájlban szereplõ azonosítójuk segítségével egyesével adjuk meg, így a fájlhierarchiát nem követõ csoportokat is elemezhetünk. A korábbi kutatásokból származó dallam-alapú klaszterek megadását legördülõ menü teszi még egyszerûbbé.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=70mm, keepaspectratio]{figures/window2.png}
+\caption{Mappaválasztó párbeszédablak} 
+\label{fig:win02}
+\end{figure}
+
+Az ablak közepén találhatóak a különbözõ ritmus-összehasonlítási, illetve a klaszterezési módszerek közötti választást lehetõvé panelek. Ezek pontosan egy összehasonlító módszer és pontosan egy klaszterezõ algoritmus kiválasztását engedik meg.
+
+A kiválasztott klaszterezés paraméterei a jobb oldali paraméter panelen állíthatóak. A panelen minden lehetséges paraméter szerepel, de csak azt lehet állítani, amely a kiválasztott klaszterezés számára szükséges.
+
+A futást a \textit{Classify!} feliratú gomb megnyomásával indíthatjuk, az eredmények megjelenítése pedig az alsó, csak olvasható kimeneti panelen történik. A kapott klaszterek külön sorba kerülnek, az elemeiket pedig a katalógusfájlból származó azonosítók jelölik.
+
+%----------------------------------------------------------------------------
+\section{Felhasznált technológiák}
+%----------------------------------------------------------------------------
+
+A programozási folyamat során gyakran találkoztam olyan problémával, melyre annak általánossága miatt már jól ismert és publikusan hozzáférhetõ megoldások érhetõek el.
+
+Ilyen volt például egy kétirányú \texttt{Map} iránti igény, melyre az Apache Commons Collections könyvtárának \texttt{BidiMap} osztálya nyújtott megoldást.
+
+A debug során sok segítséget nyújtott a prioritási szintenkénti loggolást lehetõvé tevõ Log4j csomag.
+
+A katalógusfájl soronként feldolgozását a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. Az Apache Commons IO könyvtára a rekurzív fájlbeolvasásban segített.
+
+A munka során végig verziókezelõ rendszer segítségével naplóztam az elvégzett feladatokat és tartottam biztonságos helyen a forráskódot. Ehhez a \url{http://code.google.com} által rendelkezésre bocsátott alkalmazásokat és tárhelyet használtam.
