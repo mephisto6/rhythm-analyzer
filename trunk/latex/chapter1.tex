@@ -1,37 +1,52 @@
 %----------------------------------------------------------------------------
 \chapter{Adatbányászati háttér}\label{sect:Adatb}
 %----------------------------------------------------------------------------
-\section{Az alkalmazott adatbányászatról}
+\section{Az alkalmazott adatbányászat}
 %----------------------------------------------------------------------------
 Az adatbányászatot sokféleképp lehet definiálni. A legelterjedtebb megfogalmazás szerint olyan újszerû, érvényes és korábban ismeretlen tudás kinyerése nagyméretû adathalmazból, mely nem triviális, hasznos és valamilyen módon magyarázható is \cite{BodonPhD}. Mint formula, nem a legszerencsésebb kifejezés, hiszen míg a szénbányászaton a szén kitermelését értjük, az adatbányászat nem új adatot, hanem a nyers adatból tudást hoz létre.
 
-Az alkalmazott adatbányászat kétségtelenül multidiszciplináris terület, hiszen az alapjait adó tágabb értelemben vett matematikai ágak (statisztika, valószínûség-számítás, lineáris algebra, algoritmus-elmélet, mesterséges intelligencia, stb\dots) mellett nem hagyható figyelmen kívül az adathalmaz által reprezentált entitásokhoz kapcsolódó meglévõ tudásunk sem, hiszen biológusok, csillagászok, bankárok nap mint nap bár, de különbözõképp használják és magyarázzák eredményeit. A dolgozatom egy etnomuzikológus által felvetett kérdésekre keres adatbányászaton alapuló, de a elsõsorban népzenekutató szakember által értelmezhetõ válaszokat, tehát a cél, hogy a népzenekutatás számára állítsunk elõ új tudást.
+Az alkalmazott adatbányászat egy multidiszciplináris terület, hiszen az alapjait adó tágabb értelemben vett matematikai ágak (statisztika, valószínûség-számítás, lineáris algebra, algoritmus-elmélet, mesterséges intelligencia, stb\dots) mellett nem hagyható figyelmen kívül az adathalmaz által reprezentált entitásokhoz kapcsolódó meglévõ tudásunk sem, hiszen biológusok, csillagászok, bankárok nap mint nap bár, de különbözõképp használják és magyarázzák eredményeit. 
+
+A dolgozatom egy etnomuzikológus által felvetett kérdésekre keres adatbányászaton alapuló, de elsõsorban népzenekutató szakember által értelmezhetõ válaszokat, tehát a cél, hogy a népzenekutatás számára állítsunk elõ új tudást.
 
 %----------------------------------------------------------------------------
 \section{A tudásfeltárás folyamata}
 %----------------------------------------------------------------------------
 
-Az adatbányászati folyamat eredményességének elengedhetetlen feltétele, hogy kövessük a területtel foglalkozó korábbi kutatások által meghatározott lépéseket. A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} a követketkezõ fázisokat sorolja fel:
+A tudáskinyerési folyamat jóldefiniált, egymást követõ lépések sorozata. A kitûzött célok elérését segíti, ha követjük ezeket a lépéseket, melyek a korábbi kutatások tapasztalatain alapulnak. 
+
+A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} különbözõ felosztásokban (némely lépéseket egybevonva vagy több pontra bontva), de a követketkezõ fázisokat sorolja fel:
 
 \begin{enumerate}
-	\item Az alkalmazási terület feltárása és megértése, a fontosabb elõzetes ismeretek begyûjtése, a felhasználási célok meghatározása
-	\item Céladatbázis létrehozása: kiválasztani az adatbázist, amelybõl a tudást ki akarjuk nyerni
-	\item Adatok elõfeldolgozása: téves bejegyzések eltávolítása, zajszûrés (adattisztítás)
-	\item Adattér csökkentés: az adatbázisból a cél szempontjából fontos attribútumok kiemelése
-	\item Az adatbányászati algoritmus típusának kiválasztása: eldönteni, hogy milyen módszert igényel a megoldandó feladat
-	\item A megfelelõ algoritmus kiválasztása (idõ- és tárigény, elõnyök, hátrányok alapján)
-	\item Az algoritmus futtatása
-	\item A kinyert tudás értelmezése, esetleges visszalépés finomítás céljából
-	\item A megszerzett tudás megerõsítése: összevetés az elvárásokkal, elõzetes ismeretekkel
+	\item \textbf{Az alkalmazási terület feltárása és megértése}: a fontosabb elõzetes ismeretek begyûjtése, a felhasználási célok meghatározása
+	\item \textbf{A céladatbázis létrehozása}: a használni kívánt adatbázis kiválasztása, amelybõl a tudást ki akarjuk nyerni
+	\item \textbf{Az adatok elõfeldolgozása}: téves bejegyzések eltávolítása, hiányos mezõk kitöltése, zajszûrés (adattisztítás)
+	\item \textbf{Adattér csökkentés}: az adatbázisból a cél szempontjából fontos attribútumok kiemelése
+	\item \textbf{Az adatbányászati algoritmus típusának kiválasztása}: a feladatra megoldást nyújtó módszerek áttekintése és a használni kívánt típus meghatározása
+	\item \textbf{A megfelelõ algoritmus kiválasztása}: konkrét algoritmus megadása idõ-, és tárigény, elõnyök és hátrányok alapján 
+	\item \textbf{Az algoritmus futtatása}: az elõkészített adatok elemzése a kiválasztott algoritmussal
+	\item \textbf{A kinyert tudás értelmezése}: a kinyert összefüggés vizsgálata az alkalmazási terület kontextusában, esetleges visszalépés finomítás céljából
+	\item \textbf{A megszerzett tudás megerõsítése}: az eredmények összevetése az elvárásokkal, elõzetes ismeretekkel
 \end{enumerate}
 
-A munka során mindvégig szem elõtt tartottam, hogy amennyire csak lehetséges, az itt felsorolt pontok mindegyikét kövessem. A következõ fejezetek struktúrálása ezen ütemterv nyomán készült.
+A jelen adatbányászati feladat számára adott volt a kották alkotta adatbázis, melyben sem zajszûrésre, sem téves vagy hiányos mezõk javítására nem volt szükség. A dallamra vonatkozó információk elhagyásával megkaptuk a használni kívánt, csak ritmikai tulajdonságokra szûkített adatbázist. Az osztályozás elõre nem definiált csoportok létrehozásával történik, azaz klaszterezésre van szükségünk. A rendelkezésre álló algoritmusokat a következõ pontokban vizsgálom meg.
 
 %----------------------------------------------------------------------------
-\section{Klaszterezés}
+\section{A klaszterezés}
 %----------------------------------------------------------------------------
 
-A klaszterezés egy olyan dimenziócsökkentõ eljárás, melynek során az elemeket homogén csoportokba, úgy nevezett klaszterekbe soroljuk \cite{Rokach}. Az egyes klasztereken belüli elemek valamilyen szempontból hasonlítanak egymáshoz és különböznek a többi klaszter elemeitõl. A csoportosítás alapját különbözõ távolságmértékek képezik. Formálisan, a klaszterezési struktúra az elemeket tartalmazó S univerzum olyan részhalmazainak halmaza ($C=C_1,..,C_k$), hogy $S=\bigcup_{i=1}^k C_i$ és $C_i \cap C_j = \emptyset $,$ \forall i \neq j$-re.
+A klaszterezés egy olyan dimenziócsökkentõ eljárás, melynek során az elemeket homogén csoportokba, úgy nevezett klaszterekbe soroljuk \cite{Rokach}. Az egyes klasztereken belüli elemek valamilyen szempontból hasonlítanak egymáshoz és különböznek a többi klaszter elemeitõl. A csoportosítás alapját különbözõ távolságmértékek képezik. Formálisan, a klaszterezési struktúra az elemeket tartalmazó $S$ univerzum olyan részhalmazainak halmaza ($C=C_1,..,C_k$), hogy $S=\bigcup_{i=1}^k C_i$ és $C_i \cap C_j = \emptyset $,$ \forall i \neq j$-re.
+
+Ha $S$ elemeinek száma $n$, és $k$ darab csoportra szeretnénk bontani, akkor a lehetséges csoportosítások számát a Stirling számok adják meg:
+
+\begin{align}
+	S_n^{(k)} = \frac{1}{k!} \sum_{i=0}^k (-1)^{k-i} \binom{k}{i} i^n
+	\label{eq:1}
+\end{align}
+
+mely, $n=25$ és $k=5$ esetén már $10^{15}$ nagyságrendû, ráadásul ha még a $k$-t sem tudjuk, akkor még ilyen kisméretû adathalmaz esetén is $10^{18}$-nál is több lehetõségünk van erre. Általában jóval nagyobb $n$-nel és $k$-val kell dolgoznunk, ami mutatja a probléma során elõálló keresési tér hatalmasságát.
+
+A klaszterezés egy nagyobb adathalmaz struktúrájának feltárására is használható, hogy egy áttekinthetõ képet kapjunk arról, milyen objektumok találhatóak benne. Ehhez az azonos csoportba került elemek közös tulajdonságait kell meghatároznunk.
 
 A klaszter-analízis két fõ ága a hierarchikus és a nem hierarchikus klaszterezés. Hierarchikus esetben az új klasztereket a korábbi klaszterek alapján határozzuk meg, ezzel szemben a nem hierarchikus módszerek egyszerre határozzák meg az összes klasztert.
 
@@ -41,29 +56,34 @@ A klaszter-analízis két fõ ága a hierarchikus és a nem hierarchikus klaszterezés
 
 Egy klaszterezési algoritmus futása közben, illetve az eredmények összehasonlítása során alapvetõ kérdés, hogy hogyan értékelünk egy adott klaszterezést. Hogy ezt megtehessük, definiálnunk kell néhány klaszter-, illetve klaszterezésjellemzõt. 
 
-A C klaszter elemeinek számát $|C|$ jelöli. A klaszter nagyságának jellemzésére szolgál az átmérõ fogalma ($D(C)$). Ezt kétféleképp is definiálhatjuk:
+A C klaszter elemeinek számát $|C|$ jelöli. A klaszter nagyságának jellemzésére szolgál az átmérõ fogalma ($D(C)$). Ezt többféleképp is definiálhatjuk:
 \begin{itemize}
-\item A klaszte elemei közötti maximális távolság alapján: 
+\item A klaszter elemei közötti maximális távolság alapján: 
 	\begin{align}
 	D_{max}(C) = \max_{p,q \in C} d(p,q) 
-	\label{eq:1}
+	\label{eq:2}
 	\end{align}
 \item A klaszter elemei közötti átlagos távolság alapján: 
 	\begin{align}
 	D_{avg}(C) = \frac{\sum_{p,q \in C}d(p,q)}{|C|^2} 
-	\label{eq:2}
+	\label{eq:3}
+	\end{align}
+\item Ugyanez, ha nem vesszük számításba az elemek önmaguktól való $0$ távolságát:
+	\begin{align}
+	D'_{avg}(C) = \frac{\sum_{p,q \in C}d(p,q)}{\binom{|C|}{2}} 
+	\label{eq:4}
 	\end{align}
 \end{itemize}
 
 Ha a klaszterezendõ elemek olyanok, hogy vektortérben értelmezhetõek, akkor beszélhetünk a klaszter középpontjáról ($\vec m_C$), illetve sugaráról ($R_C$), mint klaszterjellemzõkrõl. Ezeket így definiáljuk:
 	\begin{align}
 	\vec m_C = \frac{\sum_{p \in C} \vec p}{|C|} 
-	\label{eq:3}
+	\label{eq:5}
 	\end{align}
 	
 	\begin{align}
 		R_C = \frac{\sum_{p \in C} |\vec p- \vec m_C|}{|C|} 
-		\label{eq:4}
+		\label{eq:6}
   \end{align}
 	
 Gyakran elõfordul, hogy egy algoritmus következõ állapotának meghatározásához meg kell találnunk egy adott célfüggvényt minimalizáló klaszterpárt. Ilyen célfüggvény lehet a klaszterek közötti aktuális távolság, melyet többféleképpen is meghatározhatunk:
@@ -71,27 +91,27 @@ Gyakran elõfordul, hogy egy algoritmus következõ állapotának meghatározásához me
 \item A két klaszter elemeinek páronként számított távolságainak minimuma:
 	\begin{align}
 	d_{min}(C_i,C_j) = \min_{p \in C_i,q \in C_j} d(p,q) 
-	\label{eq:5}
+	\label{eq:7}
 	\end{align}
 \item A két klaszter elemeinek páronként számított távolságainak maximuma:
 	\begin{align}
 	d_{max}(C_i,C_j) = \max_{p \in C_i,q \in C_j} d(p,q) 
-	\label{eq:6}
+	\label{eq:8}
 	\end{align}
 \item A két klaszter elemeinek páronként számított távolságainak átlaga:
 	\begin{align}
 	d_{avg}(C_i,C_j) = \frac{\sum_{ p \in C_i, q \in C_j} d(p,q)}{|C_i|*|C_j|}
-	\label{eq:7}
+	\label{eq:9}
 	\end{align}
 \item A két klaszterközéppont távolsága:
 	\begin{align}
 	d_{mean}(C_i,C_j) = |\vec m_i - \vec m_j|
-	\label{eq:8}
+	\label{eq:10}
 	\end{align}
-\item Az egyesítésükkel keletkezõ klaszter átmérõje
+\item Az egyesítésükkel keletkezõ klaszter átmérõje:
 	\begin{align}
 	d_D(C_i,C_j) = D(C_i \cup C_j) 
-	\label{eq:9}
+	\label{eq:11}
 	\end{align}
 \end{itemize}
 
@@ -100,37 +120,39 @@ Amennyiben már van egy klaszterezésünk, és azt össze szeretnénk hasonlítani egy 
 \item Hibaösszeg (klasztereken belüli elemek klaszterközéppontól való távolságainak összege):
 	\begin{align}
 	\sum_{i=1}^{k}\sum_{p \in C_i}| \vec p- \vec m_{C_i} |
-	\label{eq:10}
+	\label{eq:12}
 	\end{align}
 \item Négyzetes hibaösszeg (ugyanaz, mint az elõzõ, csak négyzetesen - a nagy távolságok súlyának növelése céljából):
 	\begin{align}
 	\sum_{i=1}^{k}\sum_{p \in C_i}| \vec p- \vec m_{C_i} |^2 
-	\label{eq:11}
+	\label{eq:13}
 	\end{align}
-\item Klasztereken belüli távolságösszegek:
+\item Klasztereken belüli távolságösszegek összege:
 	\begin{align}
 	\sum_{i=1}^{k}\sum_{p,q \in C_i} d(p,q) 
-	\label{eq:12}
+	\label{eq:14}
 	\end{align}
 \item Maximális átmérõ:
 	\begin{align}
 	\max_{i \in \left\{1,\dots,k\right\}} D(C_i) 
-	\label{eq:13}
+	\label{eq:15}
 	\end{align}
 \item Átlagos átmérõ:
 	\begin{align}
 	\frac{\sum_{i \in \left\{1,\dots,k\right\}} D(C_i)}{k} 
-	\label{eq:14}
+	\label{eq:16}
 	\end{align}
 \end{itemize}
 
-A következõ fejezetek algoritmusainak ismertetéséhez feltétlenül szükséges a fenti metrikák pontos definiálása, hiszen az eljárások szinte minden lépésük során használják valamelyiküket.
+Az utolsó két mértékben használt $D(C)$ klaszterátmérõ természetesen mindhárom fentebb definiált módon ($D_{max}(C)$: \ref{eq:2}-es képlet, $D_{avg}(C)$: \ref{eq:3}-os képlet, illetve $D'_{avg}(C)$: \ref{eq:4}-es képlet) behelyettesíthetõ. 
+
+A következõ fejezetek algoritmusainak ismertetéséhez feltétlenül szükséges volt a fenti metrikák pontos definiálása, hiszen az eljárások szinte minden lépésük során használják valamelyiküket.
 
 %----------------------------------------------------------------------------
 \subsection{Hierarchikus klaszterezési módszerek}
 %----------------------------------------------------------------------------
 
-Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl felfelé építkezve a klaszterezés korábbi állapota alapján határozzák meg annak következõ felosztását \cite{Jain}. Az építkezés stratégiája alapján a következõképpen lehet õket alosztályokra bontani:
+Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl felfelé építkezve a klaszterezés aktuális állapota alapján határozzák meg annak következõ felosztását \cite{Jain}. Az építkezés stratégiája alapján a következõképpen lehet õket alosztályokra bontani:
 
 \begin{itemize}
 	\item Agglomeráló (összegyûjtõ) hierarchikus klaszterezés: Kezdetben minden objektum egy önálló klasztert alkot, majd ezek összefésülésével jutunk el a kívánt célhoz.
@@ -139,28 +161,40 @@ Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl fe
 
 Az összefésülés illetve a felosztás valamilyen távolságmérték alapján történik. Minden lépésben egy elõre megadott jósági kritériumot optimalizálunk. A távolságértékek alapján történõ következõ lépés meghatározása alapján további felosztásokat tehetünk a hierarchikus klaszterezõ eljárásokra:
 
-\begin{itemize}
-	\item Single-linkage klaszterezés
+%----------------------------------------------------------------------------
+\subsubsection{Single-linkage klaszterezés}
+%----------------------------------------------------------------------------
 	
-	Ebben az esetben két klaszter távolságát a bennük lévõ elemek páronkénti távolságainak minimumaként definiáljuk (\ref{eq:5}-ös képlet).
+	Ebben az esetben két klaszter távolságát a bennük lévõ elemek páronkénti távolságainak minimumaként definiáljuk (\ref{eq:7}-es képlet).
 	
 	Gráfelméleti szempontból nézve (egy teljes gráfban a pontok a klaszterezendõ elemek, az élsúlyok pedig a pontokhoz tartozó elemek közötti távolságok) ez a módszer egy minimális feszítõfát fog találni, ha a klaszterek számát $1$-re állítjuk. Ha $k$ darab csoportot szeretnénk kapni, akkor ezt a minimális feszítõfa $k-1$ darab legnagyobb súlyú élének elhagyásával kaphatjuk meg. Az így keletkezett komponensekben található elemek kerülnek egy klaszterbe.
 		
 		A módszernek komoly hátránya, az úgy nevezett lánceffektus: néhány hídként viselkedõ egymáshoz közeli pont összekapcsolhat egyébként jól elkülönülõ klasztereket. További megfontolandókat vetnek fel az elkülönülõ pontok (úgynevezett outlierek) jelenléte az adatbázisban. 
-		
-	\item Complete-linkage klaszterezés
 	
-	Ez a megközelítés is a klasztereken belüli elemek páronkénti távolságából indul ki, de minimum helyett azok maximumát használja a klasztertávolságok meghatározására (\ref{eq:6}-os képlet). 
+	%----------------------------------------------------------------------------
+\subsubsection{Complete-linkage klaszterezés}
+%----------------------------------------------------------------------------
+	
+	Ez a megközelítés is a klasztereken belüli elemek páronkénti távolságából indul ki, de minimum helyett azok maximumát használja a klasztertávolságok meghatározására (\ref{eq:8}-as képlet). 
 	
 	Gráfelméleti szempontból itt most maximális teljes részgráfok, azaz részgráfként elõálló klikkek keresése a cél, melyek meghatároznak egy klasztert. A feltétel az, hogy minden szomszéd egy számított maximális távolságon belül legyen.
 
 	A kapott klaszterek kompaktsága miatt gyakran ez adja a legjobb eredményeket, hiszen kiküszöböli a single linkage klaszterezésnél elõforduló lánceffektust. Jellemzõ rá, hogy a klaszterek átmérõi megközelítõleg hasonló méretûek.
 	
-	\item Average-linkage klaszterezés
+%----------------------------------------------------------------------------
+\subsubsection{Average-linkage klaszterezés}
+%----------------------------------------------------------------------------
 	
-	Ez a módszer két klaszter távolságát elemeik páronkénti távolságainak átlagaként definiálja (\ref{eq:7}-es képlet).
+	Ez a módszer két klaszter távolságát elemeik páronkénti távolságainak átlagaként definiálja (\ref{eq:9}-es képlet).
 	Hátránya, hogy ,,hosszúkás'' klasztereket szétbonthat, illetve szomszédos ,,hosszúkás'' klasztereket összevonhat.
-\end{itemize}
+	
+%----------------------------------------------------------------------------
+\subsubsection{Ward módszere}
+%----------------------------------------------------------------------------	
+
+Ennél a módszernél is kezdetben minden elem külön klaszterbe tartozik, a négyzetes hiba így $0$. Eztuán minden lépésnél a négyzetes hibát próbálja minimalizálni azzal, hogy azt a két klasztert egyesíti, amelyek összevonása a legkisebb négyzetes hibanövekedést okozza. Sajnos itt sem garantált, hogy globális helyett nem lokális minimumot találunk.
+
+\vspace{12pt}
 
 Minden további felosztás egy nagyobb távolságot eredményez a klaszterek között, mint az elõzõ felosztás maximális távolsága. A leállási feltétel így lehet egy maximális új távolság is a $k$ számú klaszter elérése mellett.
  
@@ -170,13 +204,25 @@ A hierarchikus módszerek közös hátránya a rossz skálázhatóság és a nemlineáris l
 \subsection{Partícionáló módszerek}
 %----------------------------------------------------------------------------
 
-Ezek a módszerek abban közösek, hogy egy kezdeti $k$ diszjunkt partícionálás után az elemeket ide-oda mozgathatják a klaszterek között, minden lépés során ügyelve arra, hogy egy elõre megadott metrikát (ilyen lehet az \ref{eq:10}, \ref{eq:11}, \ref{eq:12}, \ref{eq:13} és \ref{eq:14} függvények bármelyike) minimalizálják vagy maximalizálják. Amennyiben több lehetõség is kínálkozik a célfüggvény javítására, a legjobbat választják ezek  közül. Akkor állnak le, ha már nem lehet több olyan lépést tenni, ami javítaná az aktuális klaszterezés jóságát.
+Ezek a módszerek abban közösek, hogy egy kezdeti $k$ diszjunkt partícionálás után az elemeket ide-oda mozgathatják a klaszterek között, minden lépés során ügyelve arra, hogy egy elõre megadott metrikát (ilyen lehet az \ref{eq:12}-es, \ref{eq:13}-as, \ref{eq:14}-es, \ref{eq:15}-ös és \ref{eq:16}-os függvények bármelyike) minimalizálják vagy maximalizálják. Amennyiben több lehetõség is kínálkozik a célfüggvény javítására, a legjobbat választják ezek  közül. Akkor állnak le, ha már nem lehet több olyan lépést tenni, ami javítaná az aktuális klaszterezés jóságát.
+
+%----------------------------------------------------------------------------
+\subsubsection{$k$-means klaszterezés}
+%----------------------------------------------------------------------------
 
 A $k$-means az egyik legrégebbi és legegyszerûbb klaszterezõ algoritmus, mely vektortérben elhelyezkedõ elemek esetén használható. Menete a következõ: kezdetben választunk $k$ darab véletlen elemet, melyek reprezentálják a $k$ darab klasztert. Ezután minden elemet hozzárendeljük ahhoz a klaszterhez, amelynek reprezentáns pontjától való tavolsága minimális. A besorolás után új reprezentatív pontot választunk, a klaszter középpontját. Innentõl kezdve pedig addig folytatjuk a besorolást és az új középpont választást, amíg történik változás.
 
-Mivel véletlen elemekbõl indultunk ki, az algoritmust még néhányszor le kell futtatnunk és azt az eredményt kell választanunk, amelyik a célfüggvényt legjobban optimalizálja. A lépésszám így lineáris: $O(nkt)$, ahol $n$ az elemek száma, $k$ a keresett klaszterek száma, $t$ pedig az iterációk száma.
+Formálisan, az $n$ elemû $S$ alaphalmazt $k \leq n$ darab $C_1,..,C_k$, páronként diszjunkt partícióra osztja úgy, hogy az \ref{eq:11}-es képletben szereplõ négyzetes hibaösszeg minimális legyen.
 
-Finomítása az algoritmusnak a $k$-medoid nevû módszer, melyben a klasztert nem a középpontja reprezentálja, hanem az adatbázisban ténylegesen elõforduló, leginkább középen elhelyezkedõ (a klaszter többi pontjától minimális átlagos távolságú) elem, a medoid (formálisan egy C kalszter medoidja egy olyan $i \in C$ elem, melyre $\sum_{j \in C} d(i,j)$ minimális). Ennek elõnye, hogy egyrészt kevésbé érzékeny a kívülálló pontokra, másrészt csak a távolságértékeket használja, tehát nincs semmilyen megkötés az elemekre (nem kell vektortérben lenniük). A javulás ára költség növekedése: míg a középpont meghatározása megvan lineáris idõben, a medoid megtalálása ennél költségesebb.
+Mivel véletlen elemekbõl indultunk ki, az algoritmust még néhányszor le kell futtatnunk és azt az eredményt kell választanunk, amelyik a négyzetes hibaösszeget legjobban minimalizálja. A lépésszám így lineáris: $O(nkt)$, ahol $n$ az elemek száma, $k$ a keresett klaszterek száma, $t$ pedig az iterációk száma.
+
+%----------------------------------------------------------------------------
+\subsubsection{$k$-medoid klaszterezés}
+%----------------------------------------------------------------------------
+
+Finomítása az algoritmusnak a $k$-medoid nevû módszer, melyben a klasztert nem a középpontja reprezentálja, hanem az adatbázisban ténylegesen elõforduló, leginkább középen elhelyezkedõ (a klaszter többi pontjától minimális átlagos távolságú) elem, a medoid (formálisan egy C klaszter medoidja egy olyan $m \in C$ elem, melyre $\sum_{i \in C} d(m,i)$ minimális). Ennek elõnye, hogy egyrészt kevésbé érzékeny a kívülálló pontokra, másrészt csak a távolságértékeket használja, tehát nincs semmilyen megkötés az elemekre (nem kell vektortérben lenniük). A javulás ára költség növekedése: míg a középpont meghatározása megvan lineáris idõben, a medoid megtalálása ennél költségesebb.
+
+\vspace{12pt}
 
 A gyengepontja ezeknek az algoritmusoknak, hogy a kezdeti klaszterezés milyensége nagyban befolyásolja az eredményét. Az érzékenység abból fakad, hogy egy szerencsétlen kezdeti klaszterezés globális minimum helyett lokális minimumhoz vezethet. Ennek az esélyének csökkentésére a következõket tehetjük:
 
@@ -185,11 +231,31 @@ A gyengepontja ezeknek az algoritmusoknak, hogy a kezdeti klaszterezés milyenség
 \item Csak az elsõ középpontot választjuk véletlenszerûen, utána az elõbbihez a hasonlóan a többit úgy választjuk, hogy a már kiválasztottaktól való távolságuk legyen a lehetõ legnagyobb.
 \end{itemize}
 
+Szintén hátrány, hogy az algoritmus futásához explicit meg kell adnunk a $k$ értéket. Ezt nem tudjuk kiküszöbölni, de különbözõ $k$-k eredményeit összevethetjük és választhatjuk azt a megoldást, amely a legjobb eredményt adta. Kezdeti beállításként a szakirodalom \cite{Mardia} a következõ értéket javasolja:
+
+\begin{align}
+	k \approx \sqrt{\frac{n}{2}}
+\end{align}
+
+ahol $n$ a klaszterezendõ elemek száma. 
+
+A négyzetes hibaösszeget (\ref{eq:11}-es képlet) gyakran használják az algoritmusok minimalizálandó célfüggvényként, de ennek a megközelítésnek van néhány súlyos hátránya:
+\begin{enumerate}
+\item Csak elliptikus klaszterek megtalálására képes, ami azt jelenti, hogy az amorf formájú klasztereket feldarabolja kisebb köralakúakra.
+\item Rossz eredményeket ad, ha a klaszterek között nagy méretkülönbségek vannak. Nagy méretû klaszter esetén ugyanis a szélsõ pontok távol esnek a középponttól, ami nagy hibát eredményez, így a nagy klaszter felosztásra kerül.
+\item Érzékeny a távol esõ pontokra (outlierekre), hiszen egy ilyen az õt tartalmazó klaszter középpontját elhúzza.
+\end{enumerate}
+
+
 %----------------------------------------------------------------------------
 \subsection{Sûrûség-alapú módszerek}
 %----------------------------------------------------------------------------
 
 Az eddig felsorolt klaszterezõ algoritmusok két dologban voltak közösek: nulladik lépésként szükség volt a klaszterek számának ($k$) megadására, illetve csak elliptikus alakú klasztereket tudtak azonosítani. Ezen hiányosságok kiküszöbölésére dolgozták ki a sûrûség-alapú klaszterezõ módszereket, melyek alapfeltevése az, hogy egy klaszteren belül jóval nagyobb az elemek sûrûsége, mint a klaszterek között.
+
+%----------------------------------------------------------------------------
+\subsubsection{DBSCAN klaszterezés}
+%----------------------------------------------------------------------------
 
 A legelsõ és legismertebb sûrûség-alapú klaszterezõ algoritmus a DBSCAN (\textit{Density-Based Spatial Clustering of Applications with Noise}), melynek alapötlet az, hogy egy klasztert addig növesztünk, amíg hozzá tudunk venni olyan pontot, ami egy elõre magadott $\varepsilon$ távolságnál közelebb van valamelyik eleméhez. Pontosabban úgy fogalmazhatunk, hogy egy klaszteren belüli pontokra mindig igaz, hogy adott $\varepsilon$ sugarú körön belül mindig található bizonyos ($minPts$) számú elem.
 
