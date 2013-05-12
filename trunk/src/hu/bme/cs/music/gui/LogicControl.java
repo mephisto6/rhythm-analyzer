@@ -8,7 +8,6 @@ import hu.bme.cs.music.file.FileReader;
 import hu.bme.cs.music.manage.ClassifyManager;
 import hu.bme.cs.music.manage.CompareManager;
 import hu.bme.cs.music.model.KMeansClassifier;
-import hu.bme.cs.music.model.Manager;
 
 /**
  * @author Jozsef
@@ -25,7 +24,7 @@ public class LogicControl {
 	public void run() {
 
 		CompareManager compareManager = null;
-		Manager classifyManager;
+		ClassifyManager classifyManager;
 
 		getParams();
 
@@ -49,6 +48,7 @@ public class LogicControl {
 				classifierId);
 
 		MainWindow.setResultText(classifyManager.getResults());
+		MainWindow.setMetricsText(classifyManager.getMetrics());
 	}
 
 	private void getParams() {

@@ -21,8 +21,6 @@ public class DBSCANClassifier extends Classifier {
 
 	private static Logger log = Logger.getLogger(DBSCANClassifier.class);
 
-	private List<Cluster> clusters = new ArrayList<Cluster>();
-
 	//cluster1: 0.17
 	//cluster2: 0.21
 	public static double eps = 0.21;
@@ -47,7 +45,7 @@ public class DBSCANClassifier extends Classifier {
 			int len = getDistMx().length;
 			classes = new int[len];
 			for (int i = 0; i < len; i++) {
-				for (Cluster c : clusters) {
+				for (Cluster c : getClusters()) {
 					if (c.containsNum(i)) {
 						classes[i] = c.getId();
 					}
@@ -83,7 +81,7 @@ public class DBSCANClassifier extends Classifier {
 						}
 					}
 					log.debug("Cluster " + i + " -> " + neighbours);
-					clusters.add(new Cluster(i, neighbours, mx));
+					getClusters().add(new Cluster(i, neighbours, mx));
 				}
 			}
 		}
@@ -91,12 +89,12 @@ public class DBSCANClassifier extends Classifier {
 		for (int i = 0; i < mx.length; i++) {
 			if (notMember(i)) {
 				noise.add(i);
-				clusters.add(new Cluster(i, mx));
+				getClusters().add(new Cluster(i, mx));
 			}
 		}
 		log.debug("Considered to be noise: " + noise);
 		log.debug("sum of sum of min distances: "
-				+ MetricsUtils.getSumOfSumOfMinDistances(clusters));
+				+ MetricsUtils.getSumOfSumOfMinDistances(getClusters()));
 	}
 
 	private List<Integer> getNeighbours(int p) {
@@ -115,7 +113,7 @@ public class DBSCANClassifier extends Classifier {
 	}
 
 	private boolean notMember(int k) {
-		for (Cluster c : clusters) {
+		for (Cluster c : getClusters()) {
 			if (c.containsNum(k)) {
 				return false;
 			}

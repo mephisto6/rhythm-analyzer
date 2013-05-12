@@ -63,6 +63,7 @@ public class MainWindow {
 	private static Text KMeansLoopText;
 
 	private static Text resultText;
+	private static Text metricsText;
 
 	/**
 	 * @param args
@@ -234,6 +235,8 @@ public class MainWindow {
 		Label resultLabel = new Label(shell, SWT.None);
 		resultLabel.setText("Results:");
 		setDefaultGridData(resultLabel, 3);
+		Label metricsLabel = new Label(shell, SWT.None);
+		metricsLabel.setText("Metrics:");
 
 		resultText = new Text(shell, SWT.MULTI | SWT.V_SCROLL | SWT.H_SCROLL
 				| SWT.READ_ONLY | SWT.BORDER);
@@ -242,8 +245,16 @@ public class MainWindow {
 		gd.verticalAlignment = SWT.FILL;
 		gd.grabExcessHorizontalSpace = true;
 		gd.grabExcessVerticalSpace = true;
-		gd.horizontalSpan = 4;
+		gd.horizontalSpan = 3;
 		resultText.setLayoutData(gd);
+		
+		metricsText = new Text(shell, SWT.MULTI | SWT.READ_ONLY | SWT.BORDER);
+		gd = new GridData();
+		gd.horizontalAlignment = SWT.FILL;
+		gd.verticalAlignment = SWT.FILL;
+	//	gd.grabExcessHorizontalSpace = true;
+		gd.grabExcessVerticalSpace = true;
+		metricsText.setLayoutData(gd);
 
 		addListeners();
 
@@ -299,6 +310,10 @@ public class MainWindow {
 
 	public static void setResultText(String result) {
 		resultText.setText(result);
+	}
+	
+	public static void setMetricsText(String result) {
+		metricsText.setText(result);
 	}
 
 	public static String getDirectory() {
