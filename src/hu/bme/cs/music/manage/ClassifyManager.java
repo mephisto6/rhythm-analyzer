@@ -30,7 +30,11 @@ public class ClassifyManager extends Manager {
 	public ClassifyManager(List<Comparer> comparers) {
 		classifiers = new ArrayList<Classifier>();
 		for (Comparer comparer : comparers) {
+			classifiers.add(new SingleLinkageClassifier(comparer));
+			classifiers.add(new AverageLinkageClassifier(comparer));
 			classifiers.add(new CompleteLinkageClassifier(comparer));
+			classifiers.add(new FarthestFirstKMeansClassifier(comparer));
+			classifiers.add(new FirstRandomKMeansClassifier(comparer));
 			classifiers.add(new DBSCANClassifier(comparer));
 		}
 	}
@@ -90,6 +94,14 @@ public class ClassifyManager extends Manager {
 		StringBuffer sb = new StringBuffer();
 		for (Classifier classifier : classifiers) {
 			sb.append(classifier.printClasses());
+		}
+		return sb.toString();
+	}
+	
+	public String getMetrics() {
+		StringBuffer sb = new StringBuffer();
+		for (Classifier classifier : classifiers) {
+			sb.append(classifier.getMetrics());
 		}
 		return sb.toString();
 	}

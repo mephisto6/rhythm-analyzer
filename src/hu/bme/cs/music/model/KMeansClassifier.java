@@ -20,17 +20,7 @@ public abstract class KMeansClassifier extends Classifier {
 
 	private static Logger log = Logger.getLogger(KMeansClassifier.class);
 
-	List<Cluster> clusters = new ArrayList<Cluster>();
-
 	int[] classes;
-
-	public List<Cluster> getClusters() {
-		return clusters;
-	}
-
-	public void setClusters(List<Cluster> clusters) {
-		this.clusters = clusters;
-	}
 
 	public double getMetricToMinimize(List<Cluster> clusters) {
 		return MetricsUtils.getSumOfSquaredError(clusters);

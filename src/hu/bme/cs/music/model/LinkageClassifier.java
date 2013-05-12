@@ -5,9 +5,6 @@ package hu.bme.cs.music.model;
 
 import hu.bme.cs.music.utils.MetricsUtils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 
 /**
@@ -18,20 +15,9 @@ public abstract class LinkageClassifier extends Classifier {
 
 	private static Logger log = Logger.getLogger(LinkageClassifier.class);
 
-	List<Cluster> clusters;
-
-	public List<Cluster> getClusters() {
-		return clusters;
-	}
-
-	public void setClusters(List<Cluster> clusters) {
-		this.clusters = clusters;
-	}
-
 	public abstract double getDistance(Cluster c1, Cluster c2);
 
 	public void init(Comparer comparer) {
-		setClusters(new ArrayList<Cluster>());
 		setComparerAndDistMx(comparer);
 	}
 

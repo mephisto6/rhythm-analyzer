@@ -18,11 +18,13 @@ import org.apache.log4j.Logger;
  */
 public class MainAnalyser {
 
-	private static int classNum;
+	private static int classNum = 0;
 
 	private static Logger log = Logger.getLogger(MainAnalyser.class);
 
 	private static String directory = "data/szeke/nya";
+	
+	private static String directoryy = "C:/q/";
 
 	/**
 	 * @param args
@@ -31,11 +33,11 @@ public class MainAnalyser {
 		FileUtils.initLogging();
 		long startTime = System.currentTimeMillis();
 		CompareManager compareManager = new CompareManager(
-		//		FileReader.getTunes(directory));
-		 FileReader.getClusterTunes(20));
-		compareManager.printResults();
+		//		FileReader.getTunes(directoryy));
+		 FileReader.getClusterTunes(18));
+		//compareManager.printResults();
 		// compareManager.generateFiles();
-		setClassNum((int) Math.sqrt(compareManager.getNumberOfSongs()));
+		setClassNum((int) Math.sqrt(compareManager.getNumberOfSongs()/2));
 		Manager classifyManager = new ClassifyManager(
 				compareManager.getComparers());
 		classifyManager.printResults();
@@ -53,7 +55,7 @@ public class MainAnalyser {
 	}
 
 	public static void setClassNum(int classNum) {
-		log.debug("Default class num is set to: " + classNum);
+		log.info("Default class num is set to: " + classNum);
 		MainAnalyser.classNum = classNum;
 	}
 

@@ -3,11 +3,15 @@
  */
 package hu.bme.cs.music.model;
 
+import hu.bme.cs.music.MainAnalyser;
 import hu.bme.cs.music.file.FileReader;
 import hu.bme.cs.music.gui.LogicControl;
 import hu.bme.cs.music.utils.MatrixUtils;
+import hu.bme.cs.music.utils.MetricsUtils;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
@@ -22,14 +26,26 @@ public abstract class Classifier {
 
 	private Comparer comparer;
 
+	List<Cluster> clusters = new ArrayList<Cluster>();
+
 	private double[][] distMx;
+
+	public List<Cluster> getClusters() {
+		return clusters;
+	}
+
+	public void setClusters(List<Cluster> clusters) {
+		this.clusters = clusters;
+	}
 
 	public Comparer getComparer() {
 		return comparer;
 	}
 
 	public int getClassNum() {
-		//MainAnalyser.getClassNum();
+		if (MainAnalyser.getClassNum() != 0) {
+			return MainAnalyser.getClassNum();
+		}
 		return LogicControl.k;
 	}
 
@@ -63,6 +79,23 @@ public abstract class Classifier {
 
 	public abstract String getDescription();
 
+	public String getMetrics() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SSE:\n");
+		sb.append(MetricsUtils.getSumOfSquaredError(getClusters()) + "\n");
+		sb.append("Avg avg dist:\n");
+		sb.append(MetricsUtils.getAvgAvgDistance(getClusters()) + "\n");
+		sb.append("Avg max dist:\n");
+		sb.append(MetricsUtils.getAvgMaxDistance(getClusters()) + "\n");
+		sb.append("Max max dist:\n");
+		sb.append(MetricsUtils.getMaxMaxDistance(getClusters()) + "\n");
+		sb.append("Sum of dists:\n");
+		sb.append(MetricsUtils.getSumOfDistances(getClusters()) + "\n");
+		sb.append("Sum of dists from centre:\n");
+		sb.append(MetricsUtils.getSumOfDistsFromCentre(getClusters()) + "\n");
+		return sb.toString();
+	}
+
 	public int getClassNum(int[] classes) {
 		return Sets.newHashSet(Ints.asList(classes)).size();
 	}
@@ -71,7 +104,8 @@ public abstract class Classifier {
 		if (FileReader.getFiles() == null) {
 			return printClassesOld();
 		}
-		StringBuffer sb = new StringBuffer(getName() + System.getProperty("line.separator"));
+		StringBuffer sb = new StringBuffer(getName()
+				+ System.getProperty("line.separator"));
 		Multimap<Integer, Object> multimap = ArrayListMultimap.create();
 		for (int i = 0; i < getClasses().length; i++) {
 			multimap.put(getClasses()[i], i + 1);
@@ -80,9 +114,7 @@ public abstract class Classifier {
 		for (Integer i : multimap.keySet()) {
 			for (Object o : multimap.get(i)) {
 				File f = (File) files[(Integer) o - 1];
-				sb.append(FileReader.getFileMap().inverseBidiMap()
-						.get(f)
-						+ " ");
+				sb.append(FileReader.getFileMap().inverseBidiMap().get(f) + " ");
 			}
 			sb.append(System.getProperty("line.separator"));
 		}
@@ -91,14 +123,16 @@ public abstract class Classifier {
 
 	public String printClassesOld() {
 		// System.out.println(Arrays.asList(ArrayUtils.toObject(classes)));
-		StringBuffer sb = new StringBuffer(getName() + System.getProperty("line.separator"));
+		StringBuffer sb = new StringBuffer(getName()
+				+ System.getProperty("line.separator"));
 		Multimap<Integer, Object> multimap = ArrayListMultimap.create();
 		for (int i = 0; i < getClasses().length; i++) {
 			multimap.put(getClasses()[i], i + 1);
 		}
 		int j = 0;
 		for (Integer i : multimap.keySet()) {
-			sb.append("Class " + (++j) + ": " + multimap.get(i) + System.getProperty("line.separator"));
+			sb.append("Class " + (++j) + ": " + multimap.get(i)
+					+ System.getProperty("line.separator"));
 		}
 		return sb.toString();
 	}
