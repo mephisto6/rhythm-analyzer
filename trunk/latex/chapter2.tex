@@ -1,31 +1,74 @@
 %----------------------------------------------------------------------------
-\chapter{Az alkalmazási terület: muzikológia}
+\chapter{Az alkalmazási terület}
 %----------------------------------------------------------------------------
 
-A muzikológia, vagy zeneelmélet az általános és magyar zenetörténet, historiográfia, zenei filológia, zenei szociológia, bibliográfia területével foglalkozó tudomány \cite{PortalDeb}. Mûvelõi a magasabb szintû összhangzattani, formatani, ellenponttani ismeretek, stílustanulmányok, zeneelmélet, zenetörténet, valamint kottaolvasási készség területeken rendelkeznek specializált szaktudással.
+Miután elmélyültünk az adatbányászat áltat nyújtott algoritmusok felvázolásában, ismerkedjünk meg az alkalmazási terület általános, majd a projekt szempontjából fontos jellemzõivel, melyeket számításba kell majd vennünk a konkrét megvalósítások kiválasztása során.
+
+%----------------------------------------------------------------------------
+\section{A zene és a matematika kapcsolata}
+%----------------------------------------------------------------------------
+
+A matematika és a zene közötti szoros összefüggés már az ókori idõktõl kezdve ismert az emberiség számára. 
+
+A püthagoreusok mintegy $2500$ évvel ezelõtt felismerték, hogy a zenei hangok világában az egész számok arányai teremtenek harmóniát. Egyhúros hangszerükkel kikísérletezett, legtisztábbnak tartott hangközeikhez tartozó lefogások a kifeszített húrt $2:1$, $3:2$ és $4:3$ arányban osztják ketté, melyek rendre az oktáv, a kvint és a kvart hangközök frekvencia-arányai.
+
+A matematika fejlõdésével újabb területeket vontak be a zeneelméletbe. Leibniz a $17.$ században azt vizsgálja, hány különféle, $6$ hangból álló dallamot lehet létrehozni oly módon, hogy a hangok ismétlõdhetnek is \cite{Goncz}. Eulernek tulajdonítják azt a szállóigét, hogy a zene hangzó matematika. Bolyai Farkas és János munkássága is tartalmaz matematikai nyelven írt zeneelméleti értekezéseket \cite{Benko}.
+
+A két abszrtakció összefüggését W. R. Wade professzor a zenei érzékelésünk Fourier-sorhoz való kapcsolatával így fogalmazta meg \cite{Wade}: ,,A klasszikus harmonikus analízis, a Fourier-analízis gyökerei mélyre nyúlnak. Mondhatnám, Isten volt az elsõ, aki Fourier-analízist mûvelt, amikor fülünkbe beépített egy Fourier-analizátort. Ugyanis már a gyermek is képes arra, hogy különbséget tegyen például a hegedû és a harsona hangja között. Annak ellenére, hogy a hangjegyek, amelyekkel a dallamot leírjuk, ugyanazok. Mi akkor a különbség a két hang között? Az, hogy amikor megszólaltatunk egy hangot, az sosem csupán tiszta hang, hanem több felhangból álló együttes. Kissé általánosabban fogalmazva: minden függvényben, ami egy hangzásnak megfelel, sok rejtett információ van, amit észlelni kell, s fülünk észlelni is tudja.''
+
+A számítógép feltalálása óta a matematika a zene még több területén szerepet kap: szintetikus hangok elõállítására vagyunk képesek, algoritmusok komponálnak dallamokat, gépzenekar kíséri az élõ szólistákat. A kapacitás növekedésével nagy távlatok nyíltak a zeneelemzés területén is.
 
 %----------------------------------------------------------------------------
 \section{A zene számítógépes elemzése}
 %----------------------------------------------------------------------------
 
-A zene számítógépes elemzésének elsõ mozzanatai a 60-as évekbe nyúlnak vissza, amikoris a kutatók rádöbbentek a számítógép hatalmas feldolgozóképességében rejlõ lehetõségekre.
+A zene számítógépes elemzésének elsõ mozzanatai a hatvanas évekbe nyúlnak vissza, amikoris a kutatók rádöbbentek a számítógép hatalmas feldolgozóképességében rejlõ kiaknázatlan lehetõségekre.
 
-Az internet és az MP3 kódolás elterjedése hatalmas löketet adott a számítógépes zenei elemzésnek is. A Zenei Információ Kinyerés, vagy ismertebb nevén MIR (Music Information Retrieval) fogalma egy olyan metodológiát takar, melynek során az elemzés nem metaadatok, hanem zenei tartalom alapján történik. Ez a megközelítés tehát lehetõvé tesz mûfaj, vagy akár elõadó, számcím meghatározását korábbi tanulófázisok alapján. Ilyen módszereket használ a népszerû Shazam okostelefonos alkalmazás is, amely a készülékünk mikrofonja által rögzített zenerészlet alapján próbálja meghatározni, hogy az melyik dalból származik.
+Az internet és az MP3 kódolás elterjedése hatalmas löketet adott a számítógépes zenei elemzésnek is. A Zenei Információ Kinyerés, vagy ismertebb nevén MIR (Music Information Retrieval) fogalma egy olyan metodológiát takar, melynek során az elemzés nem metaadatok, hanem zenei tartalom alapján történik. Ez a megközelítés tehát lehetõvé tesz mûfaj, vagy akár elõadó, számcím meghatározását korábbi tanulófázisok alapján. Ilyen módszereket használ a népszerû Shazam okostelefonos alkalmazás is, amely a készülék mikrofonja által rögzített tetszõleges zenerészlet alapján próbálja meghatározni, hogy annak mi a címe, ki az elõadója, stb..
 
 Ennek a megközelítésnek a sajátossága az elõadás és a rögzítés során fellépõ jelentõs mennyiségû zaj. Emiatt zenekutatási szempontból érdekesebb, ha dalok modelljéül szolgáló (ezáltal zajmentes) kottákat vesszük kiindulási alapul, majd a belõlük képzett adathalmazon végzünk elemzéseket. 
+
 
 %----------------------------------------------------------------------------
 \section{A zene modellje: a kotta}
 %----------------------------------------------------------------------------
 
-A kotta zenei hangok, ritmusok és a hozzájuk tartozó kiegészítõ információk tárolására használt jelrendszer. A zene ritmusát a hangok hossza határozza meg. Az egységhosszú hangot üres, szárnélküli gombóc jelöli, a félhangot üres gombóc szárral, a negyedet teli gombóc szárral. A negyednél kisebb hangok esetén a hangokat összekötõ gerendák száma határozza meg a hang hosszúságát. Egy gerendával vannak összekötve a nyolcadok, kettõvel a tizenhatodok, hárommal a harminckettedek és így tovább (Lásd: \ref{fig:sheet01}
-ábra).
+A kotta zenei hangok, ritmusok és a hozzájuk tartozó kiegészítõ információk tárolására használt jelrendszer; a zene modellje.
 
-\begin{figure}[!ht]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=150mm, keepaspectratio]{sheets/sheet01.png}
 \caption{Egyszerû kotta fél-, negyed-, nyolcad-, tizenhatod-, és harmincketted hangokkal, valamint szünetekkel} 
 \label{fig:sheet01}
-\end{figure}
+\end{figure} 
 
+A kottán a hangok párhuzamos vonalakon helyezkednek el, amelyek a hangmagasságokat jelölik. A zenei hangoknak gombócok felelnek meg, melyeket a latin ábécé (C, D, E, F, G, A, H) betûirõl neveztek el. Ha egy hang mélysége vagy magassága miatt nem fér el az alap öt vonal valamelyikén (vagy közöttük), a kotta pótvonalakkal egészíthetõ ki.
 
+A zene ritmusát a hangok hossza határozza meg. Az egységhosszú hangot üres, szárnélküli gombóc jelöli, a félhangot üres gombóc szárral, a negyedet (tá) teli gombóc szárral. A negyednél kisebb hangok esetén a hangokat összekötõ gerendák száma határozza meg a hang hosszúságát. Egy gerendával vannak összekötve a nyolcadok (ti), kettõvel a tizenhatodok, hárommal a harminckettedek és így tovább (Lásd: \ref{fig:sheet01}
+ábra).
+
+Az aktuálisan jelölt hang hosszát másfélszerezi a gombóc melletti pont, így egy negyedbõl háromnyolcad, nyolcadból háromtizenhatod, stb\dots hosszúságú hangot képez. 
+
+A kulcs után álló két egymás fölött lévõ egész szám azt jelöli, hogy az ütemek hány azonos hosszúságú hangjegyet tartalmazhatnak. Az ütemeket függõleges vonal, az ütemvonal választja el egymástól. Az ezek közti hangok (és szünetek) összhosszúsága azonos, és megegyezik az ütemjelzésben megadott értékkel (4/4 esetén négy negyed hosszú ütemek).
+
+A triola egy olyan három hangjegybõl álló csoport, amely nem rendes értékekre támaszkodik. Például ha szabályszerûleg egy negyed hangjegyre két nyolcad esne, triola esetén a hangot három ,,nyolcadra'' osztjuk. A kottán ezt egy szám jelöli a hangokat összekötõ gerendán. Öt hangjegybõl álló verziójának neve kvintola.
+
+Ezeken kívül vannak további módosító-, illetve feloldójelek, melyek részletezésébe itt nem megyek bele.
+
+%----------------------------------------------------------------------------
+\section{A népzenekutatás}
+%----------------------------------------------------------------------------
+
+A népzenekutatás...
+
+%----------------------------------------------------------------------------
+\subsection{A zenei rendszerezés}
+%----------------------------------------------------------------------------
+
+A népzene rendszerezésének ötlete a finn kutatótól, Ilmari Krohntól származik, aki a finn tudományos népdalgyûjtemény rendezéséért és szerkesztéséért volt felelõs. Kodály Zoltán és Bartók Béla is felhasználta a tõle származó rendszerezési elvet a magyar népzene katalogizálása során.
+
+%----------------------------------------------------------------------------
+\subsection{A muzikológia}
+%----------------------------------------------------------------------------
+
+A muzikológia, vagy zeneelmélet az általános és magyar zenetörténet, historiográfia, zenei filológia, zenei szociológia, bibliográfia területével foglalkozó tudomány \cite{PortalDeb}. Mûvelõi a magasabb szintû összhangzattani, formatani, ellenponttani ismeretek, stílustanulmányok, zeneelmélet, zenetörténet, valamint kottaolvasási készség területeken rendelkeznek specializált szaktudással.
