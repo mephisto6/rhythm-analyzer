@@ -24,7 +24,7 @@ T1/2 K2b [8G2 8G2 8G2 8G2] |K2b [8H2 8H2 8A2 8G2] |K2b 8A2 4F2. |
 
 A \ref{list:kotta}-es fájlban egy ilyen speciálisan kódolt kottát láthatunk. Az elsõ eleme a fájlnak az ütemek hosszát határozza meg. Az ütemek között (az igazi kottához hasonlóan) függõleges vonal ($|$) található, a kottában is szereplõ gerendákat nyitó és záró szögeletes zárójel ($[$ és $]$) jelöli, de ezek számunkra nem hordoznak lényeges információt. 
 
-Az ütem elsõ eleme a hangmagasságra vonatkozik, ezért a ritmus vizsgálatakor figyelmen kívül hagyhatjuk. Utána jönnek a hangok, melynek elsõ része határozza meg a hang hosszát, második a magasságát. A \ref{list:kotta}-es fájl elsõ hangot reprezentáló eleme a $8G2$, mely egy $1/8$ hosszúságú $G$ hangot jelöl a második oktáv magasságában.
+Az ütemek elsõ eleme opcionális hangmagasság-módosító, ezért a ritmus vizsgálatakor figyelmen kívül hagyhatjuk. Utána jönnek a hangok, melynek elsõ része határozza meg a hang hosszát, második a magasságát. A \ref{list:kotta}-es fájl elsõ hangot reprezentáló eleme a $8G2$, mely egy $1/8$ hosszúságú $G$ hangot jelöl a második oktáv magasságában.
 
 A félhangot módosító, tetszõleges számú $b$, vagy \# közvetlenül a hang elõtt is állhat, ahogy az látható a negyedik sor második ütemében szereplõ $\#8F1$ hangnál. Az $R$-rel kezdõdõ elemek szüneteket jelölnek, melyek hosszát a mellettük álló szám jelöli (pl. az utolsó sor végén látható $R4$ egy $1/4$ hosszú szünetet takar).
 
@@ -138,6 +138,15 @@ A rendelkezésre álló hierarchikus klaszterezés alapvetõ implementációi (single, 
 Ugyanez mondható el a különbözõ partícionáló módszerekrõl is, ahol a kezdeti klaszterezés megválasztásától eltekintve minden funkcionalitást a közös õs, a \texttt{KMeansClassifier} osztály tartalmaz.
 
 %----------------------------------------------------------------------------
+\subsection{A klaszterezések jóságának mérése}
+%----------------------------------------------------------------------------
+
+Mind a $k$-means, mind a DBSCAN implementációi igényelnek egy célfüggvényt, melyet minimalizálni szeretnének. Számos, \ref{sect:klasztjell} szakaszban definiált metrikát megvalósítottam, melyek a \texttt{MetricsUtils} osztály statikus metódusai közé kerültek. Mindegyikük egy klaszterlistát kér paraméterként, és egy duplapontosságú lebegõpontos nemnegatív értéket adnak vissza. 
+
+
+A választott nyelv által megkövetelt objektumorientáltság alapelve, hogy az adatok és a hozzájuk tartozó manipuláló eljárások egy objektumba legyenek foglalva. Ezt szem elõtt tartva bizonyos, adott klaszterre jellemzõ mértékek (pl. klaszterátmérõ, klaszteren belüli távolságok összege) kiszámításáért a \texttt{Cluster} nevû segédosztály lett a felelõs, mely egyébként a klaszterpéldányokat reprezentálja (mezõi: középpont, elemek, stb\dots).
+
+%----------------------------------------------------------------------------
 \section{Futtató felület}
 %----------------------------------------------------------------------------
 
@@ -173,12 +182,16 @@ A futást a \textit{Classify!} feliratú gomb megnyomásával indíthatjuk, az eredmé
 \section{Felhasznált technológiák}
 %----------------------------------------------------------------------------
 
-A programozási folyamat során gyakran találkoztam olyan problémával, melyre annak általánossága miatt már jól ismert és publikusan hozzáférhetõ megoldások érhetõek el.
+\begin{itemize}
+\item A programozási folyamat során gyakran találkoztam olyan problémával, melyre annak általánossága miatt már jól ismert és publikusan hozzáférhetõ megoldások érhetõek el. Ilyen volt például egy kétirányú \texttt{Map} iránti igény, melyre az Apache Commons Collections könyvtárának \texttt{BidiMap} osztálya nyújtott megoldást.
 
-Ilyen volt például egy kétirányú \texttt{Map} iránti igény, melyre az Apache Commons Collections könyvtárának \texttt{BidiMap} osztálya nyújtott megoldást.
+\item A debug során sok segítséget nyújtott a prioritási szintenkénti loggolást lehetõvé tevõ Log4j csomag.
 
-A debug során sok segítséget nyújtott a prioritási szintenkénti loggolást lehetõvé tevõ Log4j csomag.
+\item A katalógusfájl soronként feldolgozását a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. 
 
-A katalógusfájl soronként feldolgozását a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. Az Apache Commons IO könyvtára a rekurzív fájlbeolvasásban segített.
+\item Az Apache Commons IO könyvtára a rekurzív fájlbeolvasásban segített.
 
-A munka során végig verziókezelõ rendszer segítségével naplóztam az elvégzett feladatokat és tartottam biztonságos helyen a forráskódot. Ehhez a \url{http://code.google.com} által rendelkezésre bocsátott alkalmazásokat és tárhelyet használtam.
+\item A munka során végig verziókezelõ rendszer segítségével naplóztam az elvégzett feladatokat és tartottam biztonságos helyen a forráskódot. Ehhez a \url{http://code.google.com} által rendelkezésre bocsátott alkalmazásokat és tárhelyet használtam.
+
+\item A kották MuseScore nevû kottaszerkesztõ program segítségével készültek.
+\end{itemize}

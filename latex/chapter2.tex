@@ -2,7 +2,9 @@
 \chapter{Az alkalmazási terület}
 %----------------------------------------------------------------------------
 
-Miután elmélyültünk az adatbányászat áltat nyújtott algoritmusok felvázolásában, ismerkedjünk meg az alkalmazási terület általános, majd a projekt szempontjából fontos jellemzõivel, melyeket számításba kell majd vennünk a konkrét megvalósítások kiválasztása során.
+Miután elmélyültünk az adatbányászat áltat nyújtott lehetõségek és a hozzájuk tartozó algoritmusok ismertetésében, vázoljuk fel az alkalmazási terület általános, majd a projekt szempontjából fontos jellemzõit, melyeket számításba kell majd vennünk az implementáció során.
+
+Ki fog derülni, hogy mennyire nem újdonság a matematika és a zene összekapcsolása, és tárgyalásra kerül néhány fontos lépés a népzenekutatás történetébõl is, melyek a projekt fõ elõzményeinek tekinthetõek.
 
 %----------------------------------------------------------------------------
 \section{A zene és a matematika kapcsolata}
@@ -10,19 +12,19 @@ Miután elmélyültünk az adatbányászat áltat nyújtott algoritmusok felvázolásában,
 
 A matematika és a zene közötti szoros összefüggés már az ókori idõktõl kezdve ismert az emberiség számára. 
 
-A püthagoreusok mintegy $2500$ évvel ezelõtt felismerték, hogy a zenei hangok világában az egész számok arányai teremtenek harmóniát. Egyhúros hangszerükkel kikísérletezett, legtisztábbnak tartott hangközeikhez tartozó lefogások a kifeszített húrt $2:1$, $3:2$ és $4:3$ arányban osztják ketté, melyek rendre az oktáv, a kvint és a kvart hangközök frekvencia-arányai.
+A püthagoreusok mintegy $2500$ évvel ezelõtt felismerték, hogy a zenei hangok világában az egész számok arányai teremtenek harmóniát \cite{Juhasz}. Egyhúros hangszerükkel kikísérletezett, legtisztábbnak tartott hangközeikhez tartozó lefogások a kifeszített húrt $2:1$, $3:2$ és $4:3$ arányban osztják ketté, melyek rendre az oktáv, a kvint és a kvart hangközök frekvencia-arányai.
 
-A matematika fejlõdésével újabb területeket vontak be a zeneelméletbe. Leibniz a $17.$ században azt vizsgálja, hány különféle, $6$ hangból álló dallamot lehet létrehozni oly módon, hogy a hangok ismétlõdhetnek is \cite{Goncz}. Eulernek tulajdonítják azt a szállóigét, hogy a zene hangzó matematika. Bolyai Farkas és János munkássága is tartalmaz matematikai nyelven írt zeneelméleti értekezéseket \cite{Benko}.
+A matematika fejlõdésével újabb területeket vontak be a zeneelméletbe. Leibniz a $17.$ században azt vizsgálta, hány különféle, $6$ hangból álló dallamot lehet létrehozni oly módon, hogy a hangok ismétlõdhetnek is \cite{Goncz}. Eulernek tulajdonítják azt a szállóigét, hogy a zene hangzó matematika. Bolyai Farkas és János munkássága is tartalmaz matematikai nyelven írt zeneelméleti értekezéseket \cite{Benko}.
 
 A két abszrtakció összefüggését W. R. Wade professzor a zenei érzékelésünk Fourier-sorhoz való kapcsolatával így fogalmazta meg \cite{Wade}: ,,A klasszikus harmonikus analízis, a Fourier-analízis gyökerei mélyre nyúlnak. Mondhatnám, Isten volt az elsõ, aki Fourier-analízist mûvelt, amikor fülünkbe beépített egy Fourier-analizátort. Ugyanis már a gyermek is képes arra, hogy különbséget tegyen például a hegedû és a harsona hangja között. Annak ellenére, hogy a hangjegyek, amelyekkel a dallamot leírjuk, ugyanazok. Mi akkor a különbség a két hang között? Az, hogy amikor megszólaltatunk egy hangot, az sosem csupán tiszta hang, hanem több felhangból álló együttes. Kissé általánosabban fogalmazva: minden függvényben, ami egy hangzásnak megfelel, sok rejtett információ van, amit észlelni kell, s fülünk észlelni is tudja.''
 
-A számítógép feltalálása óta a matematika a zene még több területén szerepet kap: szintetikus hangok elõállítására vagyunk képesek, algoritmusok komponálnak dallamokat, gépzenekar kíséri az élõ szólistákat. A kapacitás növekedésével nagy távlatok nyíltak a zeneelemzés területén is.
+A számítógép feltalálása óta a matematika a zene még több területén szerepet kap: szintetikus hangok elõállítására vagyunk képesek, algoritmusok komponálnak dallamokat, gépzenekar kíséri az élõ szólistákat. A számítási kapacitás növekedésével további távlatok nyíltak a zeneelemzés területén is.
 
 %----------------------------------------------------------------------------
 \section{A zene számítógépes elemzése}
 %----------------------------------------------------------------------------
 
-A zene számítógépes elemzésének elsõ mozzanatai a hatvanas évekbe nyúlnak vissza, amikoris a kutatók rádöbbentek a számítógép hatalmas feldolgozóképességében rejlõ kiaknázatlan lehetõségekre.
+A zene számítógépes elemzésének elsõ mozzanatai a hatvanas évekbe nyúlnak vissza, amikoris a kutatók rádöbbentek a számítógép hatalmas feldolgozóképességében rejlõ kiaknázatlan lehetõségekre \cite{Marsden}.
 
 Az internet és az MP3 kódolás elterjedése hatalmas löketet adott a számítógépes zenei elemzésnek is. A Zenei Információ Kinyerés, vagy ismertebb nevén MIR (Music Information Retrieval) fogalma egy olyan metodológiát takar, melynek során az elemzés nem metaadatok, hanem zenei tartalom alapján történik. Ez a megközelítés tehát lehetõvé tesz mûfaj, vagy akár elõadó, számcím meghatározását korábbi tanulófázisok alapján. Ilyen módszereket használ a népszerû Shazam okostelefonos alkalmazás is, amely a készülék mikrofonja által rögzített tetszõleges zenerészlet alapján próbálja meghatározni, hogy annak mi a címe, ki az elõadója, stb..
 
@@ -44,31 +46,84 @@ A kotta zenei hangok, ritmusok és a hozzájuk tartozó kiegészítõ információk táro
 
 A kottán a hangok párhuzamos vonalakon helyezkednek el, amelyek a hangmagasságokat jelölik. A zenei hangoknak gombócok felelnek meg, melyeket a latin ábécé (C, D, E, F, G, A, H) betûirõl neveztek el. Ha egy hang mélysége vagy magassága miatt nem fér el az alap öt vonal valamelyikén (vagy közöttük), a kotta pótvonalakkal egészíthetõ ki.
 
-A zene ritmusát a hangok hossza határozza meg. Az egységhosszú hangot üres, szárnélküli gombóc jelöli, a félhangot üres gombóc szárral, a negyedet (tá) teli gombóc szárral. A negyednél kisebb hangok esetén a hangokat összekötõ gerendák száma határozza meg a hang hosszúságát. Egy gerendával vannak összekötve a nyolcadok (ti), kettõvel a tizenhatodok, hárommal a harminckettedek és így tovább (Lásd: \ref{fig:sheet01}
-ábra).
+A violinkulcs után álló két egymás fölött lévõ egész szám azt jelöli, hogy az ütemek hány azonos hosszúságú hangjegyet tartalmazhatnak. Az ütemeket függõleges vonal, az ütemvonal választja el egymástól. Az ezek közti hangok (és szünetek) összhosszúsága azonos, és megegyezik az ütemjelzésben megadott értékkel (4/4 esetén négy negyed hosszú ütemek).
 
-Az aktuálisan jelölt hang hosszát másfélszerezi a gombóc melletti pont, így egy negyedbõl háromnyolcad, nyolcadból háromtizenhatod, stb\dots hosszúságú hangot képez. 
+A zene ritmusát a hangok hossza határozza meg. Az egységhosszú hangot üres, szárnélküli gombóc jelöli, a félhangot üres gombóc szárral, a negyedet (tá) teli gombóc szárral. A negyednél kisebb hangok esetén a hangokat összekötõ gerendák száma határozza meg a hang hosszúságát. Egy gerendával vannak összekötve a nyolcadok (ti), kettõvel a tizenhatodok, hárommal a harminckettedek és így tovább (Lásd: \ref{fig:sheet01} ábra). Az aktuálisan jelölt hang hosszát másfélszerezi a gombóc melletti pont, így egy negyedbõl háromnyolcad, nyolcadból háromtizenhatod, stb\dots hosszúságú hangot képez. 
 
-A kulcs után álló két egymás fölött lévõ egész szám azt jelöli, hogy az ütemek hány azonos hosszúságú hangjegyet tartalmazhatnak. Az ütemeket függõleges vonal, az ütemvonal választja el egymástól. Az ezek közti hangok (és szünetek) összhosszúsága azonos, és megegyezik az ütemjelzésben megadott értékkel (4/4 esetén négy negyed hosszú ütemek).
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=130mm, keepaspectratio]{sheets/triola.png}
+\caption{Egyszerû kotta triolával és pontozott hanggal} 
+\label{fig:sheet02}
+\end{figure} 
 
-A triola egy olyan három hangjegybõl álló csoport, amely nem rendes értékekre támaszkodik. Például ha szabályszerûleg egy negyed hangjegyre két nyolcad esne, triola esetén a hangot három ,,nyolcadra'' osztjuk. A kottán ezt egy szám jelöli a hangokat összekötõ gerendán. Öt hangjegybõl álló verziójának neve kvintola.
+A triola egy olyan három hangjegybõl álló csoport, amely nem rendes értékekre támaszkodik. Például ha szabályszerûleg egy negyed hangjegyre két nyolcad esne, triola esetén a hangot három ,,nyolcadra'' osztjuk. A kottán ezt egy szám jelöli a hangokat összekötõ gerendán (Lásd: \ref{fig:sheet02} ábra). Öt hangjegybõl álló verziójának neve kvintola, ekkor négy tizenhatod helyett öt egyenlõ részre osztjuk a negyedhangot.
 
-Ezeken kívül vannak további módosító-, illetve feloldójelek, melyek részletezésébe itt nem megyek bele.
+Ezeken kívül vannak további módosító-, illetve feloldójelek, melyek részletezése megtalálható a szakirodalomban.
 
 %----------------------------------------------------------------------------
 \section{A népzenekutatás}
 %----------------------------------------------------------------------------
 
-A népzenekutatás...
+A népzenekutatás az összehasonlító zenetudományból alakult ki a $19.$ század végén \cite{Sarosi}. Ekkoriban vált lehetõvé a dalok nagyszámú pontos rögzítése a fonográf segítségével, ami a késõbbi tudományos lejegyzést és rendszerezést is elõsegítette.
 
 %----------------------------------------------------------------------------
 \subsection{A zenei rendszerezés}
 %----------------------------------------------------------------------------
 
-A népzene rendszerezésének ötlete a finn kutatótól, Ilmari Krohntól származik, aki a finn tudományos népdalgyûjtemény rendezéséért és szerkesztéséért volt felelõs. Kodály Zoltán és Bartók Béla is felhasználta a tõle származó rendszerezési elvet a magyar népzene katalogizálása során.
+A fonográfos néprajzi gyûjtések megindulása és sikere után hamarosan létrejöttek a nemzeti gyûjtemények. A Néprajzi Múzeum $4,500$ második világháború elõtti fonográfhenger-gyûjteménye a világ legrégebbi és leggazdagabb készleteinek egyike.
+
+Az ,,adatbázis'' növekedésével együtt megjelent az igény a gyûjtések rendszerezésére is. Ennek úttörõje volt a finn kutató, Ilmari Krohn, akinek a finn tudományos népdalgyûjtemény rendezése és szerkesztése köszönhetõ. Kodály Zoltán és Bartók Béla is felhasználta a tõle származó rendszerezési elvet a magyar népzene katalogizálása során.
+
+A továbbiakban sorraveszünk néhány példát a népzene tudományos rendszerezésének történetébõl.
 
 %----------------------------------------------------------------------------
-\subsection{A muzikológia}
+\subsubsection{Bartók Béla rendje}
+%----------------------------------------------------------------------------
+
+Hazánkban a népdalokról szóló elsõ összefoglaló munka Bartók Béla nevéhez fûzõdik ($1924$), aki formai alapon a következõ három nagy stíluscsoportba osztotta a népdalokat:
+\begin{itemize}
+\item Régi stílus
+\item Új stílus
+\item Vegyes stílus
+\end{itemize}
+
+Ennek a csoportosításnak a fõ szempontja nem a szöveg, hanem a magyar, illetve az idegen eredet. Az $1.$ és $2.$ csoport a magyar dallamfejlõdést tükrözi, míg a $3.$ csoport az idegen dallamokat. 
+
+%----------------------------------------------------------------------------
+\subsubsection{Kodály Zoltán rendje}
+%----------------------------------------------------------------------------
+
+Kodály Zoltán A magyar népzene címû népzene-történeti összefoglalása $1937$-ben jelent meg. Ezzel a kötettel honosodott meg Magyarországon az összehasonlító zenetudomány. A tanulmányban filológiai rendszerezést követett és a dalok szótárszerû csoportosítását ösztönözte.
+
+%----------------------------------------------------------------------------
+\subsubsection{Népzenei típusrend}
+%----------------------------------------------------------------------------
+
+Kezdetektõl fogva megvolt az igény arra, hogy a hasonló dallamok egymás mellé kerüljenek a rendszerezés során. Járdányi Pál nevéhez fûzõdik az elsõ, dallamvonalak hasonlóságát figyelembe vevõ rendszer. Dobszay László és Szendrei Janka dolgozta ki a ma használatos típusrendszert, mely a Zenetudományi Intézet $200,000$ körüli dallamból álló készletét olyan hangkészlet-alapú csoportokra bontja, melyek a leghûbben reprezentálják a magyar népzene egészét. Ilyenek például:
+\begin{itemize}
+\item Pentaton ereszkedõ kvintváltó dallamok
+\item Pszalmodizáló stílus
+\item Sirató stílus
+\item Stb\dots
+\end{itemize}
+
+%----------------------------------------------------------------------------
+\subsection{A magyar népzene kapcsolatai}
+%----------------------------------------------------------------------------
+
+A magyar népzene elsõ összehasonlító népzenei elemzése is Bartók és Kodály nevéhez fûzõdik.
+
+A bartóki típusú régi stílusú dallamok a belsõ-ázsiai türk népek zenéjével rokonok, illetve az anatóliai törökökével is találtak hasonlóságokat. Érdekes módon a finnugor népek népzenéje nem áll kapcsolatban a régi stílusú népdalosztállyal. A Kárpát-medence, sõt, az európai népzene sem mutat rokonságot a régi stílusú magyar dalokkal.
+
+A legújabb eredmények szerint kínai népzene kutatók kapcsolatokat találtak a Kínában élõ török eredetû jugarok és a régi stílusú magyar dalok között. 
+
+Ellentétben a régi stílussal, az új stílusú magyar népzenébõl nagyon sokat kölcsönöztek a környezõ népek.
+
+%----------------------------------------------------------------------------
+\section{A muzikológia}
 %----------------------------------------------------------------------------
 
 A muzikológia, vagy zeneelmélet az általános és magyar zenetörténet, historiográfia, zenei filológia, zenei szociológia, bibliográfia területével foglalkozó tudomány \cite{PortalDeb}. Mûvelõi a magasabb szintû összhangzattani, formatani, ellenponttani ismeretek, stílustanulmányok, zeneelmélet, zenetörténet, valamint kottaolvasási készség területeken rendelkeznek specializált szaktudással.
+
+A projekt tudományos sokszínûségének bizonyítéka, hogy eredményeinek értelmezése ezt a muzikológiai elõképzettséget is igényli.
