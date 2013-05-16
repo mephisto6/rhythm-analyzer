@@ -1,6 +1,9 @@
 %----------------------------------------------------------------------------
 \chapter{Adatbányászati háttér}\label{sect:Adatb}
 %----------------------------------------------------------------------------
+
+Elsõ feladatunk, hogy áttekintsük az adatbányászat jelenlegi helyzetét, megtaláljuk a projekt szempontjából releváns lehetõségeit, majd ismertessük a problémára megoldást kínáló algoritmusokat.
+
 \section{Az alkalmazott adatbányászat}
 %----------------------------------------------------------------------------
 Az adatbányászatot sokféleképp lehet definiálni. A legelterjedtebb megfogalmazás szerint olyan újszerû, érvényes és korábban ismeretlen tudás kinyerése nagyméretû adathalmazból, mely nem triviális, hasznos és valamilyen módon magyarázható is \cite{BodonPhD}. Mint formula, nem a legszerencsésebb kifejezés, hiszen míg a szénbányászaton a szén kitermelését értjük, az adatbányászat nem új adatot, hanem a nyers adatból tudást hoz létre.
@@ -15,7 +18,7 @@ A dolgozatom egy etnomuzikológus által felvetett kérdésekre keres adatbányászato
 
 A tudáskinyerési folyamat jóldefiniált, egymást követõ lépések sorozata. A kitûzött célok elérését segíti, ha követjük ezeket a lépéseket, melyek a korábbi kutatások tapasztalatain alapulnak. 
 
-A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} különbözõ felosztásokban (némely lépéseket egybevonva vagy több pontra bontva), de a követketkezõ fázisokat sorolja fel:
+A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} különbözõ felosztásokban (némely lépéseket egybevonva vagy több pontra bontva), de a követketkezõ fázisokat sorolja fel (\ref{fig:tudas} ábra):
 
 \begin{enumerate}
 	\item \textbf{Az alkalmazási terület feltárása és megértése}: a fontosabb elõzetes ismeretek begyûjtése, a felhasználási célok meghatározása
@@ -28,6 +31,13 @@ A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} különbözõ felosztás
 	\item \textbf{A kinyert tudás értelmezése}: a kinyert összefüggés vizsgálata az alkalmazási terület kontextusában, esetleges visszalépés finomítás céljából
 	\item \textbf{A megszerzett tudás megerõsítése}: az eredmények összevetése az elvárásokkal, elõzetes ismeretekkel
 \end{enumerate}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/adatbanyaszat.png}
+\caption{A tudásfeltárás folyamata} 
+\label{fig:tudas}
+\end{figure} 
 
 A jelen adatbányászati feladat számára adott volt a kották alkotta adatbázis, melyben sem zajszûrésre, sem téves vagy hiányos mezõk javítására nem volt szükség. A dallamra vonatkozó információk elhagyásával megkaptuk a használni kívánt, csak ritmikai tulajdonságokra szûkített adatbázist. Az osztályozás elõre nem definiált csoportok létrehozásával történik, azaz klaszterezésre van szükségünk. A rendelkezésre álló algoritmusokat a következõ pontokban vizsgálom meg.
 
@@ -51,7 +61,7 @@ A klaszterezés egy nagyobb adathalmaz struktúrájának feltárására is használható,
 A klaszter-analízis két fõ ága a hierarchikus és a nem hierarchikus klaszterezés. Hierarchikus esetben az új klasztereket a korábbi klaszterek alapján határozzuk meg, ezzel szemben a nem hierarchikus módszerek egyszerre határozzák meg az összes klasztert.
 
 %----------------------------------------------------------------------------
-\subsection{A klaszterek és a klaszterezés jellemzõi}
+\subsection{A klaszterek és a klaszterezés jellemzõi}\label{sect:klasztjell}
 %----------------------------------------------------------------------------
 
 Egy klaszterezési algoritmus futása közben, illetve az eredmények összehasonlítása során alapvetõ kérdés, hogy hogyan értékelünk egy adott klaszterezést. Hogy ezt megtehessük, definiálnunk kell néhány klaszter-, illetve klaszterezésjellemzõt. 

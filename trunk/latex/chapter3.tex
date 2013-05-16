@@ -2,15 +2,15 @@
 \chapter{A ritmus}
 %----------------------------------------------------------------------------
 
-A zene két legalapvetõbb alkotórésze a dallam és a ritmus. A kotta hangjegyei õket jelölik. Csak együttesen határoznak meg egy dalt, azt azonban nem mondhatjuk, hogy egymástól elválaszthatatlanok, hiszen gyakran ugyanazt a dallamot teljesen más ritmussal hallhatjuk, illetve a különbözõ eredetû és tulajdonságú dallamok elõfordulnak azonos ritmussal \cite{Vargyas1}. A népdalok rendszerezésében a dallam és a ritmus szerinti megközelítés mindig párhuzamosan érvényesült, Kodály eredetileg a dallam sajátosságait tartotta szem elõtt, míg Bartók nagy figyelmet fordított a ritmus szerinti osztályozásra.
-
-%----------------------------------------------------------------------------
-\section{A ritmusról}
-%----------------------------------------------------------------------------
-
 A ritmus görög eredetû szó, jelentése: lüktetés, dobogás, (szív-)verés, ütem. Hasonló vagy azonos elemek idõbeli szabályos váltakozását, ismétlõdését értjük alatta. A zene csak az idõben fogható fel, tehát nem értelmezhetõ a ritmus fogalma nélkül.
 
-Mind adatbányászati, mind etnomuzikológiai szempontból alapvetõ kérdés, hogy hogyan hasonlítsunk össze két ritmust. A ritmusok reprezentációját úgy kell megválasztanunk, hogy azok összehasonlíthatóak legyenek olyan módon, amit a zenekutató értelmesnek talál. Alapvetõ követelmény, hogy ez az összehasonlítás emberi észlelésünkkel összhangban legyen, azaz hasonlónak érzékelt ritmusokat hasonlónak, különbözõnek érzékelt ritmusokat pedig különbözõnek találjon.
+A dallam és a ritmus együttesen határoznak meg egy dalt, azt azonban nem mondhatjuk, hogy egymástól elválaszthatatlanok, hiszen gyakran ugyanazt a dallamot teljesen más ritmussal hallhatjuk, illetve a különbözõ eredetû és tulajdonságú dallamok elõfordulnak azonos ritmussal \cite{Vargyas1}. A népdalok rendszerezésében a dallam és a ritmus szerinti megközelítés mindig párhuzamosan érvényesült.
+
+%----------------------------------------------------------------------------
+\section{A ritmusok összehasonlítása}
+%----------------------------------------------------------------------------
+
+Mind adatbányászati, mind zeneelméleti szempontból alapvetõ kérdés, hogy hogyan hasonlítsunk össze két ritmust. A ritmusok reprezentációját úgy kell megválasztanunk, hogy azok összehasonlíthatóak legyenek olyan módon, amit a zenekutató értelmesnek talál. Alapvetõ követelmény, hogy ez az összehasonlítás emberi észlelésünkkel összhangban legyen, azaz hasonlónak érzékelt ritmusokat hasonlónak, különbözõnek érzékelt ritmusokat pedig különbözõnek találjon.
 
 Két ritmus ($r_i$ és $r_j$) különbözõségét valamiképp mérhetõvé kell tennünk. Meg kell adnunk egy formulát ($d(r_i,r_j)$), amely a kapott két ritmusábrázolás alapján képes meghatározni egy különbözõséget tükrözõ numerikus értéket. Kézenfekvõ megközelítésnek tûnik, ha ezt a különbözõségi értéket a $0$ és $1$ közötti skálán helyezzük el, ahol minél kisebb az érték, annál jobban hasonlít egymásra a két ritmus. A $0$ jelenti a teljes ritmikai azonosságot, míg az $1$ a lehetõ legnagyobb különbözõséget, a két szélsõérték között pedig egyenesen arányosan oszlik el a különbözõség. 
 
@@ -47,7 +47,7 @@ A \ref{eq:form02} képletben szereplõ mátrix-definícióban látható, hogy szimmetri
 \section{A ritmus geometriai reprezentációja}
 %----------------------------------------------------------------------------
 
-A ritmus vizuális megjelenítése nem csak könyebb elemzést tesz lehetõvé, de olyan tulajdonságokra hívhatja fel a figyelmet, melyek fontosak a hasonlóság méréséhez. A 13. századi arab zenetudós, Safi al-Din óta ismert a ritmus azon szemléltetése, mely egy kört körcikkekre bont, az ütésekhez tartozó körcikkeket kiszínezi, a szünetekhez tartozókat pedig üresen hagyja. A kezdõpontot egy nyíl jelzi. Ez a zseniálisan egyszerû módszer a ritmus ciklikusságát is megragadja, hiszen egy ritmus több versszakból, strófából álló dalok esetén visszatér. 
+A ritmus vizuális megjelenítése nem csak könyebb elemzést tesz lehetõvé, de olyan tulajdonságokra hívhatja fel a figyelmet, melyek fontosak a hasonlóság méréséhez. A $13$. századi arab zenetudós, Safi al-Din óta ismert a ritmus azon szemléltetése, mely egy kört körcikkekre bont, az ütésekhez tartozó körcikkeket kiszínezi, a szünetekhez tartozókat pedig üresen hagyja \cite{Toussaint3}. A kezdõpontot egy nyíl jelzi. Ez a zseniálisan egyszerû módszer a ritmus ciklikusságát is megragadja, hiszen egy ritmus több versszakból, strófából álló dalok esetén visszatér. 
 
 \begin{figure}[!h]
 \centering
@@ -91,7 +91,7 @@ A ritmusok gépi ábrázolására a University of California (UCLA) kutatói által kif
 \subsection{Szomszédos intervallumok ábrázolása}
 %----------------------------------------------------------------------------
 
-A \ref{fig:fig02} ábrán látható 4. ritmusábrázolási módszerben található számok azt jelzik, hogy milyen hosszúak az egymást követõ hangsúlyos elemek. A ti-ti-tá ritmus így tizenhatodos felbontással a $(2, 2, 4)$ intervallum-vektorral jellemezhetõ. Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki módszereket. Ezek egyike, a szomszédos intervallumok spektrumának módszere úgy ábrázolja a ritmust egy koordinátarendszerben, hogy az $x$ tengely mentén egyesével haladva egy-egy oszlop magassága felel meg az adott pozícióban álló hangsúly hosszának (\ref{fig:fig03} ábra). Az azonos ütemet tartalmazó ritmusok így szemléletesen ábrázolhatóak egymás mellett vagy alatt, de ez a módszer megnehezíti az intervallumok relatív hosszúságának érzékelését.
+A \ref{fig:fig02} ábrán látható $4$. ritmusábrázolási módszerben található számok azt jelzik, hogy milyen hosszúak az egymást követõ hangsúlyos elemek. A ti-ti-tá ritmus így tizenhatodos felbontással a $(2, 2, 4)$ intervallum-vektorral jellemezhetõ. Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki módszereket. Ezek egyike, a szomszédos intervallumok spektrumának módszere úgy ábrázolja a ritmust egy koordinátarendszerben, hogy az $x$ tengely mentén egyesével haladva egy-egy oszlop magassága felel meg az adott pozícióban álló hangsúly hosszának (\ref{fig:fig03} ábra). Az azonos ütemet tartalmazó ritmusok így szemléletesen ábrázolhatóak egymás mellett vagy alatt, de ez a módszer megnehezíti az intervallumok relatív hosszúságának érzékelését.
 
 \begin{figure}
 \centering
@@ -179,12 +179,12 @@ d_{Bin1}(X,Y)=\frac{r+s}{q+r+s+t}
 
 ahol $q$ az azonos helyen lévõ $1$-esek, $t$ az azonos helyen lévõ $0$-ák, $s$ és $r$ pedig a különbözõ bitek száma $X$-ben, illetve $Y$-ban (ha azonos hosszúak, akkor $s=r$). 
 
-Ezzel szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a $0$-ák egyezését jelölõ $t$-t:
+Ezzel szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a $0$-ák egyezését számláló $t$-t:
 \begin{align}
 d_{Bin2}(X,Y)=\frac{r+s}{q+r+s} 
 \end{align}
 
-A ritmusokat reprezentáló TUBS vektorokra jellemzõbb, hogy több bennük a szünet, mint a hangsúlyos elem (az $1$-es), ezért a másodikként definiált megközelítést használjuk inkább.
+A ritmusokat reprezentáló TUBS vektorok általános jellemzõje, hogy több bennük a szünet, mint a hangsúlyos elem (az $1$-es), ezért a másodikként definiált megközelítést használjuk inkább.
 
 %----------------------------------------------------------------------------
 \subsection{Intervallum-vektorok Manhattan-távolsága}
@@ -194,7 +194,7 @@ Zenefelismerõ és zenekategorizáló algoritmusok által gyakrabban használt ritmusá
 \begin{align}
 d_M(X,Y)=\sum_{i=1}^n |x_i-y_i| 
 \end{align}
-Az elõzõ módszertõl mindössze annyiban tér el, hogy egy más módon képzett vektort vesz kiindulási alapul, melynek elemei nem csak a $\left\{0,1\right\}$ halmazból kerülhetnek ki. Az intervallum-vektorok $O(n)$ idõben számolhatók a TUBS ábrázolásból, ebbõl következõen a lépésszámban nincs eltérés ($O(n)$). Ez a megközelítés úgy értelmezhetõ a mindennapi távolsághoz képest, hogy egy olyan út hosszát méri, mely egymásra merõleges szakaszokon haladva vezet az egyik pontból a másikba, mintha csak egy úthálózaton haladhatnánk.
+Az elõzõ módszertõl mindössze annyiban tér el, hogy egy más módon képzett vektort vesz kiindulási alapul, melynek elemei nem csak a $\left\{0,1\right\}$ halmazból kerülhetnek ki. Az intervallum-vektorok $O(n)$ idõben számolhatók a TUBS ábrázolásból, ebbõl következõen a lépésszámban nincs eltérés ($O(n)$). Ez a megközelítés úgy értelmezhetõ a mindennapi távolsághoz képest, hogy egy olyan út hosszát méri, mely egymásra merõleges szakaszokon haladva vezet az egyik pontból a másikba, mintha csak egy nagyvárosi úthálózaton haladhatnánk.
 
 %----------------------------------------------------------------------------
 \subsection{Intervallum-vektorok Euklideszi-távolsága}
@@ -207,7 +207,7 @@ d_E(X,Y)=\sqrt{\sum_{i=1}^n (x_i-y_i)^2}
 
 A korábbiakhoz hasonlóan ez az algoritmus is $O(n)$ lépést igényel.
 
-Az utóbbi két megközelítés a Hamming-távolságnál hasznosabb a ritmus különbözõségének meghatározásához, hiszen az eltolási problémát kiküszöbölik.
+Az utóbbi két megközelítés a Hamming-távolságnál alkalmasabb a ritmus különbözõségének meghatározásához, hiszen az eltolási problémát kiküszöbölik.
 
 %----------------------------------------------------------------------------
 \subsection{Az intervallum-különbözõségi vektorok távolsága}
@@ -318,6 +318,6 @@ A görbe alatti területekkel számoló kronotonikus távolság alapú algoritmusnál en
 	\fill [red,fill=red!20] (axis cs:75,2) rectangle (axis cs:87.5,4);
 	\end{axis}
 	\end{tikzpicture}
-\caption{Különbözõ hosszúságú ritmusok közötti kronotonikus távolság}
+\caption{Különbözõ hosszúságú ritmusok közötti kronotonikus távolság $100$ egység hosszú $x$ tengelyre vetítve}
 \label{fig:fig07}
 \end{figure}
