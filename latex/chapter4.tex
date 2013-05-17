@@ -141,7 +141,7 @@ Ugyanez mondható el a különbözõ partícionáló módszerekrõl is, ahol a kezdeti kla
 \subsection{A klaszterezések jóságának mérése}
 %----------------------------------------------------------------------------
 
-Mind a $k$-means, mind a DBSCAN implementációi igényelnek egy célfüggvényt, melyet minimalizálni szeretnének. Számos, \ref{sect:klasztjell} szakaszban definiált metrikát megvalósítottam, melyek a \texttt{MetricsUtils} osztály statikus metódusai közé kerültek. Mindegyikük egy klaszterlistát kér paraméterként, és egy duplapontosságú lebegõpontos nemnegatív értéket adnak vissza. 
+Mind a $k$-means, mind a DBSCAN implementációi igényelnek egy célfüggvényt, melyet minimalizálni szeretnének. Számos, \ref{sect:klasztjell} szakaszban definiált metrikát megvalósítottam, melyek a \texttt{MetricsUtils} osztály statikus metódusai közé kerültek. Mindegyikük egy paraméterként kapott klaszterlista alapján egy duplapontosságú lebegõpontos nemnegatív értéket ad vissza. 
 
 
 A választott nyelv által megkövetelt objektumorientáltság alapelve, hogy az adatok és a hozzájuk tartozó manipuláló eljárások egy objektumba legyenek foglalva. Ezt szem elõtt tartva bizonyos, adott klaszterre jellemzõ mértékek (pl. klaszterátmérõ, klaszteren belüli távolságok összege) kiszámításáért a \texttt{Cluster} nevû segédosztály lett a felelõs, mely egyébként a klaszterpéldányokat reprezentálja (mezõi: középpont, elemek, stb\dots).
