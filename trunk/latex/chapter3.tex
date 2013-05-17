@@ -4,7 +4,9 @@
 
 A ritmus görög eredetû szó, jelentése: lüktetés, dobogás, (szív-)verés, ütem. Hasonló vagy azonos elemek idõbeli szabályos váltakozását, ismétlõdését értjük alatta. A zene csak az idõben fogható fel, tehát nem értelmezhetõ a ritmus fogalma nélkül.
 
-A dallam és a ritmus együttesen határoznak meg egy dalt, azt azonban nem mondhatjuk, hogy egymástól elválaszthatatlanok, hiszen gyakran ugyanazt a dallamot teljesen más ritmussal hallhatjuk, illetve a különbözõ eredetû és tulajdonságú dallamok elõfordulnak azonos ritmussal \cite{Vargyas1}. A népdalok rendszerezésében a dallam és a ritmus szerinti megközelítés mindig párhuzamosan érvényesült.
+A dallam és a ritmus együttesen határoznak meg egy dalt, azt azonban nem mondhatjuk, hogy egymástól elválaszthatatlanok, hiszen gyakran ugyanazt a dallamot teljesen más ritmussal hallhatjuk, illetve a különbözõ eredetû és tulajdonságú dallamok elõfordulnak azonos ritmussal \cite{Vargyas1}. 
+
+A népdalok rendszerezésében a dallam és a ritmus szerinti megközelítés mindig párhuzamosan érvényesült.
 
 %----------------------------------------------------------------------------
 \section{A ritmusok összehasonlítása}
@@ -14,7 +16,21 @@ Mind adatbányászati, mind zeneelméleti szempontból alapvetõ kérdés, hogy hogyan 
 
 Két ritmus ($r_i$ és $r_j$) különbözõségét valamiképp mérhetõvé kell tennünk. Meg kell adnunk egy formulát ($d(r_i,r_j)$), amely a kapott két ritmusábrázolás alapján képes meghatározni egy különbözõséget tükrözõ numerikus értéket. Kézenfekvõ megközelítésnek tûnik, ha ezt a különbözõségi értéket a $0$ és $1$ közötti skálán helyezzük el, ahol minél kisebb az érték, annál jobban hasonlít egymásra a két ritmus. A $0$ jelenti a teljes ritmikai azonosságot, míg az $1$ a lehetõ legnagyobb különbözõséget, a két szélsõérték között pedig egyenesen arányosan oszlik el a különbözõség. 
 
-Minden ritmus összehasonlításra kerül az összes többi ritmussal, a kiszámított értékek pedig egy úgynevezett különbözõségi mátrix ($M_{diff}$) megfelelõ helyére kerülnek. Ezt úgy képezzük, hogy vesszük egy sorba az összes ritmust, illetve vesszük õket egy oszlopba is, majd a kapott táblázat megfelelõ helyére beírjuk a különbözõségi értéket. A mátrix fõátlójában nyilvánvalóan csupa nullák állnak, hiszen $r_i$ ritmus megegyezik $r_i$ ritmussal, azaz $d(r_i,r_i)=0, \forall i$-re (\ref{eq:form01} képlet). Ebben az esetben $n*(n-1)$ összehasonlítást kell elvégeznünk és ennyi eredményt is kell tárolnunk.
+Az általános távolságfüggvénnyel szemben támasztott formális követelmények a következõk:
+
+\begin{enumerate}
+\item $d(x,y) \geq 0, \forall x,y$-ra és $d(x,y)=0 \Leftrightarrow x=y$, azaz két elem távolsága nem negatív, és nulla akkor és csak akkor, ha a két elem azonos.
+\item $d(x,y) = d(y,x)$. Az $x$ és az $y$ elem távolsága mindkét irányban ugyanaz (szimmetria).
+\item $d(x,z) \leq d(x,y) + d(y,z), \forall x,y,z$-re (háromszög-egyenlõtlenség).
+\end{enumerate}
+
+A szimmetria megkövetelése esetünkben nem feltétlenül szükséges, ezt a feladat speciális jellemzõi és a kiválasztott metrika sajátosságai határozzák meg.
+
+%----------------------------------------------------------------------------
+\section{A távolságok tárolása}
+%----------------------------------------------------------------------------
+
+Az alapelképzelés szerint minden ritmus összehasonlításra kerül az összes többi ritmussal, a kiszámított értékek pedig egy úgynevezett különbözõségi mátrix ($M_{diff}$) megfelelõ helyére kerülnek. Ezt úgy képezzük, hogy vesszük egy sorba az összes ritmust, illetve vesszük õket egy oszlopba is, majd a kapott táblázat megfelelõ helyére beírjuk a különbözõségi értéket. A mátrix fõátlójában nyilvánvalóan csupa nullák állnak, hiszen $r_i$ ritmus megegyezik $r_i$ ritmussal, azaz $d(r_i,r_i)=0, \forall i$-re (\ref{eq:form01} képlet). Ebben az esetben $n*(n-1)$ összehasonlítást kell elvégeznünk és ennyi eredményt is kell tárolnunk.
 
 \begin{align}
 \label{eq:form01}
@@ -27,7 +43,7 @@ M_{diff} = \bordermatrix{~ & r_1 & r_2 & r_3 & \cdots & r_{n-1} & r_n \cr
                   r_n & d(r_n,r_1) & d(r_n,r_2) & d(r_n,r_3) & \cdots & d(r_n,r_{n-1}) & 0\cr}
 \end{align}
 
-Amennyiben úgy döntünk, hogy a távolságdefiníciók szimmetrikusak, akkor a mátrix is szimmetrikus lesz (hiszen ekkor lényegtelen, hogy $r_i$ ritmust vetjük össze $r_j$-vel, vagy $r_j$ ritmust $r_i$-val, azaz $d(r_i,r_j)=d(r_j,r_i), \forall i,j$-re). Ekkor a könnyebb tárolás és feldolgozás érdekében elég, ha csak a fõátló alatti elemeket tekintjük.
+Amennyiben úgy döntünk, hogy a megköveteljük távolságfüggvény szimmetriáját is, akkor a mátrix is szimmetrikus lesz (hiszen ekkor lényegtelen, hogy $r_i$ ritmust vetjük össze $r_j$-vel, vagy $r_j$ ritmust $r_i$-val, azaz $d(r_i,r_j)=d(r_j,r_i), \forall i,j$-re). Ekkor a könnyebb tárolás és feldolgozás érdekében elég, ha csak a fõátló alatti elemeket tekintjük.
 
 \begin{align}
 \label{eq:form02}
@@ -43,11 +59,15 @@ M_{diff} = \bordermatrix{~ & r_1 & r_2 & r_3 & \cdots & r_{n-1} & r_n \cr
 
 A \ref{eq:form02} képletben szereplõ mátrix-definícióban látható, hogy szimmetria esetén mely értékekre nincs szükségünk, melyek adottak és melyeket kell kiszámolnunk. Adott $n$ számú ritmust feltételezve könnyû meghatározni, hogy ehhez összesen $\frac{n^2-n}{2}$ összehasonlítás szükséges.
 
+Néhány tízezer elembõl álló adatbázis esetén az így kapott $M_{diff}$ memóriában is tárolható, ha azonban továbbnõ az adathalmaz mérete, megfontolandó a memóriában csak minden elem $k$ legközelebbi szomszédjától való távolságát tárolni. A projekt jelenlegi fázisában a kisebb méret miatt ezzel nem kell foglalkoznunk.
+
 %----------------------------------------------------------------------------
 \section{A ritmus geometriai reprezentációja}
 %----------------------------------------------------------------------------
 
-A ritmus vizuális megjelenítése nem csak könyebb elemzést tesz lehetõvé, de olyan tulajdonságokra hívhatja fel a figyelmet, melyek fontosak a hasonlóság méréséhez. A $13$. századi arab zenetudós, Safi al-Din óta ismert a ritmus azon szemléltetése, mely egy kört körcikkekre bont, az ütésekhez tartozó körcikkeket kiszínezi, a szünetekhez tartozókat pedig üresen hagyja \cite{Toussaint3}. A kezdõpontot egy nyíl jelzi. Ez a zseniálisan egyszerû módszer a ritmus ciklikusságát is megragadja, hiszen egy ritmus több versszakból, strófából álló dalok esetén visszatér. 
+A ritmus vizuális megjelenítése nem csak könyebb elemzést tesz lehetõvé, de olyan tulajdonságokra hívhatja fel a figyelmet, melyek fontosak a hasonlóság méréséhez. 
+
+A $13$. századi arab zenetudós, Safi al-Din óta ismert a ritmus azon szemléltetése, mely egy kört körcikkekre bont, az ütésekhez tartozó körcikkeket kiszínezi, a szünetekhez tartozókat pedig üresen hagyja \cite{Toussaint3}. A kezdõpontot egy nyíl jelzi. Ez a zseniálisan egyszerû módszer a ritmus ciklikusságát is megragadja, hiszen egy ritmus több versszakból, strófából álló dalok esetén visszatér. 
 
 \begin{figure}[!h]
 \centering
@@ -72,7 +92,7 @@ A \ref{fig:fig01} ábrán látható egy egyszerû ti-ti-tá ti-ti-tá ritmus ábrázolása
 
 A ritmusok gépi ábrázolására a University of California (UCLA) kutatói által kifejlesztett Time Unit Box System (TUBS) módszer tûnik a legalmasabbnak (a \ref{fig:fig02} ábrán a 2. módszer). Ez néhány egymás mellé helyezett dobozból áll, melyek mindegyike egy elõre meghatározott idõszeletet reprezentál. A dobozok vagy üresek, vagy jelöltek lehetnek, az üres doboz a hozzá tartozó idõszeletben zenei esemény hiányát, míg a jelölt doboz a annak meglétét tükrözi. Ez a megközelítés könnyedén interpretálható a számítástudomány által egyszerûen feldolgozható bináris vektor nyelvén is (a \ref{fig:fig02} ábrán a 3. módszer).
 
-\begin{figure}
+\begin{figure}[!h]
 \centering
 	\begin{tikzpicture}
 	\begin{axis}[ymin=0,ymax=4.2,enlargelimits=false,xtick=data]
@@ -87,13 +107,22 @@ A ritmusok gépi ábrázolására a University of California (UCLA) kutatói által kif
 \label{fig:fig03}
 \end{figure}
 
+Megjegyzendõ, hogy triolák, illetve egyéb nem szabályos értékekre támaszkodó ritmikai elemek reprezentálására ez a módszer csak jelentõs felbontás növekedéssel alkalmas. A felbontás pontos mértéke függ az elõforduló szabálytalan elemek típusaitól is.
+
 %----------------------------------------------------------------------------
 \subsection{Szomszédos intervallumok ábrázolása}
 %----------------------------------------------------------------------------
 
-A \ref{fig:fig02} ábrán látható $4$. ritmusábrázolási módszerben található számok azt jelzik, hogy milyen hosszúak az egymást követõ hangsúlyos elemek. A ti-ti-tá ritmus így tizenhatodos felbontással a $(2, 2, 4)$ intervallum-vektorral jellemezhetõ. Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki módszereket. Ezek egyike, a szomszédos intervallumok spektrumának módszere úgy ábrázolja a ritmust egy koordinátarendszerben, hogy az $x$ tengely mentén egyesével haladva egy-egy oszlop magassága felel meg az adott pozícióban álló hangsúly hosszának (\ref{fig:fig03} ábra). Az azonos ütemet tartalmazó ritmusok így szemléletesen ábrázolhatóak egymás mellett vagy alatt, de ez a módszer megnehezíti az intervallumok relatív hosszúságának érzékelését.
+A \ref{fig:fig02} ábrán látható $4$. ritmusábrázolási módszerben található számok azt jelzik, hogy milyen hosszúak az egymást követõ hangsúlyos elemek. A ti-ti-tá ritmus így tizenhatodos felbontással a
+\[ \left( \begin{array}{ccc}
+2& 2& 4
+\end{array} \right)
+\]
+intervallum-vektorral jellemezhetõ. 
 
-\begin{figure}
+Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki módszereket. Ezek egyike, a szomszédos intervallumok spektrumának módszere úgy ábrázolja a ritmust egy koordinátarendszerben, hogy az $x$ tengely mentén egyesével haladva egy-egy oszlop magassága felel meg az adott pozícióban álló hangsúly hosszának (\ref{fig:fig03} ábra). Az azonos ütemet tartalmazó ritmusok így szemléletesen ábrázolhatóak egymás mellett vagy alatt, de ez a módszer megnehezíti az intervallumok relatív hosszúságának érzékelését.
+
+\begin{figure}[!h]
 \centering
 	\begin{tikzpicture}
 	\begin{axis}[ymin=0,ymax=4.2,enlargelimits=false]
@@ -113,10 +142,12 @@ A \ref{fig:fig02} ábrán látható $4$. ritmusábrázolási módszerben található számo
 \label{fig:fig04}
 \end{figure}
 
-Kézenfekvõ ötlet a hátrányok kiköszöbölésére a különbözõ módszerek ötvözete. A TUBS módszert és a szomszédos intervallumok spektrumának módszerét úgy tudjuk vegyíteni, hogy minden TUBS-ban szereplõ dobozba azt a számot írjuk, amilyen hosszú a hozzá tartozó vagy az õt megelõzõ hangsúlyos elem. Ha az így kapott vektort ábrázoljuk a koordinátarendszerben, akkor egy olyan ábrát kapunk, melyen az idõbeli elemek megfelelõ méretû négyszögekkel vannak reprezentálva. Ebbõl származik a módszer elnevezése is: Temporal Elements Displayed As Squares, vagy röviden TEDAS \cite{Toussaint2}. A korábbiakban tárgyalt ritmushoz tartozó TEDAS ábrázolás látható a \ref{fig:fig04} ábrán. Az alapjául szolgáló vektort, melyet kronotonikus láncnak nevezünk, nem csak oszlopként, hanem függvényként is ábrázolhatjuk a koordinátarendszerben (\ref{fig:fig05} ábra).
+Kézenfekvõ ötlet a hátrányok kiköszöbölésére a különbözõ módszerek ötvözete. A TUBS módszert és a szomszédos intervallumok spektrumának módszerét úgy tudjuk vegyíteni, hogy minden TUBS-ban szereplõ dobozba azt a számot írjuk, amilyen hosszú a hozzá tartozó vagy az õt megelõzõ hangsúlyos elem. Ha az így kapott vektort ábrázoljuk a koordinátarendszerben, akkor egy olyan ábrát kapunk, melyen az idõbeli elemek megfelelõ méretû négyszögekkel vannak reprezentálva. Ebbõl származik a módszer elnevezése is: Temporal Elements Displayed As Squares, vagy röviden TEDAS \cite{Toussaint2}. 
+
+A korábbiakban tárgyalt ritmushoz tartozó TEDAS ábrázolás látható a \ref{fig:fig04} ábrán. Az alapjául szolgáló vektort, melyet kronotonikus láncnak nevezünk, nem csak oszlopként, hanem függvényként is ábrázolhatjuk a koordinátarendszerben (\ref{fig:fig05} ábra).
 
 
-\begin{figure}
+\begin{figure}[!h]
 \centering
         \begin{subfigure}[b]{0.5\textwidth}
                 \centering
@@ -185,6 +216,8 @@ d_{Bin2}(X,Y)=\frac{r+s}{q+r+s}
 \end{align}
 
 A ritmusokat reprezentáló TUBS vektorok általános jellemzõje, hogy több bennük a szünet, mint a hangsúlyos elem (az $1$-es), ezért a másodikként definiált megközelítést használjuk inkább.
+
+Ez a megközelítés sajnos szintén rendelkezik a Hamming-távolság minden, korábban vázolt hátrányával.
 
 %----------------------------------------------------------------------------
 \subsection{Intervallum-vektorok Manhattan-távolsága}
