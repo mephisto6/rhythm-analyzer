@@ -179,6 +179,12 @@ A kiválasztott klaszterezés paraméterei a jobb oldali paraméter panelen állíthat
 A futást a \textit{Classify!} feliratú gomb megnyomásával indíthatjuk, az eredmények megjelenítése pedig az alsó, csak olvasható kimeneti panelen történik. A kapott klaszterek külön sorba kerülnek, az elemeiket pedig a katalógusfájlból származó azonosítók jelölik.
 
 %----------------------------------------------------------------------------
+\section{NEXUS fájlok generálása}
+%----------------------------------------------------------------------------
+
+Az elkészült szoftver rendelkezik azzal a funkcióval, hogy speciális, úgynevezett NEXUS fájlokat generáljon, melyet a következõ fejezetben ismeretett SplitsTree nevû alkalmazás kíván bemenetként használni. Egy ilyen fájlra láthatunk példát az \ref{app:nexus}. számú függelékben.
+
+%----------------------------------------------------------------------------
 \section{Felhasznált technológiák}
 %----------------------------------------------------------------------------
 
@@ -187,7 +193,9 @@ A futást a \textit{Classify!} feliratú gomb megnyomásával indíthatjuk, az eredmé
 
 \item A debug során sok segítséget nyújtott a prioritási szintenkénti loggolást lehetõvé tevõ Log4j csomag.
 
-\item A katalógusfájl soronként feldolgozását a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. 
+\item A katalógusfájl soronkénti feldolgozását és a fájlbaíró mûveleteket a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. 
+
+\item A grafikus felület létrehozásához az Eclipse SWT grafikus könyvtárát használtam.
 
 \item Az Apache Commons IO könyvtára a rekurzív fájlbeolvasásban segített.
 

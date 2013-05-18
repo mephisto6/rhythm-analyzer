@@ -208,9 +208,9 @@ Az irodalom \cite{Rokach} által javasolt általános módszer bináris vektorok össz
 d_{Bin1}(X,Y)=\frac{r+s}{q+r+s+t} 
 \end{align}
 
-ahol $q$ az azonos helyen lévõ $1$-esek, $t$ az azonos helyen lévõ $0$-ák, $s$ és $r$ pedig a különbözõ bitek száma $X$-ben, illetve $Y$-ban (ha azonos hosszúak, akkor $s=r$). 
+ahol $q$ az azonos helyen lévõ $1$-esek, $t$ az azonos helyen lévõ $0$-ák, $s$ és $r$ pedig a különbözõ bitek száma $X$-ben, illetve $Y$-ban (ha azonos hosszúak, akkor $s=r$). Ez egyfajta súlyozott Hamming-távolságként is értelmezhetõ.
 
-Ezzel szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a $0$-ák egyezését számláló $t$-t:
+A korábbiakkal szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a $0$-ák egyezését számláló $t$-t:
 \begin{align}
 d_{Bin2}(X,Y)=\frac{r+s}{q+r+s} 
 \end{align}
@@ -316,20 +316,26 @@ A \ref{fig:fig06} ábra szemlélteti a korábbiakból már ismert ritmusokhoz tartozó
 \end{figure}
 
 %----------------------------------------------------------------------------
-\subsection{Különbözõ hosszúságú ritmusok}
+\section{Különbözõ hosszúságú ritmusok}
 %----------------------------------------------------------------------------
 
 A gyakorlatban a legritkább esetben fordul elõ, hogy minden vizsgált ritmus hossza azonos. Az eddig tárgyalt módszerek azonban egytõl egyig feltételezték ezt. Valamiképpen tehát módosítanunk kell a kiindulási algoritmusokon, hogy figyelembe vegyék a ritmushosszok különbözõségét. 
 
-Ugyanakkor ez a probléma felveti azt a kérdést is, hogy a definiált távolságtól megköveteljük-e a szimmetriát, azaz $d(x,y)$ és $d(y,x)$ legyen-e egyenlõ $\forall x,y$-ra.
+Ugyanakkor ez a probléma ismét felveti azt a kérdést is, hogy a definiált távolságtól megköveteljük-e a szimmetriát, azaz $d(x,y)$ és $d(y,x)$ legyen-e egyenlõ $\forall x,y$-ra, hiszen különbözõ hosszúság esetén nem mindegy, hogy milyen sorrendben hajtunk végre bizonyos lépéseket.
 
-Elõbb vizsgáljuk meg azt az esetet, amikor teljesül a szimmetria. Ez esetben kézenfekvõ megközelítés, ha a hosszabb ritmusvektort fixen hagyva tologatjuk a rövidebb vektort a hosszabb elejétõl a végéig, minden lehetséges módon számítunk egy távolságot, majd a kapott értékek minimumát vesszük. Formálisan ha $|f_1(x)|=n_1$, $|f_2(x)|=n_2$ és $n_1>n_2$,  akkor 
+%----------------------------------------------------------------------------
+\subsubsection{Szimmetria teljesülése esetén}
+%----------------------------------------------------------------------------
+
+Elõbb vizsgáljuk meg azt az esetet, amikor teljesül a szimmetria. Ez esetben kézenfekvõ megközelítés, ha a hosszabb ritmusvektort fixen hagyva tologatjuk (,,shifteljük'') a rövidebb vektort a hosszabb elejétõl a végéig, minden lehetséges módon számítunk egy távolságot, majd a kapott értékek minimumát vesszük. 
+
+Formálisan tehát, ha $|X|=n_1$, $|Y|=n_2$ és $n_1>n_2$,  akkor 
 \begin{align}
 d_{Shifted}(X,Y) = \min_{i \in 0..n_1-n_2} d_{Spec}(X_{i,n_2+i},Y) 
 \end{align}
-ahol $X_{i,n_2+i}$ jelöli $X$ vektor $i.$ és $n_2+i$. közötti elemei által alkotott vektort, beleértve a határokat is. Az ily módon meghatározott vektorok hossza már azonos, így átadhatók az elsõ négy fent definiált eljárásnak ($d_{Spec} \in \left\{d_H,d_M,d_E,d_{ID}\right\}$). A megközelítés hátránya, hogy nagy különbségek esetén jelentõsen megnövelheti a futásidõt ($\forall i \in \left\{0,n_1-n_2\right\}$-re le kell futtatni az eredeti algoritmust). Ez a módszer szinkronban van azzal a gyakorlati megfigyeléssel, hogy ha egy ritmus valahol magában foglal egy másikat, akkor szoros kapcsolat van közöttük.
+ahol $X_{i,n_2+i}$ jelöli $X$ vektor $i.$ és $n_2+i$. közötti elemei által alkotott vektort, beleértve a határokat is. Az ily módon meghatározott vektorok hossza már azonos, így átadhatók a korábbi szakaszban definiált eljárásoknak ($d_{Spec} \in \left\{d_H,d_M,d_E,d_{ID},d_{SWAP}\right\}$). 
 
-A cserelési távolság...
+Ez a módszer szinkronban van azzal a gyakorlati megfigyeléssel, hogy ha egy ritmus valahol magában foglal egy másikat, akkor szoros kapcsolat van közöttük. A megközelítés hátránya azonban, hogy nagy különbségek esetén jelentõsen megnövelheti a futásidõt ($\forall i \in \left\{0,n_1-n_2\right\}$-re le kell futtatni az eredeti algoritmust). 
 
 A görbe alatti területekkel számoló kronotonikus távolság alapú algoritmusnál ennél egy szofisztikáltabb megközelítést alkalmazhatunk. A módszer lényege, hogy a ritmusvektorokhoz rendelt kronotonikus vektorokat egy adott hosszúságú $x$-tengelyre vetítjük, függetlenül azok tényleges hosszától. A különbségek meghatározása és az integrálszámítás az így kapott függvényen történik.
 
@@ -346,11 +352,33 @@ A görbe alatti területekkel számoló kronotonikus távolság alapú algoritmusnál en
 	coordinates
 	{(0,    3) (25,    2) (41.6,    3) (66.66,    4) (100,    4)};
   \fill [blue,fill=blue!20] (axis cs:0,3) rectangle (axis cs:25,4);
-	\fill [blue,fill=blue!20] (axis cs:37.5,2) rectangle (axis cs:41.6,4);
-	\fill [blue,fill=blue!20] (axis cs:41.6,3) rectangle (axis cs:66.6,4);
+	\fill [blue,fill=blue!20] (axis cs:37.5,2) rectangle (axis cs:41.6,3);
+	\fill [blue,fill=blue!20] (axis cs:37.5,3) rectangle (axis cs:66.6,4);
 	\fill [red,fill=red!20] (axis cs:75,2) rectangle (axis cs:87.5,4);
 	\end{axis}
 	\end{tikzpicture}
 \caption{Különbözõ hosszúságú ritmusok közötti kronotonikus távolság $100$ egység hosszú $x$ tengelyre vetítve}
 \label{fig:fig07}
 \end{figure}
+
+%----------------------------------------------------------------------------
+\subsubsection{Szimmetria nem teljesülése esetén}
+%----------------------------------------------------------------------------
+
+Ha úgy döntünk, hogy a nem kívánjuk megkövetelni a szimmetria teljesülését, akkor rendelhetünk különbözõ értékeket a rövidebb hosszabbtól, illetve a hosszabb rövidebbtõl való távolságértékeként. 
+
+Talán nem tévedünk nagyot, ha egy rövidebb vektorra, melyet magában foglal egy másik, azt mondjuk, hogy $0$ távolságra van a hosszabbtól. A hosszabb távolsága a rövidebbtõl pedig annak függvényében közelít a $0$-hoz, hogy mekkora a közöttük lévõ hosszeltérés.
+
+A nem szimmetrikus távolságra példa az úgynevezett nem szimmetrikus Hamming-távolság. Ebben az esetben számít a sorrend $d_{H}(x,y)$ paraméterezésében. 
+
+A módszer során nagyjából az történik, hogy a szummázás elõtt a második vektort, amennyiben az rövidebb, mint az elsõ, nullákal egészítjük ki, hogy azonos hosszúak legyenek. Ezek után ugyanúgy vizsgáljuk meg a kapott vektorok távolságát, mint az eredeti módszernél.
+
+Formálisan, adott $X=(x_1,x_2,...,x_n)$ a nála rövidebb $Y=(y_1,y_2,...,y_m)$-tõl való távolsága (tehát $|X|=n$, $|Y|=m$, és $n>m$):
+\begin{align}
+d_H(X,Y)=\sum_{i=1}^m |x_i-y_i|+ \sum_{i=m+1}^n |x_i|
+\end{align}
+hiszen a második tagban $0$-kat vonunk le az aktuális $x_i$-bõl.
+
+Ezzel a módszerrel azt a valós megfigyelést realizálhatjuk, hogy ha egy $X$ vektor része egy hosszabb $Y$-nak, akkor $d(X,Y)$ valóban $0$, ezzel szemben $d(Y,X)$ nem feltétlenül egyenlõ vele. Ha pedig adódik egy $X$-nél hosszabb, $Y$-nál még mindig rövidebb $Z$ vektor, mely szintúgy része $Y$-nak, akkor $d(Z,X) \leq d(Y,X)$.
+
+Az eljárás ugyanígy értelmezhetõ Manhattan-, és Euklideszi-távolságokra, de sajnos nem alkalmazható intervallum-különbözõségi vektorok, cserélési távolság és kronotonikus láncok esetén.
