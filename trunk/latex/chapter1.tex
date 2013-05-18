@@ -70,17 +70,26 @@ A C klaszter elemeinek számát $|C|$ jelöli. A klaszter nagyságának jellemzésére 
 \begin{itemize}
 \item A klaszter elemei közötti maximális távolság alapján: 
 	\begin{align}
-	D_{max}(C) = \max_{p,q \in C} d(p,q) 
+	D_{max}(C) = \max_{\substack{
+   p \in C \\
+   q \in C
+  }} d(p,q) 
 	\label{eq:2}
 	\end{align}
 \item A klaszter elemei közötti átlagos távolság alapján: 
 	\begin{align}
-	D_{avg}(C) = \frac{\sum_{p,q \in C}d(p,q)}{|C|^2} 
+	D_{avg}(C) = \frac{\sum_{\substack{
+   p \in C \\
+   q \in C
+  }}d(p,q)}{|C|^2} 
 	\label{eq:3}
 	\end{align}
 \item Ugyanez, ha nem vesszük számításba az elemek önmaguktól való $0$ távolságát:
 	\begin{align}
-	D'_{avg}(C) = \frac{\sum_{p,q \in C}d(p,q)}{\binom{|C|}{2}} 
+	D'_{avg}(C) = \frac{\sum_{\substack{
+   p \in C \\
+   q \in C
+  }}d(p,q)}{\binom{|C|}{2}} 
 	\label{eq:4}
 	\end{align}
 \end{itemize}
@@ -100,17 +109,26 @@ Gyakran elõfordul, hogy egy algoritmus következõ állapotának meghatározásához me
 \begin{itemize}
 \item A két klaszter elemeinek páronként számított távolságainak minimuma:
 	\begin{align}
-	d_{min}(C_i,C_j) = \min_{p \in C_i,q \in C_j} d(p,q) 
+	d_{min}(C_i,C_j) = \min_{\substack{
+   p \in C_i \\
+   q \in C_j
+  }} d(p,q) 
 	\label{eq:7}
 	\end{align}
 \item A két klaszter elemeinek páronként számított távolságainak maximuma:
 	\begin{align}
-	d_{max}(C_i,C_j) = \max_{p \in C_i,q \in C_j} d(p,q) 
+	d_{max}(C_i,C_j) = \max_{\substack{
+   p \in C_i \\
+   q \in C_j
+  }} d(p,q) 
 	\label{eq:8}
 	\end{align}
 \item A két klaszter elemeinek páronként számított távolságainak átlaga:
 	\begin{align}
-	d_{avg}(C_i,C_j) = \frac{\sum_{ p \in C_i, q \in C_j} d(p,q)}{|C_i|*|C_j|}
+	d_{avg}(C_i,C_j) = \frac{\sum_{\substack{
+   p \in C_i \\
+   q \in C_j
+  }} d(p,q)}{|C_i|*|C_j|}
 	\label{eq:9}
 	\end{align}
 \item A két klaszterközéppont távolsága:
@@ -139,7 +157,10 @@ Amennyiben már van egy klaszterezésünk, és azt össze szeretnénk hasonlítani egy 
 	\end{align}
 \item Klasztereken belüli távolságösszegek összege:
 	\begin{align}
-	\sum_{i=1}^{k}\sum_{p,q \in C_i} d(p,q) 
+	\sum_{i=1}^{k}\sum_{\substack{
+   p \in C_i \\
+   q \in C_i
+  }} d(p,q) 
 	\label{eq:14}
 	\end{align}
 \item Maximális átmérõ:
@@ -179,7 +200,7 @@ Az összefésülés illetve a felosztás valamilyen távolságmérték alapján történik. 
 	
 	Gráfelméleti szempontból nézve (egy teljes gráfban a pontok a klaszterezendõ elemek, az élsúlyok pedig a pontokhoz tartozó elemek közötti távolságok) ez a módszer egy minimális feszítõfát fog találni, ha a klaszterek számát $1$-re állítjuk. Ha $k$ darab csoportot szeretnénk kapni, akkor ezt a minimális feszítõfa $k-1$ darab legnagyobb súlyú élének elhagyásával kaphatjuk meg. Az így keletkezett komponensekben található elemek kerülnek egy klaszterbe.
 		
-		A módszernek komoly hátránya, az úgy nevezett lánceffektus: néhány hídként viselkedõ egymáshoz közeli pont összekapcsolhat egyébként jól elkülönülõ klasztereket. További megfontolandókat vetnek fel az elkülönülõ pontok (úgynevezett outlierek) jelenléte az adatbázisban. 
+		A módszernek komoly hátránya, az úgy nevezett lánceffektus: néhány hídként viselkedõ egymáshoz közeli pont összekapcsolhat egyébként jól elkülönülõ klasztereket. További megfontolandókat vet fel az elkülönülõ pontok (úgynevezett outlierek) jelenléte az adatbázisban. 
 	
 	%----------------------------------------------------------------------------
 \subsubsection{Complete-linkage klaszterezés}
@@ -274,13 +295,41 @@ Egy $p$ elem szomszédai ($N_{eps}(p)$) azok az elemek, amelyek $p$-tõl legfeljeb
 Ezek után a klaszterek a következõ két szabály alapján kaphatjuk meg:
 
 \begin{enumerate}
- \item Ha $p \in C$ és $q$ sûrûség alapn elérhetõ $p$-bõl, akkor $q \in C$.
+ \item Ha $p \in C$ és $q$ sûrûség alapon elérhetõ $p$-bõl, akkor $q \in C$.
  \item Ha $p,q \in C$, akkor $p$ és $q$ sûrûség alapon összekötött.
 \end{enumerate}
 
 Az algoritmus elsõ lépésében választunk egy tetszõeleges $p$ elemet és meghatározzuk a belõle sûrûség alapon elérhetõ elemeket. Amennyiben $|N_{eps}(p)|\geq mintPts$ teljesül, kaptunk egy klasztert. A feltétel nem teljesülése nem feltétlenül jelenti azt, hogy $p$ nem tartozik egy klaszterbe sem, lehetséges, hogy egy klaszter szélén helyezkedik el. Ilyenkor csak válasszunk egy új elemet. Ha már nem lehet új elemet választani, az algoritmus véget ért. Ha egy elem ezután sem tartozik egy klaszterbe sem, akkor zajnak tekinthetjük.
 
 A módszer fõ gyengesége, hogy rendkívül érzékeny a két paraméterre ($\varepsilon, minPts$). Sõt, ha különbözõ klaszterek sûrûsége eltérõ, akkor nem biztos, hogy lehet olyan $\varepsilon$-t és $minPts$-t megadni, ami értékelhetõ eredményhez vezet.
+
+%----------------------------------------------------------------------------
+\subsubsection{OPTICS klaszterezés}
+%----------------------------------------------------------------------------
+
+A DBSCAN egyik hátrányát küszöböli ki az OPTICS (\textit{Ordering Points To Identify the Clustering Structure}) algoritmus: különbözõ sûrûségû klaszterek feltérképezésére is használható. 
+
+Alapötlete, hogy minden olyan ponthoz, amelynek legalább $minPts$ pont van $\varepsilon$-sugarú szomszédságában, hozzárendel egy olyan értéket is, hogy a tõle $minPts$-edik szomszédos elem milyen messze van. Ez egy lokális sûrûségi érték, melyet a késõbbi lépései során arra használ, hogy ne akadályozza különbözõ sûrûségû klaszterek létrejöttét.
+
+Ezt így írhatjuk le pontosan (\textit{CD = Core Distance}):
+\[ 
+CD_{\varepsilon,mintPts}(p) = \left\{ 
+  \begin{array}{l l}
+    \text{NEM DEFINIÁLT} & \quad \text{ha $N_{\varepsilon}(p)<minPts$}\\
+    \text{a minPts-edik elem távolsága} & \quad \text{egyébként}
+  \end{array} \right.
+\]
+
+Ekkor egy $p$ elem $o$ elemtõl való elérhetõségi távolsága (\textit{RD = Reachibilty Distance}):
+\[ 
+RD{\varepsilon,mintPts}(p,o) = \left\{ 
+  \begin{array}{l l}
+    \text{NEM DEFINIÁLT} & \quad \text{ha $N_{\varepsilon}(o)<minPts$}\\
+    \text{$max(CD_{\varepsilon,mintPts}(o),d(o,p))$} & \quad \text{egyébként}
+  \end{array} \right.
+\]
+
+Ezek után ez az az $\varepsilon'<\varepsilon$, amelyet ahhoz kell használnunk, hogy $p$ és $o$ elem azonos klaszterbe kerüljön. 
 
 %----------------------------------------------------------------------------
 \subsection{További módszerek}
