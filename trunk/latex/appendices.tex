@@ -13,7 +13,7 @@
 \section{NEXUS fájl példa}\label{app:nexus}
 %----------------------------------------------------------------------------
 
-\begin{lstlisting}[frame=single,captionpos=b,caption={A 21-es dallamvonal szerinti klaszterhez generált Nexus fájl}]
+\begin{lstlisting}[frame=single,captionpos=b,caption={A 21-es dallamosztályhoz generált Nexus fájl (Hamming-távolság alapján)}]
 #NEXUS
 
 BEGIN taxa;
@@ -52,12 +52,52 @@ MATRIX
 END;
 \end{lstlisting}
 
-%----------------------------------------------------------------------------
-%\clearpage\section{Szekció 2}
-%----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+\clearpage\section{Az ötödik dallamosztály SplitsTree fái különbözõ távolságok alapján}\label{app:splits}
+----------------------------------------------------------------------------
 
+\vspace*{110px}
 
+\begin{figure}[!h]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/cluster5_manhattan.png}
+\caption{Az ötödik dallamosztály elemei Manhattan-távolság alapján} 
+\end{figure}
 
+\begin{figure}[!p]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/cluster5_euclidean.png}
+\caption{Az ötödik dallamosztály elemei Euklideszi-távolság alapján} 
+\end{figure}
 
+\clearpage
 
+\begin{figure}[!p]
+\centering
+\includegraphics[width=110mm, keepaspectratio]{figures/cluster5_intervaldiff.png}
+\caption{Az ötödik dallamosztály elemei intervallum-különbözõségi vektorok távolsága alapján} 
+\end{figure}
 
+\clearpage
+
+\begin{figure}[!p]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/cluster5_chronotonic.png}
+\caption{Az ötödik dallamosztály elemei kronotonikus távolság alapján} 
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!p]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/cluster5_continouschronotonic.png}
+\caption{Az ötödik dallamosztály elemei vetített kronotonikus távolság alapján} 
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!p]
+\centering
+\includegraphics[width=150mm, keepaspectratio]{figures/cluster5_swap.png}
+\caption{Az ötödik dallamosztály elemei cserélési távolság alapján} 
+\end{figure}

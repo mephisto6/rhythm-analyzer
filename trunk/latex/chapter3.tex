@@ -65,7 +65,7 @@ Néhány tízezer elembõl álló adatbázis esetén az így kapott $M_{diff}$ memóriában
 \section{A ritmus geometriai reprezentációja}
 %----------------------------------------------------------------------------
 
-A ritmus vizuális megjelenítése nem csak könyebb elemzést tesz lehetõvé, de olyan tulajdonságokra hívhatja fel a figyelmet, melyek fontosak a hasonlóság méréséhez. 
+A ritmus vizuális megjelenítése nem csak könnyebb elemzést tesz lehetõvé, de olyan tulajdonságokra hívhatja fel a figyelmet, melyek fontosak a hasonlóság méréséhez. 
 
 A $13$. századi arab zenetudós, Safi al-Din óta ismert a ritmus azon szemléltetése, mely egy kört körcikkekre bont, az ütésekhez tartozó körcikkeket kiszínezi, a szünetekhez tartozókat pedig üresen hagyja \cite{Toussaint3}. A kezdõpontot egy nyíl jelzi. Ez a zseniálisan egyszerû módszer a ritmus ciklikusságát is megragadja, hiszen egy ritmus több versszakból, strófából álló dalok esetén visszatér. 
 
@@ -90,7 +90,7 @@ A \ref{fig:fig01} ábrán látható egy egyszerû ti-ti-tá ti-ti-tá ritmus ábrázolása
 \subsection{Time Unit Box System}
 %----------------------------------------------------------------------------
 
-A ritmusok gépi ábrázolására a University of California (UCLA) kutatói által kifejlesztett Time Unit Box System (TUBS) módszer tûnik a legalmasabbnak (a \ref{fig:fig02} ábrán a 2. módszer). Ez néhány egymás mellé helyezett dobozból áll, melyek mindegyike egy elõre meghatározott idõszeletet reprezentál. A dobozok vagy üresek, vagy jelöltek lehetnek, az üres doboz a hozzá tartozó idõszeletben zenei esemény hiányát, míg a jelölt doboz a annak meglétét tükrözi. Ez a megközelítés könnyedén interpretálható a számítástudomány által egyszerûen feldolgozható bináris vektor nyelvén is (a \ref{fig:fig02} ábrán a 3. módszer).
+A ritmusok gépi ábrázolására a University of California (UCLA) kutatói által kifejlesztett Time Unit Box System (TUBS) módszer tûnik a legalkalmasabbnak (a \ref{fig:fig02} ábrán a 2. módszer). Ez néhány egymás mellé helyezett dobozból áll, melyek mindegyike egy elõre meghatározott idõszeletet reprezentál. A dobozok vagy üresek, vagy jelöltek lehetnek, az üres doboz a hozzá tartozó idõszeletben zenei esemény hiányát, míg a jelölt doboz a annak meglétét tükrözi. Ez a megközelítés könnyedén interpretálható a számítástudomány által egyszerûen feldolgozható bináris vektor nyelvén is (a \ref{fig:fig02} ábrán a 3. módszer).
 
 \begin{figure}[!h]
 \centering
@@ -120,7 +120,7 @@ A \ref{fig:fig02} ábrán látható $4$. ritmusábrázolási módszerben található számo
 \]
 intervallum-vektorral jellemezhetõ. 
 
-Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki módszereket. Ezek egyike, a szomszédos intervallumok spektrumának módszere úgy ábrázolja a ritmust egy koordinátarendszerben, hogy az $x$ tengely mentén egyesével haladva egy-egy oszlop magassága felel meg az adott pozícióban álló hangsúly hosszának (\ref{fig:fig03} ábra). Az azonos ütemet tartalmazó ritmusok így szemléletesen ábrázolhatóak egymás mellett vagy alatt, de ez a módszer megnehezíti az intervallumok relatív hosszúságának érzékelését.
+Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki módszereket. Ezek egyike, a szomszédos intervallumok spektrumának módszere úgy ábrázolja a ritmust egy koordináta-rendszerben, hogy az $x$ tengely mentén egyesével haladva egy-egy oszlop magassága felel meg az adott pozícióban álló hangsúly hosszának (\ref{fig:fig03} ábra). Az azonos ütemet tartalmazó ritmusok így szemléletesen ábrázolhatóak egymás mellett vagy alatt, de ez a módszer megnehezíti az intervallumok relatív hosszúságának érzékelését.
 
 \begin{figure}[!h]
 \centering
@@ -142,9 +142,9 @@ Ennek a vektornak a szemléltetésére a University of Oxford kutatói dolgoztak ki 
 \label{fig:fig04}
 \end{figure}
 
-Kézenfekvõ ötlet a hátrányok kiköszöbölésére a különbözõ módszerek ötvözete. A TUBS módszert és a szomszédos intervallumok spektrumának módszerét úgy tudjuk vegyíteni, hogy minden TUBS-ban szereplõ dobozba azt a számot írjuk, amilyen hosszú a hozzá tartozó vagy az õt megelõzõ hangsúlyos elem. Ha az így kapott vektort ábrázoljuk a koordinátarendszerben, akkor egy olyan ábrát kapunk, melyen az idõbeli elemek megfelelõ méretû négyszögekkel vannak reprezentálva. Ebbõl származik a módszer elnevezése is: Temporal Elements Displayed As Squares, vagy röviden TEDAS \cite{Toussaint2}. 
+Kézenfekvõ ötlet a hátrányok kiküszöbölésére a különbözõ módszerek ötvözete. A TUBS módszert és a szomszédos intervallumok spektrumának módszerét úgy tudjuk vegyíteni, hogy minden TUBS-ban szereplõ dobozba azt a számot írjuk, amilyen hosszú a hozzá tartozó vagy az õt megelõzõ hangsúlyos elem. Ha az így kapott vektort ábrázoljuk a koordináta-rendszerben, akkor egy olyan ábrát kapunk, melyen az idõbeli elemek megfelelõ méretû négyszögekkel vannak reprezentálva. Ebbõl származik a módszer elnevezése is: Temporal Elements Displayed As Squares, vagy röviden TEDAS \cite{Toussaint2}. 
 
-A korábbiakban tárgyalt ritmushoz tartozó TEDAS ábrázolás látható a \ref{fig:fig04} ábrán. Az alapjául szolgáló vektort, melyet kronotonikus láncnak nevezünk, nem csak oszlopként, hanem függvényként is ábrázolhatjuk a koordinátarendszerben (\ref{fig:fig05} ábra).
+A korábbiakban tárgyalt ritmushoz tartozó TEDAS ábrázolás látható a \ref{fig:fig04} ábrán. Az alapjául szolgáló vektort, melyet kronotonikus láncnak nevezünk, nem csak oszlopként, hanem függvényként is ábrázolhatjuk a koordináta-rendszerben (\ref{fig:fig05} ábra).
 
 
 \begin{figure}[!h]
@@ -195,9 +195,9 @@ A számítástudományban bináris vektorok összehasonlításának legtermészetesebb mód
 \begin{align}
 d_H(X,Y)=\sum_{i=1}^n |x_i-y_i|
 \end{align}
-ahol $|x|$ az $x$ érték abszolútértékét jelöli.
+ahol $|x|$ az $x$ érték abszolút értékét jelöli.
 
-A módszer nagyon egyszerû, idõigénye is alacsony, hiszen elég egyetlen ciklusban végigiterálni a vektorokon és akkumulálni a különbözõ bitek számát, azaz lépésszáma a vektor hosszának konstansszorosa ($O(n)$). Ugyanakkor nem biztos, hogy  erre a speciális igényre a legjobban megfelel, mert az eltérõséget ugyan jól méri, de azt nem, hogy milyen messze vannak egymástól az eltérések. A gyakorlati tapasztalatok azt mutatják, hogy egy hangsúly távolabbra helyezése különbözõbbnek hat, mintha közelebbre tettük volna át. Szintén hátránya a módszernek, hogy egy ütemmel eltolva ugyanaz a ritmus teljesen másnak értékelõdik, holott az emberi fül számára az nagyon hasonló az eredetihez.
+A módszer nagyon egyszerû, idõigénye is alacsony, hiszen elég egyetlen ciklusban végigiterálni a vektorokon és akkumulálni a különbözõ bitek számát, azaz lépésszáma a vektor hosszának konstans-szorosa ($O(n)$). Ugyanakkor nem biztos, hogy  erre a speciális igényre a legjobban megfelel, mert az különbözõséget ugyan jól méri, de azt nem, hogy milyen messze vannak egymástól az eltérések. A gyakorlati tapasztalatok azt mutatják, hogy egy hangsúly távolabbra helyezése különbözõbbnek hat, mintha közelebbre tettük volna át. Szintén hátránya a módszernek, hogy egy ütemmel eltolva ugyanaz a ritmus teljesen másnak értékelõdik, holott az emberi fül számára az nagyon hasonló az eredetihez.
 
 %----------------------------------------------------------------------------
 \subsection{Bináris vektorok távolsága}
@@ -210,7 +210,7 @@ d_{Bin1}(X,Y)=\frac{r+s}{q+r+s+t}
 
 ahol $q$ az azonos helyen lévõ $1$-esek, $t$ az azonos helyen lévõ $0$-ák, $s$ és $r$ pedig a különbözõ bitek száma $X$-ben, illetve $Y$-ban (ha azonos hosszúak, akkor $s=r$). Ez egyfajta súlyozott Hamming-távolságként is értelmezhetõ.
 
-A korábbiakkal szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a $0$-ák egyezését számláló $t$-t:
+A korábbiakkal szemben aszimmetrikus attribútumról akkor beszélünk, ha a $0$ és $1$ különbözõ valószínûséggel fordul elõ a vektorokban, így tehát az egyikük egyezése ,,fontosabb'', mint a másiké (általában ez az $1$-esek egyezése). Ekkor a nevezõbõl elhagyjuk a nullák egyezését számláló $t$-t:
 \begin{align}
 d_{Bin2}(X,Y)=\frac{r+s}{q+r+s} 
 \end{align}
@@ -223,7 +223,7 @@ Ez a megközelítés sajnos szintén rendelkezik a Hamming-távolság minden, korábban
 \subsection{Intervallum-vektorok Manhattan-távolsága}
 %----------------------------------------------------------------------------
 
-Zenefelismerõ és zenekategorizáló algoritmusok által gyakrabban használt ritmusábrázolás a hangsúlyok közötti intervallumok hosszait reprezentáló vektorokon alapul (a \ref{fig:fig02} ábrán a 4. módszer hasonló, de ott a hangsúlyos ütemet is beleszámoljuk a hosszba, ezért ott a vektor minden eleme $1$-gyel nagyobb). Egy ritmus az $X=(x_1,x_2,...,x_n)$ vektor által reprezentált, ahol $x_1$ jelöli az elsõ hangsúly utáni intervallum hosszát. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ által jelölt ritmusok közötti Manhattan-távolságot az alábbi formula adja meg:
+Zenefelismerõ és zenekategorizáló algoritmusok által gyakrabban használt ritmusábrázolás a hangsúlyok közötti intervallumok hosszait reprezentáló vektorokon alapul (a \ref{fig:fig02} ábrán a 4. módszer hasonló, de ott a hangsúlyos ütemet is beleszámoljuk a hosszba, ezért ott a vektor minden eleme eggyel nagyobb). Egy ritmus az $X=(x_1,x_2,...,x_n)$ vektor által reprezentált, ahol $x_1$ jelöli az elsõ hangsúly utáni intervallum hosszát. Az $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ által jelölt ritmusok közötti Manhattan-távolságot az alábbi formula adja meg:
 \begin{align}
 d_M(X,Y)=\sum_{i=1}^n |x_i-y_i| 
 \end{align}
@@ -287,7 +287,7 @@ Az $U$ és $V$ vektorok számolása TUBS vektorokból $O(n)$ idejû, így $d(U,V)$ meg
 \subsection{Kronotonikus távolság}
 %----------------------------------------------------------------------------
 
-A Hofmann-Engl által javasolt módszer a közös koordinátarendszerben ábrázolt kronotonikus láncokból indul ki. Két ritmus távolságát úgy határozza meg, hogy az általuk meghatározott kronotonikus láncok alatti területeket hasonlítja össze. Formálisan tehát elõbb vesszük az $f_1(x)$ és $f_2(x)$ függvényekkel leírt kronotonikus láncok különbségének abszolútértékét (amire azért van szükség, hogy ne nullázhassa ki két azonos méretû eltérés egymást), majd ennek integrálját (azaz a függvény alatti terület nagyságát) tekintjük a távolságnak.
+A Hofmann-Engl által javasolt módszer a közös koordináta-rendszerben ábrázolt kronotonikus láncokból indul ki. Két ritmus távolságát úgy határozza meg, hogy az általuk meghatározott kronotonikus láncok alatti területeket hasonlítja össze. Formálisan tehát elõbb vesszük az $f_1(x)$ és $f_2(x)$ függvényekkel leírt kronotonikus láncok különbségének abszolút értékét (amire azért van szükség, hogy ne nullázhassa ki két azonos méretû eltérés egymást), majd ennek integrálját (azaz a függvény alatti terület nagyságát) tekintjük a távolságnak.
 \begin{align}
 d_K(X,Y) = K = \int |f_1(x)-f_2(x)|dx 
 \end{align}
@@ -371,7 +371,7 @@ Talán nem tévedünk nagyot, ha egy rövidebb vektorra, melyet magában foglal egy m
 
 A nem szimmetrikus távolságra példa az úgynevezett nem szimmetrikus Hamming-távolság. Ebben az esetben számít a sorrend $d_{H}(x,y)$ paraméterezésében. 
 
-A módszer során nagyjából az történik, hogy a szummázás elõtt a második vektort, amennyiben az rövidebb, mint az elsõ, nullákal egészítjük ki, hogy azonos hosszúak legyenek. Ezek után ugyanúgy vizsgáljuk meg a kapott vektorok távolságát, mint az eredeti módszernél.
+A módszer során nagyjából az történik, hogy a szummázás elõtt a második vektort, amennyiben az rövidebb, mint az elsõ, nullákkal egészítjük ki, hogy azonos hosszúak legyenek. Ezek után ugyanúgy vizsgáljuk meg a kapott vektorok távolságát, mint az eredeti módszernél.
 
 Formálisan, adott $X=(x_1,x_2,...,x_n)$ a nála rövidebb $Y=(y_1,y_2,...,y_m)$-tõl való távolsága (tehát $|X|=n$, $|Y|=m$, és $n>m$):
 \begin{align}
