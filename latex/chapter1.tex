@@ -16,9 +16,9 @@ A dolgozatom egy etnomuzikológus által felvetett kérdésekre keres adatbányászato
 \section{A tudásfeltárás folyamata}
 %----------------------------------------------------------------------------
 
-A tudáskinyerési folyamat jóldefiniált, egymást követõ lépések sorozata. A kitûzött célok elérését segíti, ha követjük ezeket a lépéseket, melyek a korábbi kutatások tapasztalatain alapulnak. 
+A tudáskinyerési folyamat jól definiált, egymást követõ lépések sorozata. A kitûzött célok elérését segíti, ha követjük ezeket a lépéseket, melyek a korábbi kutatások tapasztalatain alapulnak. 
 
-A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} különbözõ felosztásokban (némely lépéseket egybevonva vagy több pontra bontva), de a követketkezõ fázisokat sorolja fel (\ref{fig:tudas} ábra):
+A témával foglalkozó szakirodalom \cite{BodonPhD, BodonBuza} különbözõ felosztásokban (némely lépéseket egybevonva vagy több pontra bontva), de a következõ fázisokat sorolja fel (\ref{fig:tudas} ábra):
 
 \begin{enumerate}
 	\item \textbf{Az alkalmazási terület feltárása és megértése}: a fontosabb elõzetes ismeretek begyûjtése, a felhasználási célok meghatározása
@@ -223,7 +223,7 @@ Az összefésülés illetve a felosztás valamilyen távolságmérték alapján történik. 
 \subsubsection{Ward módszere}
 %----------------------------------------------------------------------------	
 
-Ennél a módszernél is kezdetben minden elem külön klaszterbe tartozik, a négyzetes hiba így $0$. Eztuán minden lépésnél a négyzetes hibát próbálja minimalizálni azzal, hogy azt a két klasztert egyesíti, amelyek összevonása a legkisebb négyzetes hibanövekedést okozza. Sajnos itt sem garantált, hogy globális helyett nem lokális minimumot találunk.
+Ennél a módszernél is kezdetben minden elem külön klaszterbe tartozik, a négyzetes hiba így $0$. Ezután minden lépésnél a négyzetes hibát próbálja minimalizálni azzal, hogy azt a két klasztert egyesíti, amelyek összevonása a legkisebb négyzetes hibanövekedést okozza. Sajnos itt sem garantált, hogy globális helyett nem lokális minimumot találunk.
 
 \vspace{12pt}
 
@@ -232,16 +232,16 @@ Minden további felosztás egy nagyobb távolságot eredményez a klaszterek között, 
 A hierarchikus módszerek közös hátránya a rossz skálázhatóság és a nemlineáris lépésszám (legjobb esetben is ($O(n^2)$, de akár $O(2^n)$ is lehet, ahol $n$ az elemek száma), melynek következménye lehet nagyméretû adathalmaz esetén a túl sok fájlmûvelet. Súlyos hátrány még a visszalépési képesség hiánya.
 
 %----------------------------------------------------------------------------
-\subsection{Partícionáló módszerek}
+\subsection{Particionáló módszerek}
 %----------------------------------------------------------------------------
 
-Ezek a módszerek abban közösek, hogy egy kezdeti $k$ diszjunkt partícionálás után az elemeket ide-oda mozgathatják a klaszterek között, minden lépés során ügyelve arra, hogy egy elõre megadott metrikát (ilyen lehet az \ref{eq:12}-es, \ref{eq:13}-as, \ref{eq:14}-es, \ref{eq:15}-ös és \ref{eq:16}-os függvények bármelyike) minimalizálják vagy maximalizálják. Amennyiben több lehetõség is kínálkozik a célfüggvény javítására, a legjobbat választják ezek  közül. Akkor állnak le, ha már nem lehet több olyan lépést tenni, ami javítaná az aktuális klaszterezés jóságát.
+Ezek a módszerek abban közösek, hogy egy kezdeti $k$ diszjunkt particionálás után az elemeket ide-oda mozgathatják a klaszterek között, minden lépés során ügyelve arra, hogy egy elõre megadott metrikát (ilyen lehet az \ref{eq:12}-es, \ref{eq:13}-as, \ref{eq:14}-es, \ref{eq:15}-ös és \ref{eq:16}-os függvények bármelyike) minimalizálják vagy maximalizálják. Amennyiben több lehetõség is kínálkozik a célfüggvény javítására, a legjobbat választják ezek  közül. Akkor állnak le, ha már nem lehet több olyan lépést tenni, ami javítaná az aktuális klaszterezés jóságát.
 
 %----------------------------------------------------------------------------
 \subsubsection{$k$-means klaszterezés}
 %----------------------------------------------------------------------------
 
-A $k$-means az egyik legrégebbi és legegyszerûbb klaszterezõ algoritmus, mely vektortérben elhelyezkedõ elemek esetén használható. Menete a következõ: kezdetben választunk $k$ darab véletlen elemet, melyek reprezentálják a $k$ darab klasztert. Ezután minden elemet hozzárendeljük ahhoz a klaszterhez, amelynek reprezentáns pontjától való tavolsága minimális. A besorolás után új reprezentatív pontot választunk, a klaszter középpontját. Innentõl kezdve pedig addig folytatjuk a besorolást és az új középpont választást, amíg történik változás.
+A $k$-means az egyik legrégebbi és legegyszerûbb klaszterezõ algoritmus, mely vektortérben elhelyezkedõ elemek esetén használható. Menete a következõ: kezdetben választunk $k$ darab véletlen elemet, melyek reprezentálják a $k$ darab klasztert. Ezután minden elemet hozzárendeljük ahhoz a klaszterhez, amelynek reprezentáns pontjától való távolsága minimális. A besorolás után új reprezentatív pontot választunk, a klaszter középpontját. Innentõl kezdve pedig addig folytatjuk a besorolást és az új középpont választást, amíg történik változás.
 
 Formálisan, az $n$ elemû $S$ alaphalmazt $k \leq n$ darab $C_1,..,C_k$, páronként diszjunkt partícióra osztja úgy, hogy az \ref{eq:11}-es képletben szereplõ négyzetes hibaösszeg minimális legyen.
 
@@ -255,10 +255,10 @@ Finomítása az algoritmusnak a $k$-medoid nevû módszer, melyben a klasztert nem a
 
 \vspace{12pt}
 
-A gyengepontja ezeknek az algoritmusoknak, hogy a kezdeti klaszterezés milyensége nagyban befolyásolja az eredményét. Az érzékenység abból fakad, hogy egy szerencsétlen kezdeti klaszterezés globális minimum helyett lokális minimumhoz vezethet. Ennek az esélyének csökkentésére a következõket tehetjük:
+A gyenge pontja ezeknek az algoritmusoknak, hogy a kezdeti klaszterezés milyensége nagyban befolyásolja az eredményét. Az érzékenység abból fakad, hogy egy szerencsétlen kezdeti klaszterezés globális minimum helyett lokális minimumhoz vezethet. Ennek az esélyének csökkentésére a következõket tehetjük:
 
 \begin{itemize}
-\item Véletlenszerû választás helyett kiválaszthatjuk a két legtávolabbi elemet, majd a következõ elemeket sorra úgy, hogy a már megválasztott középpontoktó való távolságuk legyen maximális.
+\item Véletlenszerû választás helyett kiválaszthatjuk a két legtávolabbi elemet, majd a következõ elemeket sorra úgy, hogy a már megválasztott középpontoktól való távolságuk legyen maximális.
 \item Csak az elsõ középpontot választjuk véletlenszerûen, utána az elõbbihez a hasonlóan a többit úgy választjuk, hogy a már kiválasztottaktól való távolságuk legyen a lehetõ legnagyobb.
 \end{itemize}
 
@@ -273,7 +273,7 @@ ahol $n$ a klaszterezendõ elemek száma.
 
 A négyzetes hibaösszeget (\ref{eq:11}-es képlet) gyakran használják az algoritmusok minimalizálandó célfüggvényként, de ennek a megközelítésnek van néhány súlyos hátránya:
 \begin{enumerate}
-\item Csak elliptikus klaszterek megtalálására képes, ami azt jelenti, hogy az amorf formájú klasztereket feldarabolja kisebb köralakúakra.
+\item Csak elliptikus klaszterek megtalálására képes, ami azt jelenti, hogy az amorf formájú klasztereket feldarabolja kisebb kör alakúakra.
 \item Rossz eredményeket ad, ha a klaszterek között nagy méretkülönbségek vannak. Nagy méretû klaszter esetén ugyanis a szélsõ pontok távol esnek a középponttól, ami nagy hibát eredményez, így a nagy klaszter felosztásra kerül.
 \item Érzékeny a távol esõ pontokra (outlierekre), hiszen egy ilyen az õt tartalmazó klaszter középpontját elhúzza.
 \end{enumerate}
@@ -289,7 +289,7 @@ Az eddig felsorolt klaszterezõ algoritmusok két dologban voltak közösek: nulladi
 \subsubsection{DBSCAN klaszterezés}
 %----------------------------------------------------------------------------
 
-A legelsõ és legismertebb sûrûség-alapú klaszterezõ algoritmus a DBSCAN (\textit{Density-Based Spatial Clustering of Applications with Noise}), melynek alapötlet az, hogy egy klasztert addig növesztünk, amíg hozzá tudunk venni olyan pontot, ami egy elõre magadott $\varepsilon$ távolságnál közelebb van valamelyik eleméhez. Pontosabban úgy fogalmazhatunk, hogy egy klaszteren belüli pontokra mindig igaz, hogy adott $\varepsilon$ sugarú körön belül mindig található bizonyos ($minPts$) számú elem.
+A legelsõ és legismertebb sûrûség-alapú klaszterezõ algoritmus a DBSCAN (\textit{Density-Based Spatial Clustering of Applications with Noise}), melynek alapötlet az, hogy egy klasztert addig növesztünk, amíg hozzá tudunk venni olyan pontot, ami egy elõre megadott $\varepsilon$ távolságnál közelebb van valamelyik eleméhez. Pontosabban úgy fogalmazhatunk, hogy egy klaszteren belüli pontokra mindig igaz, hogy adott $\varepsilon$ sugarú körön belül mindig található bizonyos ($minPts$) számú elem.
 
 Egy $p$ elem szomszédai ($N_{eps}(p)$) azok az elemek, amelyek $p$-tõl legfeljebb $\varepsilon$ távolságra vannak. Ha $q \in N_{eps}(p)$ és $|N_{eps}(p)| \geq minPts$, akkor azt mondjuk, hogy $q$ elem $p$-bõl sûrûség alapon közvetlenül elérhetõ. Ha pedig léteznek $p=p_1,p_2,\dots,p_n=q$ elemek úgy, hogy $p_{i+1}$ sûrûség alapon közvetlenül elérhetõ $p_i$-bõl, akkor $q$ elem sûrûség alapon elérhetõ $p$-bõl. A $p$ és $q$ elemek sûrûség alapon összekötöttek, ha létezik ilyen $o$ elem, amelybõl $p$ és $q$ sûrûség alapon elérhetõ.
 
@@ -338,9 +338,9 @@ Ezek után ez az az $\varepsilon'<\varepsilon$, amelyet ahhoz kell használnunk, h
 
 Megvalósításra nem kerültek, de megemlítendõ még néhány olyan technika, amely nem tartozik bele a fenti kategóriák egyikébe sem. 
 \begin{itemize}
- \item Spektrál módszerek
+ \item Spektrális módszerek
 
-Ezek azok a módszerek, amelyek a klaszterezés során az adathalmaz távolságait tartalmazó mátrix sajátértékeit, illetve sajátvektorait használják.
+Ezek azok a módszerek, amelyek a klaszterezés során az adathalmaz távolságait tartalmazó mátrix sajátértékeit, illetve sajátvektorjait használják.
 \item Grid-alapú módszerek
 
 Ezek az eljárások az elemeket rácspontokba képezik le, majd a továbbiakban csak a kapott rácspontokkal dolgoznak. Fõ elõnyük a gyorsaságuk. 
@@ -352,5 +352,5 @@ Az adatot valamilyen matematikai modell segítségével próbálják leírni, egyben me
 A korábbiakkal ellentétben, ahol minden elem pontosan egy osztályba tartozott, ezek az eljárások az elemek és a klaszterek között beletartozási értéket számolnak, mely annál nagyobb, minél inkább biztos, hogy az elem az adott klaszter tagja.
 \item Genetikus algoritmusok
 
-Az evolúciót utánzó genetikus algorimusok lassan mindenütt megjelennek, ezért itt is meg kell említeni õket. 
+Az evolúciót utánzó genetikus algoritmusok lassan mindenütt megjelennek, ezért itt is meg kell említeni õket. 
 \end{itemize}

@@ -1,4 +1,4 @@
-\documentclass[11pt,a4paper,oneside]{report}             % Single-side
+\documentclass[12pt,a4paper,oneside]{report}             % Single-side
 %\documentclass[11pt,a4paper,twoside,openright]{report}  % Duplex
 
 %\PassOptionsToPackage{chapternumber=Huordinal}{magyar.ldf}
@@ -68,8 +68,8 @@
     pdfauthor={\vikszerzo},    % author
     pdfsubject={\vikdoktipus}, % subject of the document
     pdfcreator={\vikszerzo},   % creator of the document
-    pdfproducer={Producer},    % producer of the document
-    pdfkeywords={keywords},    % list of keywords
+    pdfproducer={\vikszerzo},    % producer of the document
+    pdfkeywords={clustering, folkmusic, sheets},    % list of keywords
     pdfnewwindow=true,         % links in new window
     colorlinks=true,           % false: boxed links; true: colored links
     linkcolor=black,           % color of internal links
@@ -92,8 +92,8 @@
 	belowskip=12pt,
 	columns=fixed,
 	backgroundcolor=\color{lightgray},
-} 		
-\def\lstlistingname{Fájl}	
+}
+\def\lstlistingname{Fájl}
 
 %--------------------------------------------------------------------------------------
 %	Some new commands and declarations
@@ -170,10 +170,14 @@ aboveskip=10pt}
 \include{chapter6}
 \include{acknowledgement}
 
+\cleardoublepage % két oldalas irodalomjegyzék számozása miatt
+\phantomsection % két oldalas irodalomjegyzék számozása miatt
 \bibliography{mybib}
 \addcontentsline{toc}{chapter}{Irodalomjegyzék}
 \bibliographystyle{unsrt}
 
+\cleardoublepage % két oldalas irodalomjegyzék számozása miatt
+\phantomsection % két oldalas irodalomjegyzék számozása miatt
 \listoffigures\addcontentsline{toc}{chapter}{Ábrajegyzék}
 
 \include{appendices}

@@ -4,7 +4,7 @@
 
 Az elõzõ fejezetekben definiáltam egy problémát számos megoldási lehetõséggel. A feladatom az volt, hogy hozzak létre egy szoftvert, amely erre a problémára választ ad. Ehhez implementálni kellett a kották beolvasását, a ritmus kinyerését, a távolságok meghatározását, a klaszterezés futtatását és az eredmények megjelenítését. 
 
-A szoftver elékészítéséhez a Java nyelvet választottam annak platformfüggetlensége, széleskörû elterjedtsége, támogatottsága és rendelkezésre álló funkcionalitásának sokszínûsége miatt.
+A szoftver elkészítéséhez a Java nyelvet választottam annak platformfüggetlensége, széleskörû elterjedtsége, támogatottsága és rendelkezésre álló funkcionalitásának sokszínûsége miatt.
 
 A kód, a dokumentáció, illetve a grafikus elemek szövegei is mind angolul készültek.
 
@@ -22,7 +22,7 @@ T1/2 K2b [8G2 8G2 8G2 8G2] |K2b [8H2 8H2 8A2 8G2] |K2b 8A2 4F2. |
 
 \end{lstlisting}
 
-A \ref{list:kotta}-es fájlban egy ilyen speciálisan kódolt kottát láthatunk. Az elsõ eleme a fájlnak az ütemek hosszát határozza meg. Az ütemek között (az igazi kottához hasonlóan) függõleges vonal ($|$) található, a kottában is szereplõ gerendákat nyitó és záró szögeletes zárójel ($[$ és $]$) jelöli, de ezek számunkra nem hordoznak lényeges információt. 
+A \ref{list:kotta}-es fájlban egy ilyen speciálisan kódolt kottát láthatunk. Az elsõ eleme a fájlnak az ütemek hosszát határozza meg. Az ütemek között (az igazi kottához hasonlóan) függõleges vonal ($|$) található, a kottában is szereplõ gerendákat nyitó és záró szögletes zárójel ($[$ és $]$) jelöli, de ezek számunkra nem hordoznak lényeges információt. 
 
 Az ütemek elsõ eleme opcionális hangmagasság-módosító, ezért a ritmus vizsgálatakor figyelmen kívül hagyhatjuk. Utána jönnek a hangok, melynek elsõ része határozza meg a hang hosszát, második a magasságát. A \ref{list:kotta}-es fájl elsõ hangot reprezentáló eleme a $8G2$, mely egy $1/8$ hosszúságú $G$ hangot jelöl a második oktáv magasságában.
 
@@ -36,7 +36,7 @@ Pontozott hangok itt is elõfordulhatnak, a pont helye a hangot jelölõ kód utolsó
 
 Az egyes fájlokban tárolt adatokkal megadott dalokat egy objektum-hierarchiába képeztem le (\ref{fig:uml01} ábra). 
 
-A teljes dalhoz tartozó osztály a  \texttt{Tune} nevû osztály, mely tartalmazza a hozzá tartozó fájl referenciáját is. A \texttt{Tune} osztály \texttt{TuneLine} objektumokból épül fel, melyek mindegyike egy-egy sort reprezentál az adott fájlban. A sorok ütemekebõl épülnek fel, ugyanígy egy \texttt{TuneLine} objektum az ütemet reprezentáló \texttt{Bar} típusú objektumok kompozíciója. 
+A teljes dalhoz tartozó osztály a  \texttt{Tune} nevû osztály, mely tartalmazza a hozzá tartozó fájl referenciáját is. A \texttt{Tune} osztály \texttt{TuneLine} objektumokból épül fel, melyek mindegyike egy-egy sort reprezentál az adott fájlban. A sorok ütemekbõl épülnek fel, ugyanígy egy \texttt{TuneLine} objektum az ütemet reprezentáló \texttt{Bar} típusú objektumok kompozíciója. 
 
 \begin{figure}[!h]
 \centering
@@ -47,7 +47,7 @@ A teljes dalhoz tartozó osztály a  \texttt{Tune} nevû osztály, mely tartalmazza 
 
 Minden szinten találhatóak olyan mezõk, melyek az adott szinten értelmezhetõ ritmusvektor kiszámításához szükségesek. Az alkalmazásban a \texttt{TuneLine} osztály lett a felelõs a vektorok \texttt{Bar} objektumból származó részleteinek összeállításáért. 
 
-Mivel nagyon gyakorni, hogy a dalok ritmusa nem, vagy alig változik a sorok között, az a döntés született, hogy az elsõ sort választjuk ki az összehasonlítások alapjául, majd ha szükséges, további elemzéseket futtatunk a többi sorra.
+Mivel nagyon gyakori, hogy a dalok ritmusa nem, vagy alig változik a sorok között, az a döntés született, hogy az elsõ sort választjuk ki az összehasonlítások alapjául, majd ha szükséges, további elemzéseket futtatunk a többi sorra.
 
 %----------------------------------------------------------------------------
 \section{A forrásfájlok katalógusa}
@@ -85,7 +85,7 @@ Az ugyanehhez a sorhoz tartozó intervallumok hosszait reprezentáló vektor a pedi
 \]
 amely az elõzõ vektorból könnyen számolható az $1$-esek közötti $0$-k számának megszámolásával ($+1$).
 
-A szomszédos elemekhez tartozó arányok az intervallumok hosszait reprezentáló vektorból számíthatók az szomszédos elemek hányadosának sorbavételével:
+A szomszédos elemekhez tartozó arányok az intervallumok hosszait reprezentáló vektorból számíthatók az szomszédos elemek hányadosának sorba vételével:
 \[ \left( \begin{array}{cccccccccccc}
 1.00& 1.00& 1.00& 1.00& |& 1.00& 1.00& 1.00& 1.00& |& 3.00& 0.33
 \end{array} \right)
@@ -129,7 +129,7 @@ A ritmusok reprezentációinak elkészítése után a következõ lépés az összehasonlít
 \begin{figure}[!h]
 \centering
 \includegraphics[width=150mm, keepaspectratio]{figures/uml2.png}
-\caption{A komparáló objektumok hierarchiája} 
+\caption{A komparátor objektumok hierarchiája} 
 \label{fig:uml02}
 \end{figure} 
 
@@ -148,7 +148,7 @@ A következõ osztályok implementációi felelnek meg egy-egy korábban definiált rit
 \section{A klaszterezések}
 %----------------------------------------------------------------------------
 
-A klaszterezõ algrotimusok mindegyikének szintén egy-egy osztály felel meg. Ezek az osztályok a \texttt{Classifier} közös absztrakt õsosztályból származnak, névszerint:
+A klaszterezõ algoritmusok mindegyikének szintén egy-egy osztály felel meg. Ezek az osztályok a \texttt{Classifier} közös absztrakt õsosztályból származnak, név szerint:
 \begin{itemize}
 	\item \texttt{SingleLinkageClassifier}
 	\item \texttt{CompleteLinkageClassifier}
@@ -168,13 +168,13 @@ A klaszterezõ algrotimusok mindegyikének szintén egy-egy osztály felel meg. Ezek
 
 A rendelkezésre álló hierarchikus klaszterezés alapvetõ implementációi (single, complete és average linkage) egy köztes õsbõl (\texttt{LinkageClassifier}) származnak, és csak abban az egy metódusban térnek el, hogy hogyan határozzák meg a következõ összevonandó klasztereket (\ref{fig:uml03} ábra). 
 
-Ugyanez mondható el a különbözõ partícionáló módszerekrõl is, ahol a kezdeti klaszterezés megválasztásától eltekintve minden funkcionalitást a közös õs, a \texttt{KMeansClassifier} osztály tartalmaz.
+Ugyanez mondható el a különbözõ particionáló módszerekrõl is, ahol a kezdeti klaszterezés megválasztásától eltekintve minden funkcionalitást a közös õs, a \texttt{KMeansClassifier} osztály tartalmaz.
 
 %----------------------------------------------------------------------------
 \subsection{A klaszterezések jóságának mérése}
 %----------------------------------------------------------------------------
 
-Mind a $k$-means, mind a DBSCAN implementációi igényelnek egy célfüggvényt, melyet minimalizálni szeretnének. Számos, \ref{sect:klasztjell} szakaszban definiált metrikát megvalósítottam, melyek a \texttt{MetricsUtils} osztály statikus metódusai közé kerültek. Mindegyikük egy paraméterként kapott klaszterlista alapján egy duplapontosságú lebegõpontos nemnegatív értéket ad vissza. 
+Mind a $k$-means, mind a DBSCAN implementációi igényelnek egy célfüggvényt, melyet minimalizálni szeretnének. Számos, \ref{sect:klasztjell} szakaszban definiált metrikát megvalósítottam, melyek a \texttt{MetricsUtils} osztály statikus metódusai közé kerültek. Mindegyikük egy paraméterként kapott klaszterlista alapján egy dupla pontosságú lebegõpontos nemnegatív értéket ad vissza. 
 
 
 A választott nyelv által megkövetelt objektumorientáltság alapelve, hogy az adatok és a hozzájuk tartozó manipuláló eljárások egy objektumba legyenek foglalva. Ezt szem elõtt tartva bizonyos, adott klaszterre jellemzõ mértékek (pl. klaszterátmérõ, klaszteren belüli távolságok összege) kiszámításáért a \texttt{Cluster} nevû segédosztály lett a felelõs, mely egyébként a klaszterpéldányokat reprezentálja (mezõi: középpont, elemek, stb\dots).
@@ -190,7 +190,7 @@ Az SWT az operációs rendszer grafikus megjelenítést végzõ szubrutinjai fölötti n
 \begin{figure}[!h]
 \centering
 \includegraphics[width=150mm, keepaspectratio]{figures/window.png}
-\caption{A futtató grafikus felület} 
+\caption{A grafikus futtató felület} 
 \label{fig:win01}
 \end{figure}
 
@@ -223,7 +223,7 @@ Ehhez a funkcióhoz mind a távolságmátrix szerializálását, mind a fájlból való vi
 \section{Nexus fájlok generálása}\label{sect:nexus}
 %----------------------------------------------------------------------------
 
-Az elkészült szoftver rendelkezik azzal a funkcióval, hogy speciális, úgynevezett Nexus fájlokat generáljon, amelyek a következõ fejezetben ismeretett SplitsTree nevû alkalmazásnak adhatóak át bemeneti fájlként. Ezekben a NEX kiterjesztésû fájlokban is megtalálható a távolságmátrix, illetve megadott szabályok szerint elõállított metaadatok. 
+Az elkészült szoftver rendelkezik azzal a funkcióval, hogy speciális, úgynevezett Nexus fájlokat generáljon, amelyek a következõ fejezetben ismertetett SplitsTree nevû alkalmazásnak adhatóak át bemeneti fájlként. Ezekben a NEX kiterjesztésû fájlokban is megtalálható a távolságmátrix, illetve megadott szabályok szerint elõállított metaadatok. 
 
 Egy ilyen fájlra láthatunk példát az \ref{app:nexus}. számú függelékben.
 
@@ -236,7 +236,7 @@ Egy ilyen fájlra láthatunk példát az \ref{app:nexus}. számú függelékben.
 
 \item A debug során sok segítséget nyújtott a prioritási szintenkénti loggolást lehetõvé tevõ Log4j csomag.
 
-\item A katalógusfájl soronkénti feldolgozását és a fájlbaíró mûveleteket a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. 
+\item A katalógusfájl soronkénti feldolgozását és a fájlba író mûveleteket a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. 
 
 \item A grafikus felület létrehozásához az Eclipse SWT grafikus könyvtárát használtam.
 
