@@ -187,7 +187,7 @@ Ezek az eljárások közösek abban, hogy iteratívan, fentrõl lefelé vagy lentrõl fe
 
 \begin{itemize}
 	\item Agglomeráló (összegyûjtõ) hierarchikus klaszterezés: Kezdetben minden objektum egy önálló klasztert alkot, majd ezek összefésülésével jutunk el a kívánt célhoz.
-	\item Divizionáló (megosztó) hierarchikus klaszterezés: Kezdetben minden objektum egy nagy közös klaszterba tartozik, majd ennek rekurzív felosztásával kapjuk meg a végsõ állapotot.
+	\item Divizionáló (felosztó) hierarchikus klaszterezés: Kezdetben minden objektum egy nagy közös klaszterba tartozik, majd ennek rekurzív felosztásával kapjuk meg a végsõ állapotot.
 \end{itemize}
 
 Az összefésülés illetve a felosztás valamilyen távolságmérték alapján történik. Minden lépésben egy elõre megadott jósági kritériumot optimalizálunk. A távolságértékek alapján történõ következõ lépés meghatározása alapján további felosztásokat tehetünk a hierarchikus klaszterezõ eljárásokra:
@@ -229,7 +229,7 @@ Ennél a módszernél is kezdetben minden elem külön klaszterbe tartozik, a négyzet
 
 Minden további felosztás egy nagyobb távolságot eredményez a klaszterek között, mint az elõzõ felosztás maximális távolsága. A leállási feltétel így lehet egy maximális új távolság is a $k$ számú klaszter elérése mellett.
  
-A hierarchikus módszerek közös hátránya a rossz skálázhatóság és a nemlineáris lépésszám (legjobb esetben is ($O(n^2)$, de akár $O(2^n)$ is lehet, ahol $n$ az elemek száma), melynek következménye lehet nagyméretû adathalmaz esetén a túl sok fájlmûvelet. Súlyos hátrány még a visszalépési képesség hiánya.
+A hierarchikus módszerek közös hátránya a rossz skálázhatóság és a nemlineáris lépésszám (legjobb esetben is ($O(n^2)$, de akár $O(2^n)$ is lehet, ahol $n$ az elemek száma), melynek következménye nagyméretû adathalmaz esetén a túl sok fájlmûvelet. Súlyos hátrány még a visszalépési képesség hiánya.
 
 %----------------------------------------------------------------------------
 \subsection{Particionáló módszerek}
@@ -258,8 +258,8 @@ Finomítása az algoritmusnak a $k$-medoid nevû módszer, melyben a klasztert nem a
 A gyenge pontja ezeknek az algoritmusoknak, hogy a kezdeti klaszterezés milyensége nagyban befolyásolja az eredményét. Az érzékenység abból fakad, hogy egy szerencsétlen kezdeti klaszterezés globális minimum helyett lokális minimumhoz vezethet. Ennek az esélyének csökkentésére a következõket tehetjük:
 
 \begin{itemize}
-\item Véletlenszerû választás helyett kiválaszthatjuk a két legtávolabbi elemet, majd a következõ elemeket sorra úgy, hogy a már megválasztott középpontoktól való távolságuk legyen maximális.
-\item Csak az elsõ középpontot választjuk véletlenszerûen, utána az elõbbihez a hasonlóan a többit úgy választjuk, hogy a már kiválasztottaktól való távolságuk legyen a lehetõ legnagyobb.
+\item Véletlenszerû választás helyett kiválaszthatjuk a két legtávolabbi elemet, majd a következõ elemeket sorra úgy, hogy a már megválasztott középpontoktól való (átlagos) távolságuk legyen maximális.
+\item Csak az elsõ középpontot választjuk véletlenszerûen, utána az elõbbihez a hasonlóan a többit úgy választjuk, hogy a már kiválasztottaktól való (átlagos) távolságuk legyen a lehetõ legnagyobb.
 \end{itemize}
 
 Szintén hátrány, hogy az algoritmus futásához explicit meg kell adnunk a $k$ értéket. Ezt nem tudjuk kiküszöbölni, de különbözõ $k$-k eredményeit összevethetjük és választhatjuk azt a megoldást, amely a legjobb eredményt adta. Kezdeti beállításként a szakirodalom \cite{Mardia} a következõ értéket javasolja:
@@ -275,7 +275,7 @@ A négyzetes hibaösszeget (\ref{eq:11}-es képlet) gyakran használják az algoritmu
 \begin{enumerate}
 \item Csak elliptikus klaszterek megtalálására képes, ami azt jelenti, hogy az amorf formájú klasztereket feldarabolja kisebb kör alakúakra.
 \item Rossz eredményeket ad, ha a klaszterek között nagy méretkülönbségek vannak. Nagy méretû klaszter esetén ugyanis a szélsõ pontok távol esnek a középponttól, ami nagy hibát eredményez, így a nagy klaszter felosztásra kerül.
-\item Érzékeny a távol esõ pontokra (outlierekre), hiszen egy ilyen az õt tartalmazó klaszter középpontját elhúzza.
+\item Érzékeny az outlier pontokra, hiszen ezek az õket tartalmazó klaszter középpontját elhúzzák.
 \end{enumerate}
 
 
@@ -283,15 +283,17 @@ A négyzetes hibaösszeget (\ref{eq:11}-es képlet) gyakran használják az algoritmu
 \subsection{Sûrûség-alapú módszerek}
 %----------------------------------------------------------------------------
 
-Az eddig felsorolt klaszterezõ algoritmusok két dologban voltak közösek: nulladik lépésként szükség volt a klaszterek számának ($k$) megadására, illetve csak elliptikus alakú klasztereket tudtak azonosítani. Ezen hiányosságok kiküszöbölésére dolgozták ki a sûrûség-alapú klaszterezõ módszereket, melyek alapfeltevése az, hogy egy klaszteren belül jóval nagyobb az elemek sûrûsége, mint a klaszterek között.
+Az eddig felsorolt klaszterezõ algoritmusok két közös hátrányban szenvedtek: nulladik lépésként szükség volt a klaszterek számának ($k$) megadására, illetve csak elliptikus alakú klasztereket tudtak azonosítani. Ezen hiányosságok kiküszöbölésére dolgozták ki a sûrûség-alapú klaszterezõ módszereket, melyek alapfeltevése az, hogy egy klaszteren belül jóval nagyobb az elemek sûrûsége, mint a klaszterek között.
 
 %----------------------------------------------------------------------------
 \subsubsection{DBSCAN klaszterezés}
 %----------------------------------------------------------------------------
 
-A legelsõ és legismertebb sûrûség-alapú klaszterezõ algoritmus a DBSCAN (\textit{Density-Based Spatial Clustering of Applications with Noise}), melynek alapötlet az, hogy egy klasztert addig növesztünk, amíg hozzá tudunk venni olyan pontot, ami egy elõre megadott $\varepsilon$ távolságnál közelebb van valamelyik eleméhez. Pontosabban úgy fogalmazhatunk, hogy egy klaszteren belüli pontokra mindig igaz, hogy adott $\varepsilon$ sugarú körön belül mindig található bizonyos ($minPts$) számú elem.
+A legelsõ és legismertebb sûrûség-alapú klaszterezõ algoritmus a DBSCAN (\textit{Density-Based Spatial Clustering of Applications with Noise}), melynek alapötlete az, hogy egy klasztert addig növesztünk, amíg hozzá tudunk venni olyan pontot, ami egy elõre megadott $\varepsilon$ távolságnál közelebb van valamelyik eleméhez. 
+%Pontosabban úgy fogalmazhatunk, hogy egy klaszteren belüli pontokra mindig igaz, hogy adott $\varepsilon$ sugarú körön belül mindig található bizonyos ($minPts$) számú elem.
+Úgy is fogalmazhatunk, hogy bizonyos sûrûségi feltételeket teljesítõ pontok és $\varepsilon$-nál közelebbi szomszédaik kerülnek egy klaszterbe.
 
-Egy $p$ elem szomszédai ($N_{eps}(p)$) azok az elemek, amelyek $p$-tõl legfeljebb $\varepsilon$ távolságra vannak. Ha $q \in N_{eps}(p)$ és $|N_{eps}(p)| \geq minPts$, akkor azt mondjuk, hogy $q$ elem $p$-bõl sûrûség alapon közvetlenül elérhetõ. Ha pedig léteznek $p=p_1,p_2,\dots,p_n=q$ elemek úgy, hogy $p_{i+1}$ sûrûség alapon közvetlenül elérhetõ $p_i$-bõl, akkor $q$ elem sûrûség alapon elérhetõ $p$-bõl. A $p$ és $q$ elemek sûrûség alapon összekötöttek, ha létezik ilyen $o$ elem, amelybõl $p$ és $q$ sûrûség alapon elérhetõ.
+Egy $p$ elem szomszédai ($N_{\varepsilon}(p)$) azok az elemek, amelyek $p$-tõl legfeljebb $\varepsilon$ távolságra vannak. Ha $q \in N_{\varepsilon}(p)$ és $|N_{\varepsilon}(p)| \geq minPts$, akkor azt mondjuk, hogy $q$ elem $p$-bõl sûrûség alapon közvetlenül elérhetõ. Ha pedig léteznek $p=p_1,p_2,\dots,p_n=q$ elemek úgy, hogy $p_{i+1}$ sûrûség alapon közvetlenül elérhetõ $p_i$-bõl, akkor $q$ elem sûrûség alapon elérhetõ $p$-bõl. A $p$ és $q$ elemek sûrûség alapon összekötöttek, ha létezik olyan $o$ elem, amelybõl $p$ és $q$ sûrûség alapon elérhetõ.
 
 Ezek után a klaszterek a következõ két szabály alapján kaphatjuk meg:
 
@@ -300,7 +302,7 @@ Ezek után a klaszterek a következõ két szabály alapján kaphatjuk meg:
  \item Ha $p,q \in C$, akkor $p$ és $q$ sûrûség alapon összekötött.
 \end{enumerate}
 
-Az algoritmus elsõ lépésében választunk egy tetszõeleges $p$ elemet és meghatározzuk a belõle sûrûség alapon elérhetõ elemeket. Amennyiben $|N_{eps}(p)|\geq mintPts$ teljesül, kaptunk egy klasztert. A feltétel nem teljesülése nem feltétlenül jelenti azt, hogy $p$ nem tartozik egy klaszterbe sem, lehetséges, hogy egy klaszter szélén helyezkedik el. Ilyenkor csak válasszunk egy új elemet. Ha már nem lehet új elemet választani, az algoritmus véget ért. Ha egy elem ezután sem tartozik egy klaszterbe sem, akkor zajnak tekinthetjük.
+Az algoritmus elsõ lépésében választunk egy tetszõeleges $p$ elemet és meghatározzuk a belõle sûrûség alapon elérhetõ elemeket. Amennyiben $|N_{\varepsilon}(p)|\geq mintPts$ teljesül, kaptunk egy klasztert. A feltétel nem teljesülése nem feltétlenül jelenti azt, hogy $p$ nem tartozik egy klaszterbe sem, lehetséges, hogy egy klaszter szélén helyezkedik el. Ilyenkor csak válasszunk egy új elemet. Ha már nem lehet új elemet választani, az algoritmus véget ért. Ha egy elem ezután sem tartozik egy klaszterbe sem, akkor zajnak tekinthetjük.
 
 A módszer fõ gyengesége, hogy rendkívül érzékeny a két paraméterre ($\varepsilon, minPts$). Sõt, ha különbözõ klaszterek sûrûsége eltérõ, akkor nem biztos, hogy lehet olyan $\varepsilon$-t és $minPts$-t megadni, ami értékelhetõ eredményhez vezet.
 
@@ -314,7 +316,7 @@ Alapötlete, hogy minden olyan ponthoz, amelynek legalább $minPts$ pont van $\var
 
 Ezt így írhatjuk le pontosan (\textit{CD = Core Distance}):
 \[ 
-CD_{\varepsilon,mintPts}(p) = \left\{ 
+CD_{\varepsilon,minPts}(p) = \left\{ 
   \begin{array}{l l}
     \text{NEM DEFINIÁLT} & \quad \text{ha $N_{\varepsilon}(p)<minPts$}\\
     \text{a minPts-edik elem távolsága} & \quad \text{egyébként}
@@ -323,14 +325,14 @@ CD_{\varepsilon,mintPts}(p) = \left\{
 
 Ekkor egy $p$ elem $o$ elemtõl való elérhetõségi távolsága (\textit{RD = Reachibilty Distance}):
 \[ 
-RD{\varepsilon,mintPts}(p,o) = \left\{ 
+RD_{\varepsilon,minPts}(p,o) = \left\{ 
   \begin{array}{l l}
     \text{NEM DEFINIÁLT} & \quad \text{ha $N_{\varepsilon}(o)<minPts$}\\
-    \text{$max(CD_{\varepsilon,mintPts}(o),d(o,p))$} & \quad \text{egyébként}
+    \text{$max(CD_{\varepsilon,minPts}(o),d(o,p))$} & \quad \text{egyébként}
   \end{array} \right.
 \]
 
-Ezek után ez az az $\varepsilon'<\varepsilon$, amelyet ahhoz kell használnunk, hogy $p$ és $o$ elem azonos klaszterbe kerüljön. 
+Ezek után ez az az $\varepsilon'<\varepsilon$ érték, amely a $p$ és $o$ elem körüli sûrûséget számszerûsíti. Így tehát a kezdeti $\varepsilon$ megadása csak egy maximális sûrûségi értéket határoz meg, az algoritmus nála kisebb sûrûségû klaszterek azonosítására is képes.
 
 %----------------------------------------------------------------------------
 \subsection{További módszerek}
@@ -346,11 +348,11 @@ Ezek azok a módszerek, amelyek a klaszterezés során az adathalmaz távolságait ta
 Ezek az eljárások az elemeket rácspontokba képezik le, majd a továbbiakban csak a kapott rácspontokkal dolgoznak. Fõ elõnyük a gyorsaságuk. 
 \item Modell-alapú módszerek
 
-Az adatot valamilyen matematikai modell segítségével próbálják leírni, egyben melyek karakterizálják a beletartozó elemek tulajdonságait is. Két fõ ága a döntési fa alapú megközelítés és a neurális hálókat használó eljárás.
+Az adatot valamilyen matematikai modell segítségével próbálják leírni, melyek egyben karakterizálják a beletartozó elemek tulajdonságait is. Két fõ ága a döntési fa alapú megközelítés és a neurális hálókat használó eljárás.
 \item Fuzzy klaszterezés
 
 A korábbiakkal ellentétben, ahol minden elem pontosan egy osztályba tartozott, ezek az eljárások az elemek és a klaszterek között beletartozási értéket számolnak, mely annál nagyobb, minél inkább biztos, hogy az elem az adott klaszter tagja.
 \item Genetikus algoritmusok
 
-Az evolúciót utánzó genetikus algoritmusok lassan mindenütt megjelennek, ezért itt is meg kell említeni õket. 
+Az evolúciót utánzó genetikus algoritmusok a lehetséges megoldások egy populációját hozzák létre, amelyekhez lépésenként új egyedeket adnak, illetve a már meglévõ egyedekre szelekciós, rekombinációs és mutációs operátorokat alkalmaznak \cite{Zsolnai}.
 \end{itemize}
