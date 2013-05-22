@@ -18,7 +18,7 @@ A vizsgált csoportok alapegysége a korábbi kutatásokból származó (dallamvonal al
 \subsection{Az elsõ dallamosztály ritmikai szerkezete}
 %----------------------------------------------------------------------------
 
-Az \ref{fig:cluster1MDScomplete}-\ref{fig:cluster1MDSkmeans} ábrákon látható a $30$ dalból álló elsõ dallamosztály Hamming-távolság alapján számított MDS-térképe adott algoritmus szerinti klaszterek szerint színezve.
+Az \ref{fig:cluster1MDScomplete}-\ref{fig:cluster1MDSkmeans} ábrákon látható a $30$ dalból álló elsõ dallamvonal szerinti osztály Hamming-távolság alapján számított MDS-térképe adott algoritmus szerinti klaszterek szerint színezve.
 
 %\begin{figure}[!h]
 %\centering
@@ -27,7 +27,9 @@ Az \ref{fig:cluster1MDScomplete}-\ref{fig:cluster1MDSkmeans} ábrákon látható a $
 %\label{fig:cluster1MDS}
 %\end{figure}
 
-Meglehetõsen kuszának tûnik, így nem is csoda, hogy a single linkage algoritmus $3$ outlier ponton (($169$), ($760$), ($1476$)) és egy kételemû csoporton ($378$, $764$) kívül egy minden más elemet tartalmazó klasztert talál. Az average egy kicsivel jobban teljesít, az alsó fürtöt ($299$, $376$, $377$) sikeresen szeparálja a többi elemtõl. A complete a nagy és sûrû klasztert felbontja két kisebb, egymást érintõ klaszterre (\ref{fig:cluster1MDScomplete} ábra). Az \ref{fig:cluster1MDSkmeans} ábrán látható, hogy a $k$-means a piros pontokat ránézésre véletlenszerûen még két részre bontja, a DBSCAN pedig kevés értékelhetõ eredményt ad, ami nem meglepõ, hiszen a kapott térképen sem látunk igazán jól elkülönülõ sûrûsödéseket.
+Meglehetõsen kuszának tûnik, így nem is csoda, hogy a single linkage algoritmus $3$ outlier ponton (($169$), ($760$), ($1476$)) és egy kételemû csoporton ($378$, $764$) kívül egy minden más elemet tartalmazó klasztert talál. Az average egy kicsivel jobban teljesít, az alsó fürtöt ($299$, $376$, $377$) sikeresen szeparálja a többi elemtõl. A complete a nagy és sûrû klasztert felbontja két kisebb, egymást érintõ klaszterre (\ref{fig:cluster1MDScomplete} ábra). 
+
+Az \ref{fig:cluster1MDSkmeans} ábrán látható, hogy a $k$-means a piros pontokat ránézésre véletlenszerûen még két részre bontja. Sajnos a DBSCAN algoritmus kevés értékelhetõ eredményt ad, ez azonban nem meglepõ, hiszen a kapott térképen sem látunk igazán jól elkülönülõ sûrûsödéseket.
 
 \begin{figure}[!h]
 \centering
@@ -60,7 +62,7 @@ Ha megvizsgáljuk a kapott klaszterek elemeinek kottáit, felfedezhetjük azokat a 
 \subsubsection{Az elsõ klaszter}
 %----------------------------------------------------------------------------
 
-Az \ref{fig:cluster1furt1} ábrán látható dalok (az \ref{fig:cluster1MDScomplete} ábrán zöld pontok) a gyimesi csángók sajátos páros táncának, az aszimmetrikus lüktetésû lassú magyarosnak változatai \cite{Szenik}.
+Az \ref{fig:cluster1furt1} ábrán látható dalok (az \ref{fig:cluster1MDScomplete} ábrán zöld pontok) a gyimesi csángók sajátos páros táncának, az aszimmetrikus lüktetésû (10/16-os ütemû) lassú magyarosnak változatai \cite{Szenik}.
 
 \begin{figure}[!h]
 \centering
@@ -73,7 +75,7 @@ Az \ref{fig:cluster1furt1} ábrán látható dalok (az \ref{fig:cluster1MDScomplete}
 \subsubsection{A második klaszter}
 %----------------------------------------------------------------------------
 
-A második klaszter elemei az \ref{fig:cluster1MDScomplete} ábrán kékkel jelölt elemek, melyek a parlando keservesek csoportját alkotják. Ezek kottáit láthatjuk az \ref{fig:cluster1furt2} ábrán. 
+A második klaszter elemeinek (az \ref{fig:cluster1MDScomplete} ábrán kékkel jelölve) kottáit láthatjuk az \ref{fig:cluster1furt2} ábrán. Ha szakértõi szemmel vizsgáljuk õket, akkor kiderül, hogy ezek a parlando (beszédszerû elõadásmódú) keservesek csoportját alkotják. Ezek a lírai dalok a lexikon \cite{Neprajzi} szerint mély lelki fájdalomból fakadó, bánatos hangvételû egyéni panaszdalok, melyeknek zenei ritmusa, a hangok idõértéke teljes egészében a szövegmondáshoz igazodik.
 
 \begin{figure}[!h]
 \centering
@@ -86,7 +88,7 @@ A második klaszter elemei az \ref{fig:cluster1MDScomplete} ábrán kékkel jelölt e
 \subsubsection{A harmadik klaszter}
 %----------------------------------------------------------------------------
 
-Az \ref{fig:cluster1MDScomplete} ábra piros pontjaihoz tartozó kották a hangszeres variálódás útjára mutatják be (\ref{fig:cluster1furt3} ábra).
+A harmadik klaszterhez (az \ref{fig:cluster1MDScomplete} ábra piros pontjai) tartozó kottákon ugyanannak a dallamnak a hangszeres elõadásmód során variálódó ritmusát ($1594$-$1379$-$392$) követhetjük figyelemmel (\ref{fig:cluster1furt3} ábra).
 
 \begin{figure}[!h]
 \centering
@@ -99,7 +101,7 @@ Az \ref{fig:cluster1MDScomplete} ábra piros pontjaihoz tartozó kották a hangszer
 \subsubsection{A negyedik klaszter}
 %----------------------------------------------------------------------------
 
-A $k$-means szerinti negyedik klaszter az \ref{fig:cluster1MDScomplete} ábrán beleolvadt a piros pontokba, aminek oka a szoros kapcsolat a határon lévõ elemek ($182$, $211$, $212$ és $288$) között.
+Az \ref{fig:cluster1MDScomplete} ábrán barna színnel jelölt, $k$-means szerinti negyedik klaszter mindhárom linkage algoritmus kimenetében beleolvadt egy másik klaszterba, aminek oka a szoros kapcsolat a határaikon lévõ elemek között. (Ha alaposan szemügyre vesszük, megfigyelhetõ, hogy a harmadik klaszterbe sorolt $288$ azonosítójú dal ritmusa mennyire hasonlít a negyedik klaszterbe sorolt $212$-esére).
 
 \begin{figure}[!h]
 \centering
@@ -107,6 +109,10 @@ A $k$-means szerinti negyedik klaszter az \ref{fig:cluster1MDScomplete} ábrán be
 \caption{A negyedik klaszter kottái} 
 \label{fig:cluster1furt4}
 \end{figure}
+
+%\vspace{12pt}
+
+Az \ref{app:2ndcluster} számú függelék tartalmazza a második dallamosztályra kapott osztályozásokhoz tartozó kottákat azok közös tulajdonságainak rövid leírásával együtt.
 
 %----------------------------------------------------------------------------
 \section{A SplitsTree alkalmazása}
@@ -123,7 +129,7 @@ A szoftver speciális, NEX kiterjesztésû fájlok segítségével mûködik, melyek tart
 A SplitsTree által generált ábrák a Neighbor Net algoritmus segítségével készülnek, melynek lépései nagy vonalakban a következõek \cite{Schnoebelen}:
 \begin{enumerate}
 \item Kezdetben minden elem egy különálló pont. 
-\item Minden iterációs lépésnél egy pontpárt választunk, de ekkor még nem vonjuk össze õket, ahogy azt tettük volna a linkage algoritmusok során. Csak akkor vonunk össze pontokat, ha másodszorra is beválasztottuk ugyanazt a pontot a párba (jelöljük ezt a pontot $x$-szel). Ekkor $x, y$ és $z$ pontokból létrehozunk két új, $u$ és $v$ pontot. 
+\item Minden iterációs lépésnél egy pontpárt választunk, de ekkor még nem vonjuk össze õket, ahogy azt tettük volna a linkage algoritmusok során. Csak akkor vonunk össze pontokat, ha másodszorra is beválasztottuk ugyanazt a pontot a párba (jelöljük ezt a pontot $x$-szel). Ekkor $x, y$ és $z$ pontokból létrehozunk két új, $u$ és $v$ pontot (melyek az ábrán belsõ pontok lesznek). 
 \item Frissítjük a távolságmátrixot: $u$ és egy tetszõleges $w$ között a távolság az $u$ által reprezentált pontok ($x$ és $y$) távolságának speciális függvénye.
 \end{enumerate}
 

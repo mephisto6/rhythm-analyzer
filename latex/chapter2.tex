@@ -2,7 +2,7 @@
 \chapter{Az alkalmazási terület}
 %----------------------------------------------------------------------------
 
-Miután elmélyültünk az adatbányászat áltat nyújtott lehetõségek és a hozzájuk tartozó algoritmusok ismertetésében, vázoljuk fel az alkalmazási terület általános, majd a projekt szempontjából fontos jellemzõit, melyeket számításba kell majd vennünk az implementáció során.
+Miután elmélyültünk az adatbányászat áltat nyújtott klaszterezési lehetõség és a hozzátartozó algoritmusok ismertetésében, vázoljuk fel az alkalmazási terület általános, majd a projekt szempontjából fontos jellemzõit, melyeket számításba kell majd vennünk az implementáció során.
 
 Ki fog derülni, hogy mennyire nem újdonság a matematika és a zene összekapcsolása, és tárgyalásra kerül néhány fontos lépés a népzenekutatás történetébõl is, melyek a projekt fõ elõzményeinek tekinthetõek.
 
@@ -59,7 +59,7 @@ A zene ritmusát a hangok hossza határozza meg. Az egységhosszú hangot üres, szár
 
 A triola egy olyan három hangjegybõl álló csoport, amely nem rendes értékekre támaszkodik. Például ha szabályszerûleg egy negyed hangjegyre két nyolcad esne, triola esetén a hangot három ,,nyolcadra'' osztjuk. A kottán ezt egy szám jelöli a hangokat összekötõ gerendán (Lásd: \ref{fig:sheet02} ábra). Öt hangjegybõl álló verziójának neve kvintola, ekkor négy tizenhatod helyett öt egyenlõ részre osztjuk a negyedhangot.
 
-Ezeken kívül vannak további módosító-, illetve feloldójelek, melyek részletezése megtalálható a szakirodalomban.
+Ezeken kívül vannak további módosító-, illetve feloldójelek, melyek részletezése megtalálható a szakirodalomban \cite{Dobszay}.
 
 %----------------------------------------------------------------------------
 \section{A népzenekutatás}
@@ -67,13 +67,19 @@ Ezeken kívül vannak további módosító-, illetve feloldójelek, melyek részletezése
 
 A népzenekutatás az összehasonlító zenetudományból alakult ki a $19.$ század végén \cite{Sarosi}. Ekkoriban vált lehetõvé a dalok nagyszámú pontos rögzítése a fonográf segítségével, ami a késõbbi tudományos lejegyzést és rendszerezést is elõsegítette.
 
+%Bartók Béla így summázza a népzenekutatás céljait \cite{Bartok2}:
+%\begin{enumerate} 
+% \item a népdaloknak minél gazdagabb, tudományos zenei rendszerbe foglalt gyûjteményét létesíteni, elsõsorban egymással szomszédos és egymással sûrû érintkezésben lévõ csoportok zenei anyagából
+% \item az így kapott anyagban a gondos összehasonlítás alapján megállapítani az egyes zenei stílusokat és azoknak eredetére, amennyire lehetséges, rávilágítani
+%\end{enumerate}
+
 %----------------------------------------------------------------------------
 \subsection{A zenei rendszerezés}
 %----------------------------------------------------------------------------
 
-A fonográfos néprajzi gyûjtések megindulása és sikere után hamarosan létrejöttek a nemzeti gyûjtemények. A Néprajzi Múzeum $4,500$ második világháború elõtti fonográfhenger-gyûjteménye a világ legrégebbi és leggazdagabb készleteinek egyike. Az ,,adatbázis'' növekedésével együtt megjelent az igény a gyûjtések rendszerezésére is.
+A fonográfos néprajzi gyûjtések megindulása és sikere után hamarosan létrejöttek a nemzeti gyûjtemények. A Néprajzi Múzeum $4,500$ második világháború elõtti fonográfhenger-gyûjteménye a világ legrégebbi és leggazdagabb készleteinek egyike \cite{Sarosi}. Az ,,adatbázis'' növekedésével együtt megjelent az igény a gyûjtések rendszerezésére is.
 
-A rendezésre törekvõ elképzeléseknek mindenekelõtt két szempontot kellett követniük:
+A rendezésre törekvõ elképzeléseknek mindenekelõtt az alábbi két szempontot kellett követniük:
 \begin{itemize} 
  \item szótárszerû, könnyen kezelhetõ legyen, hogy bárki megérthesse - így a dalok könnyen kikereshetõek
  \item ügyeljen arra, hogy a variánsok, a rokon típusok egymás mellett, vagy legalábbis egymás közelében legyenek - így kaphatunk pontos és tiszta képet egy-egy vidék népzenéjérõl
@@ -106,7 +112,7 @@ A tanulmányban a dallamok tulajdonságait tartotta a fõ szempontnak, egészen pont
 \subsubsection{Népzenei típusrend}
 %----------------------------------------------------------------------------
 
-Kezdetektõl fogva megvolt az igény arra, hogy a hasonló dallamok egymás mellé kerüljenek a rendszerezés során. Járdányi Pál nevéhez fûzõdik az elsõ, teljes dallamvonalak hasonlóságát figyelembe vevõ rendszer. Dobszay László és Szendrei Janka dolgozta ki a ma használatos típusrendszert, mely a Zenetudományi Intézet $200,000$ körüli dallamból álló készletét olyan hangkészlet-alapú csoportokra bontja, melyek a leghûbben reprezentálják a magyar népzene egészét. Ilyenek például:
+Kezdetektõl fogva megvolt az igény arra, hogy a hasonló dallamok egymás mellé kerüljenek a rendszerezés során. Járdányi Pál nevéhez fûzõdik az elsõ, teljes dallamvonalak hasonlóságát figyelembe vevõ rendszer. Dobszay László és Szendrei Janka dolgozta ki a ma használatos típusrendszert, mely a Zenetudományi Intézet $200,000$ körüli dallamból álló készletét olyan hangkészlet-alapú csoportokra bontja, melyek a leghûbben reprezentálják a magyar népzene egészét \cite{Juhasz}. Ilyenek például:
 \begin{itemize}
 \item Kvintváltó és egyéb pentaton, vagy pentatonból leszármaztatható ereszkedõ dallamok
 \item Dúr, oktávambitusú ereszkedõ dallamok
@@ -123,14 +129,6 @@ Kezdetektõl fogva megvolt az igény arra, hogy a hasonló dallamok egymás mellé ke
 
 A magyar népzene elsõ összehasonlító népzenei elemzése is Bartók és Kodály nevéhez fûzõdik.
 
-A bartóki típusú régi stílusú dallamok a belsõ-ázsiai türk népek zenéjével rokonok \cite{Szabolcsi}, illetve az anatóliai törökökével is találtak hasonlóságokat \cite{Sipos}. Érdekes módon a finnugor népek népzenéje nem áll kapcsolatban a régi stílusú népdalosztállyal \cite{Sarosi}. A Kárpát-medence, sõt, az európai népzene sem mutat rokonságot a régi stílusú magyar dalokkal.
+A bartóki típusú régi stílusú dallamok a belsõ-ázsiai türk népek zenéjével rokonok \cite{Szabolcsi}, illetve az anatóliai törökökével is találtak hasonlóságokat \cite{Sipos}. Érdekes módon a finnugor népek népzenéje nem áll kapcsolatban a régi stílusú népdalosztállyal \cite{Sarosi}. A Kárpát-medencei, sõt, az európai népzene sem mutat rokonságot a régi stílusú magyar dalokkal.
 
 Ellentétben a régi stílussal, az új stílusú magyar népzenébõl nagyon sokat kölcsönöztek a környezõ népek.
-
-%----------------------------------------------------------------------------
-\section{A muzikológia}
-%----------------------------------------------------------------------------
-
-A muzikológia, vagy zeneelmélet az általános és magyar zenetörténet, historiográfia, zenei filológia, zenei szociológia, bibliográfia területével foglalkozó tudomány \cite{PortalDeb}. Mûvelõi a magasabb szintû összhangzattani, formatani, ellenponttani ismeretek, stílustanulmányok, zeneelmélet, zenetörténet, valamint kottaolvasási készség területeken rendelkeznek specializált szaktudással.
-
-A projekt tudományos sokszínûségének bizonyítéka, hogy eredményeinek értelmezése ezt a muzikológiai elõképzettséget is igényli.
