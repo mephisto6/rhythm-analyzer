@@ -189,7 +189,7 @@ A korábbiakban tárgyalt ritmushoz tartozó TEDAS ábrázolás látható a \ref{fig:fig
 A mindennapi életben hosszúságként értelmezett távolság fogalmát a matematika általánosítja és különbözõ módokon definiált mértékeket, metrikákat vezet be. A ritmus-reprezentációkat akkor tudjuk összehasonlíthatóvá tenni, ha a köztük lévõ távolságot egy nemnegatív skalármennyiséggel jelöljük. Az irodalom bõségesen foglalkozik a témával, az általam választott módszerek nagyobbik része Godfried Toussaint \cite{Toussaint1}, illetve Lior Rokach \cite{Rokach} cikkeibõl származik, de gyakran további pontosításra és kiegészítésre szolgáltak az általuk vázolt általánosabb eljárások.
 
 %----------------------------------------------------------------------------
-\subsection{Hamming távolság}
+\subsection{Hamming-távolság}
 %----------------------------------------------------------------------------
 A számítástudományban bináris vektorok összehasonlításának legtermészetesebb módja a vektorok elemenkénti összehasonlítása, ismertebb nevén Hamming-távolság számolása. Ebben a megközelítésben a TUBS módon reprezentált ritmusok közvetlenül használhatók, hiszen azok lényegében bináris vektorok. A módszer elméleti hátterében az $n$ hosszú vektorok egy $n$-dimenziós hiperkocka pontjai. Adott $X=(x_1,x_2,...,x_n)$ és $Y=(y_1,y_2,...,y_n)$ közötti távolság számolható az alábbi képlet segítségével:
 \begin{align}
@@ -369,7 +369,7 @@ Ha úgy döntünk, hogy a nem kívánjuk megkövetelni a szimmetria teljesülését, akko
 
 Talán nem tévedünk nagyot, ha egy rövidebb vektorra, melyet magában foglal egy másik, azt mondjuk, hogy $0$ távolságra van a hosszabbtól. A hosszabb távolsága a rövidebbtõl pedig annak függvényében közelít a $0$-hoz, hogy mekkora a közöttük lévõ hosszeltérés.
 
-A nem szimmetrikus távolságra példa az úgynevezett nem szimmetrikus Hamming-távolság. Ebben az esetben számít a sorrend $d_{H}(x,y)$ paraméterezésében. 
+A nem szimmetrikus távolságra nézzünk egy esetet, amelynél számít a sorrend $d_{H}(x,y)$ paraméterezésében (nevezzük aszimmetrikus Hamming-távolságnak).
 
 A módszer során nagyjából az történik, hogy a szummázás elõtt a második vektort, amennyiben az rövidebb, mint az elsõ, nullákkal egészítjük ki, hogy azonos hosszúak legyenek. Ezek után ugyanúgy vizsgáljuk meg a kapott vektorok távolságát, mint az eredeti módszernél.
 
