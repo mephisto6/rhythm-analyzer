@@ -185,11 +185,11 @@ A választott nyelv által megkövetelt objektumorientáltság alapelve, hogy az adat
 
 Az alkalmazás számos futtatási módjának és azok paramétereinek könnyû kezelhetõsége miatt grafikus felületet kapott, melyet az Eclipse SWT (Standard Widget Toolkit) grafikus könyvtárát használva valósítottam meg. 
 
-Az SWT az operációs rendszer grafikus megjelenítést végzõ szubrutinjai fölötti natív objektumok Java csomagolóinak halmazának tekinthetõ \cite{SWT}. Minden platformon elérhetõ és mindegyik különbözõképp néz ki, illeszkedve az adott környezetre jellemzõ kinézetre. A \ref{fig:win01}-es ábrán látható a fejlesztéshez használt Windows 7-es operációs rendszeren kapott felület.
+Az SWT az operációs rendszer grafikus megjelenítést végzõ szubrutinjai fölötti natív objektumok Java csomagolóinak halmazának tekinthetõ \cite{SWT}. Minden platformon elérhetõ és mindegyik különbözõképp néz ki, illeszkedve az adott környezetre jellemzõ kinézetre. A \ref{fig:win01}-ös ábrán látható a fejlesztéshez használt Windows 7-es operációs rendszeren kapott felület.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=150mm, keepaspectratio]{figures/window.png}
+\includegraphics[width=150mm, keepaspectratio]{figures/window_clint.png}
 \caption{A grafikus futtató felület} 
 \label{fig:win01}
 \end{figure}
@@ -210,6 +210,8 @@ Az ablak közepén találhatóak a különbözõ ritmus-összehasonlítási, illetve a klas
 A kiválasztott klaszterezés paraméterei a jobb oldali paraméterszerkesztõ panelen állíthatóak. A panelen minden lehetséges paraméter szerepel, de csak azt lehet állítani, amely a kiválasztott klaszterezés számára szükséges. A hierarchikus (single, complete, average linkage) módszerek esetében ez csak az osztályok számát ($K$) jelenti, a $k$-means különbözõ típusaihoz ehhez még a \textit{Loop count}-ot is be kell állítanunk (hány próbálkozásból válassza ki a minimális négyzetes hibaösszegût), míg a DBSCAN kiválasztása csak a $minPts$ és az $\varepsilon$ megadását igényli.
 
 A futást a \textit{Classify!} feliratú gomb megnyomásával indíthatjuk, az eredmények megjelenítése pedig az alsó, csak olvasható kimeneti panelen történik. A kapott klaszterek külön sorba kerülnek, az elemeiket pedig a katalógusfájlból származó azonosítók jelölik.
+
+Az ablak jobb oldalának alsó részén helyezkedik el az eredményül kapott klaszterezésre számított metrikákat tartalmazó panel. Itt nyomon követhetjük a négyzetes távolságösszeg, maximális átmérõ, stb\dots változását a különbözõ paraméterekre.
 
 %----------------------------------------------------------------------------
 \section{Távolságmátrixok szerializálása és betöltése}
