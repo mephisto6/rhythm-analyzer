@@ -29,18 +29,23 @@ public class FileUtils {
 
 	public static void gerenateNexFile(String name, double[][] mx) {
 		int size = mx.length;
+		Object[] files = FileReader.getFiles().toArray();
 		StringBuilder sb = new StringBuilder();
 		sb.append("#NEXUS\n\nBEGIN taxa;\n\tDIMENSIONS ntax=" + size
 				+ ";\nTAXLABELS\n");
 		for (int i = 1; i <= size; i++) {
-			sb.append("\t" + FileReader.getSortedMap().get(i) + "\n");
+			File f = (File) files[(Integer) i - 1];
+			sb.append("\t" + FileReader.getFileMap().inverseBidiMap().get(f)
+					+ "\n");
 		}
 		sb.append(";\nEND;\n\nBEGIN distances;\n\tDIMENSIONS ntax=" + size
 				+ ";\n");
 		sb.append("\tFORMAT\n\t\ttriangle=LOWER\n\t\tdiagonal\n\t\tlabels\n\t\tmissing=?\n\t;\n");
 		sb.append("MATRIX\n");
 		for (int i = 0; i < mx.length; i++) {
-			sb.append("\t" + FileReader.getSortedMap().get(i+1) + "\t");
+			File f = (File) files[(Integer) i];
+			sb.append("\t" + FileReader.getFileMap().inverseBidiMap().get(f)
+					+ "\t");
 			for (int j = 0; j <= i; j++) {
 				sb.append(String.format(Locale.US, "%.3f%s", mx[i][j], "\t"));
 			}

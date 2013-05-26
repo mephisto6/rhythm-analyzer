@@ -23,7 +23,7 @@ public class DBSCANClassifier extends Classifier {
 
 	//cluster1: 0.17
 	//cluster2: 0.21
-	public static double eps = 0.21;
+	public static double eps = 0.17;
 
 	public static int minpts = 2;
 
@@ -128,7 +128,7 @@ public class DBSCANClassifier extends Classifier {
 	 */
 	@Override
 	public String getDescription() {
-		return "DBSCAN";
+		return "DBSCAN (eps: " + eps + ", minPts: " + minpts + ")";
 	}
 
 }
