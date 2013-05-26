@@ -16,7 +16,7 @@ import org.apache.log4j.Logger;
  */
 public abstract class KMeansClassifier extends Classifier {
 
-	public static int loopNum = 3;
+	public static int loopNum = 300;
 
 	private static Logger log = Logger.getLogger(KMeansClassifier.class);
 

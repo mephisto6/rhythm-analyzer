@@ -10,6 +10,7 @@ import hu.bme.cs.music.utils.MatrixUtils;
 import hu.bme.cs.music.utils.MetricsUtils;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,18 +82,25 @@ public abstract class Classifier {
 
 	public String getMetrics() {
 		StringBuffer sb = new StringBuffer();
+		DecimalFormat df = new DecimalFormat("#.###");
 		sb.append("SSE:\n");
-		sb.append(MetricsUtils.getSumOfSquaredError(getClusters()) + "\n");
+		sb.append(df.format(MetricsUtils.getSumOfSquaredError(getClusters()))
+				+ "\n");
 		sb.append("Avg avg dist:\n");
-		sb.append(MetricsUtils.getAvgAvgDistance(getClusters()) + "\n");
+		sb.append(df.format(MetricsUtils.getAvgAvgDistance(getClusters()))
+				+ "\n");
 		sb.append("Avg max dist:\n");
-		sb.append(MetricsUtils.getAvgMaxDistance(getClusters()) + "\n");
+		sb.append(df.format(MetricsUtils.getAvgMaxDistance(getClusters()))
+				+ "\n");
 		sb.append("Max max dist:\n");
-		sb.append(MetricsUtils.getMaxMaxDistance(getClusters()) + "\n");
+		sb.append(df.format(MetricsUtils.getMaxMaxDistance(getClusters()))
+				+ "\n");
 		sb.append("Sum of dists:\n");
-		sb.append(MetricsUtils.getSumOfDistances(getClusters()) + "\n");
+		sb.append(df.format(MetricsUtils.getSumOfDistances(getClusters()))
+				+ "\n");
 		sb.append("Sum of dists from centre:\n");
-		sb.append(MetricsUtils.getSumOfDistsFromCentre(getClusters()) + "\n");
+		sb.append(df.format(MetricsUtils.getSumOfDistsFromCentre(getClusters()))
+				+ "\n");
 		return sb.toString();
 	}
 
@@ -101,9 +109,9 @@ public abstract class Classifier {
 	}
 
 	public String printClasses() {
-		if (FileReader.getFiles() == null) {
-			return printClassesOld();
-		}
+		//if (FileReader.getFiles() == null) {
+		//	return printClassesOld();
+		//}
 		StringBuffer sb = new StringBuffer(getName()
 				+ System.getProperty("line.separator"));
 		Multimap<Integer, Object> multimap = ArrayListMultimap.create();

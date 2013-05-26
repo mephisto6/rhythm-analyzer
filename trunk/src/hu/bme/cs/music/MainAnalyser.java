@@ -4,7 +4,6 @@
 package hu.bme.cs.music;
 
 import hu.bme.cs.music.file.FileReader;
-import hu.bme.cs.music.gui.LogicControl;
 import hu.bme.cs.music.manage.ClassifyManager;
 import hu.bme.cs.music.manage.CompareManager;
 import hu.bme.cs.music.model.Manager;
@@ -22,9 +21,7 @@ public class MainAnalyser {
 
 	private static Logger log = Logger.getLogger(MainAnalyser.class);
 
-	private static String directory = "data/szeke/nya";
-	
-	private static String directoryy = "C:/q/";
+	// private static String directory = "data/szeke/nya";
 
 	/**
 	 * @param args
@@ -33,11 +30,12 @@ public class MainAnalyser {
 		FileUtils.initLogging();
 		long startTime = System.currentTimeMillis();
 		CompareManager compareManager = new CompareManager(
-		//		FileReader.getTunes(directoryy));
-		 FileReader.getClusterTunes(18));
-		//compareManager.printResults();
+		// FileReader.getTunes(directory));
+				FileReader.getClusterTunes(5));
+		// compareManager.printResults();
 		// compareManager.generateFiles();
-		setClassNum((int) Math.sqrt(compareManager.getNumberOfSongs()/2));
+		setClassNum((int) Math.round(Math.sqrt(compareManager
+				.getNumberOfSongs() / 2)));
 		Manager classifyManager = new ClassifyManager(
 				compareManager.getComparers());
 		classifyManager.printResults();

@@ -22,8 +22,6 @@ public class Bar {
 
 	private String description;
 
-	private int beat;
-
 	public void printTacts() {
 		// System.out.print("(" + getTactSign() + ") ");
 		for (int i : binaryValue) {
@@ -60,21 +58,6 @@ public class Bar {
 	 */
 	public void setTactSign(String tactSign) {
 		this.tactSign = tactSign;
-	}
-
-	/**
-	 * @return the beat
-	 */
-	public int getBeat() {
-		return beat;
-	}
-
-	/**
-	 * @param beat
-	 *            the beat to set
-	 */
-	public void setBeat(int beat) {
-		this.beat = beat;
 	}
 
 	public List<Integer> getBinaryValues() {
