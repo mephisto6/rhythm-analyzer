@@ -6,13 +6,13 @@
 \section{Összefoglalás}
 %----------------------------------------------------------------------------
 
-A klasszikus zenetudományi osztályozás a dallamvonal alapján történik. A közös dallamvonal-osztályba tartozó dallamok ritmikailag még nagyon különbözõek lehetnek, és a ritmikai kapcsolatokat sorba rendezéssel a példatárak nem tudják érzékeltetni, mivel a kapcsolatrendszer több dimenziós. A dolgozatomban bemutattam több olyan módszert, amelyek ezeket a kapcsolatokat vizualizálni tudják. 
+A klasszikus zenetudományi osztályozás a dallamvonal alapján történik, ám a közös dallamvonal-osztályba tartozó dallamok ritmikailag még nagyon különbözõek lehetnek. A ritmikai kapcsolatokat sorba rendezéssel a példatárak nem tudják érzékeltetni, mivel a kapcsolatrendszer több dimenziós. 
 
-A munka három fõ pontban foglalható össze:
+A dolgozatomban bemutattam több olyan módszert, amelyek ezeket a kapcsolatokat vizualizálni tudják. A munka három fõ pontban foglalható össze:
 \begin{enumerate}
 \item Áttekintettem és kipróbáltam a szakirodalomban fellehetõ ritmikai hasonlósági metrikákat. Ezekbõl elsõsorban a Hamming-távolság konkrét eredményeit értékeltük zeneileg.
 \item Megvizsgáltam a szóba jöhetõ klaszterezési eljárásokat. Ezekbõl elsõsorban a linkage algoritmusok és a $k$-means eredményeit értelmeztük zeneileg. A $k$-means alkalmasabbnak bizonyult zeneileg értelmezhetõ ritmikai fürtök azonosítására.
-\item Az eredmények vizualizálására az MDS és a Neighbor Net algoritmusokat próbáltam ki. Ezek közül a kottákkal kiegészített MDS gráfokon mutattam be, hogy a közös dallamvonal-osztályhoz tartozó dallamok ritmikai rokonsági rendszere ezen a módon jól kimutatható. A felsorolt vizualizációs módszerek mind elkülönítenek különbözõ ritmikai fürtöket egy-egy dallamvonal-osztályon belül (\ref{fig:cluster1MDS}-\ref{fig:cluster1MDSkmeans}, \ref{fig:cluster5single}-\ref{fig:cluster5dbscan}, \ref{fig:cluster5euc_average} ábrák). Ennél még egy szinttel mélyebbre is lementem, és a közös dallamvonal osztályon belül még közös ritmikai osztályba tartozó dallamok ritmikai kapcsolatait is feltérképeztem (\ref{fig:cluster1furt1}-\ref{fig:cluster1furt4}, \ref{fig:cluster5furt1}-\ref{fig:cluster5furt2} ábrák).
+\item Az eredmények vizualizálására az MDS és a Neighbor Net algoritmusokat próbáltam ki. Ezek közül a kottákkal kiegészített MDS térképeken mutattam be, hogy a közös dallamvonal-osztályhoz tartozó dallamok ritmikai rokonsági rendszere ezen a módon jól kimutatható. Mindkét vizualizációs módszer elkülönít különbözõ ritmikai fürtöket egy-egy dallamvonal-osztályon belül (\ref{fig:cluster1MDS}-\ref{fig:cluster1MDSkmeans}, \ref{fig:cluster5single}-\ref{fig:cluster5dbscan}, \ref{fig:cluster5euc_average} ábrák). Ennél még egy szinttel mélyebbre is lementem, és a közös dallamvonal osztályon belül a közös ritmikai osztályba tartozó dallamok ritmikai kapcsolatait is feltérképeztem (\ref{fig:cluster1furt1}-\ref{fig:cluster1furt4}, \ref{fig:cluster5furt1}-\ref{fig:cluster5furt2} ábrák).
 \end{enumerate}
 Ezzel kidolgoztam egy olyan módszert, mely a dallamok kapcsolatainak mélyebb és pontosabb kimutatására alkalmas, mint a népdalgyûjtemények lineáris, sorba rendezõ módszere.
 

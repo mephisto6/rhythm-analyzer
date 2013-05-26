@@ -18,23 +18,31 @@ Az algoritmus távolságmátrix alapján egy elõre megadott $N$ dimenziós térbe képz
 \subsection{Az MDS mûködése}
 %----------------------------------------------------------------------------
 
-Az algoritmus röviden összefoglalva a következõ lépésekbõl áll \cite{Wickelmaier}:
+A két dimenzióra leképzõ általános algoritmus lépései a következõk \cite{Wickelmaier}:
 
 \begin{enumerate}
-\item Elõször a távolságmátrix minden $p_{ij}$ elemét helyettesítjük $q_{ij}=(1-p_{ij})^2$ elemmel, így egy olyan értéket kapunk, mely a pontok közötti távolsággal fordítottan arányos.
-\item Ezután az elemekhez olyan pontokat rendelünk a síkon, melyek közötti $d_{ij}$ távolságok a korábban meghatározott $q_{ij}$-khez konvergálnak. Ezt az alábbi $S$ stresszfüggvény minimalizálásával tehetjük meg:
+\item Rendezzük el véletlenszerûen az elemeket a síkon.
+\item Számoljuk ki a pontok közötti $d_{ij}$ távolságokat.
+\item A távolságmátrix elemeit egy monoton $f$ transzformáció segítségével skálázzuk.
+\item Minimalizáljuk az alábbi S stresszfüggvényt a pontok újrarendezésével.
 \begin{align}
-S=\sum_{i=1}^D \sum_{j=1}^D (d_{ij}-q_{ij})^2
+S=\sum_{i=1}^D \sum_{j=1}^D (f(p_{ij})-d_{ij})^2
 \end{align}
-ahol $D$ az elemek számát jelöli.
+\item Ha nem elég kicsi az eredmény, folytassuk a $2$-es pontnál. 
 \end{enumerate}
+
+Az esetünkben alkalmazott konkrét, gradiens alapú újrarendezõ algoritmus és az $f$ transzformáció részletezése megtalálható a forrásjegyzékben \cite{MDS}.
+
+%\item Elõször a távolságmátrix minden $p_{ij}$ elemét helyettesítjük $q_{ij}=(1-p_{ij})^2$ elemmel, így egy olyan értéket kapunk, mely a pontok közötti távolsággal fordítottan arányos.
+%\item Ezután az elemekhez olyan pontokat rendelünk a síkon, melyek közötti $d_{ij}$ távolságok a korábban meghatározott $q_{ij}$-khez konvergálnak. Ezt az alábbi $S$ stresszfüggvény minimalizálásával tehetjük meg:
+
+%ahol $D$ az elemek számát jelöli.
+
 %\item Vegyük a $\mathbf{P}$ távolságmátrix elemeinek négyzetét tartalmazó $\mathbf{P^{(2)}}$ mátrixot.
 %\item Számoljuk ki $\mathbf{B}$ skalárszorzat mátrixot a következõképp: $\mathbf{B}=-\frac{1}{2}\mathbf{J}\mathbf{P^{(2)}}\mathbf{J}$, ahol $\mathbf{J}=\mathbf{I}-\frac{1}{n}\mathbf{1}$, $n$ pedig az elemek száma ($\mathbf{1}$ a csupa egyesekbõl álló mátrix).
 %\item Határozzuk meg $\mathbf{B}$ mátrix $N$ legnagyobb sajátértékét ($\lambda_1,\dots,\lambda_N$) és a hozzájuk tartozó sajátvektorokat ($\mathbf{e}_1,\dots,\mathbf{e}_N$).
 %\item Végül a koordináták $\mathbf{X}$ mátrixát az $\mathbf{X}=\mathbf{E}_N \mathbf{\Lambda}_N^{\frac{1}{2}}$ képlet segítségével kapjuk, ahol $\mathbf{E}_N$ az $N$ sajátvektor-alkotta mátrixot jelöli, $\mathbf{\Lambda}_N$-t pedig az $N$ sajátértékbõl képzett diagonális mátrix.
 %A következõ szakaszokban bemutatott térképek két dimenzióra lettek leképezve ($N=2$).
-
-A kezdeti véletlen rendezésbõl egy gradiens alapú algoritmus segítségével jutunk el az ideálisba, melynek részletezése megtalálható a forrásjegyzékben \cite{MDS}.
 
 %----------------------------------------------------------------------------
 \subsection{Az elsõ dallamosztály ritmikai szerkezete}
@@ -61,7 +69,7 @@ A kezdeti véletlen rendezésbõl egy gradiens alapú algoritmus segítségével jutunk
 \label{fig:cluster1MDSkmeans}
 \end{figure}
 
-Az \ref{fig:cluster1MDScomplete}-\ref{fig:cluster1MDSkmeans} ábrákon látható a $30$ dalból álló elsõ dallamvonal szerinti osztály Hamming-távolság alapján számított MDS-térképe adott algoritmus szerinti klaszterek szerint színezve.
+Az \ref{fig:cluster1MDS} ábrán látható a $30$ dalból álló elsõ dallamvonal szerinti osztály Hamming-távolság alapján számított MDS-térképe.
 
 Meglehetõsen kuszának tûnik, így nem is csoda, hogy a single linkage algoritmus $3$ outlier ponton (($169$), ($760$), ($1476$)) és egy kételemû csoporton ($378$, $764$) kívül egy minden más elemet tartalmazó klasztert talál. Az average egy kicsivel jobban teljesít, az alsó fürtöt ($299$, $376$, $377$) sikeresen szeparálja a többi elemtõl. A complete a nagy és sûrû klasztert felbontja két kisebb, egymást érintõ klaszterre (\ref{fig:cluster1MDScomplete} ábra). 
 
@@ -153,7 +161,7 @@ A szoftver speciális, NEX kiterjesztésû fájlok segítségével mûködik, melyek tart
 A SplitsTree által generált ábrák a Neighbor Net algoritmus segítségével készülnek, melynek lépései nagy vonalakban a következõek \cite{Bryant}:
 \begin{enumerate}
 \item Kezdetben minden elem egy különálló pont. 
-\item Minden iterációs lépésnél kiválasztunk egy pontpárt, addig amíg legalább $3$ pontunk van. Ekkor azonban még nem feltétlenül vonjuk össze õket, ahogy azt tettük volna a linkage algoritmusok során. Csak akkor vonunk össze pontokat, ha másodszorra is beválasztottuk ugyanazt a pontot a párba (jelöljük ezt a pontot $x$-szel). Ekkor $x, y$ és $z$ összekötött pontokból létrehozunk két új, $u$ és $v$ egymással szintúgy összeköttetésben lévõ pontot (melyek az ábrán belsõ pontok lesznek). 
+\item Minden iterációs lépésnél kiválasztunk egy pontpárt addig, amíg legalább $3$ pontunk van. Ekkor azonban még nem feltétlenül vonjuk össze õket, ahogy azt tettük volna a linkage algoritmusok során. Csak akkor vonunk össze pontokat, ha másodszorra is beválasztottuk ugyanazt a pontot a párba (jelöljük ezt a pontot $x$-szel). Ekkor $x, y$ és $z$ összekötött pontokból létrehozunk két új, $u$ és $v$ egymással szintúgy összeköttetésben lévõ pontot (melyek az ábrán belsõ pontok lesznek). 
 \item Frissítjük a távolságmátrixot: $u$ és egy tetszõleges $w$ között a távolság az $u$ által reprezentált pontok ($x$ és $y$) és $w$ távolságának speciális függvénye, majd folytatjuk a kettes pontnál.
 \end{enumerate}
 
@@ -163,29 +171,29 @@ A pontpárok kiválasztásához használt formulát és a távolságmátrix redukciója sor
 \subsection{Az ötödik dallamosztály ritmikai szerkezete}
 %----------------------------------------------------------------------------
 
-Vizsgáljuk meg, hogy a klaszterezések által adott eredmények mennyire tükrözõdnek a SplitsTree által rajzolt fákon! Ehhez használjuk az $5.$ dallam szerinti csoport $33$ elemét. Ekkor az alapértelmezett $K$ az \ref{eq:defk} képlet szerint $\sqrt{\frac{33}{2}}\approx 4$.
+Vizsgáljuk meg, hogy a klaszterezések által adott eredmények mennyire tükrözõdnek a SplitsTree által rajzolt fákon! Ehhez használjuk az ötödik dallam szerinti csoport $33$ elemét. Ekkor az alapértelmezett $K$ az \ref{eq:defk} képlet szerint $\sqrt{\frac{33}{2}}\approx 4$.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=108mm, keepaspectratio]{figures/cluster5single.png}
+\includegraphics[width=109mm, keepaspectratio]{figures/cluster5single.png}
 \caption{Single linkage szerinti színezés} 
 \label{fig:cluster5single}
 \end{figure}
 
-A \ref{fig:cluster5single} ábrán látható, hogy mi történhet túl közeli elemeket tartalmazó klaszterek esetén a single linkage algoritmussal: egy nagy klaszterbe mosódnak össze az elemek (és kapunk $3$ mindenkitõl távolra esõ outlier pontok alkotta egyelemû klasztert). Ahogy korábban említésre került, erre megoldást nyújthat egy maximális távolságérték megadása, amelyet elérve már nem húzunk össze klasztereket, de ennek a paraméternek a kiszámítása nem könnyû, ráadásul adathalmazonként változik is.
+Az \ref{fig:cluster5single} ábrán látható, hogy mi történhet túl közeli elemeket tartalmazó klaszterek esetén a single linkage algoritmussal: egy nagy klaszterbe mosódnak össze az elemek (és kapunk $3$ mindenkitõl távolra esõ outlier pontok alkotta egyelemû klasztert). Ahogy korábban említésre került, erre megoldást nyújthat egy maximális távolságérték megadása, amelyet elérve már nem húzunk össze klasztereket, de ennek a paraméternek a kiszámítása nem könnyû, ráadásul adathalmazonként változik is.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=108mm, keepaspectratio]{figures/cluster5average.png}
+\includegraphics[width=109mm, keepaspectratio]{figures/cluster5average.png}
 \caption{Average linkage szerinti színezés} 
 \label{fig:cluster5average}
 \end{figure}
 
-A \ref{fig:cluster5average} ábra mutatja, hogy az average linkage algoritmus ennél hatékonyabb, hiszen használatával két egymástól jól elkülönülõ, nagy klasztert és két, egy-egy outlier pontból álló klasztert kapunk.
+Az \ref{fig:cluster5average} ábra mutatja, hogy az average linkage algoritmus ennél hatékonyabb, hiszen használatával két egymástól jól elkülönülõ, nagy klasztert és két, egy-egy outlier pontból álló klasztert kapunk.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=108mm, keepaspectratio]{figures/cluster5complete.png}
+\includegraphics[width=109mm, keepaspectratio]{figures/cluster5complete.png}
 \caption{Complete linkage szerinti színezés} 
 \label{fig:cluster5complete}
 \end{figure}
@@ -194,52 +202,54 @@ A complete linkage klaszterezés tûnik a legjobb választásnak, hiszen ez az, amel
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=108mm, keepaspectratio]{figures/cluster5kmeans.png}
+\includegraphics[width=109mm, keepaspectratio]{figures/cluster5kmeans.png}
 \caption{$k$-means szerinti színezés} 
 \label{fig:cluster5kmeans}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=108mm, keepaspectratio]{figures/cluster5dbscan.png}
+\includegraphics[width=109mm, keepaspectratio]{figures/cluster5dbscan.png}
 \caption{DBSCAN szerinti színezés} 
 \label{fig:cluster5dbscan}
 \end{figure}
 
 A DBSCAN algoritmus kimenete sem meglepõ: eredményesen megtalálja az egymáshoz közel esõ sûrûsödéseket, összesen $4$-et (\ref{fig:cluster5dbscan} ábra). Több elemrõl állítja, hogy outlier, mint az eddigiek, de az általa adott klasztereken belüli elemek valóban nagyon közel vannak egymáshoz. Az egyetlen nehézség ezzel a módszerrel az, hogy sokat kellett ,,játszani'' a két paraméterrel, hogy értelmezhetõ eredményt kapjunk (itt most $minPts = 2$ és $\varepsilon = 0.17$).
 
-Ha vetünk egy pillantást a klaszterek elemire, kiderül, hogy az \ref{fig:cluster5furt1} ábrán látható dalok közös tulajdonsága a ti-táj-táá zárlat, az ezekhez tartozó dalok a fenti complete linkage szerinti \ref{fig:cluster5complete} ábra kékkel és pirossal jelölt elemei. 
+\subsubsection{A klaszterek belsõ szekezete}
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=142mm, keepaspectratio]{figures/cluster5furt1.png}
+\includegraphics[width=135mm, keepaspectratio]{figures/cluster5furt1.png}
 \caption{Az elsõ klaszter kottái} 
 \label{fig:cluster5furt1}
 \end{figure}
 
-Az \ref{fig:cluster5furt2} ábra a táá-táá zárlatú dalok kottáit tartalmazza (ezek pedig a $k$-means szerinti \ref{fig:cluster5kmeans} ábra pirossal jelölt elemei).
+Ha vetünk egy pillantást a klaszterek eleminek kottáira is, kiderül, hogy az \ref{fig:cluster5furt1} ábrán látható dalok közös tulajdonsága a ti-táj-táá zárlat (az ezekhez tartozó dalok a fenti complete linkage szerinti \ref{fig:cluster5complete} ábra kékkel és zölddel jelölt elemei).
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=120mm, keepaspectratio]{figures/cluster5furt2.png}
+\includegraphics[width=110mm, keepaspectratio]{figures/cluster5furt2.png}
 \caption{A második klaszter kottái} 
 \label{fig:cluster5furt2}
 \end{figure}
 
+Az \ref{fig:cluster5furt2} ábra a táá-táá zárlatú dalok kottáit tartalmazza (ezek pedig a $k$-means szerinti \ref{fig:cluster5kmeans} ábra pirossal jelölt elemei).
+
 \subsubsection{További távolságmetrikák használata}
 
-Tanulságos lehet megfigyelni, hogy különbözõ módszerrel számított távolságmátrix alapján rajzolt ábrák klaszterezései is hasonló eredményt mutatnak-e. Ehhez vizsgáljuk meg az intervallum-vektorok Euklideszi-távolsága alapján számított távolságmátrixból épült fát és rajta az average linkage klaszterezés szerinti színezést (\ref{fig:cluster5euc_average} ábra). A színeket úgy választottam meg, hogy látható legyen a klaszterezés eredményeinek hasonlósága. 
+Tanulságos lehet megfigyelni, hogy különbözõ módszerrel számított távolságmátrix alapján rajzolt ábrák klaszterezései is hasonló eredményt mutatnak-e. Ehhez vizsgáljuk meg az intervallum-vektorok Euklideszi-távolsága alapján számított távolságmátrixból épült fát és rajta az average linkage szerinti színezést (\ref{fig:cluster5euc_average} ábra). A színeket úgy választottam meg, hogy látható legyen a klaszterezés eredményeinek hasonlósága. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=110mm, keepaspectratio]{figures/cluster5euc_average.png}
+\caption{Euklideszi távolság alapján rajzolt fa average linkage szerinti színezése} 
+\label{fig:cluster5euc_average}
+\end{figure}
 
 A Hamming-távolság és az Euklideszi-távolság szerinti klaszterek csak néhány elemben térnek el, pedig különbözõ vektorokra számítottuk õket. A trendek mégis mindkettõben láthatóak, a különbségek pedig annak bizonyítékai, hogy nem mindig határozható meg egyértelmûen egy elem csoportja, gyakran vannak átfedések is.
 
 További összehasonlítások alapján készült ábrákat láthatunk ugyanerre a dallamosztályra az \ref{app:splits} számú függelékben.
-
-\begin{figure}[!h]
-\centering
-\includegraphics[width=108mm, keepaspectratio]{figures/cluster5euc_average.png}
-\caption{Euklideszi távolság alapján rajzolt fa average linkage szerinti színezése} 
-\label{fig:cluster5euc_average}
-\end{figure}
 
 %----------------------------------------------------------------------------
 \section{Összegzés}
