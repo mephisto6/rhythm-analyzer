@@ -196,6 +196,9 @@ public class FileReader {
 	}
 
 	public static Collection<File> getFilesForCluster(String fileIdsLine) {
+		if (fileMap == null) {
+			fileMap = new DualHashBidiMap();
+		}
 		files = new ArrayList<File>();
 		String[] ids = fileIdsLine.split(" ");
 		List<Integer> lineNums = new ArrayList<Integer>();
