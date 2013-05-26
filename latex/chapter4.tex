@@ -12,7 +12,7 @@ A kód, a dokumentáció, illetve a grafikus elemek szövegei is mind angolul készül
 \section{Forrásfájlok feldolgozása}
 %----------------------------------------------------------------------------
 
-A vizsgálandó dalok nem hangfájlként állnak rendelkezésre, hanem speciálisan kódolt kották formájában. Ezek sorai megfelelnek egy hagyományos kotta sorainak, a sorok elemei pedig tartalmazzák az egymás után következõ hangok magasságát és idõtartamát.
+A vizsgálandó dalok nem hangfájlként állnak rendelkezésre, hanem speciálisan kódolt kották formájában. Ezek sorai megfelelnek egy hagyományos kotta sorainak, a sorok elemei pedig tartalmazzák az egymást követõ hangok magasságát és idõtartamát.
 
 \begin{lstlisting}[frame=single,captionpos=b,caption={Egy kódolt kotta},label={list:kotta}]
 T1/2 K2b [8G2 8G2 8G2 8G2] |K2b [8H2 8H2 8A2 8G2] |K2b 8A2 4F2. |
@@ -22,7 +22,7 @@ T1/2 K2b [8G2 8G2 8G2 8G2] |K2b [8H2 8H2 8A2 8G2] |K2b 8A2 4F2. |
 
 \end{lstlisting}
 
-A \ref{list:kotta}-es fájlban egy ilyen speciálisan kódolt kottát láthatunk. Az elsõ eleme a fájlnak az ütemek hosszát határozza meg. Az ütemek között (az igazi kottához hasonlóan) függõleges vonal ($|$) található, a kottában is szereplõ gerendákat nyitó és záró szögletes zárójel ($[$ és $]$) jelöli, de ezek számunkra nem hordoznak lényeges információt. 
+A \ref{list:kotta}-es fájlban egy ilyen speciálisan kódolt kottát láthatunk. A fájl elsõ eleme az ütemek hosszát határozza meg. Az ütemek között (az igazi kottához hasonlóan) függõleges vonal ($|$) található, a kottában is szereplõ gerendákat pedig nyitó és záró szögletes zárójel ($[$ és $]$) jelöli, de ezek számunkra nem hordoznak lényeges információt. 
 
 Az ütemek elsõ eleme opcionális hangmagasság-módosító, ezért a ritmus vizsgálatakor figyelmen kívül hagyhatjuk. Utána jönnek a hangok, melynek elsõ része határozza meg a hang hosszát, második a magasságát. A \ref{list:kotta}-es fájl elsõ hangot reprezentáló eleme a $8G2$, mely egy $1/8$ hosszúságú $G$ hangot jelöl a második oktáv magasságában.
 
@@ -36,14 +36,15 @@ Pontozott hangok itt is elõfordulhatnak, a pont helye a hangot jelölõ kód utolsó
 
 Az egyes fájlokban tárolt adatokkal megadott dalokat egy objektum-hierarchiába képeztem le (\ref{fig:uml01} ábra). 
 
-A teljes dalhoz tartozó osztály a  \texttt{Tune} nevû osztály, mely tartalmazza a hozzá tartozó fájl referenciáját is. A \texttt{Tune} osztály \texttt{TuneLine} objektumokból épül fel, melyek mindegyike egy-egy sort reprezentál az adott fájlban. A sorok ütemekbõl épülnek fel, ugyanígy egy \texttt{TuneLine} objektum az ütemet reprezentáló \texttt{Bar} típusú objektumok kompozíciója. 
-
 \begin{figure}[!h]
 \centering
-\includegraphics[width=60mm, keepaspectratio]{figures/uml1.png}
+\includegraphics[width=55mm, keepaspectratio]{figures/uml1.png}
 \caption{A dalokat reprezentáló objektumok hierarchiája} 
 \label{fig:uml01}
 \end{figure}
+
+
+A teljes dalhoz tartozó osztály a  \texttt{Tune} nevû osztály, mely tartalmazza a hozzá tartozó fájl referenciáját is. A \texttt{Tune} osztály \texttt{TuneLine} objektumokból épül fel, melyek mindegyike egy-egy sort reprezentál az adott fájlban. A sorok ütemekbõl épülnek fel, ugyanígy egy \texttt{TuneLine} objektum az ütemet reprezentáló \texttt{Bar} típusú objektumok kompozíciója. 
 
 Minden szinten találhatóak olyan mezõk, melyek az adott szinten értelmezhetõ ritmusvektor kiszámításához szükségesek. Az alkalmazásban a \texttt{TuneLine} osztály lett a felelõs a vektorok \texttt{Bar} objektumból származó részleteinek összeállításáért. 
 
@@ -71,7 +72,7 @@ Az itt látható $data/kotta/par1.knf$ bejegyzés sorszáma például $1$, és így tová
 \section{Ritmusábrázolás}
 %----------------------------------------------------------------------------
 
-A fájlokból elsõ lépésben a korábban ismertetett TUBS ábrázolású vektorokat nyerjük ki. Ehhez meghatározunk egy $n$ egész számot, mely lehetõleg $2$ hatvány, majd azt mondjuk, hogy egy egységnyi ütemet ennyi üres dobozra osztjuk. Ezután beletesszük az elemeknek megfelelõ $1$-eseket a pozíciójukba. $16$-os felbontást feltételezve a \ref{list:kotta}-es kotta elsõ sora így ábrázolható:
+A fájlokból elsõ lépésben a korábban ismertetett TUBS ábrázolású vektorokat nyerjük ki. Ehhez meghatározunk egy $n$ egész számot, mely lehetõleg $2$ hatvány, majd azt mondjuk, hogy az egységnyi ütemet ennyi üres dobozra osztjuk. Ezután beletesszük az elemeknek megfelelõ $1$-eseket a pozíciójukba. $16$-os felbontást feltételezve a \ref{list:kotta}-es kotta elsõ sora így ábrázolható:
 \[ \left( \begin{array}{cccccccccccccccccccccccccc}
 1& 0& 1& 0& 1& 0& 1& 0& |& 1& 0& 1& 0& 1& 0& 1& 0& |& 1& 0& 1& 0& 0& 0& 0& 0
 \end{array} \right)
@@ -85,7 +86,7 @@ Az ugyanehhez a sorhoz tartozó intervallumok hosszait reprezentáló vektor a pedi
 \]
 amely az elõzõ vektorból könnyen számolható az $1$-esek közötti $0$-k számának megszámolásával ($+1$).
 
-A szomszédos elemekhez tartozó arányok az intervallumok hosszait reprezentáló vektorból számíthatók az szomszédos elemek hányadosának sorba vételével:
+A szomszédos elemekhez tartozó arányok az intervallumok hosszait reprezentáló vektorból számíthatók a szomszédos elemek hányadosának sorba vételével:
 \[ \left( \begin{array}{cccccccccccc}
 1.00& 1.00& 1.00& 1.00& |& 1.00& 1.00& 1.00& 1.00& |& 3.00& 0.33
 \end{array} \right)
@@ -217,7 +218,7 @@ Az ablak jobb oldalának alsó részén helyezkedik el az eredményül kapott klaszter
 \section{Távolságmátrixok szerializálása és betöltése}
 %----------------------------------------------------------------------------
 
-Abban az esetben, ha nem kívánjuk gyakran változtatni az vizsgált adathalmazt, érdemes lehet az elemek közötti távolságokat csak egyszer meghatározni, majd fájlba írni. Ezzel megspóroljuk, hogy az esetleges késõbbi, különbözõ paraméterû klaszterezések újra és újra elõállítsák ugyanazt a távolságmátrixot.
+Abban az esetben, ha nem kívánjuk gyakran változtatni a vizsgált adathalmazt, érdemes lehet az elemek közötti távolságokat csak egyszer meghatározni, majd fájlba írni. Ezzel megspóroljuk, hogy az esetleges késõbbi, különbözõ paraméterû klaszterezések újra és újra elõállítsák ugyanazt a távolságmátrixot.
 
 Ehhez a funkcióhoz mind a távolságmátrix szerializálását, mind a fájlból való visszatöltését implementálni kellett.
 
@@ -238,7 +239,7 @@ A programozási folyamat során gyakran találkoztam olyan problémával, melyre anna
 \begin{itemize}
 \item  A katalógusfájl beolvasása során szükségem volt egy kétirányú \texttt{Map} implementációra, melyre az Apache Commons Collections könyvtárának \texttt{BidiMap} osztálya nyújtott megoldást.
 
-\item A debug során sok segítséget nyújtott a prioritási szintenkénti loggolást lehetõvé tevõ Log4j csomag.
+\item A debug során sok segítséget nyújtott a prioritási szintenkénti naplózást lehetõvé tevõ Log4j csomag.
 
 \item A katalógusfájl soronkénti feldolgozását és a fájlba író mûveleteket a Google Guava könyvtárának fájlmûveleteket egyszerûsítõ eljárásaink segítségével oldottam meg. 
 
